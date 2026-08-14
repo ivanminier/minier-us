@@ -27,6 +27,7 @@ export interface Project {
   studio: Studio;
   studioLabel: string;
   platforms: string[];
+  platformsPlanned?: string;
   platformsNote?: string;
   creator: string;
   role: string;
@@ -58,7 +59,8 @@ export const projects: Project[] = [
     statusLabel: 'In development',
     studio: 'tideframe',
     studioLabel: 'Tideframe Labs',
-    platforms: ['iPhone', 'iPad', 'Apple TV', 'Mac'],
+    platforms: ['iPhone', 'iPad', 'Apple TV'],
+    platformsPlanned: 'Mac planned',
     platformsNote:
       'Public 1.0 is being built for iPhone, iPad, and Apple TV. A native Mac app is planned on the same engine and is not shipping yet.',
     creator: 'Ivan Minier',
@@ -256,7 +258,7 @@ export const projects: Project[] = [
     creator: 'Ivan Minier',
     role: 'Creator — product, interface, and engineering',
     officialHome: { label: 'tideframelabs.com/modeboard', href: 'https://tideframelabs.com/modeboard', external: true },
-    oneLiner: 'Every Focus deserves its own Mac.',
+    oneLiner: 'Switch your whole Mac workspace with one profile.',
     summary:
       'Modeboard is a native Mac utility that turns a named profile into a complete workspace. Apps, files, Dock, wallpaper, appearance, Desktop, menu bar, Shortcuts, and a Focus Filter can move together.',
     href: '/work/modeboard',

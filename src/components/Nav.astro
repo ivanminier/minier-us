@@ -48,6 +48,12 @@ const path = Astro.url.pathname;
 <script>
   const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
   const panel = document.querySelector<HTMLElement>('#mobile-nav');
+  const focusables = () =>
+    panel
+      ? [...panel.querySelectorAll<HTMLElement>('a, button, [tabindex]:not([tabindex="-1"])')].filter(
+          (el) => !el.hasAttribute('disabled') && el.offsetParent !== null,
+        )
+      : [];
   const setOpen = (open: boolean) => {
     if (!panel || !toggle) return;
     panel.dataset.open = String(open);
@@ -56,7 +62,7 @@ const path = Astro.url.pathname;
     toggle.textContent = open ? 'Close' : 'Menu';
     document.body.style.overflow = open ? 'hidden' : '';
     if (open) {
-      panel.querySelector<HTMLElement>('a')?.focus();
+      focusables()[0]?.focus();
     } else {
       toggle.focus();
     }
@@ -66,6 +72,23 @@ const path = Astro.url.pathname;
     link.addEventListener('click', () => setOpen(false));
   });
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') setOpen(false);
+    if (panel?.dataset.open !== 'true') return;
+    if (event.key === 'Escape') {
+      setOpen(false);
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    const items = [toggle, ...focusables()].filter((el): el is HTMLElement => Boolean(el));
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    const active = document.activeElement;
+    if (event.shiftKey && (active === first || !items.includes(active as HTMLElement))) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && (active === last || !items.includes(active as HTMLElement))) {
+      event.preventDefault();
+      first.focus();
+    }
   });
 </script>

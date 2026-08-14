@@ -461,6 +461,10 @@ a:hover {
   color: var(--muted);
 }
 
+.platforms .planned {
+  color: var(--ink-soft);
+}
+
 .media-stage {
   position: relative;
 }
@@ -794,6 +798,12 @@ a:hover {
 
 .facts dd {
   margin: 0.2rem 0 0;
+}
+
+.facts-planned {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--ink-soft);
 }
 
 .facts-note {

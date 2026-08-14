@@ -21,7 +21,7 @@ const jsonLd = {
 };
 ---
 
-<Base title={`${project.name} — Ivan Minier`} description={project.summary} jsonLd={jsonLd}>
+<Base title={`${project.name} — Ivan Minier`} description={project.summary} jsonLd={jsonLd} image="/media/og/modeboard.png">
   <section class="case-hero">
     <div class="wrap">
       <div class="meta-row">
@@ -30,7 +30,7 @@ const jsonLd = {
         <span>{project.year}</span>
       </div>
       <h1>{project.oneLiner}</h1>
-      <p class="lede">Switch your whole Mac workspace with one profile. {project.summary}</p>
+      <p class="lede">Every Focus deserves its own Mac. {project.summary}</p>
       <ProjectFacts project={project} />
       <div class="actions">
         {project.links.map((link) => (

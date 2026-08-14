@@ -33,6 +33,7 @@ const { project } = Astro.props;
     <dt>Platforms</dt>
     <dd>
       {project.platforms.join(' · ')}
+      {project.platformsPlanned && <span class="facts-planned">{project.platformsPlanned}</span>}
       {project.platformsNote && <span class="facts-note">{project.platformsNote}</span>}
     </dd>
   </div>
