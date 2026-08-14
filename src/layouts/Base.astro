@@ -38,25 +38,17 @@ const personLd = {
     url: site.url,
     email: 'ivan@minier.us',
     jobTitle: 'Founder, Tideframe Labs',
-    affiliation: {
+    worksFor: {
       '@type': 'Organization',
       name: 'Tideframe Labs',
       url: 'https://tideframelabs.com',
-    },
-    alumniOf: {
-      '@type': 'CollegeOrUniversity',
-      name: 'University of Vermont',
     },
     address: {
       '@type': 'PostalAddress',
       addressRegion: 'Vermont',
       addressCountry: 'US',
     },
-    sameAs: [
-      ...socials.map((item) => item.href),
-      'https://tideframelabs.com',
-      'https://trinityredistricting.com',
-    ],
+    sameAs: socials.map((item) => item.href),
   },
 };
 ---
@@ -123,6 +115,7 @@ const personLd = {
           );
         });
       };
+      setTheme(document.documentElement.dataset.theme || 'light');
       buttons.forEach((button) => {
         button.addEventListener('click', () => {
           const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';

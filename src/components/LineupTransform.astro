@@ -1,48 +1,48 @@
 ---
 const before = [
-  { raw: 'US| CNN HD [US]', group: 'USA HD' },
-  { raw: 'espn usa 1080p', group: 'SPORT' },
-  { raw: 'BBCWORLD-NEWS-UK', group: 'INTL' },
-  { raw: 'DISCOVERY SCIENCE FHD', group: 'DOC / VAR' },
-  { raw: 'foxnews-us-east', group: 'news_us' },
-  { raw: 'MTVHits_HE', group: 'MUSIC??' },
+  { raw: 'USA | HARBOR-NEWS HD', group: 'USA HD', extra: 'no logo' },
+  { raw: 'VIP-US | meridian_world', group: 'INTL??', extra: 'no guide' },
+  { raw: 'US MOVIES ABC 1080', group: 'VOD / MIX', extra: 'wrong bin' },
+  { raw: 'espn usa east fhd', group: 'SPORT', extra: 'dup stream' },
+  { raw: 'BBCWORLD-NEWS-UK', group: 'news_us', extra: 'bad country' },
+  { raw: 'MTVHits_HE', group: 'MISC', extra: 'noise suffix' },
 ];
 
 const after = [
-  { name: 'CNN', group: 'News' },
-  { name: 'ESPN', group: 'Sports' },
-  { name: 'BBC World News', group: 'News' },
-  { name: 'Discovery Science', group: 'Documentary' },
-  { name: 'Fox News', group: 'News' },
-  { name: 'MTV Hits', group: 'Music' },
+  { name: 'Harbor News', group: 'News', extra: 'logo + guide' },
+  { name: 'Meridian World', group: 'News', extra: 'matched' },
+  { name: 'ABC', group: 'Movies', extra: 'recategorized' },
+  { name: 'ESPN', group: 'Sports', extra: 'primary stream' },
+  { name: 'BBC World News', group: 'News', extra: 'normalized' },
+  { name: 'MTV Hits', group: 'Music', extra: 'cleaned' },
 ];
 ---
 
-<section class="transform" aria-label="How Lineup organizes a messy catalog">
+<section class="transform" aria-label="How Lineup Intelligence organizes a messy catalog">
   <div class="transform-col before">
-    <p class="kicker">Before</p>
-    <strong>Provider data</strong>
+    <p class="kicker">Raw provider</p>
+    <strong>What arrives</strong>
     <ul>
       {
         before.map((row) => (
           <li>
             <span>{row.raw}</span>
-            <span>{row.group}</span>
+            <span>{row.group} · {row.extra}</span>
           </li>
         ))
       }
     </ul>
   </div>
-  <p class="arrow" aria-hidden="true">Then</p>
+  <p class="arrow">Lineup Intelligence</p>
   <div class="transform-col after">
-    <p class="kicker">After</p>
-    <strong>Television</strong>
+    <p class="kicker">Television</p>
+    <strong>What you watch</strong>
     <ul>
       {
         after.map((row) => (
           <li>
             <strong>{row.name}</strong>
-            <span>{row.group}</span>
+            <span>{row.group} · {row.extra}</span>
           </li>
         ))
       }

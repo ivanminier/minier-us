@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import NextProject from '../../components/NextProject.astro';
+import ProjectFacts from '../../components/ProjectFacts.astro';
 import ProjectMedia from '../../components/ProjectMedia.astro';
 import { getProject } from '../../data/projects';
 import { site } from '../../data/site';
@@ -27,6 +28,7 @@ const jsonLd = {
       </div>
       <h1>Housing relief first. Then public benefit. Then feasibility.</h1>
       <p class="lede">{project.summary}</p>
+      <ProjectFacts project={project} />
     </div>
   </section>
 
@@ -39,9 +41,13 @@ const jsonLd = {
   <section class="section" style="padding-top:0;">
     <div class="wrap">
       <div class="notice">
-        <strong>Independent student-led concept.</strong>
-        Trinity Redistricting is not an official University of Vermont project. It has not been adopted by UVM or the City of Burlington.
-        The figures are concept-stage targets for feasibility review, not official budgets or construction documents.
+        <strong>Created by Ivan Minier.</strong>
+        Independent student-led concept. Not an official University of Vermont or City of Burlington project.
+        Figures are concept-stage targets for feasibility review, not official budgets or construction documents.
+      </div>
+      <div class="metrics" style="margin-top:1.2rem;">
+        <div class="metric"><strong>1,850–2,100</strong><span>preferred concept beds</span></div>
+        <div class="metric"><strong>1,400–1,650</strong><span>estimated net-new beds after replacement</span></div>
       </div>
     </div>
   </section>

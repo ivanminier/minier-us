@@ -1,0 +1,39 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<dl class="facts">
+  <div>
+    <dt>Creator</dt>
+    <dd>{project.creator}</dd>
+  </div>
+  <div>
+    <dt>Context</dt>
+    <dd>{project.studioLabel}</dd>
+  </div>
+  <div>
+    <dt>Role</dt>
+    <dd>{project.role}</dd>
+  </div>
+  <div>
+    <dt>Year</dt>
+    <dd>{project.year}</dd>
+  </div>
+  <div>
+    <dt>Status</dt>
+    <dd>{project.statusLabel}</dd>
+  </div>
+  <div>
+    <dt>Platforms</dt>
+    <dd>
+      {project.platforms.join(' · ')}
+      {project.platformsNote && <span class="facts-note">{project.platformsNote}</span>}
+    </dd>
+  </div>
+</dl>

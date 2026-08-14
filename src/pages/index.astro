@@ -17,50 +17,31 @@ const laundry = featuredProjects[4];
       <p class="kicker">{site.name}</p>
       <h1>{site.tagline}</h1>
       <p class="lede">{site.lede}</p>
+      <p class="currently"><strong>Currently</strong> {site.currently}</p>
       <div class="actions">
         <a class="btn" href="/work">Explore my work</a>
         <a class="btn btn-ghost" href="/about">About me</a>
       </div>
-      <div class="composition" aria-hidden="false">
-        <div class="cinematic">
-          <div class="device-phone hero-phone">
-            <img
-              src={lineup.hero.src}
-              srcset={lineup.hero.srcset}
-              sizes="(max-width: 800px) 70vw, 320px"
-              width={lineup.hero.width}
-              height={lineup.hero.height}
-              alt={lineup.hero.alt}
-              fetchpriority="high"
-              decoding="async"
-            />
-          </div>
+      <div class="hero-stage" aria-label="Work from Lineup, Modeboard, Rental Record, and Trinity Redistricting">
+        <div class="hero-layer hero-trinity">
+          <img src={trinity.hero.src} srcset={trinity.hero.srcset} width={trinity.hero.width} height={trinity.hero.height} alt="" />
         </div>
-        <div class="shot-stack">
-          <div class="shot">
-            <img
-              src={modeboard.hero.src}
-              srcset={modeboard.hero.srcset}
-              sizes="(max-width: 800px) 92vw, 480px"
-              width={modeboard.hero.width}
-              height={modeboard.hero.height}
-              alt={modeboard.hero.alt}
-              loading="eager"
-              decoding="async"
-            />
-          </div>
-          <div class="shot">
-            <img
-              src={trinity.hero.src}
-              srcset={trinity.hero.srcset}
-              sizes="(max-width: 800px) 92vw, 480px"
-              width={trinity.hero.width}
-              height={trinity.hero.height}
-              alt={trinity.hero.alt}
-              loading="eager"
-              decoding="async"
-            />
-          </div>
+        <div class="hero-layer hero-modeboard">
+          <img src={modeboard.hero.src} srcset={modeboard.hero.srcset} width={modeboard.hero.width} height={modeboard.hero.height} alt="" />
+        </div>
+        <div class="hero-layer hero-rental">
+          <img src={rental.hero.src} srcset={rental.hero.srcset} width={rental.hero.width} height={rental.hero.height} alt="" />
+        </div>
+        <div class="hero-layer hero-lineup">
+          <img
+            src={lineup.hero.src}
+            srcset={lineup.hero.srcset}
+            width={lineup.hero.width}
+            height={lineup.hero.height}
+            alt={lineup.hero.alt}
+            fetchpriority="high"
+            decoding="async"
+          />
         </div>
       </div>
     </div>
@@ -73,12 +54,12 @@ const laundry = featuredProjects[4];
         <h2>Five projects. One habit.</h2>
       </div>
       <p class="lede" style="margin:0;max-width:28rem;">
-        Understand the mess. Reorganize it. Make the useful state obvious.
+        Take something confusing. Give it a structure a person can actually use.
       </p>
     </div>
 
     <div class="wrap-wide" style="display:grid;gap:5rem;">
-      <article class="project-block full">
+      <article class="project-block full reveal">
         <div class="project-copy">
           <div class="meta-row">
             <span class="badge">{lineup.statusLabel}</span>
@@ -90,22 +71,15 @@ const laundry = featuredProjects[4];
           <div class="platforms">{lineup.platforms.map((item) => <span>{item}</span>)}</div>
           <a class="btn" href={lineup.href}>View project</a>
         </div>
-        <div class="cinematic" style="margin-top:1.5rem;">
+        <div class="cinematic lineup-stage" style="margin-top:1.5rem;">
           <div class="device-phone">
-            <img
-              src={lineup.hero.src}
-              srcset={lineup.hero.srcset}
-              width={lineup.hero.width}
-              height={lineup.hero.height}
-              alt={lineup.hero.alt}
-              loading="lazy"
-              decoding="async"
-            />
+            <img src={lineup.hero.src} srcset={lineup.hero.srcset} width={lineup.hero.width} height={lineup.hero.height} alt={lineup.hero.alt} loading="lazy" decoding="async" />
           </div>
+          <img src="/media/lineup/topshelf.webp" srcset="/media/lineup/topshelf-sm.webp 800w, /media/lineup/topshelf.webp 1600w" width="1600" height="480" alt="Lineup mark on a wide television-style banner." loading="lazy" decoding="async" />
         </div>
       </article>
 
-      <article class="project-block">
+      <article class="project-block reveal">
         <div class="project-copy">
           <div class="meta-row">
             <span class="badge">{rental.statusLabel}</span>
@@ -119,20 +93,12 @@ const laundry = featuredProjects[4];
         </div>
         <div class="media-stage">
           <div class="device-phone">
-            <img
-              src={rental.hero.src}
-              srcset={rental.hero.srcset}
-              width={rental.hero.width}
-              height={rental.hero.height}
-              alt={rental.hero.alt}
-              loading="lazy"
-              decoding="async"
-            />
+            <img src={rental.hero.src} srcset={rental.hero.srcset} width={rental.hero.width} height={rental.hero.height} alt={rental.hero.alt} loading="lazy" decoding="async" />
           </div>
         </div>
       </article>
 
-      <article class="project-block reverse">
+      <article class="project-block reverse reveal">
         <div class="project-copy">
           <div class="meta-row">
             <span class="badge">{modeboard.statusLabel}</span>
@@ -145,19 +111,11 @@ const laundry = featuredProjects[4];
           <a class="btn btn-ghost" href={modeboard.href}>View project</a>
         </div>
         <div class="shot">
-          <img
-            src={modeboard.hero.src}
-            srcset={modeboard.hero.srcset}
-            width={modeboard.hero.width}
-            height={modeboard.hero.height}
-            alt={modeboard.hero.alt}
-            loading="lazy"
-            decoding="async"
-          />
+          <img src={modeboard.hero.src} srcset={modeboard.hero.srcset} width={modeboard.hero.width} height={modeboard.hero.height} alt={modeboard.hero.alt} loading="lazy" decoding="async" />
         </div>
       </article>
 
-      <article class="project-block">
+      <article class="project-block reveal">
         <div class="project-copy">
           <div class="meta-row">
             <span class="badge">{trinity.statusLabel}</span>
@@ -169,19 +127,11 @@ const laundry = featuredProjects[4];
           <a class="btn btn-ghost" href={trinity.href}>View project</a>
         </div>
         <div class="editorial">
-          <img
-            src={trinity.hero.src}
-            srcset={trinity.hero.srcset}
-            width={trinity.hero.width}
-            height={trinity.hero.height}
-            alt={trinity.hero.alt}
-            loading="lazy"
-            decoding="async"
-          />
+          <img src={trinity.hero.src} srcset={trinity.hero.srcset} width={trinity.hero.width} height={trinity.hero.height} alt={trinity.hero.alt} loading="lazy" decoding="async" />
         </div>
       </article>
 
-      <article class="project-block reverse">
+      <article class="project-block reverse reveal">
         <div class="project-copy">
           <div class="meta-row">
             <span class="badge">{laundry.statusLabel}</span>
@@ -192,8 +142,8 @@ const laundry = featuredProjects[4];
           <p>{laundry.oneLiner}</p>
           <a class="btn btn-ghost" href={laundry.href}>View project</a>
         </div>
-        <div class="card" style="display:grid;place-items:center;min-height:280px;background:#154734;">
-          <img src={laundry.icon} alt={laundry.hero.alt} width="160" height="160" style="border-radius:2rem;" loading="lazy" />
+        <div class="device-phone">
+          <img src={laundry.hero.src} srcset={laundry.hero.srcset} width={laundry.hero.width} height={laundry.hero.height} alt={laundry.hero.alt} loading="lazy" decoding="async" />
         </div>
       </article>
     </div>
@@ -204,7 +154,7 @@ const laundry = featuredProjects[4];
       <article><strong>See the mess</strong>A playlist. A camera roll. A Mac stuck in one arrangement. A housing map. A laundry room you walked to for nothing.</article>
       <article><strong>Understand it</strong>What is signal, what is noise, and what a person actually needs to do next.</article>
       <article><strong>Reorganize it</strong>Names, rooms, profiles, districts, and machine status get a structure that holds.</article>
-      <article><strong>Make it calm</strong>The product should feel obvious. The system behind it can stay complicated.</article>
+      <article><strong>Make it usable</strong>The finished thing should feel obvious. The work behind it can stay complicated.</article>
     </div>
   </section>
 
@@ -242,7 +192,7 @@ const laundry = featuredProjects[4];
     <div class="wrap">
       <p class="kicker">Contact</p>
       <h2>Start with {emails.primary.address}</h2>
-      <p class="lede">That is the public address for this site. School and personal mail still work if you already have them.</p>
+      <p class="lede">That is the public address for this site.</p>
       <div class="emails" style="margin-top:1.5rem;">
         <div class="email-primary">
           <a href={emails.primary.href}>{emails.primary.address}</a>

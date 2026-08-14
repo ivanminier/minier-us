@@ -18,7 +18,7 @@ const { Content } = await render(idea);
   <article class="page-hero">
     <div class="wrap prose">
       <p class="kicker">{idea.data.date}</p>
-      <h1>{idea.data.title}</h1>
+      <h1 class="idea-title">{idea.data.title}</h1>
       <p class="lede">{idea.data.summary}</p>
       <Content />
       <p><a href="/ideas">All ideas</a></p>

@@ -1,13 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
 import NextProject from '../../components/NextProject.astro';
+import ProjectFacts from '../../components/ProjectFacts.astro';
+import ProjectMedia from '../../components/ProjectMedia.astro';
 import { getProject } from '../../data/projects';
 import { site } from '../../data/site';
 
 const project = getProject('uvm-laundrylink')!;
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
+  '@type': 'WebApplication',
   name: project.name,
   applicationCategory: 'UtilitiesApplication',
   operatingSystem: 'Web',
@@ -27,6 +29,7 @@ const jsonLd = {
       </div>
       <h1>{project.oneLiner}</h1>
       <p class="lede">{project.summary}</p>
+      <ProjectFacts project={project} />
       <div class="actions">
         <a class="btn" href="https://uvmlaundry.com" rel="noopener">Open LaundryLink ↗</a>
       </div>
@@ -34,11 +37,11 @@ const jsonLd = {
   </section>
 
   <section class="section" style="padding-top:0;">
-    <div class="wrap icon-lede">
-      <img src={project.icon} alt="UVM LaundryLink icon" width="160" height="160" style="border-radius:2rem;background:#154734;" />
-      <p class="lede" style="margin:0;">
-        An earlier campus project, and the same pattern as the later work: find a frustrating system and redesign the experience.
-      </p>
+    <div class="wrap" style="max-width:420px;">
+      <div class="device-phone">
+        <ProjectMedia media={project.hero} eager />
+      </div>
+      <p class="caption">Live room data depends on the campus source. This is the actual product interface.</p>
     </div>
   </section>
 

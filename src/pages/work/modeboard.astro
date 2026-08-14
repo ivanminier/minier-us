@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import NextProject from '../../components/NextProject.astro';
+import ProjectFacts from '../../components/ProjectFacts.astro';
 import ProjectMedia from '../../components/ProjectMedia.astro';
 import { getProject } from '../../data/projects';
 import { site } from '../../data/site';
@@ -14,8 +15,9 @@ const jsonLd = {
   operatingSystem: 'macOS',
   description: project.summary,
   url: 'https://tideframelabs.com/modeboard',
-  creator: { '@type': 'Organization', name: 'Tideframe Labs', url: 'https://tideframelabs.com' },
+  creator: { '@type': 'Person', name: 'Ivan Minier', url: site.url },
   author: { '@type': 'Person', name: 'Ivan Minier', url: site.url },
+  publisher: { '@type': 'Organization', name: 'Tideframe Labs', url: 'https://tideframelabs.com' },
 };
 ---
 
@@ -28,8 +30,8 @@ const jsonLd = {
         <span>{project.year}</span>
       </div>
       <h1>{project.oneLiner}</h1>
-      <p class="lede">{project.summary}</p>
-      <div class="platforms">{project.platforms.map((item) => <span>{item}</span>)}</div>
+      <p class="lede">Switch your whole Mac workspace with one profile. {project.summary}</p>
+      <ProjectFacts project={project} />
       <div class="actions">
         {project.links.map((link) => (
           <a class="btn" href={link.href} rel="noopener">{link.label} ↗</a>
