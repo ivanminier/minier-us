@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import NextProject from '../../components/NextProject.astro';
+import { getProject } from '../../data/projects';
+import { site } from '../../data/site';
+
+const project = getProject('uvm-laundrylink')!;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: project.name,
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Web',
+  url: 'https://uvmlaundry.com',
+  description: project.summary,
+  author: { '@type': 'Person', name: 'Ivan Minier', url: site.url },
+};
+---
+
+<Base title={`${project.name} — Ivan Minier`} description={project.summary} jsonLd={jsonLd}>
+  <section class="case-hero">
+    <div class="wrap">
+      <div class="meta-row">
+        <span class="badge">{project.statusLabel}</span>
+        <span>By Ivan Minier</span>
+        <span>{project.year}</span>
+      </div>
+      <h1>{project.oneLiner}</h1>
+      <p class="lede">{project.summary}</p>
+      <div class="actions">
+        <a class="btn" href="https://uvmlaundry.com" rel="noopener">Open LaundryLink ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap icon-lede">
+      <img src={project.icon} alt="UVM LaundryLink icon" width="160" height="160" style="border-radius:2rem;background:#154734;" />
+      <p class="lede" style="margin:0;">
+        An earlier campus project, and the same pattern as the later work: find a frustrating system and redesign the experience.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap prose">
+      <h2>The problem</h2>
+      <p>{project.problem}</p>
+      <h2>The approach</h2>
+      <p>{project.approach}</p>
+      <h2>What it does</h2>
+      <div class="grid-2">
+        {project.capabilities.map((item) => (
+          <article class="card">
+            <strong>{item.title}</strong>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+      <h2>Why this still belongs here</h2>
+      <p>{project.reasoning}</p>
+      <p>
+        LaundryLink is an independent student project. It is not an official University of Vermont product.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <NextProject slug={project.slug} />
+    </div>
+  </section>
+</Base>

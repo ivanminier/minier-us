@@ -1,0 +1,51 @@
+---
+const before = [
+  { raw: 'US| CNN HD [US]', group: 'USA HD' },
+  { raw: 'espn usa 1080p', group: 'SPORT' },
+  { raw: 'BBCWORLD-NEWS-UK', group: 'INTL' },
+  { raw: 'DISCOVERY SCIENCE FHD', group: 'DOC / VAR' },
+  { raw: 'foxnews-us-east', group: 'news_us' },
+  { raw: 'MTVHits_HE', group: 'MUSIC??' },
+];
+
+const after = [
+  { name: 'CNN', group: 'News' },
+  { name: 'ESPN', group: 'Sports' },
+  { name: 'BBC World News', group: 'News' },
+  { name: 'Discovery Science', group: 'Documentary' },
+  { name: 'Fox News', group: 'News' },
+  { name: 'MTV Hits', group: 'Music' },
+];
+---
+
+<section class="transform" aria-label="How Lineup organizes a messy catalog">
+  <div class="transform-col before">
+    <p class="kicker">Before</p>
+    <strong>Provider data</strong>
+    <ul>
+      {
+        before.map((row) => (
+          <li>
+            <span>{row.raw}</span>
+            <span>{row.group}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <p class="arrow" aria-hidden="true">Then</p>
+  <div class="transform-col after">
+    <p class="kicker">After</p>
+    <strong>Television</strong>
+    <ul>
+      {
+        after.map((row) => (
+          <li>
+            <strong>{row.name}</strong>
+            <span>{row.group}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

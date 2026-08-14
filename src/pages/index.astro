@@ -1,0 +1,280 @@
+---
+import Base from '../layouts/Base.astro';
+import { emails, site, tideframe } from '../data/site';
+import { featuredProjects } from '../data/projects';
+import { socials } from '../data/socials';
+
+const lineup = featuredProjects[0];
+const rental = featuredProjects[1];
+const modeboard = featuredProjects[2];
+const trinity = featuredProjects[3];
+const laundry = featuredProjects[4];
+---
+
+<Base title={site.title} description={site.description} type="profile">
+  <section class="hero">
+    <div class="wrap-wide">
+      <p class="kicker">{site.name}</p>
+      <h1>{site.tagline}</h1>
+      <p class="lede">{site.lede}</p>
+      <div class="actions">
+        <a class="btn" href="/work">Explore my work</a>
+        <a class="btn btn-ghost" href="/about">About me</a>
+      </div>
+      <div class="composition" aria-hidden="false">
+        <div class="cinematic">
+          <div class="device-phone hero-phone">
+            <img
+              src={lineup.hero.src}
+              srcset={lineup.hero.srcset}
+              sizes="(max-width: 800px) 70vw, 320px"
+              width={lineup.hero.width}
+              height={lineup.hero.height}
+              alt={lineup.hero.alt}
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div class="shot-stack">
+          <div class="shot">
+            <img
+              src={modeboard.hero.src}
+              srcset={modeboard.hero.srcset}
+              sizes="(max-width: 800px) 92vw, 480px"
+              width={modeboard.hero.width}
+              height={modeboard.hero.height}
+              alt={modeboard.hero.alt}
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+          <div class="shot">
+            <img
+              src={trinity.hero.src}
+              srcset={trinity.hero.srcset}
+              sizes="(max-width: 800px) 92vw, 480px"
+              width={trinity.hero.width}
+              height={trinity.hero.height}
+              alt={trinity.hero.alt}
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="wrap-wide section-head">
+      <div>
+        <p class="kicker">Selected work</p>
+        <h2>Five projects. One habit.</h2>
+      </div>
+      <p class="lede" style="margin:0;max-width:28rem;">
+        Understand the mess. Reorganize it. Make the useful state obvious.
+      </p>
+    </div>
+
+    <div class="wrap-wide" style="display:grid;gap:5rem;">
+      <article class="project-block full">
+        <div class="project-copy">
+          <div class="meta-row">
+            <span class="badge">{lineup.statusLabel}</span>
+            <span>{lineup.studioLabel}</span>
+            <span>{lineup.year}</span>
+          </div>
+          <h3>{lineup.name}</h3>
+          <p>{lineup.oneLiner}</p>
+          <div class="platforms">{lineup.platforms.map((item) => <span>{item}</span>)}</div>
+          <a class="btn" href={lineup.href}>View project</a>
+        </div>
+        <div class="cinematic" style="margin-top:1.5rem;">
+          <div class="device-phone">
+            <img
+              src={lineup.hero.src}
+              srcset={lineup.hero.srcset}
+              width={lineup.hero.width}
+              height={lineup.hero.height}
+              alt={lineup.hero.alt}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </article>
+
+      <article class="project-block">
+        <div class="project-copy">
+          <div class="meta-row">
+            <span class="badge">{rental.statusLabel}</span>
+            <span>{rental.studioLabel}</span>
+            <span>{rental.year}</span>
+          </div>
+          <h3>{rental.name}</h3>
+          <p>{rental.oneLiner}</p>
+          <div class="platforms">{rental.platforms.map((item) => <span>{item}</span>)}</div>
+          <a class="btn btn-ghost" href={rental.href}>View project</a>
+        </div>
+        <div class="media-stage">
+          <div class="device-phone">
+            <img
+              src={rental.hero.src}
+              srcset={rental.hero.srcset}
+              width={rental.hero.width}
+              height={rental.hero.height}
+              alt={rental.hero.alt}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </article>
+
+      <article class="project-block reverse">
+        <div class="project-copy">
+          <div class="meta-row">
+            <span class="badge">{modeboard.statusLabel}</span>
+            <span>{modeboard.studioLabel}</span>
+            <span>{modeboard.year}</span>
+          </div>
+          <h3>{modeboard.name}</h3>
+          <p>{modeboard.oneLiner}</p>
+          <div class="platforms">{modeboard.platforms.map((item) => <span>{item}</span>)}</div>
+          <a class="btn btn-ghost" href={modeboard.href}>View project</a>
+        </div>
+        <div class="shot">
+          <img
+            src={modeboard.hero.src}
+            srcset={modeboard.hero.srcset}
+            width={modeboard.hero.width}
+            height={modeboard.hero.height}
+            alt={modeboard.hero.alt}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </article>
+
+      <article class="project-block">
+        <div class="project-copy">
+          <div class="meta-row">
+            <span class="badge">{trinity.statusLabel}</span>
+            <span>{trinity.studioLabel}</span>
+            <span>{trinity.year}</span>
+          </div>
+          <h3>{trinity.name}</h3>
+          <p>{trinity.oneLiner}</p>
+          <a class="btn btn-ghost" href={trinity.href}>View project</a>
+        </div>
+        <div class="editorial">
+          <img
+            src={trinity.hero.src}
+            srcset={trinity.hero.srcset}
+            width={trinity.hero.width}
+            height={trinity.hero.height}
+            alt={trinity.hero.alt}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </article>
+
+      <article class="project-block reverse">
+        <div class="project-copy">
+          <div class="meta-row">
+            <span class="badge">{laundry.statusLabel}</span>
+            <span>{laundry.studioLabel}</span>
+            <span>{laundry.year}</span>
+          </div>
+          <h3>{laundry.name}</h3>
+          <p>{laundry.oneLiner}</p>
+          <a class="btn btn-ghost" href={laundry.href}>View project</a>
+        </div>
+        <div class="card" style="display:grid;place-items:center;min-height:280px;background:#154734;">
+          <img src={laundry.icon} alt={laundry.hero.alt} width="160" height="160" style="border-radius:2rem;" loading="lazy" />
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap-wide thread" aria-label="How the work connects">
+      <article><strong>See the mess</strong>A playlist. A camera roll. A Mac stuck in one arrangement. A housing map. A laundry room you walked to for nothing.</article>
+      <article><strong>Understand it</strong>What is signal, what is noise, and what a person actually needs to do next.</article>
+      <article><strong>Reorganize it</strong>Names, rooms, profiles, districts, and machine status get a structure that holds.</article>
+      <article><strong>Make it calm</strong>The product should feel obvious. The system behind it can stay complicated.</article>
+    </div>
+  </section>
+
+  <section class="section" id="tideframe">
+    <div class="wrap-wide studio">
+      <div>
+        <p class="kicker">Studio</p>
+        <h2>{tideframe.name}</h2>
+        <p class="lede">{tideframe.descriptor} {tideframe.line}</p>
+        <div class="actions">
+          <a class="btn" href={tideframe.url} rel="noopener">Visit Tideframe Labs ↗</a>
+          <a class="btn btn-ghost" href="/tideframe">On this site</a>
+        </div>
+      </div>
+      <div class="studio-products">
+        {
+          featuredProjects
+            .filter((project) => project.studio === 'tideframe')
+            .map((project) => (
+              <a href={project.href}>
+                <span>
+                  <strong>{project.name}</strong>
+                  <br />
+                  {project.oneLiner}
+                </span>
+                <span>View</span>
+              </a>
+            ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap">
+      <p class="kicker">Contact</p>
+      <h2>Start with {emails.primary.address}</h2>
+      <p class="lede">That is the public address for this site. School and personal mail still work if you already have them.</p>
+      <div class="emails" style="margin-top:1.5rem;">
+        <div class="email-primary">
+          <a href={emails.primary.href}>{emails.primary.address}</a>
+          <button class="copy-btn" type="button" data-copy={emails.primary.address}>Copy</button>
+        </div>
+      </div>
+      <p style="margin-top:1.4rem;">
+        {socials.map((item, index) => (
+          <>
+            {index > 0 && ' · '}
+            <a href={item.href} rel="me noopener">{item.label}</a>
+          </>
+        ))}
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const value = button.dataset.copy;
+      if (!value) return;
+      try {
+        await navigator.clipboard.writeText(value);
+        button.textContent = 'Copied';
+        window.setTimeout(() => {
+          button.textContent = 'Copy';
+        }, 1800);
+      } catch {
+        button.textContent = 'Copy failed';
+      }
+    });
+  });
+</script>

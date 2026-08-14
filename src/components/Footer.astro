@@ -1,0 +1,33 @@
+---
+import { emails, nav, site, tideframe } from '../data/site';
+import { socials } from '../data/socials';
+---
+
+<footer class="footer">
+  <div class="wrap-wide footer-grid">
+    <div>
+      <strong>{site.name}</strong>
+      <p>{site.tagline}</p>
+      <p>
+        <a href={emails.primary.href}>{emails.primary.address}</a>
+      </p>
+    </div>
+    <div>
+      <strong>On this site</strong>
+      <ul>
+        {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </div>
+    <div>
+      <strong>Elsewhere</strong>
+      <ul>
+        {socials.map((item) => <li><a href={item.href} rel="me noopener">{item.label}</a></li>)}
+        <li><a href={tideframe.url} rel="noopener">{tideframe.name}</a></li>
+        <li><a href="https://trinityredistricting.com" rel="noopener">Trinity Redistricting</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap-wide" style="margin-top:2rem;font-size:0.88rem;">
+    © {new Date().getFullYear()} {site.copyrightName}. Independent work unless noted as Tideframe Labs.
+  </div>
+</footer>

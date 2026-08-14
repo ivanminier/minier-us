@@ -1,0 +1,27 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const ideas = await getCollection('ideas');
+  return ideas.map((idea) => ({
+    params: { slug: idea.id },
+    props: { idea },
+  }));
+}
+
+const { idea } = Astro.props;
+const { Content } = await render(idea);
+---
+
+<Base title={`${idea.data.title} — Ivan Minier`} description={idea.data.summary} type="article">
+  <article class="page-hero">
+    <div class="wrap prose">
+      <p class="kicker">{idea.data.date}</p>
+      <h1>{idea.data.title}</h1>
+      <p class="lede">{idea.data.summary}</p>
+      <Content />
+      <p><a href="/ideas">All ideas</a></p>
+    </div>
+  </article>
+</Base>

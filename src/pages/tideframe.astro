@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import { featuredProjects } from '../data/projects';
+import { tideframe } from '../data/site';
+
+const products = featuredProjects.filter((project) => project.studio === 'tideframe');
+---
+
+<Base
+  title="Tideframe Labs — Ivan Minier"
+  description="Tideframe Labs is the independent software studio founded by Ivan Minier in Vermont. Lineup, Tideframe Rental Record, and Modeboard."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">Studio</p>
+      <h1>{tideframe.name}</h1>
+      <p class="lede">{tideframe.descriptor} {tideframe.line}</p>
+      <div class="actions">
+        <a class="btn" href={tideframe.url} rel="noopener">Visit Tideframe Labs ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap prose">
+      <p>
+        Tideframe is the company. This site is the person. The product pages, downloads, App Store listing,
+        support, privacy, and terms live on tideframelabs.com so customers have one official place to go.
+      </p>
+    </div>
+    <div class="wrap" style="margin-top:2rem;display:grid;gap:1rem;">
+      {
+        products.map((project) => (
+          <article class="card">
+            <div class="meta-row">
+              {project.icon && <img src={project.icon} alt="" width="40" height="40" style="border-radius:0.7rem;" />}
+              <span class="badge">{project.statusLabel}</span>
+              <span>{project.platforms.join(' · ')}</span>
+            </div>
+            <h2 style="margin:0.4rem 0;letter-spacing:-0.03em;">{project.name}</h2>
+            <p style="margin:0 0 0.8rem;color:var(--ink-soft);">{project.oneLiner}</p>
+            <a href={project.href}>On this site →</a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</Base>

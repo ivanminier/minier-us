@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import { emails } from '../data/site';
+import { socials } from '../data/socials';
+---
+
+<Base
+  title="Contact — Ivan Minier"
+  description="Email Ivan Minier at ivan@minier.us. School and personal addresses, plus Instagram, LinkedIn, and GitHub."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">Contact</p>
+      <h1>ivan@minier.us</h1>
+      <p class="lede">That is the public address for this site. Copy it, or just write.</p>
+      <div class="email-primary" style="margin-top:1.5rem;">
+        <a href={emails.primary.href}>{emails.primary.address}</a>
+        <button class="copy-btn" type="button" data-copy={emails.primary.address}>Copy</button>
+      </div>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0;">
+    <div class="wrap grid-2">
+      <article class="card">
+        <strong>{emails.school.label}</strong>
+        <p><a href={emails.school.href}>{emails.school.address}</a></p>
+        <p>{emails.school.note}</p>
+      </article>
+      <article class="card">
+        <strong>{emails.personal.label}</strong>
+        <p><a href={emails.personal.href}>{emails.personal.address}</a></p>
+        <p>{emails.personal.note}</p>
+      </article>
+    </div>
+    <div class="wrap" style="margin-top:2rem;">
+      <p class="kicker">Elsewhere</p>
+      <ul>
+        {socials.map((item) => (
+          <li><a href={item.href} rel="me noopener">{item.label} · {item.handle}</a></li>
+        ))}
+        <li><a href="https://tideframelabs.com" rel="noopener">Tideframe Labs</a></li>
+        <li><a href="https://trinityredistricting.com" rel="noopener">Trinity Redistricting</a></li>
+      </ul>
+    </div>
+  </section>
+</Base>
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const value = button.dataset.copy;
+      if (!value) return;
+      try {
+        await navigator.clipboard.writeText(value);
+        button.textContent = 'Copied';
+        window.setTimeout(() => {
+          button.textContent = 'Copy';
+        }, 1800);
+      } catch {
+        button.textContent = 'Copy failed';
+      }
+    });
+  });
+</script>

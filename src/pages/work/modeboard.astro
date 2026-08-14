@@ -1,0 +1,87 @@
+---
+import Base from '../../layouts/Base.astro';
+import NextProject from '../../components/NextProject.astro';
+import ProjectMedia from '../../components/ProjectMedia.astro';
+import { getProject } from '../../data/projects';
+import { site } from '../../data/site';
+
+const project = getProject('modeboard')!;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: project.name,
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'macOS',
+  description: project.summary,
+  url: 'https://tideframelabs.com/modeboard',
+  creator: { '@type': 'Organization', name: 'Tideframe Labs', url: 'https://tideframelabs.com' },
+  author: { '@type': 'Person', name: 'Ivan Minier', url: site.url },
+};
+---
+
+<Base title={`${project.name} — Ivan Minier`} description={project.summary} jsonLd={jsonLd}>
+  <section class="case-hero">
+    <div class="wrap">
+      <div class="meta-row">
+        <span class="badge">{project.statusLabel}</span>
+        <span>{project.studioLabel}</span>
+        <span>{project.year}</span>
+      </div>
+      <h1>{project.oneLiner}</h1>
+      <p class="lede">{project.summary}</p>
+      <div class="platforms">{project.platforms.map((item) => <span>{item}</span>)}</div>
+      <div class="actions">
+        {project.links.map((link) => (
+          <a class="btn" href={link.href} rel="noopener">{link.label} ↗</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap-wide shot">
+      <ProjectMedia media={project.hero} eager />
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap prose">
+      <h2>The problem</h2>
+      <p>{project.problem}</p>
+      <h2>The approach</h2>
+      <p>{project.approach}</p>
+      <h2>What a profile can change</h2>
+      <div class="grid-2">
+        {project.capabilities.map((item) => (
+          <article class="card">
+            <strong>{item.title}</strong>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+      <h2>Why this shape</h2>
+      <p>{project.reasoning}</p>
+      <p>
+        Downloads, licensing, and current pricing live on the Tideframe product page so this site does not go stale.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap-wide gallery">
+      {project.gallery.map((media) => (
+        <figure class="wide">
+          <div class="shot">
+            <ProjectMedia media={media} />
+          </div>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <NextProject slug={project.slug} />
+    </div>
+  </section>
+</Base>

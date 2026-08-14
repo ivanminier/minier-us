@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const ideas = (await getCollection('ideas'))
+  .filter((entry) => !entry.data.draft)
+  .sort((a, b) => b.data.date.localeCompare(a.data.date));
+---
+
+<Base
+  title="Ideas — Ivan Minier"
+  description="Notes and explorations from Ivan Minier. Not a fake blog. A place for systems thinking and product writing."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">Ideas</p>
+      <h1>Notes, not a magazine.</h1>
+      <p class="lede">
+        Short public writing about products, planning, and systems. Add a Markdown file in
+        <code>src/content/ideas</code> to publish another one.
+      </p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0;">
+    <div class="wrap ideas-list">
+      {
+        ideas.map((idea) => (
+          <a href={`/ideas/${idea.id}`}>
+            <span>{idea.data.date}</span>
+            <span>
+              <strong>{idea.data.title}</strong>
+              <br />
+              {idea.data.summary}
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Base>

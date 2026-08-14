@@ -1,0 +1,134 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+import { socials } from '../data/socials';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+  type?: 'website' | 'article' | 'profile';
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  theme?: string;
+}
+
+const {
+  title = site.title,
+  description = site.description,
+  canonical,
+  image = site.ogImage,
+  type = 'website',
+  jsonLd,
+  theme,
+} = Astro.props;
+
+const canonicalUrl = new URL(canonical ?? Astro.url.pathname, site.url).href;
+const imageUrl = new URL(image, site.url).href;
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  name: site.title,
+  url: site.url,
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Ivan Minier',
+    url: site.url,
+    email: 'ivan@minier.us',
+    jobTitle: 'Founder, Tideframe Labs',
+    affiliation: {
+      '@type': 'Organization',
+      name: 'Tideframe Labs',
+      url: 'https://tideframelabs.com',
+    },
+    alumniOf: {
+      '@type': 'CollegeOrUniversity',
+      name: 'University of Vermont',
+    },
+    address: {
+      '@type': 'PostalAddress',
+      addressRegion: 'Vermont',
+      addressCountry: 'US',
+    },
+    sameAs: [
+      ...socials.map((item) => item.href),
+      'https://tideframelabs.com',
+      'https://trinityredistricting.com',
+    ],
+  },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="theme-color" content="#f3efe8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#131210" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:type" content={type === 'profile' ? 'profile' : type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:locale" content={site.locale} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var theme =
+            stored ||
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.dataset.theme = theme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd ?? personLd)} />
+  </head>
+  <body data-page-theme={theme}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      const buttons = document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]');
+      const setTheme = (theme: string) => {
+        document.documentElement.dataset.theme = theme;
+        localStorage.setItem('theme', theme);
+        buttons.forEach((button) => {
+          button.setAttribute('aria-pressed', String(theme === 'dark'));
+          button.setAttribute(
+            'aria-label',
+            theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode',
+          );
+        });
+      };
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+          setTheme(next);
+        });
+      });
+    </script>
+  </body>
+</html>

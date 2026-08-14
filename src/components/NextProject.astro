@@ -1,0 +1,18 @@
+---
+import { getNextProject } from '../data/projects';
+
+interface Props {
+  slug: string;
+}
+
+const next = getNextProject(Astro.props.slug);
+---
+
+<a class="next-project" href={next.href}>
+  <div>
+    <p class="kicker">Next</p>
+    <strong>{next.name}</strong>
+    <p>{next.oneLiner}</p>
+  </div>
+  <span>View project →</span>
+</a>

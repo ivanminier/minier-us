@@ -1,0 +1,99 @@
+---
+import Base from '../../layouts/Base.astro';
+import NextProject from '../../components/NextProject.astro';
+import ProjectMedia from '../../components/ProjectMedia.astro';
+import { getProject } from '../../data/projects';
+import { site } from '../../data/site';
+
+const project = getProject('rental-record')!;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: project.name,
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'iOS, iPadOS, macOS',
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock' },
+  url: 'https://apps.apple.com/us/app/tideframe-rental-record/id6796366130',
+  description: project.summary,
+  creator: { '@type': 'Organization', name: 'Tideframe Labs', url: 'https://tideframelabs.com' },
+  author: { '@type': 'Person', name: 'Ivan Minier', url: site.url },
+};
+---
+
+<Base title={`${project.name} — Ivan Minier`} description={project.summary} jsonLd={jsonLd}>
+  <section class="case-hero">
+    <div class="wrap">
+      <div class="meta-row">
+        <span class="badge">{project.statusLabel}</span>
+        <span>{project.studioLabel}</span>
+        <span>{project.year}</span>
+      </div>
+      <h1>Document your rental clearly.</h1>
+      <p class="lede">{project.summary}</p>
+      <div class="platforms">{project.platforms.map((item) => <span>{item}</span>)}</div>
+      <div class="actions">
+        {project.links.map((link) => (
+          <a class="btn" href={link.href} rel="noopener">{link.label} ↗</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap-wide devices-row">
+      <div class="device-phone">
+        <ProjectMedia media={project.hero} eager />
+      </div>
+      <div class="shot">
+        <ProjectMedia media={project.gallery[3]} />
+      </div>
+      <div class="shot">
+        <ProjectMedia media={project.gallery[4]} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap prose">
+      <h2>The problem</h2>
+      <p>{project.problem}</p>
+      <h2>The approach</h2>
+      <p>{project.approach}</p>
+      <h2>What it does</h2>
+      <div class="grid-2">
+        {project.capabilities.map((item) => (
+          <article class="card">
+            <strong>{item.title}</strong>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+      <h2>Why this shape</h2>
+      <p>{project.reasoning}</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap-wide gallery">
+      {project.gallery.map((media, index) => (
+        <figure class={index > 2 ? 'wide' : undefined}>
+          {index < 3 ? (
+            <div class="device-phone">
+              <ProjectMedia media={media} />
+            </div>
+          ) : (
+            <div class="shot">
+              <ProjectMedia media={media} />
+            </div>
+          )}
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <NextProject slug={project.slug} />
+    </div>
+  </section>
+</Base>

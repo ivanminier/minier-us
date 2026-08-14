@@ -1,0 +1,47 @@
+---
+import { nav, site } from '../data/site';
+
+const path = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true">IM</span>
+      <span>{site.name}</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      {
+        nav.map((item) => (
+          <a href={item.href} aria-current={path === item.href || (item.href !== '/' && path.startsWith(item.href)) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+      <button class="icon-btn" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode">
+        Theme
+      </button>
+    </nav>
+    <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-toggle>
+      Menu
+    </button>
+  </div>
+</header>
+<div class="mobile-panel" id="mobile-nav" data-open="false">
+  {
+    nav.map((item) => (
+      <a href={item.href}>{item.label}</a>
+    ))
+  }
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to dark mode">Theme</button>
+</div>
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const panel = document.querySelector<HTMLElement>('#mobile-nav');
+  toggle?.addEventListener('click', () => {
+    const open = panel?.dataset.open === 'true';
+    if (panel) panel.dataset.open = String(!open);
+    toggle.setAttribute('aria-expanded', String(!open));
+    toggle.textContent = open ? 'Menu' : 'Close';
+  });
+</script>

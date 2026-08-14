@@ -1,0 +1,26 @@
+---
+import type { ProjectMedia as Media } from '../data/projects';
+
+interface Props {
+  media: Media;
+  class?: string;
+  eager?: boolean;
+}
+
+const { media, class: className, eager = false } = Astro.props;
+---
+
+<figure class={className}>
+  <img
+    src={media.src}
+    srcset={media.srcset}
+    sizes={media.srcset ? '(max-width: 700px) 92vw, 720px' : undefined}
+    width={media.width}
+    height={media.height}
+    alt={media.alt}
+    loading={eager ? 'eager' : 'lazy'}
+    decoding="async"
+    fetchpriority={eager ? 'high' : undefined}
+  />
+  {media.caption && <figcaption class="caption">{media.caption}</figcaption>}
+</figure>

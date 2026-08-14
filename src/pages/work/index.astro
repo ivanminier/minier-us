@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import { featuredProjects } from '../../data/projects';
+---
+
+<Base
+  title="Work — Ivan Minier"
+  description="Selected work by Ivan Minier: Lineup, Tideframe Rental Record, Modeboard, Trinity Redistricting, and UVM LaundryLink."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">Work</p>
+      <h1>Selected projects</h1>
+      <p class="lede">
+        Tideframe products and independent projects, in the order they should be read.
+      </p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0;">
+    <div class="wrap" style="display:grid;gap:0;">
+      {
+        featuredProjects.map((project) => (
+          <a href={project.href} class="ideas-list" style="display:block;text-decoration:none;">
+            <article style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem;padding:1.5rem 0;border-top:1px solid var(--line);">
+              <div>
+                <div class="meta-row">
+                  <span class="badge">{project.statusLabel}</span>
+                  <span>{project.studioLabel}</span>
+                  <span>{project.year}</span>
+                </div>
+                <h2 style="margin:0.2rem 0 0.4rem;letter-spacing:-0.04em;">{project.name}</h2>
+                <p style="margin:0;color:var(--ink-soft);">{project.oneLiner}</p>
+              </div>
+              <span style="align-self:center;color:var(--muted);">View project →</span>
+            </article>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Base>

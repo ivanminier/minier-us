@@ -1,0 +1,91 @@
+---
+import Base from '../../layouts/Base.astro';
+import NextProject from '../../components/NextProject.astro';
+import ProjectMedia from '../../components/ProjectMedia.astro';
+import { getProject } from '../../data/projects';
+import { site } from '../../data/site';
+
+const project = getProject('trinity-redistricting')!;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: project.name,
+  description: project.summary,
+  url: 'https://trinityredistricting.com',
+  author: { '@type': 'Person', name: 'Ivan Minier', url: site.url },
+  creator: { '@type': 'Person', name: 'Ivan Minier', url: site.url },
+};
+---
+
+<Base title={`${project.name} — Ivan Minier`} description={project.summary} jsonLd={jsonLd}>
+  <section class="case-hero">
+    <div class="wrap">
+      <div class="meta-row">
+        <span class="badge">{project.statusLabel}</span>
+        <span>By Ivan Minier</span>
+        <span>{project.year}</span>
+      </div>
+      <h1>Housing relief first. Then public benefit. Then feasibility.</h1>
+      <p class="lede">{project.summary}</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap-wide editorial">
+      <ProjectMedia media={project.hero} eager />
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="notice">
+        <strong>Independent student-led concept.</strong>
+        Trinity Redistricting is not an official University of Vermont project. It has not been adopted by UVM or the City of Burlington.
+        The figures are concept-stage targets for feasibility review, not official budgets or construction documents.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap prose">
+      <h2>The problem</h2>
+      <p>{project.problem}</p>
+      <h2>The approach</h2>
+      <p>{project.approach}</p>
+      <h2>What the vision contains</h2>
+      <div class="grid-2">
+        {project.capabilities.map((item) => (
+          <article class="card">
+            <strong>{item.title}</strong>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+      <h2>Why this shape</h2>
+      <p>{project.reasoning}</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap-wide gallery">
+      {project.gallery.map((media) => (
+        <figure class="wide">
+          <div class="shot">
+            <ProjectMedia media={media} />
+          </div>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="actions">
+        {project.links.map((link) => (
+          <a class="btn btn-ghost" href={link.href} rel="noopener">{link.label} ↗</a>
+        ))}
+      </div>
+      <NextProject slug={project.slug} />
+    </div>
+  </section>
+</Base>
