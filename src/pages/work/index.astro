@@ -32,7 +32,10 @@ const laundry = featuredProjects[4];
           </div>
           <h2>{lineup.name}</h2>
           <p>{lineup.oneLiner}</p>
-          <div class="platforms">{lineup.platforms.map((item) => <span>{item}</span>)}</div>
+          <div class="platforms">
+            {lineup.platforms.map((item) => <span>{item}</span>)}
+            {lineup.platformsPlanned && <span class="planned">{lineup.platformsPlanned}</span>}
+          </div>
         </div>
         <div class="cinematic">
           <div class="device-phone">

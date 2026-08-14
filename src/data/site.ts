@@ -11,7 +11,7 @@ export const site = {
   tagline: 'I turn messy systems into calm products.',
   lede: 'Founder of Tideframe Labs and Business Administration student at the University of Vermont. I design and build software, systems, and ideas.',
   currently: 'Building Lineup · Running Tideframe Labs · Studying Business Administration at UVM',
-  ogImage: '/media/og/share.png',
+  ogImage: '/media/og/home.png',
   copyrightName: 'Ivan Minier',
 } as const;
 

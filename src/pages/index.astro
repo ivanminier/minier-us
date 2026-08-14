@@ -11,7 +11,7 @@ const trinity = featuredProjects[3];
 const laundry = featuredProjects[4];
 ---
 
-<Base title={site.title} description={site.description} type="profile">
+<Base title={site.title} description={site.description} type="profile" image="/media/og/home.png">
   <section class="hero">
     <div class="wrap-wide">
       <p class="kicker">{site.name}</p>
@@ -68,7 +68,10 @@ const laundry = featuredProjects[4];
           </div>
           <h3>{lineup.name}</h3>
           <p>{lineup.oneLiner}</p>
-          <div class="platforms">{lineup.platforms.map((item) => <span>{item}</span>)}</div>
+          <div class="platforms">
+            {lineup.platforms.map((item) => <span>{item}</span>)}
+            {lineup.platformsPlanned && <span class="planned">{lineup.platformsPlanned}</span>}
+          </div>
           <a class="btn" href={lineup.href}>View project</a>
         </div>
         <div class="cinematic lineup-stage" style="margin-top:1.5rem;">
