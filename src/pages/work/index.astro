@@ -1,6 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { featuredProjects } from '../../data/projects';
+
+const lineup = featuredProjects[0];
+const rental = featuredProjects[1];
+const modeboard = featuredProjects[2];
+const trinity = featuredProjects[3];
+const laundry = featuredProjects[4];
 ---
 
 <Base
@@ -17,25 +23,85 @@ import { featuredProjects } from '../../data/projects';
     </div>
   </section>
   <section class="section" style="padding-top:0;">
-    <div class="wrap" style="display:grid;gap:0;">
-      {
-        featuredProjects.map((project) => (
-          <a href={project.href} class="ideas-list" style="display:block;text-decoration:none;">
-            <article style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem;padding:1.5rem 0;border-top:1px solid var(--line);">
-              <div>
-                <div class="meta-row">
-                  <span class="badge">{project.statusLabel}</span>
-                  <span>{project.studioLabel}</span>
-                  <span>{project.year}</span>
-                </div>
-                <h2 style="margin:0.2rem 0 0.4rem;letter-spacing:-0.04em;">{project.name}</h2>
-                <p style="margin:0;color:var(--ink-soft);">{project.oneLiner}</p>
-              </div>
-              <span style="align-self:center;color:var(--muted);">View project →</span>
-            </article>
-          </a>
-        ))
-      }
+    <div class="wrap-wide work-index">
+      <a class="work-feature" href={lineup.href}>
+        <div class="work-copy">
+          <div class="meta-row">
+            <span class="badge">{lineup.statusLabel}</span>
+            <span>{lineup.studioLabel}</span>
+          </div>
+          <h2>{lineup.name}</h2>
+          <p>{lineup.oneLiner}</p>
+          <div class="platforms">{lineup.platforms.map((item) => <span>{item}</span>)}</div>
+        </div>
+        <div class="cinematic">
+          <div class="device-phone">
+            <img src={lineup.hero.src} srcset={lineup.hero.srcset} width={lineup.hero.width} height={lineup.hero.height} alt={lineup.hero.alt} />
+          </div>
+        </div>
+      </a>
+
+      <a class="work-feature reverse" href={rental.href}>
+        <div class="work-copy">
+          <div class="meta-row">
+            <span class="badge">{rental.statusLabel}</span>
+            <span>{rental.studioLabel}</span>
+          </div>
+          <h2>{rental.name}</h2>
+          <p>{rental.oneLiner}</p>
+          <div class="platforms">{rental.platforms.map((item) => <span>{item}</span>)}</div>
+        </div>
+        <div class="devices-row">
+          <div class="device-phone">
+            <img src={rental.hero.src} srcset={rental.hero.srcset} width={rental.hero.width} height={rental.hero.height} alt={rental.hero.alt} />
+          </div>
+          <div class="shot">
+            <img src="/media/rental-record/mac-cases.webp" width="1440" height="900" alt="" />
+          </div>
+        </div>
+      </a>
+
+      <a class="work-feature" href={modeboard.href}>
+        <div class="work-copy">
+          <div class="meta-row">
+            <span class="badge">{modeboard.statusLabel}</span>
+            <span>{modeboard.studioLabel}</span>
+          </div>
+          <h2>{modeboard.name}</h2>
+          <p>{modeboard.oneLiner}</p>
+        </div>
+        <div class="shot">
+          <img src={modeboard.hero.src} srcset={modeboard.hero.srcset} width={modeboard.hero.width} height={modeboard.hero.height} alt={modeboard.hero.alt} />
+        </div>
+      </a>
+
+      <a class="work-feature reverse" href={trinity.href}>
+        <div class="work-copy">
+          <div class="meta-row">
+            <span class="badge">{trinity.statusLabel}</span>
+            <span>{trinity.studioLabel}</span>
+          </div>
+          <h2>{trinity.name}</h2>
+          <p>{trinity.oneLiner}</p>
+        </div>
+        <div class="editorial">
+          <img src={trinity.hero.src} srcset={trinity.hero.srcset} width={trinity.hero.width} height={trinity.hero.height} alt={trinity.hero.alt} />
+        </div>
+      </a>
+
+      <a class="work-feature" href={laundry.href}>
+        <div class="work-copy">
+          <div class="meta-row">
+            <span class="badge">{laundry.statusLabel}</span>
+            <span>{laundry.studioLabel}</span>
+          </div>
+          <h2>{laundry.name}</h2>
+          <p>{laundry.oneLiner}</p>
+        </div>
+        <div class="device-phone">
+          <img src={laundry.hero.src} srcset={laundry.hero.srcset} width={laundry.hero.width} height={laundry.hero.height} alt={laundry.hero.alt} />
+        </div>
+      </a>
     </div>
   </section>
 </Base>

@@ -37,7 +37,9 @@ Factual sources used for minier.us. Existing repositories were inspected, not mo
 | Live TV, movies, series, guide, watchlist | README; Edit Home screenshot |
 | Lineup Intelligence: names, categories, logos, guide matching, duplicates | `docs/LINEUP_INTELLIGENCE.md` |
 | EPGShare01 as an external guide source | `docs/LINEUP_INTELLIGENCE.md`; `PROJECT_STATUS.md` |
-| Public 1.0 platforms: iPhone, iPad, Apple TV; Mac deferred | `PROJECT_STATUS.md` 2026-08-08 scope freeze |
+| Public 1.0 platforms: iPhone, iPad, Apple TV | `Lineup.xcodeproj` `SUPPORTED_PLATFORMS`; `SUPPORTS_MACCATALYST = NO` |
+| Native Mac app planned on the same engine, not shipping | `ARCHITECTURE.md` “Future Mac app” |
+| Public 1.0 Mac deferred | `PROJECT_STATUS.md` 2026-08-08 scope freeze; still no macosx app target as of 2026-08-14 |
 | Not publicly released / no App Store link | `PROJECT_STATUS.md` still not App Store ready |
 | Demo catalog is fictional | README; screenshots labeled “Lineup Demo” |
 | Status on this site | **In development** |

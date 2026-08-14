@@ -10,6 +10,7 @@ export const site = {
   program: 'Business Administration',
   tagline: 'I turn messy systems into calm products.',
   lede: 'Founder of Tideframe Labs and Business Administration student at the University of Vermont. I design and build software, systems, and ideas.',
+  currently: 'Building Lineup · Running Tideframe Labs · Studying Business Administration at UVM',
   ogImage: '/media/og/share.png',
   copyrightName: 'Ivan Minier',
 } as const;
@@ -49,5 +50,5 @@ export const tideframe = {
   url: 'https://tideframelabs.com',
   supportEmail: 'support@tideframelabs.com',
   generalEmail: 'hello@tideframelabs.com',
-  line: 'Native software for Mac, iPhone, and iPad.',
+  line: 'Native software for Apple platforms.',
 } as const;

@@ -14,7 +14,9 @@ const products = featuredProjects.filter((project) => project.studio === 'tidefr
     <div class="wrap">
       <p class="kicker">Studio</p>
       <h1>{tideframe.name}</h1>
-      <p class="lede">{tideframe.descriptor} {tideframe.line}</p>
+      <p class="lede">
+        Tideframe Labs is Ivan’s independent software studio. {tideframe.line}
+      </p>
       <div class="actions">
         <a class="btn" href={tideframe.url} rel="noopener">Visit Tideframe Labs ↗</a>
       </div>
@@ -24,23 +26,40 @@ const products = featuredProjects.filter((project) => project.studio === 'tidefr
   <section class="section" style="padding-top:0;">
     <div class="wrap prose">
       <p>
-        Tideframe is the company. This site is the person. The product pages, downloads, App Store listing,
-        support, privacy, and terms live on tideframelabs.com so customers have one official place to go.
+        Tideframe is the company. This site is the person. Downloads, the App Store listing,
+        support, privacy, and terms live on tideframelabs.com.
       </p>
+      <div class="grid-2" style="margin-top:1.4rem;">
+        <article class="card"><strong>Native where it matters</strong><p>Mac, iPhone, iPad, and Apple TV — not a lowest-common-denominator web shell.</p></article>
+        <article class="card"><strong>Private by default</strong><p>No analytics stack. No developer-operated evidence server. Export is explicit.</p></article>
+        <article class="card"><strong>Small, focused software</strong><p>Each product has one job. The rest is someone else’s app.</p></article>
+        <article class="card"><strong>Powerful without clutter</strong><p>The interface should explain itself. The catalog, the record, or the workspace does the talking.</p></article>
+      </div>
     </div>
-    <div class="wrap" style="margin-top:2rem;display:grid;gap:1rem;">
+    <div class="wrap-wide work-index" style="margin-top:2.5rem;">
       {
         products.map((project) => (
-          <article class="card">
-            <div class="meta-row">
-              {project.icon && <img src={project.icon} alt="" width="40" height="40" style="border-radius:0.7rem;" />}
-              <span class="badge">{project.statusLabel}</span>
-              <span>{project.platforms.join(' · ')}</span>
+          <a class="work-feature" href={project.href}>
+            <div class="work-copy">
+              <div class="meta-row">
+                {project.icon && <img src={project.icon} alt="" width="40" height="40" style="border-radius:0.7rem;" />}
+                <span class="badge">{project.statusLabel}</span>
+              </div>
+              <h2>{project.name}</h2>
+              <p>{project.oneLiner}</p>
             </div>
-            <h2 style="margin:0.4rem 0;letter-spacing:-0.03em;">{project.name}</h2>
-            <p style="margin:0 0 0.8rem;color:var(--ink-soft);">{project.oneLiner}</p>
-            <a href={project.href}>On this site →</a>
-          </article>
+            {project.theme === 'cinematic' ? (
+              <div class="cinematic">
+                <div class="device-phone">
+                  <img src={project.hero.src} alt={project.hero.alt} width={project.hero.width} height={project.hero.height} />
+                </div>
+              </div>
+            ) : (
+              <div class="shot">
+                <img src={project.hero.src} alt={project.hero.alt} width={project.hero.width} height={project.hero.height} />
+              </div>
+            )}
+          </a>
         ))
       }
     </div>

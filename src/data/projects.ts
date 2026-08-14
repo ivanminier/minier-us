@@ -27,6 +27,10 @@ export interface Project {
   studio: Studio;
   studioLabel: string;
   platforms: string[];
+  platformsNote?: string;
+  creator: string;
+  role: string;
+  officialHome?: ProjectLink;
   oneLiner: string;
   summary: string;
   href: string;
@@ -54,10 +58,15 @@ export const projects: Project[] = [
     statusLabel: 'In development',
     studio: 'tideframe',
     studioLabel: 'Tideframe Labs',
-    platforms: ['iPhone', 'iPad', 'Apple TV'],
+    platforms: ['iPhone', 'iPad', 'Apple TV', 'Mac'],
+    platformsNote:
+      'Public 1.0 is being built for iPhone, iPad, and Apple TV. A native Mac app is planned on the same engine and is not shipping yet.',
+    creator: 'Ivan Minier',
+    role: 'Creator — product, interface, and engineering',
+    officialHome: { label: 'Tideframe Labs', href: 'https://tideframelabs.com', external: true },
     oneLiner: 'Your provider gives you channels. Lineup turns them into television.',
     summary:
-      'Lineup is an Apple-native player and organizer for lawful, user-supplied IPTV sources. It takes messy Xtream and M3U catalogs and turns them into a calm live, movies, series, and guide experience.',
+      'Lineup is an Apple-native player and organizer for lawful, user-supplied IPTV sources. It takes Xtream and M3U catalogs and turns them into Live TV, movies, series, and a usable guide.',
     href: '/work/lineup',
     accent: '#1f8a6e',
     theme: 'cinematic',
@@ -135,6 +144,13 @@ export const projects: Project[] = [
     studio: 'tideframe',
     studioLabel: 'Tideframe Labs',
     platforms: ['iPhone', 'iPad', 'Mac'],
+    creator: 'Ivan Minier',
+    role: 'Creator — product, interface, and engineering',
+    officialHome: {
+      label: 'App Store',
+      href: 'https://apps.apple.com/us/app/tideframe-rental-record/id6796366130',
+      external: true,
+    },
     oneLiner: 'A structured rental record instead of a camera roll full of disconnected photos.',
     summary:
       'Tideframe Rental Record is a private, guided app for move-in, move-out, and follow-up condition records. Photos, notes, rooms, and reports stay together on the device.',
@@ -237,9 +253,12 @@ export const projects: Project[] = [
     studio: 'tideframe',
     studioLabel: 'Tideframe Labs',
     platforms: ['Mac'],
-    oneLiner: 'Switch your whole Mac workspace with one profile.',
+    creator: 'Ivan Minier',
+    role: 'Creator — product, interface, and engineering',
+    officialHome: { label: 'tideframelabs.com/modeboard', href: 'https://tideframelabs.com/modeboard', external: true },
+    oneLiner: 'Every Focus deserves its own Mac.',
     summary:
-      'Modeboard is a native Mac utility that turns workspace profiles into complete setups. Apps, Dock, wallpaper, appearance, Desktop, and Focus-linked workflows can move together.',
+      'Modeboard is a native Mac utility that turns a named profile into a complete workspace. Apps, files, Dock, wallpaper, appearance, Desktop, menu bar, Shortcuts, and a Focus Filter can move together.',
     href: '/work/modeboard',
     accent: '#2b6d93',
     theme: 'mac',
@@ -318,6 +337,9 @@ export const projects: Project[] = [
     studio: 'independent',
     studioLabel: 'Independent project',
     platforms: ['Web'],
+    creator: 'Ivan Minier',
+    role: 'Author — research, planning, writing, and the public site',
+    officialHome: { label: 'trinityredistricting.com', href: 'https://trinityredistricting.com', external: true },
     oneLiner: 'A student-led feasibility vision for housing on UVM’s Trinity Campus.',
     summary:
       'Trinity Redistricting is an independent concept and feasibility study for turning UVM’s Trinity District into a more complete residential campus. It is not an official University of Vermont or City of Burlington plan.',
@@ -396,6 +418,9 @@ export const projects: Project[] = [
     studio: 'independent',
     studioLabel: 'Independent project',
     platforms: ['Web'],
+    creator: 'Ivan Minier',
+    role: 'Creator — product and engineering',
+    officialHome: { label: 'uvmlaundry.com', href: 'https://uvmlaundry.com', external: true },
     oneLiner: 'See which washers and dryers are actually open before you walk across campus.',
     summary:
       'UVM LaundryLink is a mobile-first campus tool for finding laundry rooms, checking machine status, saving favorites, and setting availability alerts.',
@@ -404,12 +429,21 @@ export const projects: Project[] = [
     theme: 'campus',
     icon: '/media/laundrylink/logo.webp',
     hero: {
-      src: '/media/laundrylink/logo.webp',
-      width: 512,
-      height: 512,
-      alt: 'UVM LaundryLink app icon.',
+      src: '/media/laundrylink/app.webp',
+      srcset: '/media/laundrylink/app-sm.webp 400w, /media/laundrylink/app.webp 780w',
+      width: 780,
+      height: 1694,
+      alt: 'UVM LaundryLink on a phone: room search, favorites, and the live campus interface.',
     },
-    gallery: [],
+    gallery: [
+      {
+        src: '/media/laundrylink/app.webp',
+        srcset: '/media/laundrylink/app-sm.webp 400w, /media/laundrylink/app.webp 780w',
+        width: 780,
+        height: 1694,
+        alt: 'LaundryLink home with search and favorites. Live machine data depends on the campus source.',
+      },
+    ],
     links: [{ label: 'uvmlaundry.com', href: 'https://uvmlaundry.com', external: true }],
     problem:
       'Campus laundry is a small system that wastes a surprising amount of time. Students walk to a room, find every machine running, and walk back.',
