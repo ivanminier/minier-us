@@ -55,6 +55,7 @@ GitHub repository `ivanminier/minier-us` → Cloudflare Pages.
 - Framework: Astro
 - Build command: `npm run build`
 - Output: `dist`
-- Domain: `https://minier.us`
+- Production URL: `https://minier-us.pages.dev`
+- Custom domain: `https://minier.us` (attach in Cloudflare Pages → Custom domains)
 
 Email forwarding is documented in `EMAIL_SETUP.md`.

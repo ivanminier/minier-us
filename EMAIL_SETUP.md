@@ -22,16 +22,30 @@ Cloudflare Email Routing does **not** create a normal outgoing inbox.
 
 Do not assume you can send ordinary personal mail “from” `ivan@minier.us` until a mailbox provider is connected.
 
-## Setup steps
+## Already done
 
-These require the Cloudflare dashboard after `minier.us` is on Cloudflare DNS:
+- `minier.us` is already on Cloudflare DNS (`adaline.ns.cloudflare.com` / `simon.ns.cloudflare.com`).
+- Destination address `ivanfminier@gmail.com` was created in this Cloudflare account.
+- A verification email has been sent. Status is **pending** until Gmail confirms it.
 
-1. Cloudflare → **Email** → **Email Routing** → `minier.us`
-2. Add destination address: `ivanfminier@gmail.com`
-3. Confirm the verification email Cloudflare sends to Gmail
-4. Add custom address: `ivan` → send to `ivanfminier@gmail.com`
-5. Enable Email Routing if it is not already enabled
-6. Leave MX records on Cloudflare. Do not point them at another mail host unless you are replacing forwarding on purpose.
+## Remaining dashboard steps
+
+Current public MX records still point at Namecheap forwarding (`eforward*.registrar-servers.com`). Email Routing cannot turn on until those are replaced.
+
+1. Open Gmail for **ivanfminier@gmail.com**.
+2. Find the Cloudflare Email Routing verification message and click **Verify**.
+3. Open [Cloudflare Dashboard](https://dash.cloudflare.com) → **Email** → **Email Routing** → **minier.us**.
+4. Click **Enable Email Routing** / **Add records and enable**.
+5. When Cloudflare shows the MX change, confirm it. This replaces the Namecheap `eforward` MX records with:
+   - `route1.mx.cloudflare.net`
+   - `route2.mx.cloudflare.net`
+   - `route3.mx.cloudflare.net`
+6. Add a custom address:
+   - Custom address: `ivan`
+   - Destination: `ivanfminier@gmail.com`
+7. Send a test message to `ivan@minier.us` and confirm it arrives in Gmail.
+
+Do not change nameservers at Namecheap. The domain is already on Cloudflare.
 
 ## Future full mailbox
 
