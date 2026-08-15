@@ -97,7 +97,11 @@ Local production build, Lighthouse 13.4.1.
 | `/work/modeboard` | Desktop | — | 100 | — | 0.4s | 0 |
 | `/work/trinity-redistricting` | Desktop | 100 | 100 | 0.4s | 0.5s | 0 |
 
-Accessibility, Best Practices and SEO are 100 on all six runs. The homepage is
+Against the deployed site at `https://minier.us`, over the network: desktop
+100 / 100 / 100 / 100 (LCP 0.6s, CLS 0) and mobile 98 / 100 / 100 / 100
+(LCP 2.0s, CLS 0).
+
+Accessibility, Best Practices and SEO are 100 on all six local runs. The homepage is
 212 KiB in total. Homepage desktop reads 99 on a Speed Index of 1.2s; FCP, LCP,
 CLS and TBT all score 1.0. Homepage mobile improved because the hero images now
 carry accurate `sizes` instead of defaulting to `100vw`.
@@ -140,4 +144,10 @@ These are real and unresolved:
 4. **Unused large originals still ship.** `lineup/icon.png` (760K) and
    `rental-record/icon.png` (376K) are pipeline sources that no page requests, but
    everything under `public/` is deployed. Left in place deliberately.
-5. **Homepage desktop Lighthouse performance is 99, not 100**, on Speed Index alone.
+5. **Homepage desktop Lighthouse performance is 99 on the local build**, on
+   Speed Index alone. The deployed site measures 100 desktop / 98 mobile.
+6. **Cloudflare edge propagation is not instant.** Immediately after the
+   deployment one engine still received the previous HTML from an edge node for
+   about a minute. Astro content-hashes its stylesheet, so there is no risk of
+   new HTML pairing with old CSS once propagation settles — this is only worth
+   knowing if you check a deploy the moment it lands.
