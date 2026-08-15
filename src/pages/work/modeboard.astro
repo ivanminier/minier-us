@@ -30,7 +30,7 @@ const jsonLd = {
         <span>{project.year}</span>
       </div>
       <h1>{project.oneLiner}</h1>
-      <p class="lede">Every Focus deserves its own Mac. {project.summary}</p>
+      <p class="lede">{project.summary}</p>
       <ProjectFacts project={project} />
       <div class="actions">
         {project.links.map((link) => (
@@ -76,6 +76,7 @@ const jsonLd = {
           <div class="shot">
             <ProjectMedia media={media} />
           </div>
+          {media.caption && <figcaption>{media.caption}</figcaption>}
         </figure>
       ))}
     </div>

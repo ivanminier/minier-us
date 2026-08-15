@@ -294,6 +294,13 @@ a:hover {
   background: var(--surface);
 }
 
+/*
+ * Every layer carries the aspect ratio of the screenshot inside it, so the
+ * overlap is the composition and nothing is cropped by accident. The previous
+ * fixed percentage heights cut the iPhone status bar off Lineup, sliced Rental
+ * Record into an unreadable 16%-wide strip of half-words, and removed the
+ * window title bar from Modeboard.
+ */
 .hero-layer img {
   width: 100%;
   height: 100%;
@@ -301,53 +308,48 @@ a:hover {
 }
 
 .hero-trinity {
-  width: 34%;
-  height: 34%;
-  right: 6%;
-  top: 0;
+  width: 33%;
+  aspect-ratio: 2400 / 949;
+  right: 3%;
+  top: 1%;
   transform: rotate(2deg);
   z-index: 1;
 }
 
 .hero-modeboard {
   width: 44%;
-  height: 46%;
-  right: 2%;
-  bottom: 6%;
+  aspect-ratio: 1442 / 1050;
+  right: 1%;
+  bottom: 3%;
   transform: rotate(-2.4deg);
   z-index: 2;
 }
 
+/*
+ * Deliberately not overlapped. A small overlap clipped the first character off
+ * every label ("Cases" read as "ases"), which looks like a rendering fault
+ * rather than a layered stack; the offset baseline carries the depth instead.
+ */
 .hero-rental {
-  width: 16%;
-  height: 56%;
-  left: 30%;
-  bottom: 6%;
-  border-radius: 1.6rem;
+  width: 16.5%;
+  aspect-ratio: 880 / 1912;
+  left: 24.8%;
+  bottom: 8%;
+  border-radius: 1.5rem;
   z-index: 3;
 }
 
 .hero-lineup {
-  width: 26%;
-  height: 94%;
-  left: 6%;
+  width: 20%;
+  aspect-ratio: 900 / 1957;
+  left: 4%;
   bottom: 0;
-  border-radius: 1.85rem;
+  border-radius: 1.7rem;
   background: #0d1114;
   z-index: 4;
 }
 
-.composition {
-  margin-top: clamp(2.5rem, 6vw, 4.5rem);
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 1rem;
-  align-items: end;
-}
-
-.shot,
-.phone,
-.paper {
+.shot {
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--surface);
@@ -355,24 +357,18 @@ a:hover {
   box-shadow: var(--shadow);
 }
 
+/*
+ * These containers all size to the image's own aspect ratio. `object-fit` is
+ * deliberately absent: with `height: auto` there is nothing to fit, and adding
+ * `cover` here previously invited fixed-height containers that clipped
+ * screenshots. Anything that needs a crop opts in explicitly (.hero-layer).
+ */
 .shot img,
-.phone img,
-.paper img,
 .editorial img,
-.device-phone img {
+.device-phone img,
+.device-tablet img {
   width: 100%;
   height: auto;
-  object-fit: cover;
-}
-
-.shot-stack {
-  display: grid;
-  gap: 1rem;
-}
-
-.phone {
-  aspect-ratio: 9 / 18.5;
-  max-width: 280px;
 }
 
 .section {
@@ -422,6 +418,15 @@ a:hover {
   margin-bottom: 0.8rem;
 }
 
+/* .meta-row is a flex container, so a stretched item would squash the square icon. */
+.meta-icon {
+  flex: none;
+  align-self: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 0.7rem;
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -467,11 +472,6 @@ a:hover {
 
 .media-stage {
   position: relative;
-}
-
-.media-stage.sticky {
-  position: sticky;
-  top: calc(var(--nav-h) + 1rem);
 }
 
 .cinematic {
@@ -608,16 +608,22 @@ a:hover {
 .gallery {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 1rem;
+  gap: clamp(1.5rem, 3vw, 2.5rem) 1rem;
+  align-items: start;
 }
 
-.gallery figure {
+.gallery > figure {
   margin: 0;
   grid-column: span 6;
 }
 
-.gallery figure.wide {
+.gallery > figure.wide {
   grid-column: span 12;
+}
+
+/* ProjectMedia emits its own <figure>; it must not add spacing inside a frame. */
+figure {
+  margin: 0;
 }
 
 .gallery figcaption,
@@ -625,6 +631,7 @@ a:hover {
   color: var(--muted);
   font-size: 0.88rem;
   margin-top: 0.55rem;
+  max-width: 46rem;
 }
 
 .device-phone {
@@ -637,9 +644,49 @@ a:hover {
   box-shadow: var(--shadow);
 }
 
-.hero-phone {
-  width: min(320px, 100%);
+.device-tablet {
   margin: 0 auto;
+  width: min(520px, 100%);
+  border-radius: 1.6rem;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  background: var(--surface-2);
+  box-shadow: var(--shadow);
+}
+
+/* A near-black phone on the near-black cinematic stage had no edge at all. */
+.cinematic .device-phone {
+  border-color: rgba(244, 240, 234, 0.16);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+/* Identity card, used when a project has no publishable product screenshot. */
+.mark-card {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.mark-card img {
+  width: min(160px, 42%);
+  height: auto;
+  border-radius: 1.2rem;
+  box-shadow: 0 14px 34px rgba(21, 71, 52, 0.28);
+}
+
+/* Neutral stage for a phone screenshot that is not part of a cinematic theme. */
+.device-frame-stage {
+  display: grid;
+  justify-items: center;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  border-radius: 2rem;
+  background: var(--bg-deep);
+  border: 1px solid var(--line);
 }
 
 .transform {
@@ -766,18 +813,40 @@ a:hover {
   border-radius: 0 1rem 1rem 0;
 }
 
+/*
+ * Ordered smallest device to largest, with the Mac given the widest track, so
+ * the row reads iPhone → iPad → Mac. The old 0.7/1/1.2 split plus a 360px cap
+ * on the phone made the iPhone the tallest element and the Mac the smallest.
+ */
 .devices-row {
   display: grid;
-  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr) minmax(0, 1.2fr);
-  gap: 1rem;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 0.92fr) minmax(0, 1.6fr);
+  gap: clamp(1rem, 2vw, 1.75rem);
   align-items: end;
 }
 
-.icon-lede {
+.devices-row .device-phone {
+  width: 100%;
+  max-width: 260px;
+}
+
+.devices-row .device-tablet {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Two-device teaser. .devices-row's third track sat empty here and squeezed
+ * the Mac screenshot down to about 120px wide. */
+.devices-pair {
   display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 2rem;
-  align-items: center;
+  grid-template-columns: minmax(0, 0.46fr) minmax(0, 1fr);
+  gap: clamp(0.8rem, 1.6vw, 1.4rem);
+  align-items: end;
+}
+
+.devices-pair .device-phone {
+  width: 100%;
+  max-width: 220px;
 }
 
 .facts {
@@ -867,11 +936,65 @@ a:hover {
   }
 }
 
+/*
+ * A 3.2:1 top-shelf banner beside a 0.46:1 phone in an `align-items: end` row
+ * left roughly 500px of empty black above the banner, and the banner's own dark
+ * artwork vanished against the near-black stage. The stage now carries real
+ * product screenshots, which is what fills a wide cinematic band honestly.
+ */
 .lineup-stage {
   display: grid;
-  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
-  gap: 1rem;
+  grid-auto-flow: column;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1.6rem);
   align-items: end;
+}
+
+.lineup-stage .device-phone {
+  width: min(340px, 100%);
+}
+
+/* The middle screen is the point of the product, so it leads. */
+.lineup-stage .device-phone.lead {
+  width: min(380px, 100%);
+}
+
+.lineup-caption {
+  margin: 1.2rem 0 0;
+  color: #c4cdc8;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+/* Compact stage for a single hero screenshot, so it is not lost in a wide band. */
+.cinematic-solo {
+  width: min(640px, 100%);
+  margin-inline: auto;
+}
+
+.lineup-banner {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.lineup-banner img {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 700px) {
+  .lineup-stage {
+    grid-auto-flow: row;
+    justify-items: center;
+  }
+
+  .lineup-stage .device-phone,
+  .lineup-stage .device-phone.lead {
+    width: min(300px, 100%);
+  }
 }
 
 .metrics {
@@ -930,7 +1053,6 @@ a:hover {
     letter-spacing: -0.03em;
   }
 
-  .composition,
   .project-block,
   .project-block.reverse,
   .studio,
@@ -941,22 +1063,26 @@ a:hover {
   .transform,
   .timeline article,
   .ideas-list a,
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  /*
+   * The gallery must drop to a single column on the container as well as the
+   * items. Resetting only the figures left them spanning 1 of 12 tracks, which
+   * rendered every project screenshot about 15px wide on a phone.
+   */
   .gallery figure,
   .gallery figure.wide {
-    grid-template-columns: 1fr;
-    grid-column: span 1;
+    grid-column: auto;
   }
 
   .project-block.reverse .project-copy {
     order: 0;
   }
 
-  .phone {
-    max-width: 220px;
-  }
-
   .devices-row,
-  .icon-lede,
+  .devices-pair,
   .facts,
   .work-feature,
   .work-feature.reverse,

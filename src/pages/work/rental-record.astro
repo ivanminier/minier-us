@@ -44,15 +44,18 @@ const jsonLd = {
   <section class="section" style="padding-top:0;">
     <div class="wrap-wide devices-row">
       <div class="device-phone">
-        <ProjectMedia media={project.hero} eager />
+        <ProjectMedia media={project.hero} sizes="260px" eager />
+      </div>
+      <div class="device-tablet">
+        <ProjectMedia media={project.devices!.tablet!} sizes="(max-width: 900px) min(420px, 92vw), 420px" />
       </div>
       <div class="shot">
-        <ProjectMedia media={project.gallery[3]} />
-      </div>
-      <div class="shot">
-        <ProjectMedia media={project.gallery[4]} />
+        <ProjectMedia media={project.devices!.desktop!} sizes="(max-width: 900px) 92vw, 47vw" />
       </div>
     </div>
+    <p class="wrap-wide caption" style="margin-top:1rem;">
+      The same case on iPhone, iPad, and Mac. All rental data shown is fictional.
+    </p>
   </section>
 
   <section class="section" style="padding-top:0;">
@@ -77,17 +80,18 @@ const jsonLd = {
 
   <section class="section" style="padding-top:0;">
     <div class="wrap-wide gallery">
-      {project.gallery.map((media, index) => (
-        <figure class={index > 2 ? 'wide' : undefined}>
-          {index < 3 ? (
-            <div class="device-phone">
-              <ProjectMedia media={media} />
-            </div>
-          ) : (
-            <div class="shot">
-              <ProjectMedia media={media} />
-            </div>
+      {project.gallery.map((media) => (
+        <figure class={media.presentation === 'screen' ? 'wide' : undefined}>
+          {media.presentation === 'device' && (
+            <div class="device-phone"><ProjectMedia media={media} /></div>
           )}
+          {media.presentation === 'tablet' && (
+            <div class="device-tablet"><ProjectMedia media={media} /></div>
+          )}
+          {media.presentation === 'screen' && (
+            <div class="shot"><ProjectMedia media={media} /></div>
+          )}
+          {media.caption && <figcaption>{media.caption}</figcaption>}
         </figure>
       ))}
     </div>

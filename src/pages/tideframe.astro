@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import ProjectMedia from '../components/ProjectMedia.astro';
 import { featuredProjects } from '../data/projects';
 import { tideframe } from '../data/site';
 
@@ -42,21 +43,28 @@ const products = featuredProjects.filter((project) => project.studio === 'tidefr
           <a class="work-feature" href={project.href}>
             <div class="work-copy">
               <div class="meta-row">
-                {project.icon && <img src={project.icon} alt="" width="40" height="40" style="border-radius:0.7rem;" />}
+                {project.icon && <img class="meta-icon" src={project.icon} alt="" width="40" height="40" />}
                 <span class="badge">{project.statusLabel}</span>
               </div>
               <h2>{project.name}</h2>
               <p>{project.oneLiner}</p>
             </div>
-            {project.theme === 'cinematic' ? (
-              <div class="cinematic">
+            {/*
+              Branch on the shape of the image, not the project's colour theme.
+              Rental Record's theme is "paper", so its portrait iPhone
+              screenshot used to land in an uncapped .shot and render 727px
+              wide by 1579px tall, more than twice the height of every other
+              row on this page.
+            */}
+            {project.hero.width < project.hero.height ? (
+              <div class={project.theme === 'cinematic' ? 'cinematic' : 'device-frame-stage'}>
                 <div class="device-phone">
-                  <img src={project.hero.src} alt={project.hero.alt} width={project.hero.width} height={project.hero.height} />
+                  <ProjectMedia media={project.hero} sizes="280px" />
                 </div>
               </div>
             ) : (
               <div class="shot">
-                <img src={project.hero.src} alt={project.hero.alt} width={project.hero.width} height={project.hero.height} />
+                <ProjectMedia media={project.hero} sizes="(max-width: 900px) 92vw, 52vw" />
               </div>
             )}
           </a>

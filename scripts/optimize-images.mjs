@@ -1,48 +1,122 @@
+/**
+ * Regenerates every project image in public/media from its authoritative source.
+ *
+ * The previous version of this script read `src-*.png` files that are no longer
+ * in the repository and emitted sizes that were too small for the widths these
+ * images actually render at, so running it would have undone the media fixes.
+ * Sources now point at the project repositories, which are read but never
+ * modified. Set MEDIA_SOURCE_ROOT if your checkouts live somewhere else.
+ *
+ *   node scripts/optimize-images.mjs
+ */
 import sharp from 'sharp';
-import { mkdir, readdir, stat } from 'node:fs/promises';
-import { dirname, join, parse } from 'node:path';
+import { mkdir, stat } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import os from 'node:os';
 
-const jobs = [
-  { src: 'public/media/lineup/icon.png', out: 'public/media/lineup/icon.webp', width: 512 },
-  { src: 'public/media/lineup/icon.png', out: 'public/media/lineup/icon-256.webp', width: 256 },
-  { src: 'public/media/lineup/src-welcome.png', out: 'public/media/lineup/welcome.webp', width: 900 },
-  { src: 'public/media/lineup/src-sources.png', out: 'public/media/lineup/sources.webp', width: 900 },
-  { src: 'public/media/lineup/src-profile.png', out: 'public/media/lineup/profile.webp', width: 900 },
-  { src: 'public/media/lineup/src-home.png', out: 'public/media/lineup/home.webp', width: 900 },
-  { src: 'public/media/lineup/src-home.png', out: 'public/media/lineup/home-sm.webp', width: 480 },
-  { src: 'public/media/lineup/src-edit-home.png', out: 'public/media/lineup/edit-home.webp', width: 900 },
-  { src: 'public/media/rental-record/icon.png', out: 'public/media/rental-record/icon.webp', width: 256 },
-  { src: 'public/media/modeboard/icon.png', out: 'public/media/modeboard/icon.webp', width: 256 },
-  { src: 'public/media/modeboard/src-profile-overview.png', out: 'public/media/modeboard/profile-overview.webp', width: 1400 },
-  { src: 'public/media/modeboard/src-profile-overview.png', out: 'public/media/modeboard/profile-overview-sm.webp', width: 800 },
-  { src: 'public/media/modeboard/src-appearance-dock.png', out: 'public/media/modeboard/appearance-dock.webp', width: 1400 },
-  { src: 'public/media/modeboard/src-backups-restore.png', out: 'public/media/modeboard/backups-restore.webp', width: 1400 },
-  { src: 'public/media/modeboard/src-menu-bar.png', out: 'public/media/modeboard/menu-bar.webp', width: 1400 },
-  { src: 'public/media/modeboard/src-onboarding-focus.png', out: 'public/media/modeboard/onboarding-focus.webp', width: 1400 },
-  { src: 'public/media/modeboard/src-getting-started.png', out: 'public/media/modeboard/getting-started.webp', width: 1400 },
-  { src: 'public/media/tideframe/icon.png', out: 'public/media/tideframe/icon.webp', width: 512 },
-  { src: 'public/media/trinity/logo.png', out: 'public/media/trinity/logo.webp', width: 256 },
-  { src: 'public/media/trinity/src-home-hero.jpg', out: 'public/media/trinity/home-hero.webp', width: 1600 },
-  { src: 'public/media/trinity/src-home-hero.jpg', out: 'public/media/trinity/home-hero-sm.webp', width: 800 },
-  { src: 'public/media/trinity/src-map.jpg', out: 'public/media/trinity/map.webp', width: 1400 },
-  { src: 'public/media/trinity/src-peaks.jpg', out: 'public/media/trinity/peaks.webp', width: 1400 },
-  { src: 'public/media/trinity/src-rise.jpg', out: 'public/media/trinity/rise.webp', width: 1400 },
-  { src: 'public/media/trinity/src-cottages.jpg', out: 'public/media/trinity/cottages.webp', width: 1400 },
-  { src: 'public/media/trinity/src-vision.jpg', out: 'public/media/trinity/vision.webp', width: 1400 },
-  { src: 'public/media/laundrylink/logo.png', out: 'public/media/laundrylink/logo.webp', width: 256 },
-];
+const HOME = process.env.MEDIA_SOURCE_ROOT ?? os.homedir();
+const TF = join(HOME, 'Developer/tideframe-site/public');
+const RR = join(TF, 'products/rental-record/screenshots');
+const TRINITY = join(HOME, 'Documents/trinity-site/assets/images');
 
-async function run() {
-  for (const job of jobs) {
-    await mkdir(dirname(job.out), { recursive: true });
-    await sharp(job.src)
-      .rotate()
-      .resize({ width: job.width, withoutEnlargement: true })
-      .webp({ quality: 78, effort: 5 })
-      .toFile(job.out);
-    const info = await stat(job.out);
-    console.log(`${job.out} ${(info.size / 1024).toFixed(0)}kb`);
+/**
+ * Modeboard's shipped screenshots are composited on solid black. Rendered
+ * inside the site's light card that reads as an unintended second frame and
+ * wastes about a tenth of the width, so we crop to the window and clear the
+ * rounded-corner residue to transparent.
+ */
+async function cropToWindow(src) {
+  const { width, height } = await sharp(src).metadata();
+  const { data, info } = await sharp(src).raw().toBuffer({ resolveWithObject: true });
+  const lit = (x, y) => {
+    const i = (y * info.width + x) * info.channels;
+    return Math.max(data[i], data[i + 1], data[i + 2]) > 12;
+  };
+  let top = 0, bottom = height - 1, left = 0, right = width - 1;
+  a: for (; top < height; top++) for (let x = 0; x < width; x += 2) if (lit(x, top)) break a;
+  b: for (; bottom > 0; bottom--) for (let x = 0; x < width; x += 2) if (lit(x, bottom)) break b;
+  c: for (; left < width; left++) for (let y = 0; y < height; y += 2) if (lit(left, y)) break c;
+  d: for (; right > 0; right--) for (let y = 0; y < height; y += 2) if (lit(right, y)) break d;
+
+  const w = right - left + 1;
+  const h = bottom - top + 1;
+  const px = await sharp(src).extract({ left, top, width: w, height: h }).ensureAlpha().raw().toBuffer();
+
+  const seen = new Uint8Array(w * h);
+  const stack = [[0, 0], [w - 1, 0], [0, h - 1], [w - 1, h - 1]];
+  while (stack.length) {
+    const [x, y] = stack.pop();
+    if (x < 0 || y < 0 || x >= w || y >= h) continue;
+    const i = y * w + x;
+    if (seen[i]) continue;
+    seen[i] = 1;
+    const p = i * 4;
+    if (Math.max(px[p], px[p + 1], px[p + 2]) > 30) continue;
+    px[p + 3] = 0;
+    stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
   }
+  return sharp(px, { raw: { width: w, height: h, channels: 4 } });
 }
 
-await run();
+/** [source, output stem, [[width, filename suffix, quality?], ...], defaultQuality?, transform?] */
+const jobs = [
+  // Icons.
+  ['public/media/lineup/icon.png', 'public/media/lineup/icon', [[512, ''], [256, '-256']], 90],
+  ['public/media/rental-record/icon.png', 'public/media/rental-record/icon', [[256, '']], 90],
+  ['public/media/modeboard/icon.png', 'public/media/modeboard/icon', [[256, '']], 90],
+  ['public/media/tideframe/icon.png', 'public/media/tideframe/icon', [[512, '']], 90],
+  ['public/media/trinity/logo.png', 'public/media/trinity/logo', [[256, '']], 92],
+  ['public/media/laundrylink/logo.png', 'public/media/laundrylink/logo', [[512, ''], [256, '-sm']], 92],
+
+  // Modeboard — official current-generation captures, black backdrop removed.
+  [`${TF}/screenshots/modeboard-profile-overview.png`, 'public/media/modeboard/profile-overview', [[1442, ''], [760, '-sm']], 86, cropToWindow],
+  [`${TF}/screenshots/modeboard-appearance-dock.png`, 'public/media/modeboard/appearance-dock', [[1442, ''], [760, '-sm']], 86, cropToWindow],
+  [`${TF}/screenshots/modeboard-menu-bar-desktop.png`, 'public/media/modeboard/menu-bar', [[1442, ''], [760, '-sm']], 86, cropToWindow],
+  [`${TF}/screenshots/modeboard-backups-restore.png`, 'public/media/modeboard/backups-restore', [[1442, ''], [760, '-sm']], 86, cropToWindow],
+  [`${TF}/screenshots/modeboard-onboarding-focus.png`, 'public/media/modeboard/onboarding-focus', [[1442, ''], [760, '-sm']], 86, cropToWindow],
+  [`${TF}/screenshots/modeboard-getting-started.png`, 'public/media/modeboard/getting-started', [[1442, ''], [760, '-sm']], 86, cropToWindow],
+
+  // Rental Record — official raw captures, full responsive ladders.
+  ...['cases', 'room', 'evidence', 'report', 'privacy'].map((n) => [
+    `${RR}/raw/iphone/rental-record-iphone-${n}.png`, `public/media/rental-record/iphone-${n}`,
+    [[1320, ''], [880, '-md'], [440, '-sm']], 84,
+  ]),
+  ...['overview', 'room'].map((n) => [
+    `${RR}/raw/ipad/rental-record-ipad-${n}.png`, `public/media/rental-record/ipad-${n}`,
+    [[1548, ''], [1032, '-md'], [516, '-sm']], 84,
+  ]),
+  ...['cases', 'inspection', 'report'].map((n) => [
+    `${RR}/raw/mac/rental-record-mac-${n}.png`, `public/media/rental-record/mac-${n}`,
+    [[2560, ''], [1440, '-md'], [960, '-sm']], 82,
+  ]),
+
+  // Trinity — public site imagery. Sources verified by content, not filename:
+  // trinity-rise-hero.jpg is an aerial site plan, not the Rise rendering.
+  // The 2400px candidates are only fetched by wide high-density displays and are
+  // downscaled ~1.7x when they render, so they carry a lower quality than the
+  // -md variants without any visible cost.
+  [`${TRINITY}/home-hero.jpg`, 'public/media/trinity/home-hero', [[2400, '', 68], [1400, '-md', 78], [800, '-sm', 80]]],
+  [`${TRINITY}/master-plan-map.jpg`, 'public/media/trinity/map', [[2400, '', 70], [1400, '-md', 78], [760, '-sm', 80]]],
+  [`${TRINITY}/trinity-peaks-hero.jpg`, 'public/media/trinity/peaks', [[2400, '', 66], [1400, '-md', 76], [760, '-sm', 80]]],
+  [`${TRINITY}/trinity-rise.jpg`, 'public/media/trinity/rise', [[1536, '', 74], [1100, '-md', 78], [760, '-sm', 80]]],
+  [`${TRINITY}/cottages-renovation.jpg`, 'public/media/trinity/cottages', [[2400, '', 66], [1400, '-md', 76], [760, '-sm', 80]]],
+];
+
+let missing = 0;
+for (const [src, stem, widths, quality, transform] of jobs) {
+  if (!existsSync(src)) {
+    console.warn(`skip (source not found): ${src}`);
+    missing++;
+    continue;
+  }
+  await mkdir(dirname(stem), { recursive: true });
+  const base = transform ? await transform(src) : sharp(src).rotate();
+  for (const [width, suffix, q] of widths) {
+    const out = `${stem}${suffix}.webp`;
+    await base.clone().resize({ width, withoutEnlargement: true }).webp({ quality: q ?? quality, effort: 6 }).toFile(out);
+    const info = await stat(out);
+    console.log(`${out} ${(info.size / 1024).toFixed(0)}kb`);
+  }
+}
+if (missing) console.warn(`\n${missing} source(s) were not found. Set MEDIA_SOURCE_ROOT to your checkout root.`);

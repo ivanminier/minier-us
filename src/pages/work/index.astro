@@ -39,7 +39,7 @@ const laundry = featuredProjects[4];
         </div>
         <div class="cinematic">
           <div class="device-phone">
-            <img src={lineup.hero.src} srcset={lineup.hero.srcset} width={lineup.hero.width} height={lineup.hero.height} alt={lineup.hero.alt} />
+            <img src={lineup.hero.src} srcset={lineup.hero.srcset} sizes="360px" width={lineup.hero.width} height={lineup.hero.height} alt={lineup.hero.alt} />
           </div>
         </div>
       </a>
@@ -54,12 +54,19 @@ const laundry = featuredProjects[4];
           <p>{rental.oneLiner}</p>
           <div class="platforms">{rental.platforms.map((item) => <span>{item}</span>)}</div>
         </div>
-        <div class="devices-row">
+        <div class="devices-pair">
           <div class="device-phone">
-            <img src={rental.hero.src} srcset={rental.hero.srcset} width={rental.hero.width} height={rental.hero.height} alt={rental.hero.alt} />
+            <img src={rental.hero.src} srcset={rental.hero.srcset} sizes="220px" width={rental.hero.width} height={rental.hero.height} alt={rental.hero.alt} />
           </div>
           <div class="shot">
-            <img src="/media/rental-record/mac-cases.webp" width="1440" height="900" alt="" />
+            <img
+              src={rental.devices!.desktop!.src}
+              srcset={rental.devices!.desktop!.srcset}
+              sizes="(max-width: 900px) 92vw, 34vw"
+              width={rental.devices!.desktop!.width}
+              height={rental.devices!.desktop!.height}
+              alt=""
+            />
           </div>
         </div>
       </a>
@@ -74,7 +81,7 @@ const laundry = featuredProjects[4];
           <p>{modeboard.oneLiner}</p>
         </div>
         <div class="shot">
-          <img src={modeboard.hero.src} srcset={modeboard.hero.srcset} width={modeboard.hero.width} height={modeboard.hero.height} alt={modeboard.hero.alt} />
+          <img src={modeboard.hero.src} srcset={modeboard.hero.srcset} sizes="(max-width: 900px) 92vw, 52vw" width={modeboard.hero.width} height={modeboard.hero.height} alt={modeboard.hero.alt} />
         </div>
       </a>
 
@@ -88,7 +95,7 @@ const laundry = featuredProjects[4];
           <p>{trinity.oneLiner}</p>
         </div>
         <div class="editorial">
-          <img src={trinity.hero.src} srcset={trinity.hero.srcset} width={trinity.hero.width} height={trinity.hero.height} alt={trinity.hero.alt} />
+          <img src={trinity.hero.src} srcset={trinity.hero.srcset} sizes="(max-width: 900px) 92vw, 52vw" width={trinity.hero.width} height={trinity.hero.height} alt={trinity.hero.alt} />
         </div>
       </a>
 
@@ -101,8 +108,8 @@ const laundry = featuredProjects[4];
           <h2>{laundry.name}</h2>
           <p>{laundry.oneLiner}</p>
         </div>
-        <div class="device-phone">
-          <img src={laundry.hero.src} srcset={laundry.hero.srcset} width={laundry.hero.width} height={laundry.hero.height} alt={laundry.hero.alt} />
+        <div class="mark-card">
+          <img src={laundry.hero.src} srcset={laundry.hero.srcset} sizes="180px" width={laundry.hero.width} height={laundry.hero.height} alt={laundry.hero.alt} />
         </div>
       </a>
     </div>
