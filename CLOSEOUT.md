@@ -81,6 +81,18 @@ repository. Give a deployment a minute before judging it.
 | `https://minier.us` | 200 |
 | `https://www.minier.us` | 301 → `https://minier.us/` |
 
+Production, after the merge deployed:
+
+| Check | Result |
+| --- | --- |
+| Branch preview | All 10 pages 200, `topshelf-md.webp` served, moved PNGs 404 as intended |
+| Live smoke test | 31/31 — 10 pages in Chromium and 4 in WebKit at 390 and 1440, DPR 2: no overflow, no broken images, no console errors, galleries single-column on mobile |
+| Theme toggle | light → dark, and reachable inside the open mobile menu |
+| Lighthouse desktop `/` | 100 / 100 / 100 / 100, LCP 0.6s, CLS 0 |
+| Lighthouse mobile `/` | 100, 100, 97 across three runs — network variance on LCP alone; the homepage does not reference any asset this pass touched |
+| OG cards, sitemap, robots | All 200 with correct content types |
+| `/definitely-not-real` | 404 |
+
 The previous audit's 26 fixes were re-confirmed explicitly: galleries stay
 single-column at ≤900px, LaundryLink shows no failure copy, Modeboard has no
 black matte and still reads "Getting Started", Rental Record shows nine distinct
