@@ -7,13 +7,22 @@ export interface ProjectLink {
   external?: boolean;
 }
 
+/**
+ * How an image relates to its container, which decides the `sizes` hint.
+ * `device` and `tablet` are capped portrait screenshots; `screen` and
+ * `editorial` fill the wide container.
+ */
+export type MediaPresentation = 'device' | 'tablet' | 'screen' | 'editorial';
+
 export interface ProjectMedia {
   src: string;
   srcset?: string;
+  /** Must match the real pixel dimensions of `src`, or the browser reserves the wrong box. */
   width: number;
   height: number;
   alt: string;
   caption?: string;
+  presentation?: MediaPresentation;
 }
 
 export interface Project {
@@ -32,6 +41,10 @@ export interface Project {
   creator: string;
   role: string;
   officialHome?: ProjectLink;
+  /** Extra device shots for the multi-device row, kept out of the gallery so nothing repeats. */
+  devices?: { tablet?: ProjectMedia; desktop?: ProjectMedia };
+  /** Explains why product imagery is unavailable, when that is the case. */
+  dataNote?: string;
   oneLiner: string;
   summary: string;
   href: string;
@@ -72,38 +85,47 @@ export const projects: Project[] = [
     href: '/work/lineup',
     accent: '#1f8a6e',
     theme: 'cinematic',
-    icon: '/media/lineup/icon.webp',
+    icon: '/media/lineup/icon-256.webp',
     hero: {
       src: '/media/lineup/home.webp',
       srcset: '/media/lineup/home-sm.webp 480w, /media/lineup/home.webp 900w',
       width: 900,
-      height: 1950,
+      height: 1957,
       alt: 'Lineup Home on iPhone showing the fictional demo catalog, with Live Now channels and recently added movies.',
+      presentation: 'device',
     },
     gallery: [
       {
         src: '/media/lineup/welcome.webp',
         width: 900,
-        height: 1950,
+        height: 1957,
         alt: 'Lineup welcome screen: Your channels, movies, and shows—beautifully organized.',
+        caption: 'Welcome — the demo catalog is fictional, so the product can be explored without a provider.',
+        presentation: 'device',
       },
       {
         src: '/media/lineup/sources.webp',
         width: 900,
-        height: 1950,
+        height: 1957,
         alt: 'Lineup source setup with M3U, Xtream, local playlist file, and a fictional demo catalog.',
+        caption: 'Sources — M3U, Xtream, a local playlist file, or the fictional demo catalog.',
+        presentation: 'device',
       },
       {
         src: '/media/lineup/edit-home.webp',
         width: 900,
-        height: 1950,
+        height: 1957,
         alt: 'Lineup Edit Home screen with Live Now, Movies, Series, and Watchlist sections.',
+        caption: 'Edit Home — sections can be reordered, and sections without content hide themselves.',
+        presentation: 'device',
       },
       {
         src: '/media/lineup/profile.webp',
         width: 900,
-        height: 1950,
+        height: 1957,
         alt: 'Lineup profile setup with standard and child profile types.',
+        caption: 'Profiles — standard and child profile types, set up before anything plays.',
+        presentation: 'device',
       },
     ],
     links: [
@@ -161,51 +183,96 @@ export const projects: Project[] = [
     theme: 'paper',
     icon: '/media/rental-record/icon.webp',
     hero: {
-      src: '/media/rental-record/iphone-cases.webp',
-      srcset: '/media/rental-record/iphone-cases-sm.webp 440w, /media/rental-record/iphone-cases.webp 880w',
+      src: '/media/rental-record/iphone-cases-md.webp',
+      srcset:
+        '/media/rental-record/iphone-cases-sm.webp 440w, /media/rental-record/iphone-cases-md.webp 880w, /media/rental-record/iphone-cases.webp 1320w',
       width: 880,
       height: 1912,
       alt: 'Rental Record Cases screen on iPhone using fictional rental data.',
+      presentation: 'device',
     },
     gallery: [
       {
-        src: '/media/rental-record/iphone-room.webp',
+        src: '/media/rental-record/iphone-room-md.webp',
+        srcset:
+          '/media/rental-record/iphone-room-sm.webp 440w, /media/rental-record/iphone-room-md.webp 880w, /media/rental-record/iphone-room.webp 1320w',
         width: 880,
         height: 1912,
         alt: 'Rental Record living-room checklist on iPhone using fictional rental data.',
+        caption: 'Room checklist — wide overview first, then close-ups, on iPhone.',
+        presentation: 'device',
       },
       {
-        src: '/media/rental-record/iphone-evidence.webp',
+        src: '/media/rental-record/iphone-evidence-md.webp',
+        srcset:
+          '/media/rental-record/iphone-evidence-sm.webp 440w, /media/rental-record/iphone-evidence-md.webp 880w, /media/rental-record/iphone-evidence.webp 1320w',
         width: 880,
         height: 1912,
         alt: 'Rental Record evidence and observations on iPhone using fictional rental data.',
+        caption: 'Evidence — a photo, an observation, a condition, and the room it belongs to.',
+        presentation: 'device',
       },
       {
-        src: '/media/rental-record/iphone-report.webp',
+        src: '/media/rental-record/iphone-report-md.webp',
+        srcset:
+          '/media/rental-record/iphone-report-sm.webp 440w, /media/rental-record/iphone-report-md.webp 880w, /media/rental-record/iphone-report.webp 1320w',
         width: 880,
         height: 1912,
         alt: 'Rental Record PDF report preview on iPhone using fictional rental data.',
+        caption: 'Report — a move-in PDF, ready to finalize or package as evidence.',
+        presentation: 'device',
       },
       {
-        src: '/media/rental-record/ipad-overview.webp',
+        src: '/media/rental-record/ipad-room-md.webp',
+        srcset:
+          '/media/rental-record/ipad-room-sm.webp 516w, /media/rental-record/ipad-room-md.webp 1032w, /media/rental-record/ipad-room.webp 1548w',
+        width: 1032,
+        height: 1376,
+        alt: 'Rental Record room inspection on iPad, with the checklist and evidence side by side.',
+        caption: 'iPad — the checklist and the evidence list share one screen.',
+        presentation: 'tablet',
+      },
+      {
+        src: '/media/rental-record/mac-inspection-md.webp',
+        srcset:
+          '/media/rental-record/mac-inspection-sm.webp 960w, /media/rental-record/mac-inspection-md.webp 1440w, /media/rental-record/mac-inspection.webp 2560w',
+        width: 1440,
+        height: 899,
+        alt: 'Rental Record move-in inspection overview on Mac using fictional rental data.',
+        caption: 'Mac — the move-in inspection, with readiness and outstanding items in one view.',
+        presentation: 'screen',
+      },
+      {
+        src: '/media/rental-record/mac-report-md.webp',
+        srcset:
+          '/media/rental-record/mac-report-sm.webp 960w, /media/rental-record/mac-report-md.webp 1440w, /media/rental-record/mac-report.webp 2560w',
+        width: 1440,
+        height: 899,
+        alt: 'Rental Record report preview on Mac using fictional rental data.',
+        caption: 'Mac — the same record as a shareable PDF report and evidence package.',
+        presentation: 'screen',
+      },
+    ],
+    devices: {
+      tablet: {
+        src: '/media/rental-record/ipad-overview-md.webp',
+        srcset:
+          '/media/rental-record/ipad-overview-sm.webp 516w, /media/rental-record/ipad-overview-md.webp 1032w, /media/rental-record/ipad-overview.webp 1548w',
         width: 1032,
         height: 1376,
         alt: 'Rental Record Cases overview on iPad using fictional rental data.',
+        presentation: 'tablet',
       },
-      {
-        src: '/media/rental-record/mac-cases.webp',
-        srcset: '/media/rental-record/mac-cases-sm.webp 960w, /media/rental-record/mac-cases.webp 1440w',
+      desktop: {
+        src: '/media/rental-record/mac-cases-md.webp',
+        srcset:
+          '/media/rental-record/mac-cases-sm.webp 960w, /media/rental-record/mac-cases-md.webp 1440w, /media/rental-record/mac-cases.webp 2560w',
         width: 1440,
-        height: 900,
+        height: 899,
         alt: 'Rental Record Cases window on Mac using fictional rental data.',
+        presentation: 'screen',
       },
-      {
-        src: '/media/rental-record/mac-inspection.webp',
-        width: 1440,
-        height: 900,
-        alt: 'Rental Record move-in inspection overview on Mac using fictional rental data.',
-      },
-    ],
+    },
     links: [
       {
         label: 'App Store',
@@ -268,35 +335,57 @@ export const projects: Project[] = [
     hero: {
       src: '/media/modeboard/profile-overview.webp',
       srcset:
-        '/media/modeboard/profile-overview-sm.webp 800w, /media/modeboard/profile-overview.webp 1400w',
-      width: 1400,
-      height: 1056,
+        '/media/modeboard/profile-overview-sm.webp 760w, /media/modeboard/profile-overview.webp 1442w',
+      width: 1442,
+      height: 1050,
       alt: 'Modeboard profile editor with Default, Do Not Disturb, Work, Sleep, Travel, and College profiles.',
+      presentation: 'screen',
     },
     gallery: [
       {
         src: '/media/modeboard/appearance-dock.webp',
-        width: 1400,
-        height: 1056,
+        srcset: '/media/modeboard/appearance-dock-sm.webp 760w, /media/modeboard/appearance-dock.webp 1442w',
+        width: 1442,
+        height: 1050,
         alt: 'Modeboard appearance and Dock settings for a workspace profile.',
+        caption: 'Appearance and Dock — light or dark, accent colour, tile size, position, and Dock pins.',
+        presentation: 'screen',
       },
       {
         src: '/media/modeboard/menu-bar.webp',
-        width: 1400,
-        height: 1056,
+        srcset: '/media/modeboard/menu-bar-sm.webp 760w, /media/modeboard/menu-bar.webp 1442w',
+        width: 1442,
+        height: 1050,
         alt: 'Modeboard menu bar and Desktop settings.',
+        caption: 'Menu bar and Desktop — per-profile visibility for supported items, and Desktop icon state.',
+        presentation: 'screen',
       },
       {
         src: '/media/modeboard/backups-restore.webp',
-        width: 1400,
-        height: 1056,
+        srcset: '/media/modeboard/backups-restore-sm.webp 760w, /media/modeboard/backups-restore.webp 1442w',
+        width: 1442,
+        height: 1050,
         alt: 'Modeboard backups and restore history.',
+        caption: 'Backups and restore — a verified backup before relevant changes, plus Emergency Restore.',
+        presentation: 'screen',
+      },
+      {
+        src: '/media/modeboard/getting-started.webp',
+        srcset: '/media/modeboard/getting-started-sm.webp 760w, /media/modeboard/getting-started.webp 1442w',
+        width: 1442,
+        height: 1050,
+        alt: 'Modeboard Getting Started page explaining how to create, apply, and switch profiles.',
+        caption: 'Getting Started — create a profile, apply it, then switch from the app, the menu bar, Shortcuts, or a Focus Filter.',
+        presentation: 'screen',
       },
       {
         src: '/media/modeboard/onboarding-focus.webp',
-        width: 1400,
-        height: 1056,
+        srcset: '/media/modeboard/onboarding-focus-sm.webp 760w, /media/modeboard/onboarding-focus.webp 1442w',
+        width: 1442,
+        height: 1050,
         alt: 'Modeboard onboarding explaining Focus Filter integration.',
+        caption: 'Focus Filter — macOS owns the Focus. Modeboard supplies the profile it should apply.',
+        presentation: 'screen',
       },
     ],
     links: [
@@ -350,36 +439,51 @@ export const projects: Project[] = [
     theme: 'editorial',
     icon: '/media/trinity/logo.webp',
     hero: {
-      src: '/media/trinity/home-hero.webp',
-      srcset: '/media/trinity/home-hero-sm.webp 800w, /media/trinity/home-hero.webp 1600w',
-      width: 1600,
-      height: 1000,
+      src: '/media/trinity/home-hero-md.webp',
+      srcset:
+        '/media/trinity/home-hero-sm.webp 800w, /media/trinity/home-hero-md.webp 1400w, /media/trinity/home-hero.webp 2400w',
+      width: 1400,
+      height: 554,
       alt: 'Concept visualization of the Trinity district residential vision.',
+      presentation: 'editorial',
     },
     gallery: [
       {
-        src: '/media/trinity/map.webp',
+        src: '/media/trinity/map-md.webp',
+        srcset: '/media/trinity/map-sm.webp 760w, /media/trinity/map-md.webp 1400w, /media/trinity/map.webp 2400w',
         width: 1400,
-        height: 900,
-        alt: 'District plan concept map for Trinity Redistricting.',
+        height: 886,
+        alt: 'District plan concept map for Trinity Redistricting, showing building footprints and circulation across the Trinity site.',
+        caption: 'District plan — the concept treats Trinity as one site, not a single building.',
+        presentation: 'editorial',
       },
       {
-        src: '/media/trinity/peaks.webp',
+        src: '/media/trinity/peaks-md.webp',
+        srcset: '/media/trinity/peaks-sm.webp 760w, /media/trinity/peaks-md.webp 1400w, /media/trinity/peaks.webp 2400w',
         width: 1400,
-        height: 900,
+        height: 800,
         alt: 'Trinity Peaks residence hall concept visualization.',
+        caption: 'Trinity Peaks — first-year residence hall concept.',
+        presentation: 'editorial',
       },
       {
-        src: '/media/trinity/rise.webp',
-        width: 1400,
-        height: 900,
+        src: '/media/trinity/rise-md.webp',
+        srcset: '/media/trinity/rise-sm.webp 760w, /media/trinity/rise-md.webp 1100w, /media/trinity/rise.webp 1536w',
+        width: 1100,
+        height: 733,
         alt: 'Trinity Rise upperclass apartment-style concept visualization.',
+        caption: 'Trinity Rise — upperclass apartment-style housing concept.',
+        presentation: 'editorial',
       },
       {
-        src: '/media/trinity/cottages.webp',
+        src: '/media/trinity/cottages-md.webp',
+        srcset:
+          '/media/trinity/cottages-sm.webp 760w, /media/trinity/cottages-md.webp 1400w, /media/trinity/cottages.webp 2400w',
         width: 1400,
-        height: 900,
+        height: 824,
         alt: 'Cottages preservation and adaptive reuse concept.',
+        caption: 'The Cottages — preservation and adaptive reuse rather than removal.',
+        presentation: 'editorial',
       },
     ],
     links: [
@@ -430,22 +534,22 @@ export const projects: Project[] = [
     accent: '#154734',
     theme: 'campus',
     icon: '/media/laundrylink/logo.webp',
+    // LaundryLink is shown by its identity mark rather than a screenshot. The
+    // campus data feed it depends on (api.uvmlaundry.com) is offline, so every
+    // capture of the live site right now is an empty state. Presenting a
+    // "No Laundry Rooms Found" screen as the product shot misrepresents the
+    // project, and staging a populated screen would be a fabrication.
     hero: {
-      src: '/media/laundrylink/app.webp',
-      srcset: '/media/laundrylink/app-sm.webp 400w, /media/laundrylink/app.webp 780w',
-      width: 780,
-      height: 1694,
-      alt: 'UVM LaundryLink on a phone: room search, favorites, and the live campus interface.',
+      src: '/media/laundrylink/logo.webp',
+      srcset: '/media/laundrylink/logo-sm.webp 256w, /media/laundrylink/logo.webp 512w',
+      width: 512,
+      height: 512,
+      alt: 'UVM LaundryLink identity mark.',
+      presentation: 'device',
     },
-    gallery: [
-      {
-        src: '/media/laundrylink/app.webp',
-        srcset: '/media/laundrylink/app-sm.webp 400w, /media/laundrylink/app.webp 780w',
-        width: 780,
-        height: 1694,
-        alt: 'LaundryLink home with search and favorites. Live machine data depends on the campus source.',
-      },
-    ],
+    gallery: [],
+    dataNote:
+      'The site is live at uvmlaundry.com. The campus machine feed it reads from is offline right now, so the room and machine views have no data to show. Interface screenshots return here when the feed does.',
     links: [{ label: 'uvmlaundry.com', href: 'https://uvmlaundry.com', external: true }],
     problem:
       'Campus laundry is a small system that wastes a surprising amount of time. Students walk to a room, find every machine running, and walk back.',

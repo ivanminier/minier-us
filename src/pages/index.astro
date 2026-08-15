@@ -23,19 +23,25 @@ const laundry = featuredProjects[4];
         <a class="btn btn-ghost" href="/about">About me</a>
       </div>
       <div class="hero-stage" aria-label="Work from Lineup, Modeboard, Rental Record, and Trinity Redistricting">
+        {/*
+          Each layer needs its own `sizes`. Without one the browser assumes
+          100vw and fetched, for example, the 1320px Rental Record capture for
+          a slot 226px wide.
+        */}
         <div class="hero-layer hero-trinity">
-          <img src={trinity.hero.src} srcset={trinity.hero.srcset} width={trinity.hero.width} height={trinity.hero.height} alt="" />
+          <img src={trinity.hero.src} srcset={trinity.hero.srcset} sizes="(max-width: 900px) 92vw, 33vw" width={trinity.hero.width} height={trinity.hero.height} alt="" />
         </div>
         <div class="hero-layer hero-modeboard">
-          <img src={modeboard.hero.src} srcset={modeboard.hero.srcset} width={modeboard.hero.width} height={modeboard.hero.height} alt="" />
+          <img src={modeboard.hero.src} srcset={modeboard.hero.srcset} sizes="(max-width: 900px) 92vw, 44vw" width={modeboard.hero.width} height={modeboard.hero.height} alt="" />
         </div>
         <div class="hero-layer hero-rental">
-          <img src={rental.hero.src} srcset={rental.hero.srcset} width={rental.hero.width} height={rental.hero.height} alt="" />
+          <img src={rental.hero.src} srcset={rental.hero.srcset} sizes="(max-width: 900px) 92vw, 17vw" width={rental.hero.width} height={rental.hero.height} alt="" />
         </div>
         <div class="hero-layer hero-lineup">
           <img
             src={lineup.hero.src}
             srcset={lineup.hero.srcset}
+            sizes="(max-width: 900px) 240px, 20vw"
             width={lineup.hero.width}
             height={lineup.hero.height}
             alt={lineup.hero.alt}
@@ -74,11 +80,19 @@ const laundry = featuredProjects[4];
           </div>
           <a class="btn" href={lineup.href}>View project</a>
         </div>
-        <div class="cinematic lineup-stage" style="margin-top:1.5rem;">
-          <div class="device-phone">
-            <img src={lineup.hero.src} srcset={lineup.hero.srcset} width={lineup.hero.width} height={lineup.hero.height} alt={lineup.hero.alt} loading="lazy" decoding="async" />
+        <div class="cinematic" style="margin-top:1.5rem;">
+          <div class="lineup-stage">
+            <div class="device-phone">
+              <img src="/media/lineup/sources.webp" sizes="340px" width="900" height="1957" alt="Lineup source setup with M3U, Xtream, local playlist file, and a fictional demo catalog." loading="lazy" decoding="async" />
+            </div>
+            <div class="device-phone lead">
+              <img src={lineup.hero.src} srcset={lineup.hero.srcset} sizes="380px" width={lineup.hero.width} height={lineup.hero.height} alt={lineup.hero.alt} loading="lazy" decoding="async" />
+            </div>
+            <div class="device-phone">
+              <img src="/media/lineup/edit-home.webp" sizes="340px" width="900" height="1957" alt="Lineup Edit Home screen with Live Now, Movies, Series, and Watchlist sections." loading="lazy" decoding="async" />
+            </div>
           </div>
-          <img src="/media/lineup/topshelf.webp" srcset="/media/lineup/topshelf-sm.webp 800w, /media/lineup/topshelf.webp 1600w" width="1600" height="480" alt="Lineup mark on a wide television-style banner." loading="lazy" decoding="async" />
+          <p class="lineup-caption">A raw source goes in. A Home worth using comes out. Demo catalog is fictional.</p>
         </div>
       </article>
 
@@ -96,7 +110,7 @@ const laundry = featuredProjects[4];
         </div>
         <div class="media-stage">
           <div class="device-phone">
-            <img src={rental.hero.src} srcset={rental.hero.srcset} width={rental.hero.width} height={rental.hero.height} alt={rental.hero.alt} loading="lazy" decoding="async" />
+            <img src={rental.hero.src} srcset={rental.hero.srcset} sizes="360px" width={rental.hero.width} height={rental.hero.height} alt={rental.hero.alt} loading="lazy" decoding="async" />
           </div>
         </div>
       </article>
@@ -114,7 +128,7 @@ const laundry = featuredProjects[4];
           <a class="btn btn-ghost" href={modeboard.href}>View project</a>
         </div>
         <div class="shot">
-          <img src={modeboard.hero.src} srcset={modeboard.hero.srcset} width={modeboard.hero.width} height={modeboard.hero.height} alt={modeboard.hero.alt} loading="lazy" decoding="async" />
+          <img src={modeboard.hero.src} srcset={modeboard.hero.srcset} sizes="(max-width: 900px) 92vw, 50vw" width={modeboard.hero.width} height={modeboard.hero.height} alt={modeboard.hero.alt} loading="lazy" decoding="async" />
         </div>
       </article>
 
@@ -130,7 +144,7 @@ const laundry = featuredProjects[4];
           <a class="btn btn-ghost" href={trinity.href}>View project</a>
         </div>
         <div class="editorial">
-          <img src={trinity.hero.src} srcset={trinity.hero.srcset} width={trinity.hero.width} height={trinity.hero.height} alt={trinity.hero.alt} loading="lazy" decoding="async" />
+          <img src={trinity.hero.src} srcset={trinity.hero.srcset} sizes="(max-width: 900px) 92vw, 50vw" width={trinity.hero.width} height={trinity.hero.height} alt={trinity.hero.alt} loading="lazy" decoding="async" />
         </div>
       </article>
 
@@ -145,8 +159,8 @@ const laundry = featuredProjects[4];
           <p>{laundry.oneLiner}</p>
           <a class="btn btn-ghost" href={laundry.href}>View project</a>
         </div>
-        <div class="device-phone">
-          <img src={laundry.hero.src} srcset={laundry.hero.srcset} width={laundry.hero.width} height={laundry.hero.height} alt={laundry.hero.alt} loading="lazy" decoding="async" />
+        <div class="mark-card">
+          <img src={laundry.hero.src} srcset={laundry.hero.srcset} sizes="180px" width={laundry.hero.width} height={laundry.hero.height} alt={laundry.hero.alt} loading="lazy" decoding="async" />
         </div>
       </article>
     </div>

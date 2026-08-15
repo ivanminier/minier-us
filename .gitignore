@@ -27,3 +27,6 @@ pnpm-debug.log*
 .idea/
 .vscode/
 *.log
+
+# visual QA audit artifacts (local only)
+.audit/

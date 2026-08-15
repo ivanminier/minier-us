@@ -48,19 +48,23 @@ const path = Astro.url.pathname;
 <script>
   const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
   const panel = document.querySelector<HTMLElement>('#mobile-nav');
+  // `offsetParent` is unreliable inside a fixed-position panel — in WebKit it can
+  // be null for visible children, which emptied this list and let Tab escape the
+  // open menu into the page behind it. Client rects are consistent everywhere.
   const focusables = () =>
     panel
       ? [...panel.querySelectorAll<HTMLElement>('a, button, [tabindex]:not([tabindex="-1"])')].filter(
-          (el) => !el.hasAttribute('disabled') && el.offsetParent !== null,
+          (el) => !el.hasAttribute('disabled') && el.getClientRects().length > 0,
         )
       : [];
-  const setOpen = (open: boolean) => {
+  const setOpen = (open: boolean, moveFocus = true) => {
     if (!panel || !toggle) return;
     panel.dataset.open = String(open);
     panel.hidden = !open;
     toggle.setAttribute('aria-expanded', String(open));
     toggle.textContent = open ? 'Close' : 'Menu';
     document.body.style.overflow = open ? 'hidden' : '';
+    if (!moveFocus) return;
     if (open) {
       focusables()[0]?.focus();
     } else {
@@ -68,6 +72,14 @@ const path = Astro.url.pathname;
     }
   };
   toggle?.addEventListener('click', () => setOpen(panel?.dataset.open !== 'true'));
+  // The panel is hidden by CSS above 900px, but the body scroll lock is not.
+  // Opening the menu on a phone and then rotating or resizing past the
+  // breakpoint left the page unscrollable with the toggle still reading "Close".
+  const desktop = window.matchMedia('(min-width: 901px)');
+  const closeOnDesktop = () => {
+    if (desktop.matches && panel?.dataset.open === 'true') setOpen(false, false);
+  };
+  desktop.addEventListener('change', closeOnDesktop);
   panel?.querySelectorAll('[data-menu-link]').forEach((link) => {
     link.addEventListener('click', () => setOpen(false));
   });
@@ -80,15 +92,13 @@ const path = Astro.url.pathname;
     if (event.key !== 'Tab') return;
     const items = [toggle, ...focusables()].filter((el): el is HTMLElement => Boolean(el));
     if (!items.length) return;
-    const first = items[0];
-    const last = items[items.length - 1];
-    const active = document.activeElement;
-    if (event.shiftKey && (active === first || !items.includes(active as HTMLElement))) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && (active === last || !items.includes(active as HTMLElement))) {
-      event.preventDefault();
-      first.focus();
-    }
+    // Drive the whole cycle rather than only intercepting at the two ends.
+    // Relying on native sequential focus let Tab escape the open panel in
+    // WebKit, which then bounced between the skip link and the close button.
+    event.preventDefault();
+    const index = items.indexOf(document.activeElement as HTMLElement);
+    const step = event.shiftKey ? -1 : 1;
+    const next = index === -1 ? (event.shiftKey ? items.length - 1 : 0) : (index + step + items.length) % items.length;
+    items[next].focus();
   });
 </script>

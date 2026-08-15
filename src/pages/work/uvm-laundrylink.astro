@@ -37,11 +37,13 @@ const jsonLd = {
   </section>
 
   <section class="section" style="padding-top:0;">
-    <div class="wrap" style="max-width:420px;">
-      <div class="device-phone">
-        <ProjectMedia media={project.hero} eager />
+    <div class="wrap">
+      <div style="max-width:520px;">
+        <div class="mark-card">
+          <ProjectMedia media={project.hero} sizes="180px" eager />
+        </div>
+        <p class="caption">{project.dataNote}</p>
       </div>
-      <p class="caption">Live room data depends on the campus source. This is the actual product interface.</p>
     </div>
   </section>
 

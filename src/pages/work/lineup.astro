@@ -42,17 +42,13 @@ const jsonLd = {
   </section>
 
   <section class="section" style="padding-top:0;">
-    <div class="wrap-wide cinematic lineup-stage">
+    <div class="wrap cinematic cinematic-solo">
       <div class="device-phone">
         <ProjectMedia media={project.hero} eager />
       </div>
-      <img
-        src="/media/lineup/topshelf.webp"
-        srcset="/media/lineup/topshelf-sm.webp 800w, /media/lineup/topshelf.webp 1600w"
-        width="1600"
-        height="480"
-        alt="Lineup mark on a wide Apple TV top-shelf banner."
-      />
+      <p class="lineup-caption">
+        Home, built from a provider catalog. The demo catalog shown here is fictional.
+      </p>
     </div>
   </section>
 
@@ -92,11 +88,27 @@ const jsonLd = {
 
   <section class="section" style="padding-top:0;">
     <div class="wrap-wide gallery">
+      <figure class="wide">
+        <div class="lineup-banner">
+          <img
+            src="/media/lineup/topshelf.webp"
+            srcset="/media/lineup/topshelf-sm.webp 800w, /media/lineup/topshelf.webp 1600w"
+            sizes="(min-width: 1452px) 1380px, calc(100vw - 4.5rem)"
+            width="1600"
+            height="497"
+            alt="Lineup mark on a wide Apple TV top-shelf banner."
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <figcaption>Apple TV — the top-shelf banner, on the same 1.0 as iPhone and iPad.</figcaption>
+      </figure>
       {project.gallery.map((media) => (
         <figure>
           <div class="device-phone">
             <ProjectMedia media={media} />
           </div>
+          {media.caption && <figcaption>{media.caption}</figcaption>}
         </figure>
       ))}
     </div>

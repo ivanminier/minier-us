@@ -76,9 +76,10 @@ const jsonLd = {
     <div class="wrap-wide gallery">
       {project.gallery.map((media) => (
         <figure class="wide">
-          <div class="shot">
+          <div class="editorial">
             <ProjectMedia media={media} />
           </div>
+          {media.caption && <figcaption>{media.caption}</figcaption>}
         </figure>
       ))}
     </div>

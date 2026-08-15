@@ -13,6 +13,8 @@ interface Props {
   type?: 'website' | 'article' | 'profile';
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   theme?: string;
+  /** A 404 response must not advertise a canonical URL; that reads as a soft 404. */
+  noindex?: boolean;
 }
 
 const {
@@ -23,6 +25,7 @@ const {
   type = 'website',
   jsonLd,
   theme,
+  noindex = false,
 } = Astro.props;
 
 const canonicalUrl = new URL(canonical ?? Astro.url.pathname, site.url).href;
@@ -60,7 +63,7 @@ const personLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalUrl} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonicalUrl} />}
     <meta name="theme-color" content="#f3efe8" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#131210" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
