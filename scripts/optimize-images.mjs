@@ -1,11 +1,18 @@
 /**
- * Regenerates every project image in public/media from its authoritative source.
+ * Regenerates the derived project media in public/media from its authoritative
+ * source. Running it on an unchanged checkout is a no-op: every output below is
+ * byte-identical to what is committed.
  *
  * The previous version of this script read `src-*.png` files that are no longer
  * in the repository and emitted sizes that were too small for the widths these
  * images actually render at, so running it would have undone the media fixes.
  * Sources now point at the project repositories, which are read but never
  * modified. Set MEDIA_SOURCE_ROOT if your checkouts live somewhere else.
+ *
+ * Not covered here: the Lineup iPhone screenshots (`welcome`, `sources`,
+ * `profile`, `home`, `edit-home`) and `laundrylink/app.webp`. Their originals
+ * are camera-roll exports outside any repository, identified only by IMG_ numbers,
+ * so there is no stable path to point at. They are committed as-is.
  *
  *   node scripts/optimize-images.mjs
  */
@@ -19,6 +26,8 @@ const HOME = process.env.MEDIA_SOURCE_ROOT ?? os.homedir();
 const TF = join(HOME, 'Developer/tideframe-site/public');
 const RR = join(TF, 'products/rental-record/screenshots');
 const TRINITY = join(HOME, 'Documents/trinity-site/assets/images');
+const LINEUP = join(HOME, 'Developer/Lineup/App/Resources/Assets.xcassets');
+const ICONS = 'assets/source';
 
 /**
  * Modeboard's shipped screenshots are composited on solid black. Rendered
@@ -61,13 +70,21 @@ async function cropToWindow(src) {
 
 /** [source, output stem, [[width, filename suffix, quality?], ...], defaultQuality?, transform?] */
 const jobs = [
-  // Icons.
-  ['public/media/lineup/icon.png', 'public/media/lineup/icon', [[512, ''], [256, '-256']], 90],
-  ['public/media/rental-record/icon.png', 'public/media/rental-record/icon', [[256, '']], 90],
-  ['public/media/modeboard/icon.png', 'public/media/modeboard/icon', [[256, '']], 90],
-  ['public/media/tideframe/icon.png', 'public/media/tideframe/icon', [[512, '']], 90],
-  ['public/media/trinity/logo.png', 'public/media/trinity/logo', [[256, '']], 92],
-  ['public/media/laundrylink/logo.png', 'public/media/laundrylink/logo', [[512, ''], [256, '-sm']], 92],
+  // Icons. The originals live in assets/source rather than public/ because no
+  // page requests them; everything under public/ is deployed verbatim.
+  [`${ICONS}/lineup/icon.png`, 'public/media/lineup/icon', [[512, ''], [256, '-256']], 90],
+  [`${ICONS}/rental-record/icon.png`, 'public/media/rental-record/icon', [[256, '']], 90],
+  [`${ICONS}/modeboard/icon.png`, 'public/media/modeboard/icon', [[256, '']], 90],
+  [`${ICONS}/tideframe/icon.png`, 'public/media/tideframe/icon', [[512, '']], 90],
+  [`${ICONS}/trinity/logo.png`, 'public/media/trinity/logo', [[256, '']], 92],
+  [`${ICONS}/laundrylink/logo.png`, 'public/media/laundrylink/logo', [[512, ''], [256, '-sm']], 92],
+
+  // Lineup — the shipping Apple TV top-shelf art, straight from the app's
+  // asset catalog at 4640x1440. The banner renders up to 1380px CSS, so the
+  // 2784 candidate covers a 2x display exactly; both smaller widths are exact
+  // integer divisions of the source, so nothing is resampled off-grid.
+  [`${LINEUP}/App Icon & Top Shelf Image.brandassets/Top Shelf Image Wide.imageset/shelf2x.png`,
+    'public/media/lineup/topshelf', [[2784, ''], [1392, '-md'], [800, '-sm']], 90],
 
   // Modeboard — official current-generation captures, black backdrop removed.
   [`${TF}/screenshots/modeboard-profile-overview.png`, 'public/media/modeboard/profile-overview', [[1442, ''], [760, '-sm']], 86, cropToWindow],
