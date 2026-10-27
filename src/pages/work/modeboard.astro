@@ -21,8 +21,8 @@ const jsonLd = {
 };
 ---
 
-<Base title={`${project.name} — Ivan Minier`} description={project.summary} jsonLd={jsonLd} image="/media/og/modeboard.png">
-  <section class="case-hero">
+<Base title={`${project.name} — Ivan Minier`} description={project.summary} jsonLd={jsonLd} image="/media/og/modeboard.png" theme="mac">
+  <section class="case-hero" style={`--page-accent:${project.accent}`}>
     <div class="wrap">
       <div class="meta-row">
         <span class="badge">{project.statusLabel}</span>

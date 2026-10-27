@@ -28,7 +28,7 @@ const jsonLd = {
   image="/media/og/lineup.png"
   theme="cinematic"
 >
-  <section class="case-hero">
+  <section class="case-hero" style={`--page-accent:${project.accent}`}>
     <div class="wrap">
       <div class="meta-row">
         <span class="badge">{project.statusLabel}</span>
@@ -51,6 +51,19 @@ const jsonLd = {
       </p>
     </div>
   </section>
+
+  {project.devices?.tablet && (
+    <section class="section" style="padding-top:0;">
+      <div class="wrap cinematic">
+        <div class="device-tablet">
+          <ProjectMedia media={project.devices.tablet} />
+        </div>
+        <p class="lineup-caption">
+          Guide, on iPad — the same catalog as a scrollable grid, with channels down the side.
+        </p>
+      </div>
+    </section>
+  )}
 
   <section class="section" style="padding-top:0;">
     <div class="wrap">
@@ -81,7 +94,10 @@ const jsonLd = {
       </div>
       <h2>Why this shape</h2>
       <p>{project.reasoning}</p>
-      <p>{project.platformsNote}</p>
+      <p>
+        Lineup is free to set up and watch. Pro adds Multiview, Best Source failover, the Home editor,
+        deeper Signal Check diagnostics, and Smart Lineup rule export.
+      </p>
       <p>Lineup is not an IPTV service. It does not sell channels or host streams.</p>
     </div>
   </section>
@@ -104,10 +120,19 @@ const jsonLd = {
         <figcaption>Apple TV — the top-shelf banner, on the same 1.0 as iPhone and iPad.</figcaption>
       </figure>
       {project.gallery.map((media) => (
-        <figure>
-          <div class="device-phone">
-            <ProjectMedia media={media} />
-          </div>
+        <figure class={media.presentation === 'tv' ? 'wide' : undefined}>
+          {media.presentation === 'tv' && (
+            <div class="device-tv">
+              <div class="tv-screen"><ProjectMedia media={media} /></div>
+              <div class="tv-stand"></div>
+            </div>
+          )}
+          {media.presentation === 'tablet' && (
+            <div class="device-tablet"><ProjectMedia media={media} /></div>
+          )}
+          {media.presentation === 'device' && (
+            <div class="device-phone"><ProjectMedia media={media} /></div>
+          )}
           {media.caption && <figcaption>{media.caption}</figcaption>}
         </figure>
       ))}

@@ -574,6 +574,57 @@ a:hover {
   padding: clamp(3rem, 8vw, 6.5rem) 0 2rem;
 }
 
+/*
+ * Each project keeps the shared chrome, type, and spacing, but gets its own
+ * wash behind the case-hero and a badge tinted with its own accent — a
+ * persona, not five different templates. `--page-accent` is set inline per
+ * page from the project's own brand color (projects.ts), so this never
+ * invents a color the product doesn't already use.
+ */
+[data-page-theme] .case-hero {
+  border-radius: 0 0 2rem 2rem;
+}
+
+[data-page-theme] .case-hero .badge {
+  border-color: color-mix(in srgb, var(--page-accent, var(--ink)) 45%, var(--line-strong));
+}
+
+/* Lineup — cinematic, dark ink/navy, restrained blue-green. */
+[data-page-theme="cinematic"] .case-hero {
+  background: linear-gradient(180deg, #0d1114 0%, var(--bg) 100%);
+  color: #f3f6f4;
+}
+
+[data-page-theme="cinematic"] .case-hero .lede,
+[data-page-theme="cinematic"] .case-hero .meta-row,
+[data-page-theme="cinematic"] .case-hero .facts dt {
+  color: #9aa6a1;
+}
+
+[data-page-theme="cinematic"] .case-hero .badge {
+  border-color: rgba(244, 240, 234, 0.22);
+}
+
+/* Modeboard — precise and quietly technical, a cool steel wash. */
+[data-page-theme="mac"] .case-hero {
+  background: linear-gradient(180deg, color-mix(in srgb, #2b6d93 11%, var(--surface)) 0%, var(--bg) 100%);
+}
+
+/* Rental Record — reassuring and documentary, warm paper. */
+[data-page-theme="paper"] .case-hero {
+  background: linear-gradient(180deg, color-mix(in srgb, #c9a227 10%, var(--surface)) 0%, var(--bg) 100%);
+}
+
+/* Trinity — civic and editorial, landscape stone/green. */
+[data-page-theme="editorial"] .case-hero {
+  background: linear-gradient(180deg, color-mix(in srgb, #046a48 9%, var(--surface)) 0%, var(--bg) 100%);
+}
+
+/* LaundryLink — approachable campus utility, compact green/gold. */
+[data-page-theme="campus"] .case-hero {
+  background: linear-gradient(180deg, color-mix(in srgb, #154734 10%, var(--surface)) 0%, var(--bg) 100%);
+}
+
 .prose {
   max-width: 42rem;
 }
@@ -658,6 +709,42 @@ figure {
 .cinematic .device-phone {
   border-color: rgba(244, 240, 234, 0.16);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+/*
+ * A lightweight television/display outline for landscape Apple TV captures.
+ * An Apple TV interface is a 16:9 picture on a screen, not a set-top-box
+ * shape, so this is a monitor bezel plus a thin stand bar — never a remote
+ * or puck silhouette.
+ */
+.device-tv {
+  margin: 0 auto;
+  width: min(760px, 100%);
+}
+
+.device-tv .tv-screen {
+  border-radius: 0.9rem;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  background: #0b0d10;
+  box-shadow: var(--shadow);
+}
+
+.device-tv .tv-stand {
+  width: min(140px, 28%);
+  height: 0.55rem;
+  margin: 0.6rem auto 0;
+  border-radius: 999px;
+  background: var(--line-strong);
+}
+
+.cinematic .device-tv .tv-screen {
+  border-color: rgba(244, 240, 234, 0.16);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+.cinematic .device-tv .tv-stand {
+  background: rgba(244, 240, 234, 0.16);
 }
 
 /* Identity card, used when a project has no publishable product screenshot. */
@@ -954,9 +1041,13 @@ figure {
   width: min(340px, 100%);
 }
 
-/* The middle screen is the point of the product, so it leads. */
+/* The phone is the point of the product, so it leads; the iPad guide supports it. */
 .lineup-stage .device-phone.lead {
   width: min(380px, 100%);
+}
+
+.lineup-stage .device-tablet {
+  width: min(420px, 100%);
 }
 
 .lineup-caption {
@@ -995,6 +1086,10 @@ figure {
   .lineup-stage .device-phone.lead {
     width: min(300px, 100%);
   }
+
+  .lineup-stage .device-tablet {
+    width: min(340px, 100%);
+  }
 }
 
 .metrics {
@@ -1023,6 +1118,114 @@ figure {
 
 .idea-title {
   font-family: var(--serif);
+}
+
+.resume-header {
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.resume-name {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.02em;
+}
+
+.resume-tagline {
+  margin: 0.4rem 0 0;
+  color: var(--ink-soft);
+}
+
+.resume-contact {
+  margin: 0.9rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.resume-prose section + section {
+  margin-top: 2.2rem;
+}
+
+.resume-item + .resume-item {
+  margin-top: 1.1rem;
+}
+
+.resume-projects {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.resume-item {
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+}
+
+.resume-item:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.resume-item-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.resume-item-head span {
+  color: var(--muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.resume-role {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin: 0.3rem 0 0.5rem;
+}
+
+.resume-links {
+  font-size: 0.9rem;
+}
+
+@media print {
+  .no-print,
+  .site-header,
+  .mobile-panel,
+  .skip-link,
+  .footer,
+  .next-project,
+  .actions {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .wrap,
+  .wrap-wide {
+    width: 100%;
+    max-width: none;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  .card,
+  .resume-item {
+    break-inside: avoid;
+  }
+
+  .section {
+    padding: 0.4rem 0;
+  }
 }
 
 @media (max-width: 900px) {

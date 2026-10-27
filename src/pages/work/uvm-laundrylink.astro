@@ -19,8 +19,8 @@ const jsonLd = {
 };
 ---
 
-<Base title={`${project.name} — Ivan Minier`} description={project.summary} jsonLd={jsonLd} image="/media/og/laundrylink.png">
-  <section class="case-hero">
+<Base title={`${project.name} — Ivan Minier`} description={project.summary} jsonLd={jsonLd} image="/media/og/laundrylink.png" theme="campus">
+  <section class="case-hero" style={`--page-accent:${project.accent}`}>
     <div class="wrap">
       <div class="meta-row">
         <span class="badge">{project.statusLabel}</span>
@@ -30,8 +30,13 @@ const jsonLd = {
       <h1>{project.oneLiner}</h1>
       <p class="lede">{project.summary}</p>
       <ProjectFacts project={project} />
+      <div class="notice" style="margin-top:1.4rem;">{project.dataNote}</div>
       <div class="actions">
-        <a class="btn" href="https://uvmlaundry.com" rel="noopener">Open LaundryLink ↗</a>
+        {project.links.map((link) => (
+          <a class="btn btn-ghost" href={link.href} rel={link.external ? 'noopener' : undefined}>
+            {link.label}{link.external ? ' ↗' : ''}
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -42,7 +47,6 @@ const jsonLd = {
         <div class="mark-card">
           <ProjectMedia media={project.hero} sizes="180px" eager />
         </div>
-        <p class="caption">{project.dataNote}</p>
       </div>
     </div>
   </section>

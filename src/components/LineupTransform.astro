@@ -1,20 +1,26 @@
 ---
+/*
+ * Fictional channel names only, matching the demo catalog shown in the real
+ * screenshots elsewhere on this page (Harbor News, Meridian World, Aurora
+ * Sports, Daybreak 24). No real broadcaster names belong in an illustrative
+ * before/after.
+ */
 const before = [
-  { raw: 'USA | HARBOR-NEWS HD', group: 'USA HD', extra: 'no logo' },
-  { raw: 'VIP-US | meridian_world', group: 'INTL??', extra: 'no guide' },
-  { raw: 'US MOVIES ABC 1080', group: 'VOD / MIX', extra: 'wrong bin' },
-  { raw: 'espn usa east fhd', group: 'SPORT', extra: 'dup stream' },
-  { raw: 'BBCWORLD-NEWS-UK', group: 'news_us', extra: 'bad country' },
-  { raw: 'MTVHits_HE', group: 'MISC', extra: 'noise suffix' },
+  { raw: 'USA | HARBOR_NEWS-HD', group: 'USA HD', extra: 'no logo' },
+  { raw: 'VIP-US | meridian.world_24-7', group: 'INTL??', extra: 'no guide' },
+  { raw: 'US SPORT aurora-sports fhd', group: 'SPORT', extra: 'dup stream' },
+  { raw: 'D2_Daybreak-24_backup', group: 'news_us', extra: 'bad country' },
+  { raw: 'stadium row (east) HD', group: 'MISC', extra: 'wrong bin' },
+  { raw: 'CourtsideOneUS_HE', group: 'MISC', extra: 'noise suffix' },
 ];
 
 const after = [
   { name: 'Harbor News', group: 'News', extra: 'logo + guide' },
   { name: 'Meridian World', group: 'News', extra: 'matched' },
-  { name: 'ABC', group: 'Movies', extra: 'recategorized' },
-  { name: 'ESPN', group: 'Sports', extra: 'primary stream' },
-  { name: 'BBC World News', group: 'News', extra: 'normalized' },
-  { name: 'MTV Hits', group: 'Music', extra: 'cleaned' },
+  { name: 'Aurora Sports', group: 'Sports', extra: 'primary stream' },
+  { name: 'Daybreak 24', group: 'News', extra: 'normalized' },
+  { name: 'Stadium Row', group: 'Sports', extra: 'recategorized' },
+  { name: 'Courtside One', group: 'Sports', extra: 'cleaned' },
 ];
 ---
 

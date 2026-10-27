@@ -12,7 +12,7 @@ export interface ProjectLink {
  * `device` and `tablet` are capped portrait screenshots; `screen` and
  * `editorial` fill the wide container.
  */
-export type MediaPresentation = 'device' | 'tablet' | 'screen' | 'editorial';
+export type MediaPresentation = 'device' | 'tablet' | 'screen' | 'editorial' | 'tv';
 
 export interface ProjectMedia {
   src: string;
@@ -61,6 +61,16 @@ export interface Project {
   nextSlug: string;
 }
 
+/**
+ * The single source of truth for LaundryLink's outage, so Home, Work, the
+ * case study, and the résumé cannot disagree about it.
+ */
+export const laundryStatus = {
+  label: 'Temporarily offline',
+  notice:
+    'LaundryLink is temporarily unavailable while its server is offline. The domain remains active. This case study documents the project; live room and machine data are unavailable.',
+} as const;
+
 export const projects: Project[] = [
   {
     slug: 'lineup',
@@ -73,80 +83,104 @@ export const projects: Project[] = [
     studio: 'tideframe',
     studioLabel: 'Tideframe Labs',
     platforms: ['iPhone', 'iPad', 'Apple TV'],
-    platformsPlanned: 'Mac planned',
-    platformsNote:
-      'Public 1.0 is being built for iPhone, iPad, and Apple TV. A native Mac app is planned on the same engine and is not shipping yet.',
     creator: 'Ivan Minier',
     role: 'Creator — product, interface, and engineering',
-    officialHome: { label: 'Tideframe Labs', href: 'https://tideframelabs.com', external: true },
+    officialHome: { label: 'Lineup — Tideframe Labs', href: 'https://tideframelabs.com/lineup', external: true },
     oneLiner: 'Your provider gives you channels. Lineup turns them into television.',
     summary:
-      'Lineup is an Apple-native player and organizer for lawful, user-supplied IPTV sources. It takes Xtream and M3U catalogs and turns them into Live TV, movies, series, and a usable guide.',
+      'Lineup is an Apple-native player and organizer for lawful, user-supplied IPTV sources. It takes Xtream and M3U catalogs and turns them into Live TV, movies, series, and a usable guide for iPhone, iPad, and Apple TV.',
     href: '/work/lineup',
     accent: '#1f8a6e',
     theme: 'cinematic',
     icon: '/media/lineup/icon-256.webp',
     hero: {
       src: '/media/lineup/home.webp',
-      srcset: '/media/lineup/home-sm.webp 480w, /media/lineup/home.webp 900w',
-      width: 900,
-      height: 1957,
-      alt: 'Lineup Home on iPhone showing the fictional demo catalog, with Live Now channels and recently added movies.',
+      srcset: '/media/lineup/home-sm.webp 640w, /media/lineup/home.webp 884w',
+      width: 884,
+      height: 1920,
+      alt: 'Lineup Home on iPhone, showing the fictional demo catalog with a featured title and Continue Watching.',
       presentation: 'device',
+    },
+    devices: {
+      tablet: {
+        src: '/media/lineup/guide-ipad.webp',
+        srcset: '/media/lineup/guide-ipad-sm.webp 640w, /media/lineup/guide-ipad.webp 1920w',
+        width: 1920,
+        height: 1440,
+        alt: 'Lineup program guide on iPad, with channels down the side and a scrollable time grid, using the fictional demo catalog.',
+        presentation: 'tablet',
+      },
     },
     gallery: [
       {
-        src: '/media/lineup/welcome.webp',
-        width: 900,
-        height: 1957,
-        alt: 'Lineup welcome screen: Your channels, movies, and shows—beautifully organized.',
-        caption: 'Welcome — the demo catalog is fictional, so the product can be explored without a provider.',
+        src: '/media/lineup/multiview-appletv.webp',
+        srcset: '/media/lineup/multiview-appletv-sm.webp 640w, /media/lineup/multiview-appletv.webp 1920w',
+        width: 1920,
+        height: 1080,
+        alt: 'Lineup Multiview on Apple TV, showing four channels at once from the fictional demo catalog. Pro.',
+        caption: 'Multiview on Apple TV — up to four channels at once. Pro.',
+        presentation: 'tv',
+      },
+      {
+        src: '/media/lineup/movies.webp',
+        srcset: '/media/lineup/movies-sm.webp 640w, /media/lineup/movies.webp 884w',
+        width: 884,
+        height: 1920,
+        alt: 'Lineup Movies screen on iPhone with a featured title, Recently Added, and All Movies, using the fictional demo catalog.',
+        caption: 'Movies — the same organized catalog, browsable like a real movie library.',
         presentation: 'device',
       },
       {
-        src: '/media/lineup/sources.webp',
-        width: 900,
-        height: 1957,
-        alt: 'Lineup source setup with M3U, Xtream, local playlist file, and a fictional demo catalog.',
-        caption: 'Sources — M3U, Xtream, a local playlist file, or the fictional demo catalog.',
+        src: '/media/lineup/series.webp',
+        srcset: '/media/lineup/series-sm.webp 640w, /media/lineup/series.webp 884w',
+        width: 884,
+        height: 1920,
+        alt: 'Lineup series detail screen on iPhone with an episode list and synopsis, using the fictional demo catalog.',
+        caption: 'Series — episode lists, progress, and a synopsis, not just a stream link.',
         presentation: 'device',
       },
       {
-        src: '/media/lineup/edit-home.webp',
-        width: 900,
-        height: 1957,
-        alt: 'Lineup Edit Home screen with Live Now, Movies, Series, and Watchlist sections.',
-        caption: 'Edit Home — sections can be reordered, and sections without content hide themselves.',
+        src: '/media/lineup/my-lineup.webp',
+        srcset: '/media/lineup/my-lineup-sm.webp 640w, /media/lineup/my-lineup.webp 884w',
+        width: 884,
+        height: 1920,
+        alt: 'Lineup My Lineup screen on iPhone with favorite channels, favorite movies, favorite series, a watchlist, and collections. Pro.',
+        caption: 'My Lineup — favorites, a watchlist, and custom collections. Pro.',
         presentation: 'device',
       },
       {
-        src: '/media/lineup/profile.webp',
-        width: 900,
-        height: 1957,
-        alt: 'Lineup profile setup with standard and child profile types.',
-        caption: 'Profiles — standard and child profile types, set up before anything plays.',
-        presentation: 'device',
+        src: '/media/lineup/smart-lineup-ipad.webp',
+        srcset: '/media/lineup/smart-lineup-ipad-sm.webp 640w, /media/lineup/smart-lineup-ipad.webp 1920w',
+        width: 1920,
+        height: 1440,
+        alt: 'Lineup Smart Lineup Review Changes screen on iPad, showing duplicate channels grouped before anything is applied. Pro.',
+        caption: 'Smart Lineup reviews every change before applying it — originals stay available, and grouping can be undone. Pro.',
+        presentation: 'tablet',
       },
     ],
     links: [
-      { label: 'Tideframe Labs', href: 'https://tideframelabs.com', external: true },
+      { label: 'Lineup on Tideframe Labs', href: 'https://tideframelabs.com/lineup', external: true },
     ],
     problem:
       'Most IPTV sources arrive as a pile of names, categories, missing logos, and half-matched guide data. The player usually just plays whatever it is given.',
     approach:
-      'Lineup treats the provider feed as evidence, not as the interface. It keeps the original catalog intact, then derives cleaner names, categories, logos, order, and guide matches. The person watching television should not have to decode a playlist.',
+      'Lineup treats the provider feed as evidence, not as the interface. It keeps the original catalog intact, then derives cleaner names, categories, order, and guide matches. The person watching television should not have to decode a playlist.',
     capabilities: [
       {
         title: 'Smart names and categories',
         body: 'Cluttered provider labels become readable channel names. Categories can be simplified, renamed, hidden, or reordered without rewriting the source.',
       },
       {
-        title: 'Logos and guide matching',
-        body: 'Missing artwork can be filled from verified sources. Lineup matches schedules to channels, including automatic guide support for Xtream and M3U, with optional external guide sources such as EPGShare01.',
+        title: 'Guide matching',
+        body: 'Lineup automatically matches program schedules to channels for Xtream and M3U sources. Any additional guide catalog is optional, licensed, and never enabled by default.',
       },
       {
-        title: 'Live, movies, series, and watchlists',
-        body: 'The same organized catalog becomes Home, Live TV, Movies, Series, a program guide, and the lists people actually use.',
+        title: 'Reversible organization',
+        body: 'Smart Lineup groups duplicate streams and cleans names with a Review Changes step before anything is applied; grouping can be undone. Best Source and Signal Check help pick, and diagnose, the stream that actually plays.',
+      },
+      {
+        title: 'Home, movies, series, and My Lineup',
+        body: 'The same organized catalog becomes Home, Live TV, Movies, Series, a program guide, Multiview, and My Lineup — the favorites, watchlist, and collections people actually use.',
       },
       {
         title: 'User-supplied sources only',
@@ -154,7 +188,7 @@ export const projects: Project[] = [
       },
     ],
     reasoning:
-      'The hard problem is not another play button. It is turning a raw catalog into something a person can actually watch. Lineup Intelligence exists so the product can do that work once, then stay out of the way.',
+      'The hard problem is not another play button. It is turning a raw catalog into something a person can actually watch, and trust while it is being reorganized. Lineup Intelligence exists so the product can do that work once, show its work, and then stay out of the way.',
     nextSlug: 'rental-record',
   },
   {
@@ -520,13 +554,13 @@ export const projects: Project[] = [
     category: 'Campus utility',
     year: '2025',
     status: 'independent',
-    statusLabel: 'Campus project',
+    statusLabel: laundryStatus.label,
     studio: 'independent',
     studioLabel: 'Independent project',
     platforms: ['Web'],
     creator: 'Ivan Minier',
     role: 'Creator — product and engineering',
-    officialHome: { label: 'uvmlaundry.com', href: 'https://uvmlaundry.com', external: true },
+    officialHome: { label: 'uvmlaundry.com (temporarily offline)', href: 'https://uvmlaundry.com', external: true },
     oneLiner: 'See which washers and dryers are actually open before you walk across campus.',
     summary:
       'UVM LaundryLink is a mobile-first campus tool for finding laundry rooms, checking machine status, saving favorites, and setting availability alerts.',
@@ -548,9 +582,8 @@ export const projects: Project[] = [
       presentation: 'device',
     },
     gallery: [],
-    dataNote:
-      'The site is live at uvmlaundry.com. The campus machine feed it reads from is offline right now, so the room and machine views have no data to show. Interface screenshots return here when the feed does.',
-    links: [{ label: 'uvmlaundry.com', href: 'https://uvmlaundry.com', external: true }],
+    dataNote: laundryStatus.notice,
+    links: [{ label: 'uvmlaundry.com (temporarily offline)', href: 'https://uvmlaundry.com', external: true }],
     problem:
       'Campus laundry is a small system that wastes a surprising amount of time. Students walk to a room, find every machine running, and walk back.',
     approach:
