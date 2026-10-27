@@ -1,63 +1,50 @@
 ---
-import Base from '../layouts/Base.astro';
-import { emails } from '../data/site';
-import { socials } from '../data/socials';
+import Base from "../layouts/Base.astro";
 ---
 
 <Base
   title="Contact — Ivan Minier"
-  description="Email Ivan Minier at ivan@minier.us. School and personal addresses, plus Instagram, LinkedIn, and GitHub."
+  theme="contact"
+  description="Get in touch with Ivan Minier at ivan@minier.us."
 >
-  <section class="page-hero">
-    <div class="wrap">
-      <p class="kicker">Contact</p>
-      <h1>ivan@minier.us</h1>
-      <p class="lede">That is the public address for this site. Copy it, or just write.</p>
-      <div class="email-primary" style="margin-top:1.5rem;">
-        <a href={emails.primary.href}>{emails.primary.address}</a>
-        <button class="copy-btn" type="button" data-copy={emails.primary.address}>Copy</button>
-      </div>
+  <section class="contact-opening wrap-wide">
+    <p class="eyebrow">Contact</p>
+    <h1>
+      Let's start
+      <br />a conversation.
+    </h1>
+    <p class="lede">
+      For a question about my work, an idea to share, or simply to say hello.
+    </p>
+    <div class="contact-email">
+      <a href="mailto:ivan@minier.us">ivan@minier.us</a>
+      <button class="btn btn-ghost" type="button" data-copy>
+        Copy email
+      </button>
+    </div>
+    <p
+      class="copy-feedback"
+      role="status"
+      aria-live="polite"
+      data-copy-feedback
+    ></p>
+    <div class="contact-socials">
+      <a href="https://www.linkedin.com/in/ivanminier">LinkedIn ↗</a>
+      <a href="https://github.com/ivanminier">GitHub ↗</a>
     </div>
   </section>
-  <section class="section" style="padding-top:0;">
-    <div class="wrap grid-2">
-      <article class="card">
-        <strong>{emails.school.label}</strong>
-        <p><a href={emails.school.href}>{emails.school.address}</a></p>
-        <p>{emails.school.note}</p>
-      </article>
-      <article class="card">
-        <strong>{emails.personal.label}</strong>
-        <p><a href={emails.personal.href}>{emails.personal.address}</a></p>
-        <p>{emails.personal.note}</p>
-      </article>
-    </div>
-    <div class="wrap" style="margin-top:2rem;">
-      <p class="kicker">Elsewhere</p>
-      <ul>
-        {socials.map((item) => (
-          <li><a href={item.href} rel="me noopener">{item.label} · {item.handle}</a></li>
-        ))}
-        <li><a href="https://tideframelabs.com" rel="noopener">Tideframe Labs</a></li>
-        <li><a href="https://trinityredistricting.com" rel="noopener">Trinity Redistricting</a></li>
-      </ul>
-    </div>
-  </section>
+  <script>
+    document
+      .querySelector("[data-copy]")
+      ?.addEventListener("click", async () => {
+        const status = document.querySelector("[data-copy-feedback]")!;
+        try {
+          await navigator.clipboard.writeText("ivan@minier.us");
+          status.textContent = "Email address copied.";
+        } catch {
+          status.textContent =
+            "Copy unavailable. Select ivan@minier.us above, or open the email link.";
+        }
+      });
+  </script>
 </Base>
-<script>
-  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((button) => {
-    button.addEventListener('click', async () => {
-      const value = button.dataset.copy;
-      if (!value) return;
-      try {
-        await navigator.clipboard.writeText(value);
-        button.textContent = 'Copied';
-        window.setTimeout(() => {
-          button.textContent = 'Copy';
-        }, 1800);
-      } catch {
-        button.textContent = 'Copy failed';
-      }
-    });
-  });
-</script>

@@ -1,0 +1,66 @@
+{
+  "revision": "2026-10-27-r3",
+  "source": "Approved local web derivatives; raw captures untouched",
+  "images": {
+    "home": {
+      "src": "/media/lineup/r3/home-d34049d771-884.webp",
+      "srcset": "/media/lineup/r3/home-d34049d771-480.webp 480w, /media/lineup/r3/home-d34049d771-884.webp 884w",
+      "width": 884,
+      "height": 1920,
+      "alt": "Lineup home on iPhone 17 Pro Max, using fictional demo data.",
+      "caption": "Your TV, beautifully organized.",
+      "proRequired": false,
+      "presentation": "device"
+    },
+    "tv": {
+      "src": "/media/lineup/r3/tv-5c55edcaf2-1920.webp",
+      "srcset": "/media/lineup/r3/tv-5c55edcaf2-480.webp 480w, /media/lineup/r3/tv-5c55edcaf2-960.webp 960w, /media/lineup/r3/tv-5c55edcaf2-1920.webp 1920w",
+      "width": 1920,
+      "height": 1080,
+      "alt": "Lineup home on Apple TV 4K (3rd generation, 4K), using fictional demo data.",
+      "caption": "Made for your TV.",
+      "proRequired": false,
+      "presentation": "tv"
+    },
+    "guide": {
+      "src": "/media/lineup/r3/guide-c7a6fe29a2-1920.webp",
+      "srcset": "/media/lineup/r3/guide-c7a6fe29a2-480.webp 480w, /media/lineup/r3/guide-c7a6fe29a2-960.webp 960w, /media/lineup/r3/guide-c7a6fe29a2-1920.webp 1920w",
+      "width": 1920,
+      "height": 1440,
+      "alt": "Lineup guide on iPad Pro 13-inch (M5), using fictional demo data.",
+      "caption": "See more of what’s on.",
+      "proRequired": false,
+      "presentation": "screen"
+    },
+    "review": {
+      "src": "/media/lineup/r3/review-a38347d1d2-1920.webp",
+      "srcset": "/media/lineup/r3/review-a38347d1d2-480.webp 480w, /media/lineup/r3/review-a38347d1d2-960.webp 960w, /media/lineup/r3/review-a38347d1d2-1920.webp 1920w",
+      "width": 1920,
+      "height": 1440,
+      "alt": "Lineup smart lineup on iPad Pro 13-inch (M5), using fictional demo data.",
+      "caption": "Organize with confidence. · Pro",
+      "proRequired": true,
+      "presentation": "screen"
+    },
+    "multiview": {
+      "src": "/media/lineup/r3/multiview-1e6f63ea9c-1920.webp",
+      "srcset": "/media/lineup/r3/multiview-1e6f63ea9c-480.webp 480w, /media/lineup/r3/multiview-1e6f63ea9c-960.webp 960w, /media/lineup/r3/multiview-1e6f63ea9c-1920.webp 1920w",
+      "width": 1920,
+      "height": 1080,
+      "alt": "Lineup multiview on Apple TV 4K (3rd generation, 4K), using fictional demo data.",
+      "caption": "Four views. One remote. · Pro",
+      "proRequired": true,
+      "presentation": "tv"
+    },
+    "series": {
+      "src": "/media/lineup/r3/series-046afa978f-884.webp",
+      "srcset": "/media/lineup/r3/series-046afa978f-480.webp 480w, /media/lineup/r3/series-046afa978f-884.webp 884w",
+      "width": 884,
+      "height": 1920,
+      "alt": "Lineup series detail on iPhone 17 Pro Max, using fictional demo data.",
+      "caption": "Pick up where you left off.",
+      "proRequired": false,
+      "presentation": "device"
+    }
+  }
+}

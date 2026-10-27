@@ -1,82 +1,93 @@
 ---
-import Base from '../../layouts/Base.astro';
-import NextProject from '../../components/NextProject.astro';
-import ProjectFacts from '../../components/ProjectFacts.astro';
-import ProjectMedia from '../../components/ProjectMedia.astro';
-import { getProject } from '../../data/projects';
-import { site } from '../../data/site';
-
-const project = getProject('uvm-laundrylink')!;
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: project.name,
-  applicationCategory: 'UtilitiesApplication',
-  operatingSystem: 'Web',
-  url: 'https://uvmlaundry.com',
-  description: project.summary,
-  author: { '@type': 'Person', name: 'Ivan Minier', url: site.url },
-};
+import Base from "../../layouts/Base.astro";
+import NextProject from "../../components/NextProject.astro";
+import { laundryStatus } from "../../data/projects";
+import { laundryDates } from "../../data/experience";
 ---
 
-<Base title={`${project.name} — Ivan Minier`} description={project.summary} jsonLd={jsonLd} image="/media/og/laundrylink.png" theme="campus">
-  <section class="case-hero" style={`--page-accent:${project.accent}`}>
-    <div class="wrap">
-      <div class="meta-row">
-        <span class="badge">{project.statusLabel}</span>
-        <span>By Ivan Minier</span>
-        <span>{project.year}</span>
-      </div>
-      <h1>{project.oneLiner}</h1>
-      <p class="lede">{project.summary}</p>
-      <ProjectFacts project={project} />
-      <div class="notice" style="margin-top:1.4rem;">{project.dataNote}</div>
-      <div class="actions">
-        {project.links.map((link) => (
-          <a class="btn btn-ghost" href={link.href} rel={link.external ? 'noopener' : undefined}>
-            {link.label}{link.external ? ' ↗' : ''}
-          </a>
-        ))}
-      </div>
+<Base
+  title="UVM LaundryLink — Ivan Minier"
+  theme="campus"
+  image="/media/og/laundrylink.png"
+  description="An independent student prototype for campus laundry. Currently temporarily unavailable while its server is offline."
+>
+  <section class="campus-opening wrap-wide">
+    <img
+      class="campus-logo"
+      src="/media/laundrylink/logo.webp"
+      width="512"
+      height="512"
+      alt="LaundryLink identity mark"
+    />
+    <p class="eyebrow">A student project / {laundryDates}</p>
+    <h1>UVM LaundryLink</h1>
+    <p class="lede">
+      A small campus problem:
+      <br />
+      is it worth walking to the laundry room?
+    </p>
+    <p class="role-line">
+      Creator · Product, interface & AI-assisted front-end development
+    </p>
+    <div class="notice">
+      <strong>{laundryStatus.label}.</strong> {laundryStatus.notice}
     </div>
   </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap">
-      <div style="max-width:520px;">
-        <div class="mark-card">
-          <ProjectMedia media={project.hero} sizes="180px" eager />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap prose">
-      <h2>The problem</h2>
-      <p>{project.problem}</p>
-      <h2>The approach</h2>
-      <p>{project.approach}</p>
-      <h2>What it does</h2>
-      <div class="grid-2">
-        {project.capabilities.map((item) => (
-          <article class="card">
-            <strong>{item.title}</strong>
-            <p>{item.body}</p>
-          </article>
-        ))}
-      </div>
-      <h2>Why this still belongs here</h2>
-      <p>{project.reasoning}</p>
+  <section class="section wrap-wide campus-grid">
+    <div>
+      <p class="eyebrow">The everyday problem</p>
+      <h2>
+        A wasted trip
+        <br />
+        is still a wasted trip.
+      </h2>
       <p>
-        LaundryLink is an independent student project. It is not an official University of Vermont product.
+        The prototype brought room discovery and machine status into a
+        phone-friendly page, so a student could decide where to go before
+        leaving their room.
+      </p>
+      <p>
+        I worked on the product structure and interface with AI-assisted coding.
+        The useful lesson was practical: a clear interface still depends on the
+        availability of its data source.
       </p>
     </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap">
-      <NextProject slug={project.slug} />
+    <div>
+      <p class="eyebrow">Implemented prototype features</p>
+      <ul class="feature-list">
+        <li>
+          <h3>Find a room</h3>
+          <p>
+            Campus room discovery, search, and machine availability when the
+            data source was available.
+          </p>
+        </li>
+        <li>
+          <h3>Keep it close</h3>
+          <p>Saved favorites and dark mode for repeat visits.</p>
+        </li>
+        <li>
+          <h3>Set an alert</h3>
+          <p>
+            SMS notifications as part of the historical prototype. Live
+            availability and alerts cannot be demonstrated during the outage.
+          </p>
+        </li>
+      </ul>
     </div>
+  </section>
+  <section class="section wrap-wide case-ending">
+    <div>
+      <h2>A prototype with a real dependency.</h2>
+      <p>
+        The domain remains active. Live rooms and alerts depend on the server
+        and are unavailable during the outage. LaundryLink is independent and is
+        not an official UVM product.
+      </p>
+      <a class="text-link" href="https://uvmlaundry.com">
+        Project domain ↗
+      </a>
+    </div>
+    <NextProject slug="uvm-laundrylink" />
   </section>
 </Base>

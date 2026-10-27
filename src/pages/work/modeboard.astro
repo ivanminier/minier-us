@@ -1,90 +1,108 @@
 ---
-import Base from '../../layouts/Base.astro';
-import NextProject from '../../components/NextProject.astro';
-import ProjectFacts from '../../components/ProjectFacts.astro';
-import ProjectMedia from '../../components/ProjectMedia.astro';
-import { getProject } from '../../data/projects';
-import { site } from '../../data/site';
-
-const project = getProject('modeboard')!;
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: project.name,
-  applicationCategory: 'UtilitiesApplication',
-  operatingSystem: 'macOS',
-  description: project.summary,
-  url: 'https://tideframelabs.com/modeboard',
-  creator: { '@type': 'Person', name: 'Ivan Minier', url: site.url },
-  author: { '@type': 'Person', name: 'Ivan Minier', url: site.url },
-  publisher: { '@type': 'Organization', name: 'Tideframe Labs', url: 'https://tideframelabs.com' },
-};
+import Base from "../../layouts/Base.astro";
+import ProjectMedia from "../../components/ProjectMedia.astro";
+import NextProject from "../../components/NextProject.astro";
+import { getProject } from "../../data/projects";
+const p = getProject("modeboard")!;
 ---
 
-<Base title={`${project.name} — Ivan Minier`} description={project.summary} jsonLd={jsonLd} image="/media/og/modeboard.png" theme="mac">
-  <section class="case-hero" style={`--page-accent:${project.accent}`}>
-    <div class="wrap">
-      <div class="meta-row">
-        <span class="badge">{project.statusLabel}</span>
-        <span>{project.studioLabel}</span>
-        <span>{project.year}</span>
+<Base
+  title="Modeboard — Ivan Minier"
+  theme="mac"
+  image="/media/og/modeboard.png"
+  description={p.summary}
+>
+  <section class="mac-opening wrap-wide">
+    <div class="instrument-head">
+      <div>
+        <p class="instrument-label">Tideframe Labs / macOS utility</p>
+        <h1>Modeboard</h1>
       </div>
-      <h1>{project.oneLiner}</h1>
-      <p class="lede">{project.summary}</p>
-      <ProjectFacts project={project} />
-      <div class="actions">
-        {project.links.map((link) => (
-          <a class="btn" href={link.href} rel="noopener">{link.label} ↗</a>
-        ))}
+      <div>
+        <p class="lede">
+          Give each part of your day
+          <br />a workspace of its own.
+        </p>
+        <p class="role-line">
+          Creator · Product, interface & engineering
+          <br />
+          <span class="status">{p.statusLabel}</span>
+        </p>
       </div>
     </div>
+    <figure class="mac-stage">
+      <ProjectMedia
+        media={p.hero}
+        eager
+        sizes="(max-width:700px) 90vw, 1100px"
+      />
+      <figcaption>
+        Actual app window — a profile brings supported workspace settings into
+        one place.
+      </figcaption>
+    </figure>
   </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap-wide shot">
-      <ProjectMedia media={project.hero} eager />
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap prose">
-      <h2>The problem</h2>
-      <p>{project.problem}</p>
-      <h2>The approach</h2>
-      <p>{project.approach}</p>
-      <h2>What a profile can change</h2>
-      <div class="grid-2">
-        {project.capabilities.map((item) => (
-          <article class="card">
-            <strong>{item.title}</strong>
-            <p>{item.body}</p>
-          </article>
-        ))}
-      </div>
-      <h2>Why this shape</h2>
-      <p>{project.reasoning}</p>
+  <section class="section wrap-wide sequence">
+    <article>
+      <p class="instrument-label">01 / Define a profile</p>
+      <h2>A named setup.</h2>
       <p>
-        Downloads, licensing, and current pricing live on the Tideframe product page so this site does not go stale.
+        Study, work, or a quieter desktop: collect the apps, files, appearance,
+        and supported settings that belong together.
+      </p>
+    </article>
+    <article>
+      <p class="instrument-label">02 / Apply a change</p>
+      <h2>One deliberate switch.</h2>
+      <p>
+        Apply a profile from the app, menu bar, Shortcuts, or a Focus Filter.
+        macOS owns the Focus; Modeboard supplies the workspace.
+      </p>
+    </article>
+    <article>
+      <p class="instrument-label">03 / Keep a way back</p>
+      <h2>Restore supported settings.</h2>
+      <p>
+        Verified backups precede relevant changes. Restore and Emergency Restore
+        provide a path back for supported settings.
+      </p>
+    </article>
+  </section>
+  <section class="section wrap-wide mac-restore">
+    <figure>
+      <ProjectMedia media={p.gallery.find((x) => x.src.includes("backups"))!} />
+      <figcaption>
+        The real Backups & Restore interface. A backup is part of the workflow.
+      </figcaption>
+    </figure>
+    <div>
+      <p class="instrument-label">Designing for confidence</p>
+      <h2>
+        Control needs
+        <br />a way back.
+      </h2>
+      <p>
+        Workspace changes can affect a lot of familiar details at once. I made
+        the profile and backup states explicit so a small utility does not feel
+        like a mysterious system tweak.
+      </p>
+      <p>
+        The scope stays specific: restore applies to supported settings, with
+        backup history visible in the app.
       </p>
     </div>
   </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap-wide gallery">
-      {project.gallery.map((media) => (
-        <figure class="wide">
-          <div class="shot">
-            <ProjectMedia media={media} />
-          </div>
-          {media.caption && <figcaption>{media.caption}</figcaption>}
-        </figure>
-      ))}
+  <section class="section wrap-wide case-ending">
+    <div>
+      <h2>A focused Mac utility.</h2>
+      <p>
+        Product details, licensing, downloads, and support live at Tideframe
+        Labs.
+      </p>
+      <a class="btn" href="https://tideframelabs.com/modeboard">
+        Modeboard at Tideframe Labs ↗
+      </a>
     </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap">
-      <NextProject slug={project.slug} />
-    </div>
+    <NextProject slug={p.slug} />
   </section>
 </Base>

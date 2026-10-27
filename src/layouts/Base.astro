@@ -1,16 +1,17 @@
 ---
-import '../styles/global.css';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import { site } from '../data/site';
-import { socials } from '../data/socials';
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
+import { socials } from "../data/socials";
+import { projects } from "../data/projects";
 
 interface Props {
   title?: string;
   description?: string;
   canonical?: string;
   image?: string;
-  type?: 'website' | 'article' | 'profile';
+  type?: "website" | "article" | "profile";
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   theme?: string;
   /** A 404 response must not advertise a canonical URL; that reads as a soft 404. */
@@ -22,34 +23,73 @@ const {
   description = site.description,
   canonical,
   image = site.ogImage,
-  type = 'website',
+  type = "website",
   jsonLd,
   theme,
   noindex = false,
 } = Astro.props;
 
+const page = theme ?? "home";
+const fonts: Record<string, string[]> = {
+  home: ["fraunces", "manrope"],
+  work: ["space-grotesk", "manrope"],
+  cinematic: ["outfit", "inter"],
+  paper: ["source-serif-4", "source-sans-3"],
+  mac: ["ibm-plex-sans", "ibm-plex-mono"],
+  editorial: ["literata", "ibm-plex-sans"],
+  campus: ["dm-sans"],
+  about: ["literata", "manrope"],
+  resume: ["source-serif-4", "source-sans-3"],
+  notes: ["literata", "manrope"],
+  studio: ["outfit", "manrope"],
+  contact: ["dm-sans"],
+};
 const canonicalUrl = new URL(canonical ?? Astro.url.pathname, site.url).href;
 const imageUrl = new URL(image, site.url).href;
+const project = projects.find(
+  (p) => Astro.url.pathname.replace(/\/$/, "") === p.href,
+);
+const projectLd = project
+  ? {
+      "@context": "https://schema.org",
+      "@type":
+        project.studio === "tideframe" ? "SoftwareApplication" : "CreativeWork",
+      name: project.name,
+      description: project.summary,
+      url: canonicalUrl,
+      creator: { "@type": "Person", name: "Ivan Minier", url: site.url },
+      ...(project.studio === "tideframe"
+        ? {
+            publisher: {
+              "@type": "Organization",
+              name: "Tideframe Labs",
+              url: "https://tideframelabs.com",
+            },
+            operatingSystem: project.platforms.join(", "),
+          }
+        : {}),
+    }
+  : undefined;
 const personLd = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfilePage',
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
   name: site.title,
   url: site.url,
   mainEntity: {
-    '@type': 'Person',
-    name: 'Ivan Minier',
+    "@type": "Person",
+    name: "Ivan Minier",
     url: site.url,
-    email: 'ivan@minier.us',
-    jobTitle: 'Founder, Tideframe Labs',
+    email: "ivan@minier.us",
+    jobTitle: "Founder, Tideframe Labs",
     worksFor: {
-      '@type': 'Organization',
-      name: 'Tideframe Labs',
-      url: 'https://tideframelabs.com',
+      "@type": "Organization",
+      name: "Tideframe Labs",
+      url: "https://tideframelabs.com",
     },
     address: {
-      '@type': 'PostalAddress',
-      addressRegion: 'Vermont',
-      addressCountry: 'US',
+      "@type": "PostalAddress",
+      addressRegion: "Vermont",
+      addressCountry: "US",
     },
     sameAs: socials.map((item) => item.href),
   },
@@ -62,13 +102,28 @@ const personLd = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    {(fonts[page] ?? fonts.home).map((font) => (
+      <link rel="stylesheet" href={`/fonts/${font}.css`} />
+    ))}
     <meta name="description" content={description} />
-    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonicalUrl} />}
-    <meta name="theme-color" content="#f3efe8" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#131210" media="(prefers-color-scheme: dark)" />
+    {noindex ? (
+      <meta name="robots" content="noindex" />
+    ) : (
+      <link rel="canonical" href={canonicalUrl} />
+    )}
+    <meta
+      name="theme-color"
+      content="#f3efe8"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#131210"
+      media="(prefers-color-scheme: dark)"
+    />
     <meta name="color-scheme" content="light dark" />
     <meta property="og:site_name" content={site.name} />
-    <meta property="og:type" content={type === 'profile' ? 'profile' : type} />
+    <meta property="og:type" content={type === "profile" ? "profile" : type} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
@@ -86,42 +141,95 @@ const personLd = {
     <script is:inline>
       (function () {
         try {
-          var stored = localStorage.getItem('theme');
+          var stored = localStorage.getItem("theme");
           var theme =
             stored ||
-            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            (window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light");
           document.documentElement.dataset.theme = theme;
         } catch (error) {
-          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.theme = "light";
         }
       })();
     </script>
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd ?? personLd)} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd ?? projectLd ?? personLd)}
+    />
   </head>
-  <body data-page-theme={theme}>
-    <a class="skip-link" href="#main">Skip to content</a>
+  <body data-page-theme={page}>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
     <Nav />
-    <main id="main">
+    <main id="main" tabindex="-1">
       <slot />
     </main>
     <Footer />
+    <dialog
+      class="image-viewer"
+      aria-label="Full-size project image"
+      data-image-viewer
+    >
+      <button type="button" class="btn viewer-close">
+        Close image ×
+      </button>
+      <img alt="" />
+      <p class="viewer-caption"></p>
+    </dialog>
     <script>
-      const buttons = document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]');
+      const viewer = document.querySelector<HTMLDialogElement>(
+        "[data-image-viewer]",
+      );
+      let opener: HTMLElement | null = null;
+      document
+        .querySelectorAll<HTMLAnchorElement>("[data-image-link]")
+        .forEach((link) => {
+          link.addEventListener("click", (event) => {
+            if (event.metaKey || event.ctrlKey || event.shiftKey || !viewer)
+              return;
+            event.preventDefault();
+            opener = link;
+            const img = viewer.querySelector("img")!;
+            img.src = link.href;
+            img.alt = link.querySelector("img")?.alt ?? "";
+            viewer.querySelector("p")!.textContent = img.alt;
+            viewer.showModal();
+          });
+        });
+      viewer
+        ?.querySelector("button")
+        ?.addEventListener("click", () => viewer.close());
+      viewer?.addEventListener("click", (event) => {
+        if (event.target === viewer) viewer.close();
+      });
+      viewer?.addEventListener("close", () => opener?.focus());
+    </script>
+    <script>
+      const buttons = document.querySelectorAll<HTMLButtonElement>(
+        "[data-theme-toggle]",
+      );
       const setTheme = (theme: string) => {
         document.documentElement.dataset.theme = theme;
-        localStorage.setItem('theme', theme);
+        try {
+          localStorage.setItem("theme", theme);
+        } catch {}
         buttons.forEach((button) => {
-          button.setAttribute('aria-pressed', String(theme === 'dark'));
+          button.setAttribute("aria-pressed", String(theme === "dark"));
           button.setAttribute(
-            'aria-label',
-            theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode',
+            "aria-label",
+            theme === "dark" ? "Switch to light mode" : "Switch to dark mode",
           );
         });
       };
-      setTheme(document.documentElement.dataset.theme || 'light');
+      setTheme(document.documentElement.dataset.theme || "light");
       buttons.forEach((button) => {
-        button.addEventListener('click', () => {
-          const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        button.addEventListener("click", () => {
+          const next =
+            document.documentElement.dataset.theme === "dark"
+              ? "light"
+              : "dark";
           setTheme(next);
         });
       });

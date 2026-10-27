@@ -1,105 +1,135 @@
 ---
-import Base from '../../layouts/Base.astro';
-import NextProject from '../../components/NextProject.astro';
-import ProjectFacts from '../../components/ProjectFacts.astro';
-import ProjectMedia from '../../components/ProjectMedia.astro';
-import { getProject } from '../../data/projects';
-import { site } from '../../data/site';
-
-const project = getProject('rental-record')!;
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: project.name,
-  applicationCategory: 'BusinessApplication',
-  operatingSystem: 'iOS, iPadOS, macOS',
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
-  url: 'https://apps.apple.com/us/app/tideframe-rental-record/id6796366130',
-  description: project.summary,
-  creator: { '@type': 'Person', name: 'Ivan Minier', url: site.url },
-  author: { '@type': 'Person', name: 'Ivan Minier', url: site.url },
-  publisher: { '@type': 'Organization', name: 'Tideframe Labs', url: 'https://tideframelabs.com' },
+import Base from "../../layouts/Base.astro";
+import ProjectMedia from "../../components/ProjectMedia.astro";
+import NextProject from "../../components/NextProject.astro";
+import { getProject } from "../../data/projects";
+const p = getProject("rental-record")!;
+const report = {
+  src: "/media/rental-record/report-excerpt-r3.webp",
+  width: 860,
+  height: 736,
+  alt: "Cropped excerpt from the actual fictional move-in report, showing property details and the room-by-room section summary.",
 };
 ---
 
-<Base title={`${project.name} — Ivan Minier`} description={project.summary} jsonLd={jsonLd} image="/media/og/rental-record.png" theme="paper">
-  <section class="case-hero" style={`--page-accent:${project.accent}`}>
-    <div class="wrap">
-      <div class="meta-row">
-        <span class="badge">{project.statusLabel}</span>
-        <span>{project.studioLabel}</span>
-        <span>{project.year}</span>
+<Base
+  title="Rental Record — Ivan Minier"
+  theme="paper"
+  image="/media/og/rental-record.png"
+  description={p.summary}
+>
+  <section class="rental-opening wrap-wide">
+    <div class="rental-title">
+      <p class="eyebrow">Tideframe Labs / Rental documentation</p>
+      <h1>Rental Record</h1>
+      <p class="lede">
+        A clearer record of
+        <br />
+        the place you call home.
+      </p>
+      <p>
+        Move-in photos, room notes, and a readable report, together in one
+        guided record.
+      </p>
+      <p class="role-line">
+        Creator · Product, interface & engineering
+        <br />
+        <span class="status">
+          {p.statusLabel} · {p.platforms.join(", ")}
+        </span>
+      </p>
+      <a class="text-link" href="https://tideframelabs.com/rental-record">
+        Product details & download ↗
+      </a>
+    </div>
+    <figure class="report-stage">
+      <div class="document-label">
+        <span>RECORD / 001</span>
+        <span>Fictional sample</span>
       </div>
-      <h1>Document your rental clearly.</h1>
-      <p class="lede">{project.summary}</p>
-      <ProjectFacts project={project} />
-      <div class="actions">
-        {project.links.map((link) => (
-          <a class="btn" href={link.href} rel="noopener">{link.label} ↗</a>
-        ))}
-      </div>
+      <ProjectMedia media={report} eager sizes="(max-width:700px) 90vw, 60vw" />
+      <figcaption>
+        Cropped excerpt from the actual report. Fictional property and rental
+        data. <a href={p.gallery.at(-1)!.src}>Full report preview ↗</a>
+      </figcaption>
+    </figure>
+  </section>
+  <section class="section wrap-wide rental-method">
+    <div>
+      <p class="eyebrow">The design decision</p>
+      <h2>
+        A room is the
+        <br />
+        unit of the record.
+      </h2>
+      <p>
+        A camera roll can show what happened without explaining where it
+        belongs. Rental Record connects each observation to a room, condition,
+        and supporting photo.
+      </p>
+      <p>
+        I designed the flow around a guided inspection: broad context first,
+        then specific details, then a report someone else can read.
+      </p>
+    </div>
+    <ol class="record-steps">
+      <li>
+        <span>01</span>
+        <div>
+          <h3>Walk the room</h3>
+          <p>Use a checklist to keep the inspection organized.</p>
+        </div>
+      </li>
+      <li>
+        <span>02</span>
+        <div>
+          <h3>Keep the evidence together</h3>
+          <p>Pair photographs with notes and condition observations.</p>
+        </div>
+      </li>
+      <li>
+        <span>03</span>
+        <div>
+          <h3>Make a readable report</h3>
+          <p>Bring the room-by-room record into a shareable PDF.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <section class="section wrap-wide evidence-pair">
+    <figure class="paper-phone">
+      <ProjectMedia media={p.gallery[0]} sizes="300px" />
+      <figcaption>
+        The checklist gives the walkthrough a consistent structure.
+      </figcaption>
+    </figure>
+    <div class="evidence-story">
+      <p class="eyebrow">In the details</p>
+      <h2>
+        Context that stays
+        <br />
+        with the photograph.
+      </h2>
+      <figure class="paper-phone">
+        <ProjectMedia media={p.gallery[1]} sizes="300px" />
+        <figcaption>
+          A photo, observation, and condition remain linked to the room.
+        </figcaption>
+      </figure>
     </div>
   </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap-wide devices-row">
-      <div class="device-phone">
-        <ProjectMedia media={project.hero} sizes="260px" eager />
-      </div>
-      <div class="device-tablet">
-        <ProjectMedia media={project.devices!.tablet!} sizes="(max-width: 900px) min(420px, 92vw), 420px" />
-      </div>
-      <div class="shot">
-        <ProjectMedia media={project.devices!.desktop!} sizes="(max-width: 900px) 92vw, 47vw" />
-      </div>
+  <section class="section wrap-wide case-ending">
+    <div>
+      <h2>Documentation, with care.</h2>
+      <p>
+        Records stay together on the device. Rental Record helps organize
+        observations; it does not promise legal proof, a resolved dispute, or
+        deposit recovery.
+      </p>
+      <a class="btn" href="https://tideframelabs.com/rental-record">
+        Visit the released app ↗
+      </a>
     </div>
-    <p class="wrap-wide caption" style="margin-top:1rem;">
-      The same case on iPhone, iPad, and Mac. All rental data shown is fictional.
-    </p>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap prose">
-      <h2>The problem</h2>
-      <p>{project.problem}</p>
-      <h2>The approach</h2>
-      <p>{project.approach}</p>
-      <h2>What it does</h2>
-      <div class="grid-2">
-        {project.capabilities.map((item) => (
-          <article class="card">
-            <strong>{item.title}</strong>
-            <p>{item.body}</p>
-          </article>
-        ))}
-      </div>
-      <h2>Why this shape</h2>
-      <p>{project.reasoning}</p>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap-wide gallery">
-      {project.gallery.map((media) => (
-        <figure class={media.presentation === 'screen' ? 'wide' : undefined}>
-          {media.presentation === 'device' && (
-            <div class="device-phone"><ProjectMedia media={media} /></div>
-          )}
-          {media.presentation === 'tablet' && (
-            <div class="device-tablet"><ProjectMedia media={media} /></div>
-          )}
-          {media.presentation === 'screen' && (
-            <div class="shot"><ProjectMedia media={media} /></div>
-          )}
-          {media.caption && <figcaption>{media.caption}</figcaption>}
-        </figure>
-      ))}
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap">
-      <NextProject slug={project.slug} />
-    </div>
+    <NextProject slug={p.slug} />
   </section>
 </Base>

@@ -1,307 +1,131 @@
 ---
-import { getCollection } from 'astro:content';
-import Base from '../layouts/Base.astro';
-import { emails, site, tideframe } from '../data/site';
-import { featuredProjects } from '../data/projects';
-import { socials } from '../data/socials';
-
-const lineup = featuredProjects[0];
-const rental = featuredProjects[1];
-const modeboard = featuredProjects[2];
-const trinity = featuredProjects[3];
-const laundry = featuredProjects[4];
-
-const ideas = (await getCollection('ideas'))
-  .filter((entry) => !entry.data.draft)
-  .sort((a, b) => b.data.date.localeCompare(a.data.date))
-  .slice(0, 3);
+import Base from "../layouts/Base.astro";
+import WorkCard from "../components/WorkCard.astro";
+import ProjectMedia from "../components/ProjectMedia.astro";
+import lineup from "../data/lineup-media.json";
+import { getProject } from "../data/projects";
+const mode = getProject("modeboard")!;
 ---
 
-<Base title={site.title} description={site.description} type="profile" image="/media/og/home.png">
-  <section class="hero">
-    <div class="wrap-wide">
-      <p class="kicker">{site.name}</p>
-      <h1>{site.tagline}</h1>
-      <p class="lede">{site.lede}</p>
-      <p class="currently"><strong>Currently</strong> {site.currently}</p>
-      <div class="actions">
-        <a class="btn" href="/work">Explore my work</a>
-        <a class="btn btn-ghost" href="/about">About me</a>
-      </div>
-      <div class="hero-stage" aria-label="Work from Lineup, Modeboard, Rental Record, and Trinity Redistricting">
-        {/*
-          Each layer needs its own `sizes`. Without one the browser assumes
-          100vw and fetched, for example, the 1320px Rental Record capture for
-          a slot 226px wide.
-        */}
-        <div class="hero-layer hero-trinity">
-          <img src={trinity.hero.src} srcset={trinity.hero.srcset} sizes="(max-width: 900px) 92vw, 33vw" width={trinity.hero.width} height={trinity.hero.height} alt="" />
-        </div>
-        <div class="hero-layer hero-modeboard">
-          <img src={modeboard.hero.src} srcset={modeboard.hero.srcset} sizes="(max-width: 900px) 92vw, 44vw" width={modeboard.hero.width} height={modeboard.hero.height} alt="" />
-        </div>
-        <div class="hero-layer hero-rental">
-          <img src={rental.hero.src} srcset={rental.hero.srcset} sizes="(max-width: 900px) 92vw, 17vw" width={rental.hero.width} height={rental.hero.height} alt="" />
-        </div>
-        <div class="hero-layer hero-lineup">
-          <img
-            src={lineup.hero.src}
-            srcset={lineup.hero.srcset}
-            sizes="(max-width: 900px) 240px, 20vw"
-            width={lineup.hero.width}
-            height={lineup.hero.height}
-            alt={lineup.hero.alt}
-            fetchpriority="high"
-            decoding="async"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="work">
-    <div class="wrap-wide section-head">
-      <div>
-        <p class="kicker">Selected work</p>
-        <h2>Five projects. One habit.</h2>
-      </div>
-      <p class="lede" style="margin:0;max-width:28rem;">
-        Take something confusing. Give it a structure a person can actually use.
+<Base>
+  <section class="home-opening wrap-wide">
+    <div class="home-intro">
+      <p class="eyebrow">Ivan Minier · Vermont</p>
+      <h1>
+        Communication,
+        <br class="desktop-break" /> design, and things that <em>work.</em>
+      </h1>
+      <p class="lede">
+        I'm a Public Communication student at UVM and the founder of{" "}
+        <a href="/tideframe">Tideframe Labs</a>. I build software, develop
+        public-facing ideas, and make complicated information easier to use.
       </p>
+      <a class="text-link" href="/work">
+        Explore my work <span>↗</span>
+      </a>
     </div>
-
-    <div class="wrap-wide" style="display:grid;gap:5rem;">
-      <article class="project-block full reveal">
-        <div class="project-copy">
-          <div class="meta-row">
-            <span class="badge">{lineup.statusLabel}</span>
-            <span>{lineup.studioLabel}</span>
-            <span>{lineup.year}</span>
-          </div>
-          <h3>{lineup.name}</h3>
-          <p>{lineup.oneLiner}</p>
-          <div class="platforms">
-            {lineup.platforms.map((item) => <span>{item}</span>)}
-          </div>
-          <a class="btn" href={lineup.href}>View project</a>
-        </div>
-        <div class="cinematic" style="margin-top:1.5rem;">
-          <div class="lineup-stage">
-            <div class="device-phone lead">
-              <img src={lineup.hero.src} srcset={lineup.hero.srcset} sizes="380px" width={lineup.hero.width} height={lineup.hero.height} alt={lineup.hero.alt} loading="lazy" decoding="async" fetchpriority="high" />
-            </div>
-            {lineup.devices?.tablet && (
-              <div class="device-tablet">
-                <img
-                  src={lineup.devices.tablet.src}
-                  srcset={lineup.devices.tablet.srcset}
-                  sizes="(max-width: 900px) min(420px, 92vw), 420px"
-                  width={lineup.devices.tablet.width}
-                  height={lineup.devices.tablet.height}
-                  alt={lineup.devices.tablet.alt}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            )}
-          </div>
-          <p class="lineup-caption">Live TV, movies, and series from your own sources — organized into something you'd actually watch. Demo catalog is fictional.</p>
-        </div>
-      </article>
-
-      <article class="project-block reveal">
-        <div class="project-copy">
-          <div class="meta-row">
-            <span class="badge">{rental.statusLabel}</span>
-            <span>{rental.studioLabel}</span>
-            <span>{rental.year}</span>
-          </div>
-          <h3>{rental.name}</h3>
-          <p>{rental.oneLiner}</p>
-          <div class="platforms">{rental.platforms.map((item) => <span>{item}</span>)}</div>
-          <a class="btn btn-ghost" href={rental.href}>View project</a>
-        </div>
-        <div class="media-stage">
-          <div class="device-phone">
-            <img src={rental.hero.src} srcset={rental.hero.srcset} sizes="360px" width={rental.hero.width} height={rental.hero.height} alt={rental.hero.alt} loading="lazy" decoding="async" />
-          </div>
-        </div>
-      </article>
-
-      <article class="project-block reverse reveal">
-        <div class="project-copy">
-          <div class="meta-row">
-            <span class="badge">{modeboard.statusLabel}</span>
-            <span>{modeboard.studioLabel}</span>
-            <span>{modeboard.year}</span>
-          </div>
-          <h3>{modeboard.name}</h3>
-          <p>{modeboard.oneLiner}</p>
-          <div class="platforms">{modeboard.platforms.map((item) => <span>{item}</span>)}</div>
-          <a class="btn btn-ghost" href={modeboard.href}>View project</a>
-        </div>
-        <div class="shot">
-          <img src={modeboard.hero.src} srcset={modeboard.hero.srcset} sizes="(max-width: 900px) 92vw, 50vw" width={modeboard.hero.width} height={modeboard.hero.height} alt={modeboard.hero.alt} loading="lazy" decoding="async" />
-        </div>
-      </article>
-
-      <article class="project-block reveal">
-        <div class="project-copy">
-          <div class="meta-row">
-            <span class="badge">{trinity.statusLabel}</span>
-            <span>{trinity.studioLabel}</span>
-            <span>{trinity.year}</span>
-          </div>
-          <h3>{trinity.name}</h3>
-          <p>{trinity.oneLiner}</p>
-          <a class="btn btn-ghost" href={trinity.href}>View project</a>
-        </div>
-        <div class="editorial">
-          <img src={trinity.hero.src} srcset={trinity.hero.srcset} sizes="(max-width: 900px) 92vw, 50vw" width={trinity.hero.width} height={trinity.hero.height} alt={trinity.hero.alt} loading="lazy" decoding="async" />
-        </div>
-      </article>
-
-      <article class="project-block reverse reveal">
-        <div class="project-copy">
-          <div class="meta-row">
-            <span class="badge">{laundry.statusLabel}</span>
-            <span>{laundry.studioLabel}</span>
-            <span>{laundry.year}</span>
-          </div>
-          <h3>{laundry.name}</h3>
-          <p>{laundry.oneLiner}</p>
-          <a class="btn btn-ghost" href={laundry.href}>View project</a>
-        </div>
-        <div class="mark-card">
-          <img src={laundry.hero.src} srcset={laundry.hero.srcset} sizes="180px" width={laundry.hero.width} height={laundry.hero.height} alt={laundry.hero.alt} loading="lazy" decoding="async" />
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap-wide thread" aria-label="How the work connects">
-      <article><strong>See the mess</strong>A playlist. A camera roll. A Mac stuck in one arrangement. A housing map. A laundry room you walked to for nothing.</article>
-      <article><strong>Understand it</strong>What is signal, what is noise, and what a person actually needs to do next.</article>
-      <article><strong>Reorganize it</strong>Names, rooms, profiles, districts, and machine status get a structure that holds.</article>
-      <article><strong>Make it usable</strong>The finished thing should feel obvious. The work behind it can stay complicated.</article>
-    </div>
-  </section>
-
-  <section class="section" id="tideframe">
-    <div class="wrap-wide studio">
-      <div>
-        <p class="kicker">Studio</p>
-        <h2>{tideframe.name}</h2>
-        <p class="lede">{tideframe.descriptor} {tideframe.line}</p>
-        <div class="actions">
-          <a class="btn" href={tideframe.url} rel="noopener">Visit Tideframe Labs ↗</a>
-          <a class="btn btn-ghost" href="/tideframe">On this site</a>
-        </div>
+    <div class="home-composition">
+      <div class="composition-label">
+        <span>Independent work / 2025–26</span>
+        <span>Made with purpose</span>
       </div>
-      <div class="studio-products">
-        {
-          featuredProjects
-            .filter((project) => project.studio === 'tideframe')
-            .map((project) => (
-              <a href={project.href}>
-                <span>
-                  <strong>{project.name}</strong>
-                  <br />
-                  {project.oneLiner}
-                </span>
-                <span>View</span>
-              </a>
-            ))
-        }
+      <a href="/work/lineup" class="composition-tv">
+        <ProjectMedia
+          media={lineup.tv}
+          zoom={false}
+          eager
+          sizes="(max-width:700px) 90vw, 47vw"
+        />
+      </a>
+      <a class="composition-mac" href="/work/modeboard">
+        <ProjectMedia
+          media={mode.hero}
+          zoom={false}
+          eager
+          sizes="(max-width:700px) 68vw, 34vw"
+        />
+      </a>
+      <div class="composition-note">
+        <span class="tiny-dot"></span> Software for everyday life.
+        <small>Lineup (coming soon) + Modeboard</small>
       </div>
     </div>
   </section>
-
-  <section class="section" id="experience">
-    <div class="wrap-wide studio">
+  <section class="section wrap-wide">
+    <div class="section-heading">
       <div>
-        <p class="kicker">Experience &amp; education</p>
-        <h2>Résumé</h2>
-        <p class="lede">
-          Founder, Tideframe Labs. Public Communication at the University of Vermont, CDAE, College of Agriculture
-          and Life Sciences. Five shipped project sites, from a native Mac utility to an independent housing
-          feasibility study.
+        <p class="eyebrow">Selected work</p>
+        <h2>Ideas made useful.</h2>
+      </div>
+      <a class="text-link" href="/work">
+        All work ↗
+      </a>
+    </div>
+    <div class="selected-grid">
+      <WorkCard slug="rental-record" number="01" featured />
+      <WorkCard slug="lineup" number="02" />
+      <WorkCard slug="trinity-redistricting" number="03" />
+    </div>
+    <p class="caption">
+      Lineup screens show an original fictional demo. No channels or
+      subscriptions are included.
+    </p>
+  </section>
+  <section class="section experience-band">
+    <div class="wrap-wide experience-summary">
+      <div>
+        <p class="eyebrow">Beyond the screen</p>
+        <h2>
+          People are part
+          <br />
+          of the work.
+        </h2>
+      </div>
+      <div>
+        <p>
+          Campus marketing, conference hospitality, and Public Communication
+          studies shape how I think about an audience—and what makes information
+          useful to them.
         </p>
-        <div class="actions">
-          <a class="btn" href="/resume">Read the full résumé</a>
-          <a class="btn btn-ghost" href="/about">About me</a>
+        <div class="mini-timeline">
+          <p>
+            <strong>University of Vermont</strong>
+            <span>Public Communication · Expected May 2028</span>
+          </p>
+          <p>
+            <strong>Campus marketing leadership</strong>
+            <span>Accounting Club & Redstone Hall Council</span>
+          </p>
+          <p>
+            <strong>Summer Conference Assistant</strong>
+            <span>UVM University Events Services · Summer 2025</span>
+          </p>
         </div>
-      </div>
-      <div class="timeline">
-        <article><strong>Current</strong><p>Public Communication, University of Vermont (CDAE, College of Agriculture and Life Sciences).</p></article>
-        <article><strong>Current</strong><p>Founder, Tideframe Labs — product, interface, and engineering across Lineup, Modeboard, and Tideframe Rental Record.</p></article>
-        <article><strong>2026</strong><p>Trinity Redistricting — independent housing feasibility research and public writing.</p></article>
+        <a class="text-link" href="/resume">
+          View résumé ↗
+        </a>
       </div>
     </div>
   </section>
-
-  {ideas.length > 0 && (
-    <section class="section" id="writing" style="padding-top:0;">
-      <div class="wrap">
-        <p class="kicker">Selected writing</p>
-        <h2>From Ideas</h2>
-      </div>
-      <div class="wrap ideas-list" style="margin-top:1.5rem;">
-        {ideas.map((idea) => (
-          <a href={`/ideas/${idea.id}`}>
-            <span>{idea.data.date}</span>
-            <span>
-              <strong>{idea.data.title}</strong>
-              <br />
-              {idea.data.summary}
-            </span>
-          </a>
-        ))}
-      </div>
-      <div class="wrap" style="margin-top:1.2rem;">
-        <a class="btn btn-ghost" href="/ideas">All ideas →</a>
-      </div>
-    </section>
-  )}
-
-  <section class="section" id="contact">
-    <div class="wrap">
-      <p class="kicker">Contact</p>
-      <h2>Start with {emails.primary.address}</h2>
-      <p class="lede">That is the public address for this site.</p>
-      <div class="emails" style="margin-top:1.5rem;">
-        <div class="email-primary">
-          <a href={emails.primary.href}>{emails.primary.address}</a>
-          <button class="copy-btn" type="button" data-copy={emails.primary.address}>Copy</button>
-        </div>
-      </div>
-      <p style="margin-top:1.4rem;">
-        {socials.map((item, index) => (
-          <>
-            {index > 0 && ' · '}
-            <a href={item.href} rel="me noopener">{item.label}</a>
-          </>
-        ))}
-      </p>
-    </div>
+  <section class="section wrap-wide home-notes">
+    <p class="eyebrow">A little more context</p>
+    <h2>Notes from the work.</h2>
+    <a href="/ideas/messy-catalogs">
+      The catalog is the product <span>14 August 2026 ↗</span>
+    </a>
+    <a href="/ideas/housing-as-a-system">
+      Housing is more than a rendering <span>1 May 2026 ↗</span>
+    </a>
+  </section>
+  <section class="section wrap-wide home-contact">
+    <p class="eyebrow">Get in touch</p>
+    <h2>
+      Good work starts
+      <br />
+      with a conversation.
+    </h2>
+    <a class="text-link" href="mailto:ivan@minier.us">
+      ivan@minier.us ↗
+    </a>
   </section>
 </Base>
-
-<script>
-  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((button) => {
-    button.addEventListener('click', async () => {
-      const value = button.dataset.copy;
-      if (!value) return;
-      try {
-        await navigator.clipboard.writeText(value);
-        button.textContent = 'Copied';
-        window.setTimeout(() => {
-          button.textContent = 'Copy';
-        }, 1800);
-      } catch {
-        button.textContent = 'Copy failed';
-      }
-    });
-  });
-</script>

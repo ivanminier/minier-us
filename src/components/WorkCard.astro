@@ -1,0 +1,66 @@
+---
+import { getProject } from "../data/projects";
+import media from "../data/lineup-media.json";
+import ProjectMedia from "./ProjectMedia.astro";
+const { slug, number = "01", featured = false } = Astro.props;
+const p = getProject(slug)!;
+const image =
+  slug === "lineup"
+    ? media.tv
+    : slug === "rental-record"
+      ? p.gallery.at(-1)!
+      : slug === "trinity-redistricting"
+        ? p.gallery[0]
+        : p.hero;
+---
+
+<article class:list={["work-card", slug, { featured }]}>
+  <a class="work-art" href={p.href} aria-label={`Explore ${p.name}`}>
+    {slug === "rental-record" ? (
+      <>
+        <img
+          class="rental-document"
+          src="/media/rental-record/report-excerpt-r3.webp"
+          width="860"
+          height="736"
+          alt="Cropped excerpt of a fictional Rental Record move-in report"
+          loading="lazy"
+        />
+        <ProjectMedia
+          class="rental-device"
+          media={p.gallery[0]}
+          zoom={false}
+          sizes="180px"
+        />
+      </>
+    ) : (
+      <ProjectMedia
+        media={image}
+        zoom={false}
+        sizes={
+          featured
+            ? "(max-width:700px) 90vw, 65vw"
+            : "(max-width:700px) 90vw, 45vw"
+        }
+      />
+    )}
+    <span class="art-arrow" aria-hidden="true">
+      ↗
+    </span>
+  </a>
+  <div class="work-caption">
+    <span class="index">{number}</span>
+    <div>
+      <h3>
+        <a href={p.href}>{p.shortName}</a>
+      </h3>
+      <p>
+        {p.category} · {p.statusLabel}
+      </p>
+      {featured && <p class="card-description">{p.oneLiner}</p>}
+    </div>
+    <span class="card-role">
+      {p.studio === "tideframe" ? "Founder & creator" : "Independent project"}
+    </span>
+  </div>
+</article>

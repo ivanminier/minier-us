@@ -1,75 +1,88 @@
 ---
-import Base from '../layouts/Base.astro';
-import ProjectMedia from '../components/ProjectMedia.astro';
-import { featuredProjects } from '../data/projects';
-import { tideframe } from '../data/site';
-
-const products = featuredProjects.filter((project) => project.studio === 'tideframe');
+import Base from "../layouts/Base.astro";
+import { getProject } from "../data/projects";
+const products = ["modeboard", "rental-record", "lineup"].map((s) =>
+  getProject(s)!,
+);
 ---
 
 <Base
   title="Tideframe Labs — Ivan Minier"
-  description="Tideframe Labs is the independent software studio founded by Ivan Minier in Vermont. Lineup, Tideframe Rental Record, and Modeboard."
+  theme="studio"
+  description="The independent software studio founded by Ivan Minier. Product direction, interface design, development, and the work around a release."
 >
-  <section class="page-hero">
-    <div class="wrap">
-      <p class="kicker">Studio</p>
-      <h1>{tideframe.name}</h1>
+  <section class="studio-opening wrap-wide">
+    <div>
+      <img
+        class="studio-mark"
+        src="/media/tideframe/mark-mono.svg"
+        width="5096"
+        height="5096"
+        alt="Tideframe Labs"
+      />
+      <p class="eyebrow">The studio chapter</p>
+      <h1>Tideframe Labs</h1>
       <p class="lede">
-        Tideframe Labs is Ivan’s independent software studio. {tideframe.line}
+        Independent software.
+        <br />
+        Built in Vermont.
       </p>
-      <div class="actions">
-        <a class="btn" href={tideframe.url} rel="noopener">Visit Tideframe Labs ↗</a>
+    </div>
+    <div>
+      <p>
+        I founded Tideframe Labs to bring focused products to Apple platforms.
+        The work spans the product itself and the less visible pieces that help
+        someone install, understand, and use it.
+      </p>
+      <div class="studio-responsibilities">
+        <p class="eyebrow">My role / Founder & product builder</p>
+        <p>
+          Product direction, interface design, development, release operations,
+          documentation, and customer support. AI-assisted development is part
+          of the process.
+        </p>
       </div>
+      <a class="text-link" href="https://tideframelabs.com">
+        Visit Tideframe Labs ↗
+      </a>
     </div>
   </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap prose">
-      <p>
-        Tideframe is the company. This site is the person. Downloads, the App Store listing,
-        support, privacy, and terms live on tideframelabs.com.
-      </p>
-      <div class="grid-2" style="margin-top:1.4rem;">
-        <article class="card"><strong>Native where it matters</strong><p>Mac, iPhone, iPad, and Apple TV — not a lowest-common-denominator web shell.</p></article>
-        <article class="card"><strong>Private by default</strong><p>No analytics stack. No developer-operated evidence server. Export is explicit.</p></article>
-        <article class="card"><strong>Small, focused software</strong><p>Each product has one job. The rest is someone else’s app.</p></article>
-        <article class="card"><strong>Powerful without clutter</strong><p>The interface should explain itself. The catalog, the record, or the workspace does the talking.</p></article>
-      </div>
-    </div>
-    <div class="wrap-wide work-index" style="margin-top:2.5rem;">
-      {
-        products.map((project) => (
-          <a class="work-feature" href={project.href}>
-            <div class="work-copy">
-              <div class="meta-row">
-                {project.icon && <img class="meta-icon" src={project.icon} alt="" width="40" height="40" />}
-                <span class="badge">{project.statusLabel}</span>
-              </div>
-              <h2>{project.name}</h2>
-              <p>{project.oneLiner}</p>
-            </div>
-            {/*
-              Branch on the shape of the image, not the project's colour theme.
-              Rental Record's theme is "paper", so its portrait iPhone
-              screenshot used to land in an uncapped .shot and render 727px
-              wide by 1579px tall, more than twice the height of every other
-              row on this page.
-            */}
-            {project.hero.width < project.hero.height ? (
-              <div class={project.theme === 'cinematic' ? 'cinematic' : 'device-frame-stage'}>
-                <div class="device-phone">
-                  <ProjectMedia media={project.hero} sizes="280px" />
-                </div>
-              </div>
-            ) : (
-              <div class="shot">
-                <ProjectMedia media={project.hero} sizes="(max-width: 900px) 92vw, 52vw" />
-              </div>
-            )}
-          </a>
-        ))
-      }
-    </div>
+  <section class="section wrap-wide studio-products">
+    {products.map((p) => (
+      <article class="studio-product">
+        <img
+          src={p.icon}
+          width="256"
+          height="256"
+          alt={`${p.shortName} app icon`}
+        />
+        <p class="status">{p.statusLabel}</p>
+        <h2>{p.shortName}</h2>
+        <p>
+          {p.slug === "modeboard"
+            ? "Workspace profiles and supported settings for the Mac."
+            : p.slug === "lineup"
+              ? "An Apple-native organizer and player for user-supplied television sources."
+              : "Guided room records, photographs, observations, and readable reports."}
+        </p>
+        <a class="text-link" href={p.href}>
+          My work on {p.shortName} ↗
+        </a>
+      </article>
+    ))}
+  </section>
+  <section class="section wrap-wide">
+    <h2>
+      The product home
+      <br />
+      lives at Tideframe.
+    </h2>
+    <p style="max-width:55ch">
+      Downloads, purchases, current product information, support, and each
+      product's privacy and legal policies belong on the studio site.
+    </p>
+    <a class="btn" href="https://tideframelabs.com">
+      Explore the studio ↗
+    </a>
   </section>
 </Base>

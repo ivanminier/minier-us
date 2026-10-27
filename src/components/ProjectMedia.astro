@@ -1,46 +1,54 @@
 ---
-import type { ProjectMedia as Media } from '../data/projects';
-
+import type { ProjectMedia as Media } from "../data/projects";
 interface Props {
   media: Media;
   class?: string;
   eager?: boolean;
-  /** Overrides the presentation default when a page renders the image in a narrower slot. */
   sizes?: string;
+  zoom?: boolean;
 }
-
-const { media, class: className, eager = false, sizes } = Astro.props;
-
-// Every image on this site sits in one of four slots, and each has a different
-// relationship to the viewport. The single previous `sizes` value ("720px")
-// made the browser pick the smallest candidate for images that actually render
-// at the full 1380px container width, so the Modeboard and Trinity heroes were
-// upscaled from an 800px source on Retina displays.
-const PRESET_SIZES = {
-  // Portrait screenshot inside .device-phone, capped at 360px.
-  device: '360px',
-  // Portrait tablet screenshot inside .device-tablet, capped at 520px.
-  tablet: '(max-width: 900px) min(520px, 92vw), 520px',
-  // Landscape app screenshot filling the .wrap-wide container.
-  screen: '(min-width: 1452px) 1380px, calc(100vw - 4.5rem)',
-  // Editorial / architectural imagery, same full-width container.
-  editorial: '(min-width: 1452px) 1380px, calc(100vw - 4.5rem)',
-  // 16:9 capture inside the .device-tv outline, capped at 760px.
-  tv: '(max-width: 900px) min(760px, 92vw), 760px',
-} as const;
-
-const resolvedSizes = sizes ?? (media.srcset ? PRESET_SIZES[media.presentation ?? 'screen'] : undefined);
+const {
+  media,
+  class: className,
+  eager = false,
+  sizes = "(max-width: 700px) 90vw, 60vw",
+  zoom = true,
+} = Astro.props;
 ---
 
-<img
-  class={className}
-  src={media.src}
-  srcset={media.srcset}
-  sizes={resolvedSizes}
-  width={media.width}
-  height={media.height}
-  alt={media.alt}
-  loading={eager ? 'eager' : 'lazy'}
-  decoding="async"
-  fetchpriority={eager ? 'high' : undefined}
-/>
+{zoom ? (
+  <a
+    class:list={["image-link", className]}
+    href={media.src}
+    data-image-link
+    aria-label={`View full size: ${media.alt}`}
+  >
+    <img
+      src={media.src}
+      srcset={media.srcset}
+      sizes={sizes}
+      width={media.width}
+      height={media.height}
+      alt={media.alt}
+      loading={eager ? "eager" : "lazy"}
+      decoding="async"
+      fetchpriority={eager ? "high" : undefined}
+    />
+    <span class="zoom-label" aria-hidden="true">
+      ↗ View image
+    </span>
+  </a>
+) : (
+  <img
+    class={className}
+    src={media.src}
+    srcset={media.srcset}
+    sizes={sizes}
+    width={media.width}
+    height={media.height}
+    alt={media.alt}
+    loading={eager ? "eager" : "lazy"}
+    decoding="async"
+    fetchpriority={eager ? "high" : undefined}
+  />
+)}

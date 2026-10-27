@@ -1,98 +1,143 @@
 ---
-import Base from '../../layouts/Base.astro';
-import NextProject from '../../components/NextProject.astro';
-import ProjectFacts from '../../components/ProjectFacts.astro';
-import ProjectMedia from '../../components/ProjectMedia.astro';
-import { getProject } from '../../data/projects';
-import { site } from '../../data/site';
-
-const project = getProject('trinity-redistricting')!;
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'CreativeWork',
-  name: project.name,
-  description: project.summary,
-  url: 'https://trinityredistricting.com',
-  author: { '@type': 'Person', name: 'Ivan Minier', url: site.url },
-  creator: { '@type': 'Person', name: 'Ivan Minier', url: site.url },
-};
+import Base from "../../layouts/Base.astro";
+import ProjectMedia from "../../components/ProjectMedia.astro";
+import NextProject from "../../components/NextProject.astro";
+import { getProject, trinityConcept } from "../../data/projects";
+const p = getProject("trinity-redistricting")!;
 ---
 
-<Base title={`${project.name} — Ivan Minier`} description={project.summary} jsonLd={jsonLd} image="/media/og/trinity.png" theme="editorial">
-  <section class="case-hero" style={`--page-accent:${project.accent}`}>
-    <div class="wrap">
-      <div class="meta-row">
-        <span class="badge">{project.statusLabel}</span>
-        <span>By Ivan Minier</span>
-        <span>{project.year}</span>
+<Base
+  title="Trinity Redistricting — Ivan Minier"
+  theme="editorial"
+  image="/media/og/trinity.png"
+  description={p.summary}
+>
+  <section class="civic-opening wrap-wide">
+    <div>
+      <p class="eyebrow">Independent student concept / 2026</p>
+      <h1>
+        Trinity
+        <br />
+        Redistricting
+      </h1>
+      <p class="lede">
+        What could a more complete residential district look like at UVM?
+      </p>
+      <p>
+        A housing concept that brings buildings, movement, preservation, and
+        feasibility into one public conversation.
+      </p>
+      <p class="role-line">
+        Author · Research, planning, writing & public site
+        <br />
+        <span class="status">
+          Independent concept · Not an official UVM or City plan
+        </span>
+      </p>
+    </div>
+    <figure class="map-stage">
+      <ProjectMedia media={p.gallery[0]} eager />
+      <div class="map-key">
+        <span>Housing footprints</span>
+        <span>Paths & circulation</span>
+        <span>Site context</span>
       </div>
-      <h1>Housing relief first. Then public benefit. Then feasibility.</h1>
-      <p class="lede">{project.summary}</p>
-      <ProjectFacts project={project} />
+      <figcaption>
+        Existing project district map. Building footprints and paths describe
+        the concept, not approved construction.
+      </figcaption>
+    </figure>
+  </section>
+  <section class="section wrap-wide civic-spread">
+    <div>
+      <p class="eyebrow">The argument</p>
+      <h2>
+        More than
+        <br />a rendering.
+      </h2>
+      <p>
+        The project explores how replacement housing, net-new beds, shared
+        spaces, and preservation might work together across a district.
+      </p>
+      <p>
+        My contribution connects visual concepts to research, writing, and a
+        public document set. The next meaningful step is formal feasibility
+        review.
+      </p>
+      <blockquote class="source-excerpt">
+        “A student proposal cannot approve a campus. It can make the district
+        discussable.”
+      </blockquote>
+      <a class="text-link" href="/ideas/housing-as-a-system">
+        From the original project note ↗
+      </a>
+    </div>
+    <aside class="assumptions">
+      <p class="eyebrow">Concept-stage assumptions</p>
+      <h3>Questions for review</h3>
+      <dl class="concept-estimates">
+        <div>
+          <dt>Preferred concept capacity</dt>
+          <dd>{trinityConcept.preferredBeds} beds</dd>
+        </div>
+        <div>
+          <dt>Estimated net-new capacity after replacement</dt>
+          <dd>{trinityConcept.estimatedNetNewBeds} beds</dd>
+        </div>
+      </dl>
+      <p>
+        Bed counts depend on replacement capacity, unit mix, and design. Costs
+        depend on scope, phasing, and further technical study. Zoning and
+        approvals require independent review.
+      </p>
+      <p>
+        The proposal's figures are estimates and targets—not measured outcomes,
+        official budgets, or construction commitments.
+      </p>
+      <h3>Source documents</h3>
+      <p>
+        Read the project's briefs and accessible companions for the underlying
+        proposal and assumptions.
+      </p>
+      <a class="text-link" href={trinityConcept.source}>
+        Published document collection ↗
+      </a>
+    </aside>
+  </section>
+  <section class="section wrap-wide">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">An editorial view of the concept</p>
+        <h2>A district, in parts.</h2>
+      </div>
+    </div>
+    <div class="concept-strip">
+      <figure>
+        <ProjectMedia media={p.gallery[1]} />
+        <figcaption>
+          Trinity Peaks — proposed first-year housing. Concept visualization.
+        </figcaption>
+      </figure>
+      <figure>
+        <ProjectMedia media={p.gallery[3]} />
+        <figcaption>
+          The Cottages — preservation and adaptive reuse within the concept.
+        </figcaption>
+      </figure>
     </div>
   </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap-wide editorial">
-      <ProjectMedia media={project.hero} eager />
+  <section class="section wrap-wide case-ending">
+    <div>
+      <h2>Open to scrutiny.</h2>
+      <p>
+        The public site brings together the proposal, documents, and Trinity AI.
+        It invites a feasibility conversation without implying approval or
+        endorsement.
+      </p>
+      <a class="btn" href="https://trinityredistricting.com">
+        Explore the full project ↗
+      </a>
     </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap">
-      <div class="notice">
-        <strong>Created by Ivan Minier.</strong>
-        Independent student-led concept. Not an official University of Vermont or City of Burlington project.
-        Figures are concept-stage targets for feasibility review, not official budgets or construction documents.
-      </div>
-      <div class="metrics" style="margin-top:1.2rem;">
-        <div class="metric"><strong>1,850–2,100</strong><span>preferred concept beds</span></div>
-        <div class="metric"><strong>1,400–1,650</strong><span>estimated net-new beds after replacement</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap prose">
-      <h2>The problem</h2>
-      <p>{project.problem}</p>
-      <h2>The approach</h2>
-      <p>{project.approach}</p>
-      <h2>What the vision contains</h2>
-      <div class="grid-2">
-        {project.capabilities.map((item) => (
-          <article class="card">
-            <strong>{item.title}</strong>
-            <p>{item.body}</p>
-          </article>
-        ))}
-      </div>
-      <h2>Why this shape</h2>
-      <p>{project.reasoning}</p>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap-wide gallery">
-      {project.gallery.map((media) => (
-        <figure class="wide">
-          <div class="editorial">
-            <ProjectMedia media={media} />
-          </div>
-          {media.caption && <figcaption>{media.caption}</figcaption>}
-        </figure>
-      ))}
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="wrap">
-      <div class="actions">
-        {project.links.map((link) => (
-          <a class="btn btn-ghost" href={link.href} rel="noopener">{link.label} ↗</a>
-        ))}
-      </div>
-      <NextProject slug={project.slug} />
-    </div>
+    <NextProject slug={p.slug} />
   </section>
 </Base>
