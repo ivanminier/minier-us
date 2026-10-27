@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import { emails, site, tideframe } from '../data/site';
 import { featuredProjects } from '../data/projects';
@@ -9,6 +10,11 @@ const rental = featuredProjects[1];
 const modeboard = featuredProjects[2];
 const trinity = featuredProjects[3];
 const laundry = featuredProjects[4];
+
+const ideas = (await getCollection('ideas'))
+  .filter((entry) => !entry.data.draft)
+  .sort((a, b) => b.data.date.localeCompare(a.data.date))
+  .slice(0, 3);
 ---
 
 <Base title={site.title} description={site.description} type="profile" image="/media/og/home.png">
@@ -76,23 +82,30 @@ const laundry = featuredProjects[4];
           <p>{lineup.oneLiner}</p>
           <div class="platforms">
             {lineup.platforms.map((item) => <span>{item}</span>)}
-            {lineup.platformsPlanned && <span class="planned">{lineup.platformsPlanned}</span>}
           </div>
           <a class="btn" href={lineup.href}>View project</a>
         </div>
         <div class="cinematic" style="margin-top:1.5rem;">
           <div class="lineup-stage">
-            <div class="device-phone">
-              <img src="/media/lineup/sources.webp" sizes="340px" width="900" height="1957" alt="Lineup source setup with M3U, Xtream, local playlist file, and a fictional demo catalog." loading="lazy" decoding="async" />
-            </div>
             <div class="device-phone lead">
-              <img src={lineup.hero.src} srcset={lineup.hero.srcset} sizes="380px" width={lineup.hero.width} height={lineup.hero.height} alt={lineup.hero.alt} loading="lazy" decoding="async" />
+              <img src={lineup.hero.src} srcset={lineup.hero.srcset} sizes="380px" width={lineup.hero.width} height={lineup.hero.height} alt={lineup.hero.alt} loading="lazy" decoding="async" fetchpriority="high" />
             </div>
-            <div class="device-phone">
-              <img src="/media/lineup/edit-home.webp" sizes="340px" width="900" height="1957" alt="Lineup Edit Home screen with Live Now, Movies, Series, and Watchlist sections." loading="lazy" decoding="async" />
-            </div>
+            {lineup.devices?.tablet && (
+              <div class="device-tablet">
+                <img
+                  src={lineup.devices.tablet.src}
+                  srcset={lineup.devices.tablet.srcset}
+                  sizes="(max-width: 900px) min(420px, 92vw), 420px"
+                  width={lineup.devices.tablet.width}
+                  height={lineup.devices.tablet.height}
+                  alt={lineup.devices.tablet.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            )}
           </div>
-          <p class="lineup-caption">A raw source goes in. A Home worth using comes out. Demo catalog is fictional.</p>
+          <p class="lineup-caption">Live TV, movies, and series from your own sources — organized into something you'd actually watch. Demo catalog is fictional.</p>
         </div>
       </article>
 
@@ -204,6 +217,53 @@ const laundry = featuredProjects[4];
       </div>
     </div>
   </section>
+
+  <section class="section" id="experience">
+    <div class="wrap-wide studio">
+      <div>
+        <p class="kicker">Experience &amp; education</p>
+        <h2>Résumé</h2>
+        <p class="lede">
+          Founder, Tideframe Labs. Public Communication at the University of Vermont, CDAE, College of Agriculture
+          and Life Sciences. Five shipped project sites, from a native Mac utility to an independent housing
+          feasibility study.
+        </p>
+        <div class="actions">
+          <a class="btn" href="/resume">Read the full résumé</a>
+          <a class="btn btn-ghost" href="/about">About me</a>
+        </div>
+      </div>
+      <div class="timeline">
+        <article><strong>Current</strong><p>Public Communication, University of Vermont (CDAE, College of Agriculture and Life Sciences).</p></article>
+        <article><strong>Current</strong><p>Founder, Tideframe Labs — product, interface, and engineering across Lineup, Modeboard, and Tideframe Rental Record.</p></article>
+        <article><strong>2026</strong><p>Trinity Redistricting — independent housing feasibility research and public writing.</p></article>
+      </div>
+    </div>
+  </section>
+
+  {ideas.length > 0 && (
+    <section class="section" id="writing" style="padding-top:0;">
+      <div class="wrap">
+        <p class="kicker">Selected writing</p>
+        <h2>From Ideas</h2>
+      </div>
+      <div class="wrap ideas-list" style="margin-top:1.5rem;">
+        {ideas.map((idea) => (
+          <a href={`/ideas/${idea.id}`}>
+            <span>{idea.data.date}</span>
+            <span>
+              <strong>{idea.data.title}</strong>
+              <br />
+              {idea.data.summary}
+            </span>
+          </a>
+        ))}
+      </div>
+      <div class="wrap" style="margin-top:1.2rem;">
+        <a class="btn btn-ghost" href="/ideas">All ideas →</a>
+      </div>
+    </section>
+  )}
 
   <section class="section" id="contact">
     <div class="wrap">

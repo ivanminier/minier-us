@@ -25,6 +25,8 @@ const PRESET_SIZES = {
   screen: '(min-width: 1452px) 1380px, calc(100vw - 4.5rem)',
   // Editorial / architectural imagery, same full-width container.
   editorial: '(min-width: 1452px) 1380px, calc(100vw - 4.5rem)',
+  // 16:9 capture inside the .device-tv outline, capped at 760px.
+  tv: '(max-width: 900px) min(760px, 92vw), 760px',
 } as const;
 
 const resolvedSizes = sizes ?? (media.srcset ? PRESET_SIZES[media.presentation ?? 'screen'] : undefined);

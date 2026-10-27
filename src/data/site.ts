@@ -2,15 +2,17 @@ export const site = {
   name: 'Ivan Minier',
   title: 'Ivan Minier — Founder & Product Builder',
   description:
-    'Ivan Minier builds products and systems. Founder of Tideframe Labs and Business Administration student at the University of Vermont.',
+    'Ivan Minier builds products and systems. Founder of Tideframe Labs and a Public Communication student at the University of Vermont.',
   url: 'https://minier.us',
   locale: 'en_US',
   location: 'Vermont',
   school: 'University of Vermont',
-  program: 'Business Administration',
+  program: 'Public Communication',
+  programDetail:
+    'Department of Community Development and Applied Economics (CDAE), College of Agriculture and Life Sciences, University of Vermont',
   tagline: 'I turn messy systems into calm products.',
-  lede: 'Founder of Tideframe Labs and Business Administration student at the University of Vermont. I design and build software, systems, and ideas.',
-  currently: 'Building Lineup · Running Tideframe Labs · Studying Business Administration at UVM',
+  lede: 'I’m Ivan Minier, founder of Tideframe Labs and a Public Communication student at the University of Vermont. I work across research, writing, design, and software to make complex systems easier to understand and use.',
+  currently: 'Building Lineup · Running Tideframe Labs · Studying Public Communication at UVM',
   ogImage: '/media/og/home.png',
   copyrightName: 'Ivan Minier',
 } as const;
@@ -40,6 +42,7 @@ export const nav = [
   { label: 'Work', href: '/work' },
   { label: 'Tideframe', href: '/tideframe' },
   { label: 'About', href: '/about' },
+  { label: 'Résumé', href: '/resume' },
   { label: 'Ideas', href: '/ideas' },
   { label: 'Contact', href: '/contact' },
 ] as const;

@@ -1,0 +1,169 @@
+---
+import Base from '../layouts/Base.astro';
+import { emails, site } from '../data/site';
+import { socials } from '../data/socials';
+import { featuredProjects } from '../data/projects';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  name: `Résumé — ${site.name}`,
+  url: `${site.url}/resume`,
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Ivan Minier',
+    url: site.url,
+    email: emails.primary.address,
+    jobTitle: 'Founder, Tideframe Labs',
+    worksFor: { '@type': 'Organization', name: 'Tideframe Labs', url: 'https://tideframelabs.com' },
+    alumniOf: { '@type': 'CollegeOrUniversity', name: site.school },
+    sameAs: socials.map((item) => item.href),
+  },
+};
+---
+
+<Base
+  title="Résumé — Ivan Minier"
+  description="Ivan Minier's résumé: founder of Tideframe Labs, Public Communication student at the University of Vermont, and creator of Lineup, Modeboard, Tideframe Rental Record, Trinity Redistricting, and UVM LaundryLink."
+  jsonLd={jsonLd}
+>
+  <section class="page-hero no-print">
+    <div class="wrap">
+      <p class="kicker">Résumé</p>
+      <p class="lede">{site.lede}</p>
+      <p class="caption">
+        Use your browser's print or “Save as PDF” for a clean copy — the print stylesheet below strips the
+        navigation and keeps the content.
+      </p>
+    </div>
+  </section>
+
+  <section class="section resume" style="padding-top:0;">
+    <div class="wrap prose resume-prose">
+      <header class="resume-header">
+        <h1 class="resume-name">Ivan Minier</h1>
+        <p class="resume-tagline">{site.tagline}</p>
+        <p class="resume-contact">
+          <a href={emails.primary.href}>{emails.primary.address}</a>
+          · {site.location}
+          {socials.map((item) => (
+            <>
+              {' · '}
+              <a href={item.href} rel="me noopener">{item.label}</a>
+            </>
+          ))}
+        </p>
+      </header>
+
+      <section>
+        <h2>Summary</h2>
+        <p>
+          Founder of Tideframe Labs and a Public Communication student at the University of Vermont. I design and
+          build native Apple-platform software, and I research and write about the systems that software sits
+          inside of — campus housing, rental documentation, television catalogs, a Mac workspace. The common thread
+          is taking something that is technically functional but practically confusing, and giving it a structure a
+          person can actually use.
+        </p>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <article class="resume-item">
+          <div class="resume-item-head">
+            <strong>University of Vermont</strong>
+            <span>Current</span>
+          </div>
+          <p>
+            Public Communication, Department of Community Development and Applied Economics (CDAE), College of
+            Agriculture and Life Sciences. Previously pursued Business Administration; Public Communication is the
+            current course of study, reflecting the research, writing, and systems-explanation work already present
+            across these projects — most directly in Trinity Redistricting's feasibility writing and the product
+            documentation across Tideframe Labs.
+          </p>
+        </article>
+      </section>
+
+      <section>
+        <h2>Role</h2>
+        <article class="resume-item">
+          <div class="resume-item-head">
+            <strong>Founder — Tideframe Labs</strong>
+            <span>Current</span>
+          </div>
+          <p>
+            Independent software studio in Vermont. Responsible for product direction, interface design, and
+            engineering across Tideframe's apps: Modeboard (available for Mac), Tideframe Rental Record (on the App
+            Store), and Lineup (in development for iPhone, iPad, and Apple TV).
+          </p>
+        </article>
+      </section>
+
+      <section>
+        <h2>Selected projects</h2>
+        <div class="resume-projects">
+          {featuredProjects.map((project) => (
+            <article class="resume-item">
+              <div class="resume-item-head">
+                <strong>{project.name}</strong>
+                <span>{project.year} · {project.statusLabel}</span>
+              </div>
+              <p class="resume-role">{project.role} · {project.platforms.join(', ')}</p>
+              <p>{project.oneLiner}</p>
+              <p class="resume-links">
+                <a href={project.href}>Case study ↗</a>
+                {project.officialHome && (
+                  <>
+                    {' · '}
+                    <a href={project.officialHome.href} rel={project.officialHome.external ? 'noopener' : undefined}>
+                      {project.officialHome.label}
+                    </a>
+                  </>
+                )}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2>Capabilities</h2>
+        <div class="grid-2">
+          <article class="card">
+            <strong>Native product engineering</strong>
+            <p>SwiftUI apps for iPhone, iPad, Apple TV, and Mac — Lineup, Modeboard, and Tideframe Rental Record, built end to end.</p>
+          </article>
+          <article class="card">
+            <strong>Interface and content design</strong>
+            <p>Interaction design, information architecture, and the writing that explains a product without a manual, across five shipped project sites.</p>
+          </article>
+          <article class="card">
+            <strong>Research and public writing</strong>
+            <p>Trinity Redistricting's feasibility argument — zoning, replacement beds, phasing, and public documents — and the Ideas essays on this site.</p>
+          </article>
+          <article class="card">
+            <strong>Systems and data organization</strong>
+            <p>Turning messy, user-supplied data (a television catalog, a laundry-room feed, rental evidence) into something structured and usable.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Contact and profiles</h2>
+        <p>
+          <a href={emails.primary.href}>{emails.primary.address}</a> — {emails.primary.note}.
+          School: <a href={emails.school.href}>{emails.school.address}</a>.
+        </p>
+        <p>
+          {socials.map((item, index) => (
+            <>
+              {index > 0 && ' · '}
+              <a href={item.href} rel="me noopener">{item.label} · {item.handle}</a>
+            </>
+          ))}
+          {' · '}<a href="https://tideframelabs.com" rel="noopener">tideframelabs.com</a>
+          {' · '}<a href="https://trinityredistricting.com" rel="noopener">trinityredistricting.com</a>
+        </p>
+      </section>
+    </div>
+  </section>
+</Base>
