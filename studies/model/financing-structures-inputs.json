@@ -1,0 +1,102 @@
+{
+  "_about": "Inputs for studies/model/financing-structures.py. SOURCED values cite a public source; everything else is ILLUSTRATIVE (no market or professional basis) and must be replaced before use.",
+  "asOf": "2026-11-06",
+  "common": {
+    "beds": 300,
+    "beds_status": "SOURCED: Trinity v1.3 Rise baseline low end",
+    "costPerBed": 233000,
+    "costPerBed_status": "SOURCED benchmark: Virginia Tech 2026, $280M / 1,200 beds (hard + soft); different place, program and date",
+    "contingency": 0.05,
+    "contingency_status": "ILLUSTRATIVE"
+  },
+  "university": {
+    "rentAnchor": 12090,
+    "rentAnchor_status": "SOURCED: UVM AY 2026-27 UHN/UHS Suite Single, room only, academic year (uvm.edu/housingdining/costs, observed 2026-11-06)",
+    "summerIncomePerBed": 0,
+    "opexPerBed": 5000,
+    "occupancy": 0.97,
+    "equityShare": [
+      0,
+      0.25,
+      0.5
+    ],
+    "bondRate": [
+      0.04,
+      0.05
+    ],
+    "termYears": 30,
+    "constMonths": 24,
+    "avgDraw": 0.55,
+    "_status": "All ILLUSTRATIVE except rentAnchor"
+  },
+  "private": {
+    "premiumPerBed": [
+      0,
+      25000,
+      50000
+    ],
+    "groundRentPerBed": [
+      0,
+      750
+    ],
+    "developerFee": 0.04,
+    "ltc": 0.6,
+    "financingFees": 0.015,
+    "constRate": 0.075,
+    "constMonths": 24,
+    "avgDraw": 0.55,
+    "opexPerBed": 5500,
+    "taxPerBed": 1500,
+    "occupancy": 0.95,
+    "otherIncome": 0.03,
+    "yieldTargets": [
+      0.06,
+      0.065,
+      0.07
+    ],
+    "_status": "All ILLUSTRATIVE"
+  },
+  "contrast": [
+    [
+      "Owner",
+      "UVM",
+      "A private developer, typically on university land under a ground lease, or off campus"
+    ],
+    [
+      "How debt is repaid",
+      "Usually system-wide housing revenue bonds; all halls' revenues back all debt",
+      "Project-level loan backed only by this building's income"
+    ],
+    [
+      "Cost of capital",
+      "Lower (tax-exempt borrowing possible); no profit target",
+      "Higher; lenders and investors require a yield on cost and returns"
+    ],
+    [
+      "Rent setting",
+      "Rates set across the housing system and tied to policy and affordability goals",
+      "Market rents for the product, 12-month leases, by the bed"
+    ],
+    [
+      "Extra costs",
+      "Few: no developer fee, no property tax in most cases",
+      "Developer fee, financing fees, possible property tax, ground rent"
+    ],
+    [
+      "Test that matters",
+      "System debt capacity and rate impact across all residents",
+      "Yield on cost, debt-service coverage, investor return"
+    ],
+    [
+      "Mission fit for Trinity",
+      "Matches the public proposal's student-benefit framing",
+      "A hypothetical comparison only; not proposed for Trinity"
+    ]
+  ],
+  "takeaways": [
+    "With no equity, the building alone falls short of today's academic-year room rate by roughly $8,000-$10,000 per bed per year under these illustrative inputs. It approaches break-even (about $500-$1,450 per bed short) only when about half the cost is funded without debt, from reserves, gifts, or other sources.",
+    "The private structure pays more for capital and fees and must hit a return target, so it needs 12-month market rents well above UVM's room rate; whether Burlington's market supports them is unknown until comparables are surveyed.",
+    "Premium features change required rent modestly per month relative to the base cost of the building; the base cost per bed is the dominant driver in both structures.",
+    "Neither table is a feasibility conclusion. The decisive missing inputs are a Trinity-specific cost estimate, UVM's housing-system financial data, and surveyed comparable rents."
+  ]
+}

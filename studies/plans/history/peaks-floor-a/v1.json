@@ -1,0 +1,720 @@
+{
+ "id": "peaks-floor-a",
+ "version": "1",
+ "study": "peaks",
+ "option": "floor",
+ "title": "Trinity Peaks \u00b7 Typical residential floor, test fit A",
+ "subtitle": "Double-loaded bar: 8 four-person suites (north) + 4 six-person suites (south)",
+ "description": "One typical upper floor of a Trinity Peaks wing, assembled from the four-person suite (Option A) and the six-person suite. Two stairs, two elevators, two RA rooms, a floor lounge, laundry, study rooms, trash, and janitor space on a 6-ft corridor.",
+ "declaredBeds": 58,
+ "exterior": [
+  "N",
+  "S"
+ ],
+ "root": "corridor",
+ "drawScale": 5,
+ "chainDims": true,
+ "date": "2026-11-06",
+ "status": "schematic exploration \u2014 exploratory dimensions, not measured or code-reviewed",
+ "rooms": [
+  {
+   "id": "stair1",
+   "name": "Stair 1",
+   "type": "stair",
+   "rect": [
+    0,
+    0,
+    12,
+    28
+   ]
+  },
+  {
+   "id": "ra1",
+   "name": "RA room",
+   "type": "ra",
+   "rect": [
+    112,
+    0,
+    14,
+    14
+   ],
+   "beds": 1
+  },
+  {
+   "id": "study1",
+   "name": "Study room",
+   "type": "study-room",
+   "rect": [
+    126,
+    0,
+    14,
+    14
+   ]
+  },
+  {
+   "id": "lobby",
+   "name": "RA / study vestibule",
+   "type": "corridor",
+   "rect": [
+    112,
+    14,
+    28,
+    6
+   ],
+   "short": "Vestibule"
+  },
+  {
+   "id": "elev1",
+   "name": "Elevator",
+   "type": "elevator",
+   "rect": [
+    112,
+    20,
+    8,
+    8
+   ],
+   "short": "Elev."
+  },
+  {
+   "id": "elev2",
+   "name": "Elevator",
+   "type": "elevator",
+   "rect": [
+    120,
+    20,
+    8,
+    8
+   ],
+   "short": "Elev."
+  },
+  {
+   "id": "pass",
+   "name": "Passage",
+   "type": "corridor",
+   "rect": [
+    128,
+    20,
+    6,
+    8
+   ],
+   "short": "Pass."
+  },
+  {
+   "id": "trash",
+   "name": "Trash / recycling",
+   "type": "trash",
+   "rect": [
+    134,
+    20,
+    6,
+    8
+   ],
+   "short": "Trash"
+  },
+  {
+   "id": "stair2",
+   "name": "Stair 2",
+   "type": "stair",
+   "rect": [
+    240,
+    0,
+    12,
+    28
+   ]
+  },
+  {
+   "id": "corridor",
+   "name": "Corridor",
+   "type": "corridor",
+   "rect": [
+    0,
+    28,
+    252,
+    6
+   ]
+  },
+  {
+   "id": "ra2",
+   "name": "RA room",
+   "type": "ra",
+   "rect": [
+    0,
+    34,
+    12,
+    28
+   ],
+   "beds": 1
+  },
+  {
+   "id": "lounge",
+   "name": "Floor lounge",
+   "type": "lounge",
+   "rect": [
+    12,
+    34,
+    26,
+    28
+   ]
+  },
+  {
+   "id": "laundry",
+   "name": "Laundry",
+   "type": "floor-laundry",
+   "rect": [
+    214,
+    34,
+    16,
+    28
+   ]
+  },
+  {
+   "id": "jan",
+   "name": "Janitor / storage",
+   "type": "mech",
+   "rect": [
+    230,
+    34,
+    10,
+    28
+   ],
+   "short": "Jan."
+  },
+  {
+   "id": "study2",
+   "name": "Group study",
+   "type": "study-room",
+   "rect": [
+    240,
+    34,
+    12,
+    28
+   ],
+   "short": "Study"
+  }
+ ],
+ "instances": [
+  {
+   "id": "N1",
+   "plan": "peaks-p4a",
+   "at": [
+    12,
+    0
+   ]
+  },
+  {
+   "id": "N2",
+   "plan": "peaks-p4a",
+   "at": [
+    37,
+    0
+   ]
+  },
+  {
+   "id": "N3",
+   "plan": "peaks-p4a",
+   "at": [
+    62,
+    0
+   ]
+  },
+  {
+   "id": "N4",
+   "plan": "peaks-p4a",
+   "at": [
+    87,
+    0
+   ]
+  },
+  {
+   "id": "N5",
+   "plan": "peaks-p4a",
+   "at": [
+    140,
+    0
+   ]
+  },
+  {
+   "id": "N6",
+   "plan": "peaks-p4a",
+   "at": [
+    165,
+    0
+   ]
+  },
+  {
+   "id": "N7",
+   "plan": "peaks-p4a",
+   "at": [
+    190,
+    0
+   ]
+  },
+  {
+   "id": "N8",
+   "plan": "peaks-p4a",
+   "at": [
+    215,
+    0
+   ]
+  },
+  {
+   "id": "S1",
+   "plan": "peaks-p6",
+   "at": [
+    38,
+    34
+   ],
+   "flipY": true
+  },
+  {
+   "id": "S2",
+   "plan": "peaks-p6",
+   "at": [
+    82,
+    34
+   ],
+   "flipY": true
+  },
+  {
+   "id": "S3",
+   "plan": "peaks-p6",
+   "at": [
+    126,
+    34
+   ],
+   "flipY": true
+  },
+  {
+   "id": "S4",
+   "plan": "peaks-p6",
+   "at": [
+    170,
+    34
+   ],
+   "flipY": true
+  }
+ ],
+ "doors": [
+  {
+   "between": [
+    "stair1",
+    "corridor"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 0.5,
+   "swing": "stair1",
+   "id": "st1"
+  },
+  {
+   "between": [
+    "stair2",
+    "corridor"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 8.5,
+   "swing": "stair2",
+   "id": "st2"
+  },
+  {
+   "between": [
+    "ra1",
+    "lobby"
+   ],
+   "width": 3,
+   "hinge": "end",
+   "at": 10,
+   "swing": "ra1",
+   "id": "ra1"
+  },
+  {
+   "between": [
+    "study1",
+    "lobby"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 1,
+   "swing": "study1",
+   "id": "sd1"
+  },
+  {
+   "between": [
+    "lobby",
+    "pass"
+   ],
+   "width": 5,
+   "hinge": "start",
+   "at": 0.5,
+   "kind": "opening",
+   "id": "lp"
+  },
+  {
+   "between": [
+    "pass",
+    "corridor"
+   ],
+   "width": 5,
+   "hinge": "start",
+   "at": 0.5,
+   "kind": "opening",
+   "id": "pc"
+  },
+  {
+   "between": [
+    "elev1",
+    "corridor"
+   ],
+   "width": 4,
+   "hinge": "start",
+   "at": 1.5,
+   "kind": "opening",
+   "id": "e1"
+  },
+  {
+   "between": [
+    "elev2",
+    "corridor"
+   ],
+   "width": 4,
+   "hinge": "start",
+   "at": 1.5,
+   "kind": "opening",
+   "id": "e2"
+  },
+  {
+   "between": [
+    "trash",
+    "corridor"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 2.5,
+   "swing": "trash",
+   "id": "tr"
+  },
+  {
+   "between": [
+    "ra2",
+    "corridor"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 8,
+   "swing": "ra2",
+   "id": "ra2"
+  },
+  {
+   "between": [
+    "lounge",
+    "corridor"
+   ],
+   "width": 6,
+   "hinge": "start",
+   "at": 10,
+   "kind": "opening",
+   "id": "lg"
+  },
+  {
+   "between": [
+    "laundry",
+    "corridor"
+   ],
+   "width": 3.5,
+   "hinge": "start",
+   "at": 6,
+   "swing": "laundry",
+   "id": "ld"
+  },
+  {
+   "between": [
+    "jan",
+    "corridor"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 3.5,
+   "swing": "jan",
+   "id": "jn"
+  },
+  {
+   "between": [
+    "study2",
+    "corridor"
+   ],
+   "width": 3,
+   "hinge": "end",
+   "at": 8.5,
+   "swing": "study2",
+   "id": "s2"
+  }
+ ],
+ "windows": [
+  {
+   "room": "ra1",
+   "side": "N",
+   "at": 5,
+   "width": 4
+  },
+  {
+   "room": "study1",
+   "side": "N",
+   "at": 4,
+   "width": 6
+  },
+  {
+   "room": "ra2",
+   "side": "S",
+   "at": 4,
+   "width": 4
+  },
+  {
+   "room": "lounge",
+   "side": "S",
+   "at": 5,
+   "width": 16
+  },
+  {
+   "room": "study2",
+   "side": "S",
+   "at": 3,
+   "width": 6
+  }
+ ],
+ "items": [
+  {
+   "room": "stair1",
+   "kind": "stair",
+   "rect": [
+    0.5,
+    2,
+    11,
+    22
+   ]
+  },
+  {
+   "room": "stair2",
+   "kind": "stair",
+   "rect": [
+    240.5,
+    2,
+    11,
+    22
+   ]
+  },
+  {
+   "room": "elev1",
+   "kind": "elevator",
+   "rect": [
+    112.5,
+    20.5,
+    7,
+    7
+   ]
+  },
+  {
+   "room": "elev2",
+   "kind": "elevator",
+   "rect": [
+    120.5,
+    20.5,
+    7,
+    7
+   ]
+  },
+  {
+   "room": "ra1",
+   "kind": "bed",
+   "rect": [
+    112.5,
+    0.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "ra1",
+   "kind": "desk",
+   "rect": [
+    117,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "ra1",
+   "kind": "wardrobe",
+   "rect": [
+    112.5,
+    10.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "ra2",
+   "kind": "bed",
+   "rect": [
+    0.5,
+    54.67,
+    3.25,
+    6.83
+   ],
+   "head": "S"
+  },
+  {
+   "room": "ra2",
+   "kind": "desk",
+   "rect": [
+    7.5,
+    59.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "ra2",
+   "kind": "wardrobe",
+   "rect": [
+    9.5,
+    44,
+    2,
+    3
+   ]
+  },
+  {
+   "room": "ra2",
+   "kind": "shower",
+   "rect": [
+    0.25,
+    34.25,
+    5,
+    3
+   ]
+  },
+  {
+   "room": "ra2",
+   "kind": "wc",
+   "rect": [
+    0.5,
+    38.5,
+    1.67,
+    2.5
+   ]
+  },
+  {
+   "room": "ra2",
+   "kind": "lav",
+   "rect": [
+    3,
+    39.5,
+    2,
+    1.5
+   ]
+  },
+  {
+   "room": "lounge",
+   "kind": "sofa",
+   "rect": [
+    15,
+    57,
+    10,
+    3
+   ]
+  },
+  {
+   "room": "lounge",
+   "kind": "table-round",
+   "rect": [
+    27,
+    48,
+    6,
+    6
+   ]
+  },
+  {
+   "room": "laundry",
+   "kind": "washer",
+   "rect": [
+    214.5,
+    58.5,
+    3,
+    3
+   ]
+  },
+  {
+   "room": "laundry",
+   "kind": "washer",
+   "rect": [
+    218,
+    58.5,
+    3,
+    3
+   ]
+  },
+  {
+   "room": "laundry",
+   "kind": "washer",
+   "rect": [
+    221.5,
+    58.5,
+    3,
+    3
+   ]
+  },
+  {
+   "room": "laundry",
+   "kind": "washer",
+   "rect": [
+    225,
+    58.5,
+    3,
+    3
+   ]
+  },
+  {
+   "room": "study1",
+   "kind": "desk",
+   "rect": [
+    130,
+    0.5,
+    6,
+    3
+   ]
+  },
+  {
+   "room": "study2",
+   "kind": "desk",
+   "rect": [
+    243,
+    55,
+    6,
+    3
+   ]
+  }
+ ],
+ "assumptions": [
+  "E-SUITE-DEPTH",
+  "E-CORRIDOR",
+  "E-STAIR",
+  "E-ELEV",
+  "E-WALLS",
+  "E-DOOR"
+ ],
+ "designNotes": {
+  "owner": [
+   "Resident assistant rooms, study and common rooms, residential wings that act as smaller neighborhoods (Peaks v1.3)."
+  ],
+  "ai": [
+   "A 252-ft double-loaded bar is a planning unit for counting, not a building shape; real wings would bend around the site.",
+   "Stair placement at bar ends is schematic; egress travel distance and dead-end corridors are not checked."
+  ],
+  "open": [
+   "Shafts, mechanical rooms, and structure are not drawn.",
+   "Accessible suites are not yet included in the floor mix."
+  ]
+ }
+}

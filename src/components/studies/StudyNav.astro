@@ -1,0 +1,18 @@
+---
+import { studyNav } from "../../data/studies";
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<nav class="st-subnav" aria-label="Design studies">
+  <ul class="wrap-wide">
+    {
+      studyNav.map((item) => (
+        <li>
+          <a href={item.href} aria-current={path === item.href ? "page" : undefined}>
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

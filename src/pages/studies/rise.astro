@@ -1,0 +1,117 @@
+---
+import Base from "../../layouts/Base.astro";
+import StudyNav from "../../components/studies/StudyNav.astro";
+import StudyBanner from "../../components/studies/StudyBanner.astro";
+import PlanFigure from "../../components/studies/PlanFigure.astro";
+import Chip from "../../components/studies/Chip.astro";
+import { plan, finance, usd, num } from "../../data/studies";
+import { trinityFigures as F } from "../../data/trinity";
+const a = plan("rise-r4a");
+const b = plan("rise-r4b");
+const rooms = (p: typeof a) => p.rooms as { type: string; area: number }[];
+const baths = (p: typeof a) => rooms(p).filter((r) => r.type === "bath");
+const sum = (xs: { area: number }[]) => xs.reduce((s, r) => s + r.area, 0);
+const prem = finance.premium;
+---
+
+<Base
+  title="Study B · Trinity Rise apartments — Ivan Minier"
+  theme="studies"
+  image="/studies/plans/rise-r4a/rise-r4a-v1.png"
+  description="Original schematic four-bedroom apartment plans for Trinity Rise, comparing shared and ensuite bathrooms, with an amenity and finish evaluation."
+>
+  <header class="st-hero wrap-wide">
+    <div>
+      <p class="eyebrow">Study B · Upperclass apartments</p>
+      <h1>Trinity Rise apartments</h1>
+      <p class="lede">A more independent way to live on campus: private bedrooms, a real kitchen, and laundry at home — tested against what premium features cost.</p>
+    </div>
+    <StudyBanner>The proposal's Rise baseline ({F.riseBeds} beds) is unverified and is not changed here to suit a preferred building.</StudyBanner>
+  </header>
+  <StudyNav />
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Two plans, one envelope</span>
+    <h2>Shared bathrooms or one per bedroom?</h2>
+    <PlanFigure id="rise-r4a" eager />
+    <div style="margin-top:1.5rem"><PlanFigure id="rise-r4b" /></div>
+    <div class="st-table-wrap" tabindex="0" role="region" aria-label="Rise option comparison">
+      <table class="st-table">
+        <thead><tr><th scope="col">Measure</th><th scope="col" class="num">Option A · 2 baths</th><th scope="col" class="num">Option B · 4 ensuite</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Apartment envelope</th><td class="num">{num(a.grossArea)} sf</td><td class="num">{num(b.grossArea)} sf</td></tr>
+          <tr><th scope="row">Area per resident</th><td class="num">{num(a.grossAreaPerBed!)} sf</td><td class="num">{num(b.grossAreaPerBed!)} sf</td></tr>
+          <tr><th scope="row">Bedrooms</th><td class="num">4 × 126 sf</td><td class="num">4 × 126 sf</td></tr>
+          <tr><th scope="row">Bathrooms</th><td class="num">{baths(a).length} ({num(sum(baths(a)))} sf)</td><td class="num">{baths(b).length} ({num(sum(baths(b)))} sf)</td></tr>
+          <tr><th scope="row">Residents per bathroom</th><td class="num">2</td><td class="num">1</td></tr>
+          <tr><th scope="row">Study nook / flex room</th><td class="num">yes / yes</td><td class="num">no / no</td></tr>
+          <tr><th scope="row">Living + kitchen</th><td class="num">364 sf</td><td class="num">364 sf</td></tr>
+        </tbody>
+        <caption>Both options use a 56-ft by 26-ft envelope with exploratory dimensions. Option B gains privacy by giving up the study nook and flex room and shrinking baths to 49–56 sf.</caption>
+      </table>
+    </div>
+    <div class="st-cols">
+      <div class="st-prose">
+        <h3>Reading the plans</h3>
+        <p>
+          Bedrooms sit in two wings of two, so none opens straight onto the living room. The
+          living room takes the centre of the facade; the kitchen and island face the corridor
+          side. Each bedroom has a window, a desk, a wardrobe, and room for an XL twin bed.
+        </p>
+      </div>
+      <div class="st-card">
+        <h3>Not yet drawn <Chip k="untested" /></h3>
+        <ul>
+          <li>Studios and two-bedroom apartments (a mix would change efficiency and rents).</li>
+          <li>An accessible apartment variant.</li>
+          <li>Corner and end units that could daylight the flex room.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Does premium make sense?</span>
+    <h2>Every feature has to earn its place.</h2>
+    <p class="st-prose">
+      The proposal frames Rise around total cost of occupancy, not luxury. The table below tests
+      premium ideas against what residents actually gain. The rent effect comes from the
+      hypothetical private scenario in the <a href="/studies/development-model">development model</a>:
+      each illustrative $10,000 of premium cost per bed needs about {usd(prem[1].extraRentPerMonth)}
+      more rent per bed per month to hold the same return.
+    </p>
+    <div class="st-table-wrap" tabindex="0" role="region" aria-label="Amenity and finish evaluation">
+      <table class="st-table">
+        <thead><tr><th scope="col">Feature</th><th scope="col">Resident benefit</th><th scope="col">Cost and upkeep</th><th scope="col">Durability / risk</th><th scope="col">Verdict for a student-benefit Rise</th></tr></thead>
+        <tbody>
+          <tr><td>Ensuite bathroom per bedroom</td><td>High: privacy, no scheduling</td><td>Doubles plumbing fixtures, waterproofing, and exhaust; more to clean</td><td>More leak points</td><td>Test with residents; consider a 2-bath plus compartmentalised WC first</td></tr>
+          <tr><td>In-unit washer/dryer</td><td>High: daily convenience</td><td>One stack per unit plus venting</td><td>Lint fires, lost common rooms</td><td>Worth it in apartments</td></tr>
+          <tr><td>Study nooks and group study rooms</td><td>High: academic use</td><td>Low: area only</td><td>Low</td><td>Keep</td></tr>
+          <tr><td>Fitness and wellness room</td><td>Medium: replaces a gym trip</td><td>Equipment and replacement cycle</td><td>Medium</td><td>Small, flexible room; partner with UVM recreation</td></tr>
+          <tr><td>Courtyard and covered outdoor space</td><td>High in shoulder seasons</td><td>Landscape and snow maintenance</td><td>Low</td><td>Keep; design for winter sun</td></tr>
+          <tr><td>Rooftop lounge</td><td>Medium: views, events</td><td>Structure, access control, guardrails</td><td>Wind, winter closure</td><td>Optional; seasonal value in Burlington</td></tr>
+          <tr><td>Stone counters, upgraded finishes</td><td>Low to medium</td><td>Higher first cost</td><td>Often more durable</td><td>Choose for durability, not image</td></tr>
+          <tr><td>Bike and ski storage</td><td>High: car-light living</td><td>Low</td><td>Low</td><td>Keep (in the proposal)</td></tr>
+        </tbody>
+        <caption>Qualitative evaluation by the author with AI assistance; no cost data. Ratings are judgements to test in Phase 0 resident surveys, not findings.</caption>
+      </table>
+    </div>
+  </section>
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Design framework · Rise</span>
+    <h2>Independent living, still part of campus.</h2>
+    <div class="st-cols-3">
+      <div><h3>Identity</h3><p>A design-forward, hospitality-influenced building: a ground-floor lobby with Northline Cafe, warm timber and stone at entries, and quieter, durable materials upstairs. Explored as an aesthetic, kept separate from any rent or affordability commitment.</p></div>
+      <div><h3>Entry and lobby</h3><p>A double-height lobby with seating, a package room sized for peak move-in weeks, and a winter vestibule. The lobby should work as a study-social node rather than a showroom.</p></div>
+      <div><h3>Apartments</h3><p>Light, durable interiors: resilient flooring, solid-surface or quartz counters chosen for wear, generous closets, and blackout shades for bedrooms.</p></div>
+      <div><h3>Outdoor</h3><p>A courtyard oriented for low winter sun, covered bike parking, and a link to Trinity Way and the garage.</p></div>
+      <div><h3>Wellness</h3><p>Small, bookable rooms for fitness, stretching, and quiet, near the lobby for supervision.</p></div>
+      <div><h3>Operations</h3><p>Fewer, better amenities that a residential life team can actually staff; every room must be cleanable in summer turnover.</p></div>
+    </div>
+    <div class="st-figs" style="margin-top:2rem">
+      <figure><img src="/media/trinity/rise-courtyard.webp" width="1094" height="730" alt="AI-assisted concept of a landscaped residential courtyard with seating." loading="lazy" /><figcaption>Rise courtyard mood from the public proposal. AI-assisted concept visualization, not a design.</figcaption></figure>
+      <figure><img src="/media/trinity/rise-wellness.webp" width="1200" height="527" alt="AI-assisted concept of a small residential wellness and fitness room." loading="lazy" /><figcaption>Wellness room mood from the public proposal. AI-assisted concept visualization.</figcaption></figure>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,57 @@
+<svg style="font-variant-ligatures:none;font-feature-settings:'calt' 0,'case' 0,'liga' 0,'ss01' 0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" role="img" aria-labelledby="t d" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif">
+  <title id="t">Trinity Redistricting phasing and decision gates</title>
+  <desc id="d">Read left to right. Phase 0, a feasibility study covering bed baseline and demand, zoning and massing, utilities and cost, a resident continuity plan, and public-benefit metrics, comes first. Gate 1 and Gate 2 sit between Phase 0 and Phase 1: Gate 1 requires Phase 0 to confirm demand, a viable scale, cost, utilities, and a resident-continuity path; Gate 2 requires resident protections, dining scope, and public-realm commitments before Trinity Peaks proceeds. Phase 1 is Trinity Peaks and Northside Dining, about 1,450 to 1,600 beds, replacement beds first. Gate 3 sits between Phase 1 and Phase 2 and requires demand, affordability, height, parking, and delivery model to be validated. Phase 2 is Trinity Rise, about 300 to 400 beds with an 8 to 12 story target whose height has not been tested; it would exceed the adopted 55-foot ceiling and need a zoning amendment, and demand, price, and delivery model are tested first. Trinity Way, utilities, landscape, and parking garage, and Cottages preservation continue across all phases, with annual reporting. Each gate comes before the phase it authorizes; if a gate fails, the plan is revised or stops.</desc>
+  <rect width="1200" height="640" fill="#f6faf3"/>
+  <text x="60" y="64" font-size="26" font-weight="900" fill="#061b12">Each phase has to earn the next one.</text>
+  <text x="60" y="94" font-size="15" fill="#5a7469">Phases advance only when the decision gate before them is met. If a gate fails, the plan is revised or stops.</text>
+
+  <!-- Phase cards -->
+  <g>
+    <rect x="60" y="130" width="300" height="250" rx="22" fill="#fff" stroke="#d5e2d8" stroke-width="2"/>
+    <rect x="60" y="130" width="300" height="10" rx="5" fill="#f1b82d"/>
+    <text x="84" y="180" font-size="14" font-weight="900" fill="#7a5600" letter-spacing="2">PHASE 0</text>
+    <text x="84" y="212" font-size="24" font-weight="900" fill="#061b12">Feasibility study</text>
+    <text x="84" y="250" font-size="15" fill="#123629">• Bed baseline and demand</text>
+    <text x="84" y="276" font-size="15" fill="#123629">• Zoning and massing fit</text>
+    <text x="84" y="302" font-size="15" fill="#123629">• Utilities and cost</text>
+    <text x="84" y="328" font-size="15" fill="#123629">• Resident continuity plan</text>
+    <text x="84" y="354" font-size="15" fill="#123629">• Public-benefit metrics</text>
+  </g>
+  <g>
+    <rect x="450" y="130" width="300" height="250" rx="22" fill="#046a48"/>
+    <text x="474" y="180" font-size="14" font-weight="900" fill="#f1b82d" letter-spacing="2">PHASE 1</text>
+    <text x="474" y="212" font-size="24" font-weight="900" fill="#fff">Trinity Peaks +</text>
+    <text x="474" y="240" font-size="24" font-weight="900" fill="#fff">Northside Dining</text>
+    <text x="474" y="278" font-size="15" fill="#e3f2ea">• About 1,450-1,600 beds</text>
+    <text x="474" y="304" font-size="15" fill="#e3f2ea">• Replacement beds first</text>
+    <text x="474" y="330" font-size="15" fill="#e3f2ea">• Dining and ResLife core</text>
+    <text x="474" y="356" font-size="15" fill="#e3f2ea">• Sized to demand data</text>
+  </g>
+  <g>
+    <rect x="840" y="130" width="300" height="250" rx="22" fill="#123629"/>
+    <text x="864" y="180" font-size="14" font-weight="900" fill="#f1b82d" letter-spacing="2">PHASE 2</text>
+    <text x="864" y="212" font-size="24" font-weight="900" fill="#fff">Trinity Rise</text>
+    <text x="864" y="250" font-size="15" fill="#e3f2ea">• About 300-400 upperclass beds</text>
+    <text x="864" y="276" font-size="15" fill="#e3f2ea">• 8-12 story target; height untested</text>
+    <text x="864" y="302" font-size="15" fill="#e3f2ea">• Needs rezoning (55-ft cap today)</text>
+    <text x="864" y="328" font-size="15" fill="#e3f2ea">• Demand, price, delivery model</text>
+    <text x="878" y="352" font-size="15" fill="#e3f2ea">tested first</text>
+  </g>
+
+  <!-- Gates -->
+  <g font-weight="900" font-size="13" text-anchor="middle">
+    <circle cx="405" cy="215" r="30" fill="#f1b82d"/><text x="405" y="211" fill="#061b12">GATE</text><text x="405" y="227" fill="#061b12">1</text>
+    <circle cx="405" cy="295" r="30" fill="#f1b82d"/><text x="405" y="291" fill="#061b12">GATE</text><text x="405" y="307" fill="#061b12">2</text>
+    <circle cx="795" cy="255" r="30" fill="#f1b82d"/><text x="795" y="251" fill="#061b12">GATE</text><text x="795" y="267" fill="#061b12">3</text>
+  </g>
+
+  <!-- Continuous bands -->
+  <rect x="60" y="410" width="1080" height="56" rx="14" fill="#fff6dc" stroke="#f1b82d" stroke-width="2"/>
+  <text x="84" y="444" font-size="16" font-weight="800" fill="#7a5600">Continuous: Trinity Way · parking garage · utilities and stormwater · landscape · Cottages preservation</text>
+  <rect x="60" y="480" width="1080" height="56" rx="14" fill="#eaf3e6" stroke="#046a48" stroke-width="2"/>
+  <text x="84" y="514" font-size="16" font-weight="800" fill="#046a48">Annual reporting: forced triples · occupancy · net-new beds · upperclass capture · parking · 05401 indicators</text>
+
+  <text x="60" y="576" font-size="13" fill="#5a7469"><tspan font-weight="800">Gate 1:</tspan> Phase 0 confirms demand, a viable scale, a scoped cost, utilities, and a resident-continuity path.</text>
+  <text x="60" y="598" font-size="13" fill="#5a7469"><tspan font-weight="800">Gate 2:</tspan> Trinity Peaks advances only with resident protections, dining scope, and public-realm commitments attached.</text>
+  <text x="60" y="620" font-size="13" fill="#5a7469"><tspan font-weight="800">Gate 3:</tspan> Trinity Rise advances only after demand, affordability, height, parking, and delivery model are validated.</text>
+</svg>

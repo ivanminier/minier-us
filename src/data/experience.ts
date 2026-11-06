@@ -5,6 +5,8 @@ export const education = {
   department: "CDAE · College of Agriculture and Life Sciences",
   date: "Expected May 2028",
   location: "Burlington, Vermont",
+  /** Supplied by Ivan in the November 2026 brief; institution not supplied, so none is named. */
+  prior: "Previous undergraduate study in Business Administration and Marketing",
 };
 export const experience = [
   {
@@ -84,6 +86,10 @@ export const capabilities = [
   {
     title: "Tools",
     text: "Microsoft Office, Google Workspace, Canva, iMovie, PeopleSoft; basic Photoshop and Illustrator.",
+  },
+  {
+    title: "Housing & development studies",
+    text: "Independent housing feasibility research, directing AI-assisted schematic floor plans and test fits, and reading conceptual development models (Excel); self-directed, not professional practice.",
   },
   {
     title: "Product work",

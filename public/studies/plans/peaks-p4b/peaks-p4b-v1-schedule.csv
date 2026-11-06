@@ -1,0 +1,11 @@
+id,module,name,type,category,width_ft,depth_ft,area_sf,beds
+s1,,"Single 1",bedroom,unit,9.5,12,114,1
+s2,,"Single 2",bedroom,unit,9.5,12,114,1
+s3,,"Single 3",bedroom,unit,9.5,12,114,1
+s4,,"Single 4",bedroom,unit,9.5,12,114,1
+lounge,,"Suite lounge",suite-lounge,unit,38,8,304,0
+bath1,,"Bath 1",bath,unit,7.5,8,60,0
+stor,,"Storage",storage,unit,7.5,8,60,0
+entry,,"Entry",entry,unit,8,8,64,0
+nook,,"Study nook",study,unit,7.5,8,60,0
+bath2,,"Bath 2",bath,unit,7.5,8,60,0

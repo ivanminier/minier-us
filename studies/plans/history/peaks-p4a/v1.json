@@ -1,0 +1,400 @@
+{
+ "id": "peaks-p4a",
+ "version": "1",
+ "study": "peaks",
+ "option": "A",
+ "title": "Trinity Peaks \u00b7 Four-person suite, Option A",
+ "subtitle": "Two doubles + two bathrooms off a shared vestibule",
+ "description": "Four residents in two double rooms. Each pair of residents shares one of two full bathrooms (shower, WC, lavatory) reached from a small vestibule, with two suite storage closets.",
+ "declaredBeds": 4,
+ "exterior": [
+  "N"
+ ],
+ "drawScale": 20,
+ "date": "2026-11-06",
+ "status": "schematic exploration \u2014 exploratory dimensions, not measured or code-reviewed",
+ "rooms": [
+  {
+   "id": "brA",
+   "name": "Double A",
+   "type": "bedroom",
+   "rect": [
+    0,
+    0,
+    12.5,
+    15
+   ],
+   "beds": 2
+  },
+  {
+   "id": "brB",
+   "name": "Double B",
+   "type": "bedroom",
+   "rect": [
+    12.5,
+    0,
+    12.5,
+    15
+   ],
+   "beds": 2
+  },
+  {
+   "id": "bathA",
+   "name": "Bath A",
+   "type": "bath",
+   "rect": [
+    0,
+    15,
+    8,
+    8
+   ]
+  },
+  {
+   "id": "vest",
+   "name": "Suite vestibule",
+   "type": "entry",
+   "rect": [
+    8,
+    15,
+    9,
+    13
+   ],
+   "short": "Vestibule"
+  },
+  {
+   "id": "bathB",
+   "name": "Bath B",
+   "type": "bath",
+   "rect": [
+    17,
+    15,
+    8,
+    8
+   ]
+  },
+  {
+   "id": "stA",
+   "name": "Storage",
+   "type": "storage",
+   "rect": [
+    0,
+    23,
+    8,
+    5
+   ]
+  },
+  {
+   "id": "stB",
+   "name": "Storage",
+   "type": "storage",
+   "rect": [
+    17,
+    23,
+    8,
+    5
+   ]
+  }
+ ],
+ "doors": [
+  {
+   "between": [
+    "vest",
+    "OUT"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 3,
+   "swing": "vest",
+   "side": "S",
+   "id": "entry"
+  },
+  {
+   "between": [
+    "vest",
+    "brA"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 0.75,
+   "swing": "brA"
+  },
+  {
+   "between": [
+    "vest",
+    "brB"
+   ],
+   "width": 3,
+   "hinge": "end",
+   "at": 0.75,
+   "swing": "brB"
+  },
+  {
+   "between": [
+    "vest",
+    "bathA"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 4,
+   "swing": "bathA"
+  },
+  {
+   "between": [
+    "vest",
+    "bathB"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 4,
+   "swing": "bathB"
+  },
+  {
+   "between": [
+    "vest",
+    "stA"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 1,
+   "swing": "vest"
+  },
+  {
+   "between": [
+    "vest",
+    "stB"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 1,
+   "swing": "vest"
+  }
+ ],
+ "windows": [
+  {
+   "room": "brA",
+   "side": "N",
+   "at": 3.75,
+   "width": 5
+  },
+  {
+   "room": "brB",
+   "side": "N",
+   "at": 3.75,
+   "width": 5
+  }
+ ],
+ "items": [
+  {
+   "room": "brA",
+   "kind": "desk",
+   "rect": [
+    0.5,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "brA",
+   "kind": "desk",
+   "rect": [
+    8,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "brA",
+   "kind": "bed",
+   "rect": [
+    0.5,
+    3.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "brA",
+   "kind": "bed",
+   "rect": [
+    8.75,
+    3.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "brA",
+   "kind": "wardrobe",
+   "rect": [
+    0.5,
+    12.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "brA",
+   "kind": "wardrobe",
+   "rect": [
+    4,
+    12.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "bathA",
+   "kind": "shower",
+   "rect": [
+    0.25,
+    15.25,
+    5,
+    3
+   ]
+  },
+  {
+   "room": "bathA",
+   "kind": "wc",
+   "rect": [
+    0.5,
+    20.25,
+    1.67,
+    2.5
+   ]
+  },
+  {
+   "room": "bathA",
+   "kind": "lav",
+   "rect": [
+    3,
+    21.25,
+    2,
+    1.5
+   ]
+  },
+  {
+   "room": "brB",
+   "kind": "desk",
+   "rect": [
+    20.5,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "brB",
+   "kind": "desk",
+   "rect": [
+    13,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "brB",
+   "kind": "bed",
+   "rect": [
+    21.25,
+    3.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "brB",
+   "kind": "bed",
+   "rect": [
+    13.0,
+    3.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "brB",
+   "kind": "wardrobe",
+   "rect": [
+    21.5,
+    12.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "brB",
+   "kind": "wardrobe",
+   "rect": [
+    18,
+    12.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "bathB",
+   "kind": "shower",
+   "rect": [
+    19.75,
+    15.25,
+    5,
+    3
+   ]
+  },
+  {
+   "room": "bathB",
+   "kind": "wc",
+   "rect": [
+    22.83,
+    20.25,
+    1.67,
+    2.5
+   ]
+  },
+  {
+   "room": "bathB",
+   "kind": "lav",
+   "rect": [
+    20,
+    21.25,
+    2,
+    1.5
+   ]
+  }
+ ],
+ "assumptions": [
+  "S-MATTRESS",
+  "S-FURNITURE-LIST",
+  "S-UH-TYPOLOGY",
+  "E-BED",
+  "E-DESK",
+  "E-WARDROBE",
+  "E-DOUBLE",
+  "E-BATH",
+  "E-SUITE-DEPTH",
+  "E-WALLS",
+  "E-DOOR"
+ ],
+ "designNotes": {
+  "owner": [
+   "Suite-style rooms, singles and doubles, no forced triples (Trinity Peaks v1.3 goals).",
+   "Practical storage."
+  ],
+  "ai": [
+   "Two bathrooms for four residents rather than one, so morning use is not a queue.",
+   "Doubles sized to hold two beds unlofted, leaving the window wall for desks.",
+   "A vestibule keeps bathroom doors out of the bedrooms for privacy."
+  ],
+  "open": [
+   "Accessible version: a larger bathroom and 5-ft turning space would widen the module.",
+   "Whether the vestibule is worth 117 sf versus a larger room."
+  ]
+ }
+}

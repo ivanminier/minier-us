@@ -1,0 +1,35 @@
+---
+import { plan } from "../../data/studies";
+interface Props {
+  id: string;
+  caption?: string;
+  eager?: boolean;
+}
+const { id, caption, eager = false } = Astro.props;
+const p = plan(id);
+const label = `${p.title}, version ${p.version}: ${p.subtitle}. ${p.beds} beds in a ${p.width} by ${p.depth} foot envelope (${p.grossArea.toLocaleString("en-US")} square feet). Schematic drawing with exploratory dimensions.`;
+---
+
+<figure class="st-plan">
+  <a href={p.files.png} data-image-link>
+    <img
+      src={p.files.svg}
+      alt={label}
+      loading={eager ? "eager" : "lazy"}
+      decoding="async"
+      width={p.svgW}
+      height={p.svgH}
+    />
+  </a>
+  <figcaption>
+    {caption ?? p.subtitle} · v{p.version} · {p.beds} beds · {p.grossArea.toLocaleString("en-US")} sf envelope
+  </figcaption>
+  <div class="st-downloads" aria-label={`Downloads for ${p.title}`}>
+    <a href={p.files.pdf}>PDF</a>
+    <a href={p.files.png}>PNG</a>
+    <a href={p.files.svg}>SVG</a>
+    <a href={p.files.dxf}>DXF (feet)</a>
+    <a href={p.files.csv}>Room schedule (CSV)</a>
+    <a href={p.files.json}>Checks + schedule (JSON)</a>
+  </div>
+</figure>

@@ -1,0 +1,31 @@
+{
+  "_about": "Editable inputs for studies/model/testfit.mjs. Status of each block is stated; see studies/assumptions.json for ids.",
+  "date": "2026-11-06",
+  "height": {
+    "status": "exploratory (E-FTF-RES, E-FTF-GROUND, E-ROOF); the CDO height-measurement method is not analysed",
+    "groundFtf": 15,
+    "roofAllowance": 6,
+    "riseFtf": 10.5
+  },
+  "peaks": {
+    "status": "Floor counts from the Trinity Peaks v1.3 description (5-6 residential floors over a partly below-grade ground floor) plus a low-rise alternative tested against the 55-ft ceiling. The hidden duplex level is not modelled.",
+    "residentialFloors": [
+      { "label": "Low-rise alternative", "floors": 3 },
+      { "label": "Mid (v1.3 lower bound)", "floors": 5 },
+      { "label": "High (v1.3 upper bound)", "floors": 6 }
+    ]
+  },
+  "rise": {
+    "status": "exploratory: all four-bedroom units (Option A), double-loaded, 6-ft corridor, 30-ft core and stair zone",
+    "unitsPerFloor": [6, 8, 10],
+    "stories": [8, 10, 12],
+    "corridor": 6,
+    "coreLength": 30
+  },
+  "site": {
+    "status": "external, approximate: 'roughly 21 acres' as reported in 2022 coverage cited on trinityredistricting.com (context.html; VTDigger and Seven Days). Parcel boundaries, retained buildings, and buffers are not surveyed.",
+    "acres": 21,
+    "coverage": 0.4,
+    "coverageSource": "Burlington CDO Sec. 4.5.2(e), 40% lot coverage as reported in Trinity facts 'zoning_current' (not a legal review)"
+  }
+}

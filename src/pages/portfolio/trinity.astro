@@ -1,0 +1,416 @@
+---
+import Base from "../../layouts/Base.astro";
+import { trinityFigures as F, trinityRelease, tf } from "../../data/trinity";
+import { plan, testfit as T, finance as D, usd, num } from "../../data/studies";
+const floor = plan("peaks-floor-a");
+const A = D.results.A;
+const prem25 = D.premium.find((p) => p.premiumPerBed === 25000)!;
+const peaksMid = T.peaks.find((s) => s.residentialFloors === 5)!;
+const peaksHigh = T.peaks.find((s) => s.residentialFloors === 6)!;
+const inBase = T.rise.filter((r) => r.inBaseline);
+const pages = 11;
+---
+
+<Base
+  title="Trinity — portfolio presentation — Ivan Minier"
+  theme="studies"
+  image="/studies/plans/peaks-floor-a/peaks-floor-a-v1.png"
+  description="A concise, admissions-style presentation of Ivan Minier's independent Trinity Redistricting housing proposal and residential design studies."
+>
+  <div class="pf-tools wrap-wide">
+    <p>A concise presentation of the Trinity work for graduate admissions and internships — {pages} landscape pages.</p>
+    <div class="actions">
+      <a class="btn" href="/ivan-minier-trinity-portfolio.pdf" download>Download PDF ↓</a>
+      <button class="btn btn-ghost" type="button" data-print>Print</button>
+    </div>
+  </div>
+
+  <div class="pf-deck">
+    <section class="pf-page pf-cover" aria-label="Cover">
+      <div>
+        <p class="pf-kicker">Portfolio · Housing & development · {trinityRelease.dateLabel.split(" ").slice(-1)} </p>
+        <h1>Trinity Redistricting<br /><span>and residential design studies</span></h1>
+        <p class="pf-lede">An independent, concept-stage housing proposal for the University of Vermont's Trinity Campus, and the floor plans, test fits, and development arithmetic I built to test it.</p>
+        <p class="pf-by">Ivan Minier · Public Communication, University of Vermont (expected May 2028) · minier.us</p>
+      </div>
+      <img src="/media/trinity/print/cover.jpg" width="1200" height="475" alt="AI-assisted concept visualization of the Trinity district." />
+      <p class="pf-foot">Independent student work. Not an official UVM or City of Burlington plan, not endorsed by either, and not professional architecture, planning, or underwriting. Renderings are AI-assisted concept visualizations.</p>
+    </section>
+
+    <section class="pf-page" aria-label="Overview">
+      <header><span>01</span><h2>Project overview</h2></header>
+      <div class="pf-2">
+        <div>
+          <p>Trinity Redistricting proposes replacing aging residence halls on UVM's Trinity Campus with a more complete residential district: first- and second-year halls (Trinity Peaks), upperclass apartments (Trinity Rise), a rebuilt Northside Dining, one walking and service spine with a garage (Trinity Way), and the preserved Cottages.</p>
+          <p>The ask is modest: a meeting and help scoping a Phase 0 feasibility study — not adoption of a design or a budget.</p>
+        </div>
+        <dl class="pf-kpis">
+          <div><dt>Trinity Peaks</dt><dd>{F.peaksBeds}</dd></div>
+          <div><dt>Trinity Rise</dt><dd>{F.riseBeds}</dd></div>
+          <div><dt>Combined new beds</dt><dd>{F.newBeds}</dd></div>
+          <div><dt>Replaced (to verify)</dt><dd>≈565</dd></div>
+          <div><dt>Net-new beds</dt><dd>≈{F.netNewBeds.replace("about ", "")}</dd></div>
+          <div><dt>Illustrative capital range</dt><dd>{F.capitalRange}</dd></div>
+        </dl>
+      </div>
+      <p class="pf-src">Figures: Trinity Redistricting Version {trinityRelease.version}, {trinityRelease.dateLabel} — authored assumptions and calculations, not measured outcomes or budgets.</p>
+    </section>
+
+    <section class="pf-page" aria-label="My role">
+      <header><span>02</span><h2>My role</h2></header>
+      <div class="pf-2">
+        <ul>
+          <li><strong>Originated the concept</strong> and set its program and goals.</li>
+          <li><strong>Researched</strong> UVM and City records, zoning text, news, and cost benchmarks — 48 cited sources.</li>
+          <li><strong>Authored</strong> the bed accounting, capital study allowances, scenarios, and an evidence ledger that labels every figure.</li>
+          <li><strong>Wrote and published</strong> the proposal, memo, 16-slide deck, and an accessible document packet.</li>
+          <li><strong>Directed</strong> AI-assisted concept visualizations, and built the public site and Trinity AI with AI-assisted development.</li>
+          <li><strong>Extended it</strong> with original schematic plans, test fits, and a development model (Nov 2026).</li>
+        </ul>
+        <div class="pf-note">
+          <h3>What I did not do</h3>
+          <p>No engineer, architect, planner, surveyor, or cost estimator has reviewed the work. I am a student exploring the field, not a licensed professional; drawings are schematic and dimensions are exploratory.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf-page" aria-label="Site and problem">
+      <header><span>03</span><h2>The site and the planning problem</h2></header>
+      <div class="pf-2">
+        <div>
+          <ul>
+            <li>UVM proposed about 520 beds at Trinity in 2022; the City Council tabled the zoning change in February 2023.</li>
+            <li>Adopted overlay, as reported: 40% coverage, 115-ft Colchester Avenue buffer, <strong>55-ft absolute height ceiling</strong>. The 2022 80-ft recommendation was not adopted.</li>
+            <li>Halls to be replaced hold about 562–567 beds — from secondary listings that need UVM confirmation.</li>
+            <li>Northside Dining sits inside McAuley, which the plan demolishes.</li>
+            <li>Chittenden County rental vacancy: about 3.3% (June 2026).</li>
+          </ul>
+        </div>
+        <figure><img src="/media/trinity/print/map.jpg" width="1200" height="759" alt="Concept district map of the Trinity site with building footprints and paths." /><figcaption>Concept district map. Footprints are concept-stage, not surveyed.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="pf-page" aria-label="Research">
+      <header><span>04</span><h2>Research: every number wears a label</h2></header>
+      <div class="pf-2">
+        <div>
+          <p>Each figure in the proposal carries a status — documented, owner-confirmed, author assumption, calculated, scenario, or unresolved — and cites sources. Pages, PDFs, and Trinity AI are generated from one data file, and a build check fails if they disagree.</p>
+          <p>Three releases (May, Oct 28, Oct 29–30, 2026) each removed claims before adding features: an unsupported 15% rental-pressure claim was withdrawn, Rise was cut from 400–500 to 300–400 beds, and replaced beds were raised to ≈565 once demolitions were counted.</p>
+        </div>
+        <table class="pf-table">
+          <thead><tr><th>Figure</th><th>Value</th><th>Status</th></tr></thead>
+          <tbody>
+            {["peaks_beds", "rise_beds", "replacement_beds", "net_new_beds", "capital_range"].map((id) => { const f = tf(id); return <tr><td>{f.label}</td><td>{f.text}</td><td>{f.status}</td></tr>; })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="pf-page" aria-label="Early concepts">
+      <header><span>05</span><h2>Early concepts and design direction</h2></header>
+      <div class="pf-3">
+        <figure><img src="/media/trinity/print/peaks.jpg" width="1200" height="686" alt="AI-assisted concept of Trinity Peaks." /><figcaption>Trinity Peaks: wings read as no more than six floors. AI-assisted.</figcaption></figure>
+        <figure><img src="/media/trinity/print/rise.jpg" width="1100" height="733" alt="AI-assisted concept of Trinity Rise." /><figcaption>Trinity Rise, set deep in the site; height untested. AI-assisted.</figcaption></figure>
+        <figure><img src="/media/trinity/print/northside.jpg" width="1200" height="683" alt="AI-assisted concept of Northside Dining." /><figcaption>Northside Dining rebuilt inside Peaks. AI-assisted.</figcaption></figure>
+      </div>
+      <p>Direction: calm, durable rooms over luxury; real common space close to bedrooms; residential wings as smaller neighbourhoods. The renderings set intent — the gap they left (no plans, no test fit) is what the next pages address.</p>
+    </section>
+
+    <section class="pf-page" aria-label="Original floor plans">
+      <header><span>06</span><h2>Original floor plans: Trinity Peaks</h2></header>
+      <div class="pf-2 pf-plans">
+        <img src={plan("peaks-p4a").files.svg} width={plan("peaks-p4a").svgW} height={plan("peaks-p4a").svgH} alt="Schematic plan of a four-person Trinity Peaks suite with two doubles and two bathrooms." />
+        <img src={plan("peaks-p6").files.svg} width={plan("peaks-p6").svgW} height={plan("peaks-p6").svgH} alt="Schematic plan of a six-person Trinity Peaks suite with two doubles, two singles, and a lounge." />
+      </div>
+      <p>Suites drawn from data and checked automatically for overlaps, access, door swings, and bed counts. Compared with suite-style halls such as UVM's University Heights (typology only), Option A is generous, which points to a compact next iteration.</p>
+    </section>
+
+    <section class="pf-page" aria-label="Typical floor and apartments">
+      <header><span>07</span><h2>A typical floor, and Trinity Rise apartments</h2></header>
+      <img class="pf-wide" src={floor.files.svg} width={floor.svgW} height={floor.svgH} alt="Schematic typical floor of Trinity Peaks with twelve suites, two RA rooms, lounge, laundry, stairs, and elevators." />
+      <div class="pf-2 pf-plans">
+        <p>Typical floor: {floor.beds} beds on a 252 × 62 ft floor plate ({floor.grossAreaPerBed} sf per bed), assembled from the suites so a change to a suite updates the floor.</p>
+        <img src={plan("rise-r4a").files.svg} width={plan("rise-r4a").svgW} height={plan("rise-r4a").svgH} alt="Schematic plan of a four-bedroom Trinity Rise apartment." />
+      </div>
+    </section>
+
+    <section class="pf-page" aria-label="Development assumptions">
+      <header><span>08</span><h2>Test fits and development assumptions</h2></header>
+      <div class="pf-2">
+        <ul>
+          <li><strong>Peaks:</strong> {F.peaksBeds} beds at 5–6 residential floors ≈ {peaksHigh.low.barsEquivalent}–{peaksMid.high.barsEquivalent} floor plates, roughly {Math.round(peaksMid.heightFt.at105)}–{Math.round(peaksHigh.heightFt.at105)} ft tall — above 55 ft. Under 55 ft only ≈{T.peaksUnder55["10.5"]} floors fit, doubling the footprint.</li>
+          <li><strong>Rise:</strong> 300–400 beds at 8–12 stories only with {inBase.map((r) => `${r.unitsPerFloor} units/floor × ${r.stories} stories`).join(" or ")}.</li>
+          <li><strong>Development model:</strong> 300 beds; per-bed cost benchmark $233k (Virginia Tech 2026, not a Trinity estimate); financing, opex, and targets are illustrative and labelled.</li>
+        </ul>
+        <div class="pf-note">
+          <h3>Key result</h3>
+          <p>At benchmark cost and full debt financing, debt service alone is ≈{usd(A.debtService / 300)} per bed per year — more than UVM's 2026-27 University Heights suite-single rate ($12,090, nine-month room only). A project-level test, not UVM's system-level view: it shows why system financing, gifts, a partner, or lower cost matter.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf-page" aria-label="Alternatives and tradeoffs">
+      <header><span>09</span><h2>Design alternatives and tradeoffs</h2></header>
+      <table class="pf-table">
+        <thead><tr><th>Choice</th><th>Option</th><th>Gain</th><th>Cost</th></tr></thead>
+        <tbody>
+          <tr><td>Peaks suite</td><td>Two doubles (A) vs four singles (B)</td><td>B: privacy for everyone</td><td>B: ≈52% more area per resident</td></tr>
+          <tr><td>Peaks suite</td><td>Six-person, no triples</td><td>Lounge doubles as circulation</td><td>3 residents per bath</td></tr>
+          <tr><td>Peaks height</td><td>5–6 floors vs ≤55 ft</td><td>Smaller footprint</td><td>Needs a zoning amendment</td></tr>
+          <tr><td>Rise bathrooms</td><td>2 shared vs 4 ensuite</td><td>Privacy, no scheduling</td><td>Loses study and flex rooms; ≈{usd(prem25.extraRentPerMonth)}/bed/month per $25k premium (illustrative)</td></tr>
+          <tr><td>Laundry</td><td>Every floor vs fewer, larger rooms</td><td>Fewer rooms frees ≈448 sf/floor</td><td>Less convenient</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="pf-page" aria-label="Next">
+      <header><span>10</span><h2>Findings, and what I would investigate next</h2></header>
+      <div class="pf-2">
+        <div>
+          <h3>Findings</h3>
+          <ul>
+            <li>Height is the hinge between capacity, cost, and approvals — it must be tested in feet.</li>
+            <li>Replacement counts move net-new beds by hundreds; they need UVM's data.</li>
+            <li>A public-benefit Rise at UVM-like rents is not self-financing under these assumptions.</li>
+            <li>Premium features are modest per month, but must earn their place in resident value.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Next</h3>
+          <ul>
+            <li>UVM headcounts, triple counts, and designed beds by building.</li>
+            <li>A surveyed site plan and a planner's read of the overlay.</li>
+            <li>Compact suite iteration, accessible units, and a unit mix for Rise.</li>
+            <li>Surveyed comparable rents and professional cost input.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="pf-src">Sources and full documentation: trinityredistricting.com (proposal, documents, methods) · minier.us/work/trinity-redistricting · minier.us/studies (plans, test fits, model, assumption register). UVM rates: uvm.edu/housingdining/costs (observed Nov 6, 2026).</p>
+    </section>
+  </div>
+
+  <script>
+    document.querySelector("[data-print]")?.addEventListener("click", () => window.print());
+  </script>
+</Base>
+
+<style is:global>
+  .pf-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-block: 28px;
+  }
+  .pf-deck {
+    display: grid;
+    gap: 28px;
+    justify-items: center;
+    padding: 0 16px 80px;
+  }
+  .pf-page {
+    width: min(100%, 11in);
+    aspect-ratio: 11 / 8.5;
+    background: #fbfaf6;
+    color: #1f2b2c;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 12px 30px rgba(0, 0, 0, 0.08);
+    padding: 0.55in 0.65in;
+    display: flex;
+    flex-direction: column;
+    gap: 0.18in;
+    overflow: hidden;
+    font-size: 14pt;
+    line-height: 1.45;
+    --line: #cfccc2;
+    --accent: #8b4d36;
+  }
+  .pf-page a {
+    color: inherit;
+  }
+  .pf-page header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    border-bottom: 1px solid #cfccc2;
+    padding-bottom: 0.08in;
+  }
+  .pf-page header span {
+    font: 600 10pt/1 "IBM Plex Sans", sans-serif;
+    color: #8b4d36;
+    letter-spacing: 0.1em;
+  }
+  .pf-page h2 {
+    font-size: 27pt;
+    margin: 0;
+  }
+  .pf-page h3 {
+    font-size: 15pt;
+    margin: 0 0 0.05in;
+  }
+  .pf-page ul {
+    margin: 0;
+    padding-left: 1.1em;
+  }
+  .pf-page li {
+    margin-bottom: 0.06in;
+  }
+  .pf-page p {
+    margin: 0 0 0.08in;
+  }
+  .pf-page figure {
+    margin: 0;
+  }
+  .pf-page img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .pf-page figcaption,
+  .pf-src {
+    font-size: 10pt;
+    color: #4a524d;
+    margin-top: 0.04in;
+  }
+  .pf-src {
+    margin-top: auto;
+  }
+  .pf-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.35in;
+    align-items: start;
+    min-height: 0;
+  }
+  .pf-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.2in;
+  }
+  .pf-plans img {
+    border: 1px solid #cfccc2;
+    max-height: 5.2in;
+    object-fit: contain;
+    background: #fff;
+  }
+  .pf-wide {
+    max-height: 3.2in;
+    object-fit: contain;
+    border: 1px solid #cfccc2;
+  }
+  .pf-note {
+    background: #ebe7dc;
+    padding: 0.16in 0.2in;
+  }
+  .pf-kpis {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #cfccc2;
+    border: 1px solid #cfccc2;
+    margin: 0;
+  }
+  .pf-kpis div {
+    background: #fbfaf6;
+    padding: 0.1in 0.14in;
+  }
+  .pf-kpis dt {
+    font-size: 10pt;
+    color: #4a524d;
+  }
+  .pf-kpis dd {
+    margin: 0;
+    font: 500 21pt/1.2 "Literata", serif;
+  }
+  .pf-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12pt;
+  }
+  .pf-table th,
+  .pf-table td {
+    text-align: left;
+    padding: 0.05in 0.08in;
+    border-bottom: 1px solid #cfccc2;
+    vertical-align: top;
+  }
+  .pf-table thead th {
+    background: #ebe7dc;
+  }
+  .pf-cover {
+    display: grid;
+    grid-template-columns: 0.95fr 1.25fr;
+    grid-template-rows: 1fr auto;
+    gap: 0.35in;
+    align-items: center;
+  }
+  .pf-cover h1 {
+    font-size: 42pt;
+    margin: 0 0 0.15in;
+  }
+  .pf-cover h1 span {
+    font-size: 24pt;
+    color: #8b4d36;
+  }
+  .pf-cover .pf-foot {
+    grid-column: 1 / -1;
+    font-size: 8.5pt;
+    color: #4a524d;
+    border-top: 1px solid #cfccc2;
+    padding-top: 0.08in;
+  }
+  .pf-kicker {
+    font: 600 9pt/1.4 "IBM Plex Sans", sans-serif;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8b4d36;
+  }
+  .pf-lede {
+    font-size: 16pt;
+  }
+  .pf-by {
+    font-size: 11pt;
+    color: #4a524d;
+  }
+  @media (max-width: 900px) {
+    .pf-page {
+      aspect-ratio: auto;
+      padding: 24px 20px;
+      font-size: 1rem;
+    }
+    .pf-2,
+    .pf-3,
+    .pf-cover {
+      grid-template-columns: 1fr;
+    }
+    .pf-page {
+      overflow: visible;
+    }
+    .pf-table {
+      display: block;
+      overflow-x: auto;
+      font-size: 0.85rem;
+    }
+  }
+  @page portfolio {
+    size: 11in 8.5in;
+    margin: 0;
+  }
+  @media print {
+    .pf-tools {
+      display: none !important;
+    }
+    .pf-deck {
+      display: block;
+      padding: 0;
+    }
+    .pf-page {
+      page: portfolio;
+      width: 11in;
+      height: 8.5in;
+      box-shadow: none;
+      break-after: page;
+      font-size: 14pt !important;
+    }
+  }
+</style>

@@ -1,0 +1,646 @@
+{
+ "id": "rise-r4a",
+ "version": "1",
+ "study": "rise",
+ "option": "A",
+ "title": "Trinity Rise \u00b7 Four-bedroom apartment, Option A",
+ "subtitle": "Four private bedrooms + two shared bathrooms",
+ "description": "Four private bedrooms in two wings around a central living room and kitchen on the facade. Two shared bathrooms, in-unit laundry, a study nook, and a flex room.",
+ "declaredBeds": 4,
+ "exterior": [
+  "N"
+ ],
+ "drawScale": 14,
+ "minSfPerBed": 110,
+ "date": "2026-11-06",
+ "status": "schematic exploration \u2014 exploratory dimensions, not measured or code-reviewed",
+ "rooms": [
+  {
+   "id": "br1",
+   "name": "Bedroom 1",
+   "type": "bedroom",
+   "rect": [
+    0,
+    0,
+    10.5,
+    12
+   ],
+   "beds": 1,
+   "labelAt": [
+    7.2,
+    6.5
+   ]
+  },
+  {
+   "id": "br2",
+   "name": "Bedroom 2",
+   "type": "bedroom",
+   "rect": [
+    10.5,
+    0,
+    10.5,
+    12
+   ],
+   "beds": 1,
+   "labelAt": [
+    3.3,
+    6.5
+   ]
+  },
+  {
+   "id": "living",
+   "name": "Living / kitchen",
+   "type": "living",
+   "rect": [
+    21,
+    0,
+    14,
+    26
+   ],
+   "labelAt": [
+    7,
+    9
+   ]
+  },
+  {
+   "id": "br3",
+   "name": "Bedroom 3",
+   "type": "bedroom",
+   "rect": [
+    35,
+    0,
+    10.5,
+    12
+   ],
+   "beds": 1,
+   "labelAt": [
+    7.2,
+    6.5
+   ]
+  },
+  {
+   "id": "br4",
+   "name": "Bedroom 4",
+   "type": "bedroom",
+   "rect": [
+    45.5,
+    0,
+    10.5,
+    12
+   ],
+   "beds": 1,
+   "labelAt": [
+    3.3,
+    6.5
+   ]
+  },
+  {
+   "id": "hallL",
+   "name": "Hall",
+   "type": "hall",
+   "rect": [
+    0,
+    12,
+    21,
+    5
+   ]
+  },
+  {
+   "id": "bath1",
+   "name": "Bath 1",
+   "type": "bath",
+   "rect": [
+    0,
+    17,
+    8,
+    9
+   ]
+  },
+  {
+   "id": "laundry",
+   "name": "Laundry",
+   "type": "laundry",
+   "rect": [
+    8,
+    17,
+    5,
+    9
+   ]
+  },
+  {
+   "id": "study",
+   "name": "Study nook",
+   "type": "study",
+   "rect": [
+    13,
+    17,
+    8,
+    9
+   ]
+  },
+  {
+   "id": "hallR",
+   "name": "Hall",
+   "type": "hall",
+   "rect": [
+    35,
+    12,
+    21,
+    5
+   ]
+  },
+  {
+   "id": "flex",
+   "name": "Flex / storage",
+   "type": "storage",
+   "rect": [
+    35,
+    17,
+    8,
+    9
+   ],
+   "short": "Flex"
+  },
+  {
+   "id": "stor",
+   "name": "Linen",
+   "type": "storage",
+   "rect": [
+    43,
+    17,
+    5,
+    9
+   ]
+  },
+  {
+   "id": "bath2",
+   "name": "Bath 2",
+   "type": "bath",
+   "rect": [
+    48,
+    17,
+    8,
+    9
+   ]
+  }
+ ],
+ "doors": [
+  {
+   "between": [
+    "living",
+    "OUT"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 5.5,
+   "swing": "living",
+   "side": "S",
+   "id": "entry"
+  },
+  {
+   "between": [
+    "hallL",
+    "living"
+   ],
+   "width": 4,
+   "hinge": "start",
+   "at": 0.5,
+   "kind": "opening"
+  },
+  {
+   "between": [
+    "hallR",
+    "living"
+   ],
+   "width": 4,
+   "hinge": "start",
+   "at": 0.5,
+   "kind": "opening"
+  },
+  {
+   "between": [
+    "br1",
+    "hallL"
+   ],
+   "width": 3,
+   "hinge": "end",
+   "at": 6.5,
+   "swing": "br1"
+  },
+  {
+   "between": [
+    "br2",
+    "hallL"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 1,
+   "swing": "br2"
+  },
+  {
+   "between": [
+    "br3",
+    "hallR"
+   ],
+   "width": 3,
+   "hinge": "end",
+   "at": 6.5,
+   "swing": "br3"
+  },
+  {
+   "between": [
+    "br4",
+    "hallR"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 1,
+   "swing": "br4"
+  },
+  {
+   "between": [
+    "bath1",
+    "hallL"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 3,
+   "swing": "bath1"
+  },
+  {
+   "between": [
+    "laundry",
+    "hallL"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 1,
+   "swing": "laundry"
+  },
+  {
+   "between": [
+    "study",
+    "hallL"
+   ],
+   "width": 4,
+   "hinge": "start",
+   "at": 2,
+   "kind": "opening"
+  },
+  {
+   "between": [
+    "flex",
+    "hallR"
+   ],
+   "width": 4,
+   "hinge": "start",
+   "at": 2,
+   "kind": "opening"
+  },
+  {
+   "between": [
+    "stor",
+    "hallR"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 1.5,
+   "swing": "stor"
+  },
+  {
+   "between": [
+    "bath2",
+    "hallR"
+   ],
+   "width": 2.5,
+   "hinge": "end",
+   "at": 2.5,
+   "swing": "bath2"
+  }
+ ],
+ "windows": [
+  {
+   "room": "br1",
+   "side": "N",
+   "at": 3.25,
+   "width": 4
+  },
+  {
+   "room": "br2",
+   "side": "N",
+   "at": 3.25,
+   "width": 4
+  },
+  {
+   "room": "br3",
+   "side": "N",
+   "at": 3.25,
+   "width": 4
+  },
+  {
+   "room": "br4",
+   "side": "N",
+   "at": 3.25,
+   "width": 4
+  },
+  {
+   "room": "living",
+   "side": "N",
+   "at": 4,
+   "width": 6
+  }
+ ],
+ "items": [
+  {
+   "room": "br1",
+   "kind": "bed",
+   "rect": [
+    0.5,
+    0.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "br1",
+   "kind": "desk",
+   "rect": [
+    6,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "br1",
+   "kind": "wardrobe",
+   "rect": [
+    0.5,
+    9.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "br2",
+   "kind": "desk",
+   "rect": [
+    11,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "br2",
+   "kind": "bed",
+   "rect": [
+    17.25,
+    0.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "br2",
+   "kind": "wardrobe",
+   "rect": [
+    17.5,
+    9.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "bath1",
+   "kind": "shower",
+   "rect": [
+    0.25,
+    23,
+    5,
+    2.75
+   ]
+  },
+  {
+   "room": "bath1",
+   "kind": "wc",
+   "rect": [
+    5.75,
+    23.25,
+    1.67,
+    2.5
+   ]
+  },
+  {
+   "room": "bath1",
+   "kind": "lav",
+   "rect": [
+    0.25,
+    17.25,
+    2,
+    1.5
+   ]
+  },
+  {
+   "room": "laundry",
+   "kind": "washer",
+   "rect": [
+    8.5,
+    23,
+    2.5,
+    2.5
+   ]
+  },
+  {
+   "room": "study",
+   "kind": "desk",
+   "rect": [
+    13.5,
+    23.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "br4",
+   "kind": "bed",
+   "rect": [
+    52.25,
+    0.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "br4",
+   "kind": "desk",
+   "rect": [
+    46,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "br4",
+   "kind": "wardrobe",
+   "rect": [
+    52.5,
+    9.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "br3",
+   "kind": "desk",
+   "rect": [
+    41,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "br3",
+   "kind": "bed",
+   "rect": [
+    35.5,
+    0.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "br3",
+   "kind": "wardrobe",
+   "rect": [
+    35.5,
+    9.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "bath2",
+   "kind": "shower",
+   "rect": [
+    50.75,
+    23,
+    5,
+    2.75
+   ]
+  },
+  {
+   "room": "bath2",
+   "kind": "wc",
+   "rect": [
+    48.58,
+    23.25,
+    1.67,
+    2.5
+   ]
+  },
+  {
+   "room": "bath2",
+   "kind": "lav",
+   "rect": [
+    53.75,
+    17.25,
+    2,
+    1.5
+   ]
+  },
+  {
+   "room": "living",
+   "kind": "fridge",
+   "rect": [
+    21.25,
+    17.5,
+    2.5,
+    2.5
+   ]
+  },
+  {
+   "room": "living",
+   "kind": "range",
+   "rect": [
+    21.25,
+    20.25,
+    2.25,
+    2.5
+   ]
+  },
+  {
+   "room": "living",
+   "kind": "counter",
+   "rect": [
+    21.25,
+    23.5,
+    4.75,
+    2.25
+   ],
+   "label": "sink"
+  },
+  {
+   "room": "living",
+   "kind": "counter",
+   "rect": [
+    25,
+    18,
+    5,
+    2.5
+   ],
+   "label": "island"
+  },
+  {
+   "room": "living",
+   "kind": "table-round",
+   "rect": [
+    29,
+    11,
+    4,
+    4
+   ]
+  },
+  {
+   "room": "living",
+   "kind": "sofa",
+   "rect": [
+    22.5,
+    3,
+    8,
+    3
+   ]
+  }
+ ],
+ "assumptions": [
+  "S-MATTRESS",
+  "E-BED",
+  "E-DESK",
+  "E-WARDROBE",
+  "E-RISE-BR",
+  "E-BATH",
+  "E-APT-DEPTH",
+  "E-WALLS",
+  "E-DOOR"
+ ],
+ "designNotes": {
+  "owner": [
+   "Private bedrooms, bathrooms, kitchen and living room, laundry and storage (Trinity Rise program)."
+  ],
+  "ai": [
+   "Bedrooms in two wings of two, so no bedroom opens straight onto the living room.",
+   "Living room takes the centre of the facade; kitchen sits on the corridor side with an island.",
+   "Two residents per bathroom keeps the bath count, and cost, down."
+  ],
+  "open": [
+   "Accessible unit variant not drawn.",
+   "Flex room has no daylight."
+  ]
+ }
+}

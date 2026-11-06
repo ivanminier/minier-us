@@ -1,0 +1,10 @@
+id,module,name,type,category,width_ft,depth_ft,area_sf,beds
+brA,,"Double A",bedroom,unit,12.5,15,187.5,2
+s1,,"Single 1",bedroom,unit,9.5,15,142.5,1
+s2,,"Single 2",bedroom,unit,9.5,15,142.5,1
+brB,,"Double B",bedroom,unit,12.5,15,187.5,2
+bath1,,"Bath 1",bath,unit,8,8,64,0
+st1,,"Storage",storage,unit,8,5,40,0
+lounge,,"Suite lounge",suite-lounge,unit,28,13,364,0
+bath2,,"Bath 2",bath,unit,8,8,64,0
+st2,,"Storage",storage,unit,8,5,40,0

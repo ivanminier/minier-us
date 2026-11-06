@@ -1,0 +1,510 @@
+{
+ "id": "peaks-p4b",
+ "version": "1",
+ "study": "peaks",
+ "option": "B",
+ "title": "Trinity Peaks \u00b7 Four-person suite, Option B",
+ "subtitle": "Four singles + two bathrooms + suite lounge",
+ "description": "Four residents, each in a single room on the facade, sharing a suite lounge strip, two full bathrooms, a storage room, and a small study nook.",
+ "declaredBeds": 4,
+ "exterior": [
+  "N"
+ ],
+ "drawScale": 18,
+ "minSfPerBed": 90,
+ "date": "2026-11-06",
+ "status": "schematic exploration \u2014 exploratory dimensions, not measured or code-reviewed",
+ "rooms": [
+  {
+   "id": "s1",
+   "name": "Single 1",
+   "type": "bedroom",
+   "rect": [
+    0.0,
+    0,
+    9.5,
+    12
+   ],
+   "beds": 1,
+   "labelAt": [
+    3.2,
+    6
+   ]
+  },
+  {
+   "id": "s2",
+   "name": "Single 2",
+   "type": "bedroom",
+   "rect": [
+    9.5,
+    0,
+    9.5,
+    12
+   ],
+   "beds": 1,
+   "labelAt": [
+    3.2,
+    6
+   ]
+  },
+  {
+   "id": "s3",
+   "name": "Single 3",
+   "type": "bedroom",
+   "rect": [
+    19.0,
+    0,
+    9.5,
+    12
+   ],
+   "beds": 1,
+   "labelAt": [
+    3.2,
+    6
+   ]
+  },
+  {
+   "id": "s4",
+   "name": "Single 4",
+   "type": "bedroom",
+   "rect": [
+    28.5,
+    0,
+    9.5,
+    12
+   ],
+   "beds": 1,
+   "labelAt": [
+    3.2,
+    6
+   ]
+  },
+  {
+   "id": "lounge",
+   "name": "Suite lounge",
+   "type": "suite-lounge",
+   "rect": [
+    0,
+    12,
+    38,
+    8
+   ]
+  },
+  {
+   "id": "bath1",
+   "name": "Bath 1",
+   "type": "bath",
+   "rect": [
+    0,
+    20,
+    7.5,
+    8
+   ]
+  },
+  {
+   "id": "stor",
+   "name": "Storage",
+   "type": "storage",
+   "rect": [
+    7.5,
+    20,
+    7.5,
+    8
+   ]
+  },
+  {
+   "id": "entry",
+   "name": "Entry",
+   "type": "entry",
+   "rect": [
+    15,
+    20,
+    8,
+    8
+   ]
+  },
+  {
+   "id": "nook",
+   "name": "Study nook",
+   "type": "study",
+   "rect": [
+    23,
+    20,
+    7.5,
+    8
+   ]
+  },
+  {
+   "id": "bath2",
+   "name": "Bath 2",
+   "type": "bath",
+   "rect": [
+    30.5,
+    20,
+    7.5,
+    8
+   ]
+  }
+ ],
+ "doors": [
+  {
+   "between": [
+    "entry",
+    "OUT"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 2.5,
+   "swing": "entry",
+   "side": "S",
+   "id": "entry"
+  },
+  {
+   "between": [
+    "entry",
+    "lounge"
+   ],
+   "width": 4,
+   "hinge": "start",
+   "at": 2,
+   "kind": "opening"
+  },
+  {
+   "between": [
+    "s1",
+    "lounge"
+   ],
+   "width": 3,
+   "hinge": "end",
+   "at": 5.75,
+   "swing": "s1"
+  },
+  {
+   "between": [
+    "s2",
+    "lounge"
+   ],
+   "width": 3,
+   "hinge": "end",
+   "at": 5.75,
+   "swing": "s2"
+  },
+  {
+   "between": [
+    "s3",
+    "lounge"
+   ],
+   "width": 3,
+   "hinge": "end",
+   "at": 5.75,
+   "swing": "s3"
+  },
+  {
+   "between": [
+    "s4",
+    "lounge"
+   ],
+   "width": 3,
+   "hinge": "end",
+   "at": 5.75,
+   "swing": "s4"
+  },
+  {
+   "between": [
+    "bath1",
+    "lounge"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 2,
+   "swing": "bath1"
+  },
+  {
+   "between": [
+    "stor",
+    "lounge"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 2.5,
+   "swing": "stor"
+  },
+  {
+   "between": [
+    "nook",
+    "lounge"
+   ],
+   "width": 4,
+   "hinge": "start",
+   "at": 1.5,
+   "kind": "opening"
+  },
+  {
+   "between": [
+    "bath2",
+    "lounge"
+   ],
+   "width": 2.5,
+   "hinge": "end",
+   "at": 3,
+   "swing": "bath2"
+  }
+ ],
+ "windows": [
+  {
+   "room": "s1",
+   "side": "N",
+   "at": 2.75,
+   "width": 4
+  },
+  {
+   "room": "s2",
+   "side": "N",
+   "at": 2.75,
+   "width": 4
+  },
+  {
+   "room": "s3",
+   "side": "N",
+   "at": 2.75,
+   "width": 4
+  },
+  {
+   "room": "s4",
+   "side": "N",
+   "at": 2.75,
+   "width": 4
+  }
+ ],
+ "items": [
+  {
+   "room": "s1",
+   "kind": "desk",
+   "rect": [
+    0.5,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "s1",
+   "kind": "bed",
+   "rect": [
+    6.0,
+    0.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "s1",
+   "kind": "wardrobe",
+   "rect": [
+    0.5,
+    9.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "s2",
+   "kind": "desk",
+   "rect": [
+    10.0,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "s2",
+   "kind": "bed",
+   "rect": [
+    15.5,
+    0.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "s2",
+   "kind": "wardrobe",
+   "rect": [
+    10.0,
+    9.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "s3",
+   "kind": "desk",
+   "rect": [
+    19.5,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "s3",
+   "kind": "bed",
+   "rect": [
+    25.0,
+    0.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "s3",
+   "kind": "wardrobe",
+   "rect": [
+    19.5,
+    9.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "s4",
+   "kind": "desk",
+   "rect": [
+    29.0,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "s4",
+   "kind": "bed",
+   "rect": [
+    34.5,
+    0.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "s4",
+   "kind": "wardrobe",
+   "rect": [
+    29.0,
+    9.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "bath1",
+   "kind": "shower",
+   "rect": [
+    0.25,
+    25,
+    5,
+    2.75
+   ]
+  },
+  {
+   "room": "bath1",
+   "kind": "wc",
+   "rect": [
+    5.5,
+    25.25,
+    1.67,
+    2.5
+   ]
+  },
+  {
+   "room": "bath1",
+   "kind": "lav",
+   "rect": [
+    5.25,
+    20.25,
+    2,
+    1.5
+   ]
+  },
+  {
+   "room": "bath2",
+   "kind": "shower",
+   "rect": [
+    32.75,
+    25,
+    5,
+    2.75
+   ]
+  },
+  {
+   "room": "bath2",
+   "kind": "wc",
+   "rect": [
+    30.83,
+    25.25,
+    1.67,
+    2.5
+   ]
+  },
+  {
+   "room": "bath2",
+   "kind": "lav",
+   "rect": [
+    30.75,
+    20.25,
+    2,
+    1.5
+   ]
+  },
+  {
+   "room": "lounge",
+   "kind": "sofa",
+   "rect": [
+    12,
+    13,
+    8,
+    3
+   ]
+  },
+  {
+   "room": "lounge",
+   "kind": "table-round",
+   "rect": [
+    23,
+    14.5,
+    4,
+    4
+   ]
+  }
+ ],
+ "assumptions": [
+  "S-MATTRESS",
+  "S-FURNITURE-LIST",
+  "S-UH-TYPOLOGY",
+  "E-BED",
+  "E-DESK",
+  "E-WARDROBE",
+  "E-SINGLE",
+  "E-BATH",
+  "E-SUITE-DEPTH",
+  "E-WALLS",
+  "E-DOOR"
+ ],
+ "designNotes": {
+  "owner": [
+   "Singles available in the Peaks mix; suite-style; study and common space."
+  ],
+  "ai": [
+   "Every resident gets a private room with a window; the trade-off is 52% more suite area per bed than Option A.",
+   "The lounge strip has no window in a mid-floor position; an end-of-wing placement could daylight it."
+  ],
+  "open": [
+   "Whether the extra area per bed is affordable under a UVM rate structure (see the finance study)."
+  ]
+ }
+}

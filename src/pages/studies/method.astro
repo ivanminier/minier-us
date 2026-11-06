@@ -1,0 +1,106 @@
+---
+import Base from "../../layouts/Base.astro";
+import StudyNav from "../../components/studies/StudyNav.astro";
+import StudyBanner from "../../components/studies/StudyBanner.astro";
+import Chip from "../../components/studies/Chip.astro";
+import { assumptions, plans } from "../../data/studies";
+import { trinityRelease } from "../../data/trinity";
+const A = assumptions.assumptions as { id: string; value: string; status: string; use: string; source?: string; url?: string; observed?: string }[];
+---
+
+<Base
+  title="Method, sources & assumptions — Ivan Minier"
+  theme="studies"
+  description="How the Trinity Residential Design Studies are made: the assumption register, sources, AI use, checks, and the written-feedback revision workflow."
+>
+  <header class="st-hero wrap-wide">
+    <div>
+      <p class="eyebrow">Studies · Method</p>
+      <h1>Method, sources & assumptions</h1>
+      <p class="lede">How the drawings and models are made, what they rely on, and how to change them.</p>
+    </div>
+    <StudyBanner />
+  </header>
+  <StudyNav />
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">How the drawings are made</span>
+    <div class="st-cols">
+      <div class="st-prose">
+        <h2>Drawings from data, not pictures.</h2>
+        <p>
+          Each plan is a small, editable data file: rooms as rectangles in feet, doors on shared
+          walls, windows on exterior walls, and furniture and fixtures. A generator draws walls,
+          door swings, windows, labels, dimensions, and a title block, and exports SVG, PNG, PDF,
+          DXF (for CAD, in feet), and a room schedule.
+        </p>
+        <p>
+          Before anything is drawn, a checker tests the geometry: rooms that overlap, doors that do
+          not sit on a shared wall, rooms with no access, windows on interior walls, furniture
+          outside its room or overlapping, door swings that hit furniture, and bed counts that do
+          not match. It caught three real conflicts while the first drafts were made.
+        </p>
+        <p>
+          Floors are assembled from suites by reference, so changing a suite updates every floor
+          that uses it. Whole-building test fits and the development model read their numbers from
+          the generated schedules, and Trinity figures come from the proposal's own data
+          (Version {trinityRelease.version}).
+        </p>
+      </div>
+      <div class="st-card">
+        <h3>Who did what</h3>
+        <ul>
+          <li><strong>Ivan Minier:</strong> the Trinity program and goals (Peaks and Rise), design intent, the choice of University Heights as a reference, the source floor plans supplied for benchmarking, and review of every output.</li>
+          <li><strong>AI assistance (Claude):</strong> drafting layouts and options, writing the generator, checks, test-fit and finance arithmetic, and first drafts of page text. AI suggestions are listed separately in each plan's design notes.</li>
+          <li><strong>No professional</strong> architect, engineer, planner, or cost consultant has reviewed this work.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Revising a plan</span>
+    <h2>Change the drawings by writing what you want.</h2>
+    <ol class="st-prose">
+      <li>Describe the change in plain words — "make the six-person lounge two feet deeper", "swap Rise Option A's flex room for a third bathroom", "replace suites N7 and N8 with an accessible suite".</li>
+      <li>The current version is frozen into the plan's history before anything changes.</li>
+      <li>The plan's data file is edited and its version number raised; new dimensions are added to the assumption register.</li>
+      <li>All drawings, schedules, floors that use the plan, test fits, and model inputs are regenerated and re-checked; any error stops the build.</li>
+      <li>The change is logged with whose instruction it was (mine or an AI suggestion), and the before/after beds and areas.</li>
+    </ol>
+    <p class="caption">Current plans: {plans.map((p) => `${p.id} v${p.version}`).join(" · ")}. Full instructions ship with the source files (studies/README.md).</p>
+  </section>
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Assumption register</span>
+    <h2>Every dimension, and where it came from.</h2>
+    <div class="st-table-wrap" tabindex="0" role="region" aria-label="Assumption register">
+      <table class="st-table">
+        <thead><tr><th scope="col">Id</th><th scope="col">Value</th><th scope="col">Status</th><th scope="col">Used for / source</th></tr></thead>
+        <tbody>
+          {A.map((a) => (
+            <tr>
+              <td>{a.id}</td>
+              <td>{a.value}</td>
+              <td><Chip k={a.status} /></td>
+              <td>{a.use}{a.source && <><br /><small>{a.url ? <a href={a.url}>{a.source}</a> : a.source}{a.observed && ` · observed ${a.observed}`}</small></>}</td>
+            </tr>
+          ))}
+        </tbody>
+        <caption>Updated {assumptions.updated}. "Exploratory" values have no measured basis and must be replaced by measured or professionally reviewed values before any reliance. "Reference" values were read from UVM floor plans supplied by the author; those drawings are not published here.</caption>
+      </table>
+    </div>
+  </section>
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Sources</span>
+    <h2>Sources used in the studies.</h2>
+    <ul class="st-prose">
+      <li>Trinity Redistricting, Version {trinityRelease.version} ({trinityRelease.dateLabel}) — figures, zoning summary, benchmarks, and source ledger: <a href="https://trinityredistricting.com/methods.html">trinityredistricting.com/methods.html</a></li>
+      <li>UVM Housing & Dining, University Heights North and South (room types, bathroom and kitchen arrangement), observed 6 Nov 2026: <a href="https://www.uvm.edu/housingdining/university-heights-north-and-south">uvm.edu</a></li>
+      <li>UVM Housing & Dining, Costs (AY 2026-27 and 2027-28 room rates), observed 6 Nov 2026: <a href="https://www.uvm.edu/housingdining/costs">uvm.edu/housingdining/costs</a></li>
+      <li>UVM Housing & Dining, Fall 2026 move-in guide (mattress size and provided furniture), observed 6 Nov 2026: <a href="https://www.uvm.edu/housingdining/move-guide-fall-2026">uvm.edu</a></li>
+      <li>University Heights North + South floor plans (UVM), supplied by the author for reference; room areas only, not reproduced.</li>
+    </ul>
+  </section>
+</Base>

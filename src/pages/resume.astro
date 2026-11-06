@@ -7,12 +7,13 @@ import {
   laundryDates,
 } from "../data/experience";
 import { laundryStatus } from "../data/projects";
+import { trinityFigures as F } from "../data/trinity";
 ---
 
 <Base
   title="Résumé — Ivan Minier"
   theme="resume"
-  description="Education, product work, employment, campus leadership, and capabilities of Ivan Minier."
+  description="Education, housing and development studies, product work, employment, campus leadership, and capabilities of Ivan Minier."
 >
   <article class="resume-page wrap-wide">
     <header class="resume-heading">
@@ -49,6 +50,8 @@ import { laundryStatus } from "../data/projects";
               {education.program}
               <br />
               {education.department}
+              <br />
+              {education.prior}
             </p>
             <span class="date">
               {education.date} · {education.location}
@@ -120,11 +123,21 @@ import { laundryStatus } from "../data/projects";
         <section class="resume-section">
           <h2>Selected independent projects</h2>
           <div class="resume-entry">
-            <h3>Trinity Redistricting</h3>
-            <p>
-              Independent student housing concept: research, planning, writing,
-              and public documentation. Not an official UVM or City plan.
-            </p>
+            <h3>Trinity Redistricting — Originator & author</h3>
+            <span class="date">2026–Present</span>
+            <ul>
+              <li>Originated an independent, concept-stage housing feasibility proposal for UVM's Trinity Campus ({F.newBeds} beds, {F.capitalRange} illustrative capital study range); not an official UVM or City plan.</li>
+              <li>Built an evidence ledger of 48 cited sources with a status label on every figure; published a proposal, memo, deck, and accessible document packet.</li>
+              <li>Developed the public site and Trinity AI, a retrieval-augmented assistant (AI-assisted development).</li>
+            </ul>
+          </div>
+          <div class="resume-entry">
+            <h3>Trinity Residential Design Studies — Independent portfolio study</h3>
+            <span class="date">November 2026</span>
+            <ul>
+              <li>Directed AI-assisted schematic suite and apartment plans, a typical-floor test fit, and whole-building capacity scenarios from my own program and feedback.</li>
+              <li>Directed and reviewed an AI-assisted conceptual development model comparing public-benefit and hypothetical private scenarios, with labelled illustrative inputs.</li>
+            </ul>
           </div>
           <div class="resume-entry">
             <h3>UVM LaundryLink — Student prototype</h3>

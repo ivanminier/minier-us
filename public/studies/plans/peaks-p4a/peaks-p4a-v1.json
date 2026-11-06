@@ -1,0 +1,133 @@
+{
+  "id": "peaks-p4a",
+  "title": "Trinity Peaks · Four-person suite, Option A",
+  "version": "1",
+  "date": "2026-11-06",
+  "status": "schematic exploration — exploratory dimensions, not measured or code-reviewed",
+  "envelope": {
+    "width": 25,
+    "depth": 28,
+    "grossArea": 700
+  },
+  "beds": 4,
+  "sumRoomArea": 700,
+  "areaByCategory": {
+    "unit": 700
+  },
+  "grossAreaPerBed": 175,
+  "modules": [],
+  "rooms": [
+    {
+      "id": "brA",
+      "module": null,
+      "name": "Double A",
+      "type": "bedroom",
+      "category": "unit",
+      "width": 12.5,
+      "depth": 15,
+      "area": 187.5,
+      "beds": 2
+    },
+    {
+      "id": "brB",
+      "module": null,
+      "name": "Double B",
+      "type": "bedroom",
+      "category": "unit",
+      "width": 12.5,
+      "depth": 15,
+      "area": 187.5,
+      "beds": 2
+    },
+    {
+      "id": "bathA",
+      "module": null,
+      "name": "Bath A",
+      "type": "bath",
+      "category": "unit",
+      "width": 8,
+      "depth": 8,
+      "area": 64,
+      "beds": 0
+    },
+    {
+      "id": "vest",
+      "module": null,
+      "name": "Suite vestibule",
+      "type": "entry",
+      "category": "unit",
+      "width": 9,
+      "depth": 13,
+      "area": 117,
+      "beds": 0
+    },
+    {
+      "id": "bathB",
+      "module": null,
+      "name": "Bath B",
+      "type": "bath",
+      "category": "unit",
+      "width": 8,
+      "depth": 8,
+      "area": 64,
+      "beds": 0
+    },
+    {
+      "id": "stA",
+      "module": null,
+      "name": "Storage",
+      "type": "storage",
+      "category": "unit",
+      "width": 8,
+      "depth": 5,
+      "area": 40,
+      "beds": 0
+    },
+    {
+      "id": "stB",
+      "module": null,
+      "name": "Storage",
+      "type": "storage",
+      "category": "unit",
+      "width": 8,
+      "depth": 5,
+      "area": 40,
+      "beds": 0
+    }
+  ],
+  "assumptions": [
+    "S-MATTRESS",
+    "S-FURNITURE-LIST",
+    "S-UH-TYPOLOGY",
+    "E-BED",
+    "E-DESK",
+    "E-WARDROBE",
+    "E-DOUBLE",
+    "E-BATH",
+    "E-SUITE-DEPTH",
+    "E-WALLS",
+    "E-DOOR"
+  ],
+  "checks": {
+    "errors": [],
+    "warnings": [],
+    "checked": [
+      "rooms do not overlap",
+      "every door sits on a wall shared by the rooms it joins and fits it",
+      "every room is reachable from the entry/corridor",
+      "windows only on declared exterior walls and fit them",
+      "furniture and fixtures sit inside their room and do not overlap",
+      "door swings are clear of furniture and fixtures",
+      "declared beds equal beds drawn and beds counted",
+      "bedroom area per bed against a study threshold",
+      "room areas reconcile to the envelope"
+    ],
+    "notChecked": [
+      "building, fire, or accessibility code compliance",
+      "turning circles and accessible clearances",
+      "structure, shafts, and mechanical space",
+      "egress travel distance",
+      "furniture fit beyond rectangle overlap"
+    ]
+  }
+}

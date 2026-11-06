@@ -1,0 +1,23 @@
+---
+interface Props {
+  k: string;
+  label?: string;
+}
+const { k, label } = Astro.props;
+const names: Record<string, string> = {
+  sourced: "Sourced",
+  external: "Documented",
+  assumption: "Author assumption",
+  exploratory: "Exploratory",
+  illustrative: "Illustrative",
+  study: "From this study",
+  calculated: "Calculated",
+  reference: "Reference",
+  ai: "AI-assisted",
+  untested: "Untested",
+  unresolved: "Unresolved",
+  scenario: "Scenario",
+};
+---
+
+<span class="st-chip" data-k={k}>{label ?? names[k] ?? k}</span>

@@ -1,0 +1,143 @@
+---
+import Base from "../../layouts/Base.astro";
+import StudyNav from "../../components/studies/StudyNav.astro";
+import StudyBanner from "../../components/studies/StudyBanner.astro";
+import PlanFigure from "../../components/studies/PlanFigure.astro";
+import { plans, plan, testfit, finance, usd, num } from "../../data/studies";
+import { trinityFigures as F, trinityRelease } from "../../data/trinity";
+const floor = plan("peaks-floor-a");
+const A = finance.results.A;
+const tall = testfit.rise.filter((r) => r.inBaseline);
+const peaksMid = testfit.peaks.find((s) => s.residentialFloors === 5)!;
+const peaksHigh = testfit.peaks.find((s) => s.residentialFloors === 6)!;
+const peaksLow = testfit.peaks.find((s) => s.residentialFloors === 3)!;
+const prem25 = finance.premium.find((p) => p.premiumPerBed === 25000)!;
+---
+
+<Base
+  title="Trinity Residential Design Studies — Ivan Minier"
+  theme="studies"
+  image="/studies/plans/peaks-floor-a/peaks-floor-a-v1.png"
+  description="Independent schematic floor plans, whole-building test fits, and a preliminary development model exploring Trinity Peaks and Trinity Rise. Not UVM designs."
+>
+  <header class="st-hero wrap-wide">
+    <div>
+      <p class="eyebrow">Portfolio · Built environment · November 2026</p>
+      <h1>Trinity Residential Design Studies</h1>
+      <p class="lede">
+        Can the rooms behind the Trinity Redistricting renderings actually be drawn — and do the
+        numbers still work when they are?
+      </p>
+    </div>
+    <StudyBanner />
+  </header>
+  <StudyNav />
+
+  <section class="wrap-wide st-section">
+    <div class="st-split">
+      <div class="st-prose">
+        <span class="st-num">Why these studies exist</span>
+        <h2>The proposal had renderings and bed counts, but no floor plans.</h2>
+        <p>
+          The public proposal (Version {trinityRelease.version}) sets targets of {F.peaksBeds} beds
+          for Trinity Peaks and {F.riseBeds} for Trinity Rise, and says plainly that no massing test
+          fit, gross floor area, or room inventory exists. These studies are my first attempt to
+          fill that gap with original, editable schematic drawings — and to see what they imply
+          for height, footprint, and rent.
+        </p>
+        <p>
+          They are a portfolio extension. Nothing here changes the proposal's published figures or
+          commitments, and the premium scenario in Study B is a deliberately hypothetical comparison,
+          not a recommendation for UVM.
+        </p>
+      </div>
+      <dl class="st-kpis" aria-label="What the studies produced">
+        <div><dt>Original schematic plans</dt><dd>{plans.length}<small>SVG, PNG, PDF, DXF + schedules</small></dd></div>
+        <div><dt>Geometry checks</dt><dd>0 errors<small>overlaps, access, doors, beds</small></dd></div>
+        <div><dt>Typical Peaks floor</dt><dd>{floor.beds} beds<small>{num(floor.grossArea)} sf · {floor.grossAreaPerBed} sf/bed</small></dd></div>
+        <div><dt>Workbook formulas verified</dt><dd>85<small>LibreOffice vs. independent Python</small></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Two studies</span>
+    <div class="st-cols">
+      <div>
+        <h2>Study A · Trinity Peaks</h2>
+        <p>First- and second-year suites using UVM's University Heights as a typology reference: singles and doubles, shared bathrooms, RA rooms, study and common space, and no forced triples.</p>
+        <PlanFigure id="peaks-p6" />
+        <p><a class="text-link" href="/studies/peaks">Open Study A ↗</a></p>
+      </div>
+      <div>
+        <h2>Study B · Trinity Rise</h2>
+        <p>Upperclass four-bedroom apartments with private bedrooms, kitchens, and laundry — drawn twice to test whether ensuite bathrooms are worth their cost.</p>
+        <PlanFigure id="rise-r4a" />
+        <p><a class="text-link" href="/studies/rise">Open Study B ↗</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Findings so far</span>
+    <h2>What the drawings say back to the proposal.</h2>
+    <div class="st-cols">
+      <div class="st-card">
+        <h3>Peaks capacity depends on height</h3>
+        <p>
+          With the typical floor drawn here ({floor.beds} beds), {F.peaksBeds} beds need about
+          {peaksHigh.low.barsEquivalent}–{peaksMid.high.barsEquivalent} floor-plate equivalents at
+          5–6 residential floors — roughly {Math.round(peaksMid.heightFt.at105)}–{Math.round(peaksHigh.heightFt.at105)} ft
+          tall by simple arithmetic, above the 55-ft ceiling. Staying under 55 ft allows about
+          {testfit.peaksUnder55["10.5"]} residential floors and roughly doubles the footprint
+          ({num(peaksLow.low.footprintSf)}–{num(peaksLow.high.footprintSf)} sf).
+        </p>
+      </div>
+      <div class="st-card">
+        <h3>Rise needs a big floor plate</h3>
+        <p>
+          With four-bedroom apartments, 300–400 beds at 8–12 stories is reached only by
+          {tall.map((t) => `${t.unitsPerFloor} units per floor at ${t.stories} stories (${t.beds} beds)`).join(" or ")}.
+          A slender six-unit tower tops out near {testfit.rise.find((r) => r.unitsPerFloor === 6 && r.stories === 12)!.beds} beds at 12 stories.
+        </p>
+      </div>
+      <div class="st-card">
+        <h3>A new building can't be paid for by its own rents alone</h3>
+        <p>
+          At a sourced per-bed cost benchmark, debt service alone would be about
+          {usd(A.debtService / 300)} per bed per year if the building were fully debt-financed on its
+          own — more than UVM's current academic-year University Heights suite-single rate ($12,090,
+          room only). Universities usually finance housing across the whole system, with reserves
+          and gifts, so this is a project-level test, not a verdict: it shows why system financing,
+          equity, or lower cost matter.
+        </p>
+      </div>
+      <div class="st-card">
+        <h3>Premium features are cheap per month, but not free</h3>
+        <p>
+          In the hypothetical private scenario, an illustrative $25,000-per-bed premium for ensuite
+          baths and finishes needs about {usd(prem25.extraRentPerMonth)} more rent per bed per month
+          to keep the same yield. Whether students would pay it is a market question this study
+          does not answer.
+        </p>
+      </div>
+    </div>
+    <p class="caption">
+      All findings rest on exploratory dimensions and illustrative financial inputs. They are
+      prompts for professional study, not conclusions about the real site.
+    </p>
+  </section>
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Deliverables</span>
+    <h2>Everything is downloadable and editable.</h2>
+    <div class="st-next">
+      <a href="/studies/peaks"><strong>Peaks suites + floor</strong><span>4 plans · options compared with University Heights benchmarks</span></a>
+      <a href="/studies/rise"><strong>Rise apartments</strong><span>2 plans · shared vs. ensuite bathrooms</span></a>
+      <a href="/studies/test-fit"><strong>Whole-building test fits</strong><span>height, floors, footprint, coverage</span></a>
+      <a href="/studies/development-model"><strong>Development model</strong><span>Excel workbook · two scenarios · sensitivities</span></a>
+      <a href="/studies/method"><strong>Method, sources & assumptions</strong><span>assumption register · revision workflow</span></a>
+      <a href="/portfolio/trinity"><strong>Portfolio presentation</strong><span>concise admissions-style summary + PDF</span></a>
+    </div>
+  </section>
+</Base>

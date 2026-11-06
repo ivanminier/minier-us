@@ -1,0 +1,173 @@
+{
+  "_about": "Assumption register for the Trinity Residential Design Studies. Every dimension, area rule, and planning ratio used by studies/plans/*.json and studies/model/*.json cites an id from this file. 'reference' means a benchmark read from owner-supplied third-party drawings (not published); 'sourced' means the value comes from a cited public source; 'exploratory' means it is an authored working assumption with no measured basis and must be replaced by measured or professionally reviewed values before any reliance. Nothing here is a code requirement or a verified dimension.",
+  "updated": "2026-11-06",
+  "assumptions": [
+    {
+      "id": "S-MATTRESS",
+      "value": "36 in x 80 in",
+      "status": "sourced",
+      "use": "Bed footprint basis",
+      "source": "UVM Housing & Dining, Fall 2026 move-in guide: provided XL twin mattress 36\" x 80\" x 7.25\"",
+      "url": "https://www.uvm.edu/housingdining/move-guide-fall-2026",
+      "observed": "2026-11-06"
+    },
+    {
+      "id": "S-FURNITURE-LIST",
+      "value": "Per student: desk, desk chair, dresser or wardrobe/dresser, XL twin bed",
+      "status": "sourced",
+      "use": "Furniture included in each bedroom",
+      "source": "UVM Housing & Dining, Fall 2026 move-in guide, 'Provided Furniture'",
+      "url": "https://www.uvm.edu/housingdining/move-guide-fall-2026",
+      "observed": "2026-11-06"
+    },
+    {
+      "id": "S-UH-TYPOLOGY",
+      "value": "Suite and private singles/doubles/triples; private restroom per suite; kitchens in a shared commons; mixed-gender suites",
+      "status": "sourced",
+      "use": "Typology reference for Study A (not dimensions)",
+      "source": "UVM, University Heights North and South hall information",
+      "url": "https://www.uvm.edu/housingdining/university-heights-north-and-south",
+      "observed": "2026-11-06"
+    },
+    {
+      "id": "R-UH-SUITE",
+      "value": "Rounded typology notes: suite doubles about 170 sf; four-person suites about 500 sf net; paired private rooms about 180-225 sf sharing a bathroom; corridors about 6 ft",
+      "status": "reference",
+      "use": "Benchmark for Study A options (comparison only; not traced or published)",
+      "source": "Private reference notes from owner-supplied UVM floor plans (not published; drawings not stored)",
+      "observed": "2026-11-06"
+    },
+    {
+      "id": "E-BED",
+      "value": "3'-3\" x 6'-10\"",
+      "status": "exploratory",
+      "use": "Bed with frame, from S-MATTRESS plus about 1.5 in per side"
+    },
+    {
+      "id": "E-DESK",
+      "value": "4'-0\" x 2'-0\"",
+      "status": "exploratory",
+      "use": "Desk footprint (UVM does not publish desk size)"
+    },
+    {
+      "id": "E-WARDROBE",
+      "value": "3'-0\" x 2'-0\"",
+      "status": "exploratory",
+      "use": "Wardrobe/dresser footprint"
+    },
+    {
+      "id": "E-SINGLE",
+      "value": "about 9'-6\" x 12'-0\" to 9'-6\" x 15'-0\" (114-143 sf)",
+      "status": "exploratory",
+      "use": "Single bedroom size"
+    },
+    {
+      "id": "E-DOUBLE",
+      "value": "12'-6\" x 15'-0\" (about 188 sf)",
+      "status": "exploratory",
+      "use": "Double bedroom size; two beds, two desks, two wardrobes without lofting."
+    },
+    {
+      "id": "E-RISE-BR",
+      "value": "10'-6\" x 12'-0\" (126 sf)",
+      "status": "exploratory",
+      "use": "Trinity Rise private bedroom"
+    },
+    {
+      "id": "E-BATH",
+      "value": "8'-0\" x 8'-0\" (64 sf) with shower, WC, lavatory; ensuite bath 7'-0\" x 7'-0\" to 7'-0\" x 8'-0\"",
+      "status": "exploratory",
+      "use": "Suite and apartment bathrooms. Accessible bathrooms need larger clearances and are not drawn in the typical modules."
+    },
+    {
+      "id": "E-SUITE-DEPTH",
+      "value": "28'-0\" from exterior face to corridor",
+      "status": "exploratory",
+      "use": "Suite module depth for Trinity Peaks."
+    },
+    {
+      "id": "E-APT-DEPTH",
+      "value": "26'-0\"",
+      "status": "exploratory",
+      "use": "Apartment module depth for Trinity Rise"
+    },
+    {
+      "id": "E-CORRIDOR",
+      "value": "6'-0\" clear",
+      "status": "exploratory",
+      "use": "Double-loaded residential corridor width (a planning choice, not a code minimum)."
+    },
+    {
+      "id": "E-WALLS",
+      "value": "Exterior 1'-0\"; demising 8\"; interior partition 5\"",
+      "status": "exploratory",
+      "use": "Drawn wall weights. Room areas are measured to the room rectangle, not to finished wall faces."
+    },
+    {
+      "id": "E-DOOR",
+      "value": "3'-0\" leaves; 2'-6\" for bath and storage in some modules",
+      "status": "exploratory",
+      "use": "Door widths"
+    },
+    {
+      "id": "E-STAIR",
+      "value": "12'-0\" x 28'-0\" stair enclosure",
+      "status": "exploratory",
+      "use": "Stair block in the floor test fit"
+    },
+    {
+      "id": "E-ELEV",
+      "value": "8'-0\" x 8'-0\" per elevator, two cars",
+      "status": "exploratory",
+      "use": "Elevator block in the floor test fit"
+    },
+    {
+      "id": "E-FTF-RES",
+      "value": "10'-6\" floor-to-floor (residential floors)",
+      "status": "exploratory",
+      "use": "Height scenarios. Range tested: 10'-0\" to 11'-0\""
+    },
+    {
+      "id": "E-FTF-GROUND",
+      "value": "15'-0\" floor-to-floor (ground floor)",
+      "status": "exploratory",
+      "use": "Height scenarios"
+    },
+    {
+      "id": "E-ROOF",
+      "value": "6'-0\" parapet/roof/mechanical allowance",
+      "status": "exploratory",
+      "use": "Height scenarios. Height measurement method under the Burlington CDO is not analysed."
+    },
+    {
+      "id": "E-GROUND-EFF",
+      "value": "Ground floor carries no student beds",
+      "status": "exploratory",
+      "use": "Test fit; the ground floor holds lobby, residential life, dining (Peaks), and services"
+    },
+    {
+      "id": "E-BUILDING-GROSS-UP",
+      "value": "Ground floor and building services add 10-15% to residential-floor GSF",
+      "status": "exploratory",
+      "use": "Whole-building GSF"
+    },
+    {
+      "id": "E-CLEAR",
+      "value": "Use zones: desk chair 2'-6\"; bedside 1'-9\" (3'-0\" transfer side in accessible rooms); wardrobe doors 2'-0\"; dresser 2'-6\"; WC front 2'-0\"; lavatory 1'-9\"; shower entry 2'-0\"; kitchen work aisle 3'-6\"; fridge 3'-0\"; washer 3'-0\"; sofa 1'-6\"",
+      "status": "exploratory",
+      "use": "Round 1 clearance checks: the floor a person needs to use each item must be inside the room and free of furniture. Planning rules of thumb, not code minimums."
+    },
+    {
+      "id": "E-ACCESS",
+      "value": "Accessible rooms: a 5'-0\" clear turning space, 3'-0\" doors, roll-in showers, 3'-0\" transfer side at the bed",
+      "status": "exploratory",
+      "use": "Approximate planning check only. Accessibility-code compliance (ADA/FHA/IBC, state rules) and the required number of accessible units are not determined here."
+    },
+    {
+      "id": "E-POD",
+      "value": "Pod bathrooms: lockable shower rooms 4'-0\" x 9'-0\", WC rooms 4'-0\" x 9'-0\", accessible shower/WC room 8'-0\" x 9'-0\", shared vanity area 6'-0\" deep",
+      "status": "exploratory",
+      "use": "Ungendered pod bathrooms in the middle towers. Fixture counts must be checked against the plumbing code by a professional."
+    }
+  ]
+}

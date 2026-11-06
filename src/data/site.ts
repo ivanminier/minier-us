@@ -2,7 +2,7 @@ export const site = {
   name: "Ivan Minier",
   title: "Ivan Minier — Communication, design & software",
   description:
-    "Ivan Minier builds products and systems. Founder of Tideframe Labs and a Public Communication student at the University of Vermont.",
+    "Ivan Minier builds products and systems and studies housing development. Founder of Tideframe Labs and a Public Communication student at the University of Vermont.",
   url: "https://minier.us",
   locale: "en_US",
   location: "Vermont",
@@ -29,6 +29,7 @@ export const emails = {
 
 export const nav = [
   { label: "Work", href: "/work" },
+  { label: "Studies", href: "/studies" },
   { label: "About", href: "/about" },
   { label: "Résumé", href: "/resume" },
   { label: "Contact", href: "/contact" },

@@ -1,0 +1,878 @@
+[
+  {
+    "id": "peaks-floor-a",
+    "version": "1",
+    "svgW": 1400,
+    "svgH": 600,
+    "description": "One typical upper floor of a Trinity Peaks wing, assembled from the four-person suite (Option A) and the six-person suite. Two stairs, two elevators, two RA rooms, a floor lounge, laundry, study rooms, trash, and janitor space on a 6-ft corridor.",
+    "designNotes": {
+      "owner": [
+        "Resident assistant rooms, study and common rooms, residential wings that act as smaller neighborhoods (Peaks v1.3)."
+      ],
+      "ai": [
+        "A 252-ft double-loaded bar is a planning unit for counting, not a building shape; real wings would bend around the site.",
+        "Stair placement at bar ends is schematic; egress travel distance and dead-end corridors are not checked."
+      ],
+      "open": [
+        "Shafts, mechanical rooms, and structure are not drawn.",
+        "Accessible suites are not yet included in the floor mix."
+      ]
+    },
+    "title": "Trinity Peaks · Typical residential floor, test fit A",
+    "subtitle": "Double-loaded bar: 8 four-person suites (north) + 4 six-person suites (south)",
+    "study": "peaks",
+    "option": "floor",
+    "beds": 58,
+    "grossArea": 15624,
+    "width": 252,
+    "depth": 62,
+    "grossAreaPerBed": 269.4,
+    "files": {
+      "svg": "/studies/plans/peaks-floor-a/peaks-floor-a-v1.svg",
+      "png": "/studies/plans/peaks-floor-a/peaks-floor-a-v1.png",
+      "pdf": "/studies/plans/peaks-floor-a/peaks-floor-a-v1.pdf",
+      "dxf": "/studies/plans/peaks-floor-a/peaks-floor-a-v1.dxf",
+      "csv": "/studies/plans/peaks-floor-a/peaks-floor-a-v1-schedule.csv",
+      "json": "/studies/plans/peaks-floor-a/peaks-floor-a-v1.json"
+    },
+    "warnings": 0,
+    "areaByCategory": {
+      "core": 1128,
+      "residential": 532,
+      "support": 1708,
+      "circulation": 1728,
+      "unit": 10528
+    },
+    "modules": [
+      {
+        "plan": "peaks-p4a",
+        "title": "Trinity Peaks · Four-person suite, Option A",
+        "count": 8,
+        "bedsEach": 4,
+        "beds": 32
+      },
+      {
+        "plan": "peaks-p6",
+        "title": "Trinity Peaks · Six-person suite",
+        "count": 4,
+        "bedsEach": 6,
+        "beds": 24
+      }
+    ],
+    "rooms": []
+  },
+  {
+    "id": "peaks-p4a",
+    "version": "1",
+    "svgW": 1000,
+    "svgH": 850,
+    "description": "Four residents in two double rooms. Each pair of residents shares one of two full bathrooms (shower, WC, lavatory) reached from a small vestibule, with two suite storage closets.",
+    "designNotes": {
+      "owner": [
+        "Suite-style rooms, singles and doubles, no forced triples (Trinity Peaks v1.3 goals).",
+        "Practical storage."
+      ],
+      "ai": [
+        "Two bathrooms for four residents rather than one, so morning use is not a queue.",
+        "Doubles sized to hold two beds unlofted, leaving the window wall for desks.",
+        "A vestibule keeps bathroom doors out of the bedrooms for privacy."
+      ],
+      "open": [
+        "Accessible version: a larger bathroom and 5-ft turning space would widen the module.",
+        "Whether the vestibule is worth 117 sf versus a larger room."
+      ]
+    },
+    "title": "Trinity Peaks · Four-person suite, Option A",
+    "subtitle": "Two doubles + two bathrooms off a shared vestibule",
+    "study": "peaks",
+    "option": "A",
+    "beds": 4,
+    "grossArea": 700,
+    "width": 25,
+    "depth": 28,
+    "grossAreaPerBed": 175,
+    "files": {
+      "svg": "/studies/plans/peaks-p4a/peaks-p4a-v1.svg",
+      "png": "/studies/plans/peaks-p4a/peaks-p4a-v1.png",
+      "pdf": "/studies/plans/peaks-p4a/peaks-p4a-v1.pdf",
+      "dxf": "/studies/plans/peaks-p4a/peaks-p4a-v1.dxf",
+      "csv": "/studies/plans/peaks-p4a/peaks-p4a-v1-schedule.csv",
+      "json": "/studies/plans/peaks-p4a/peaks-p4a-v1.json"
+    },
+    "warnings": 0,
+    "areaByCategory": {
+      "unit": 700
+    },
+    "modules": [],
+    "rooms": [
+      {
+        "id": "brA",
+        "module": null,
+        "name": "Double A",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 12.5,
+        "depth": 15,
+        "area": 187.5,
+        "beds": 2
+      },
+      {
+        "id": "brB",
+        "module": null,
+        "name": "Double B",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 12.5,
+        "depth": 15,
+        "area": 187.5,
+        "beds": 2
+      },
+      {
+        "id": "bathA",
+        "module": null,
+        "name": "Bath A",
+        "type": "bath",
+        "category": "unit",
+        "width": 8,
+        "depth": 8,
+        "area": 64,
+        "beds": 0
+      },
+      {
+        "id": "vest",
+        "module": null,
+        "name": "Suite vestibule",
+        "type": "entry",
+        "category": "unit",
+        "width": 9,
+        "depth": 13,
+        "area": 117,
+        "beds": 0
+      },
+      {
+        "id": "bathB",
+        "module": null,
+        "name": "Bath B",
+        "type": "bath",
+        "category": "unit",
+        "width": 8,
+        "depth": 8,
+        "area": 64,
+        "beds": 0
+      },
+      {
+        "id": "stA",
+        "module": null,
+        "name": "Storage",
+        "type": "storage",
+        "category": "unit",
+        "width": 8,
+        "depth": 5,
+        "area": 40,
+        "beds": 0
+      },
+      {
+        "id": "stB",
+        "module": null,
+        "name": "Storage",
+        "type": "storage",
+        "category": "unit",
+        "width": 8,
+        "depth": 5,
+        "area": 40,
+        "beds": 0
+      }
+    ]
+  },
+  {
+    "id": "peaks-p4b",
+    "version": "1",
+    "svgW": 1000,
+    "svgH": 794,
+    "description": "Four residents, each in a single room on the facade, sharing a suite lounge strip, two full bathrooms, a storage room, and a small study nook.",
+    "designNotes": {
+      "owner": [
+        "Singles available in the Peaks mix; suite-style; study and common space."
+      ],
+      "ai": [
+        "Every resident gets a private room with a window; the trade-off is 52% more suite area per bed than Option A.",
+        "The lounge strip has no window in a mid-floor position; an end-of-wing placement could daylight it."
+      ],
+      "open": [
+        "Whether the extra area per bed is affordable under a UVM rate structure (see the finance study)."
+      ]
+    },
+    "title": "Trinity Peaks · Four-person suite, Option B",
+    "subtitle": "Four singles + two bathrooms + suite lounge",
+    "study": "peaks",
+    "option": "B",
+    "beds": 4,
+    "grossArea": 1064,
+    "width": 38,
+    "depth": 28,
+    "grossAreaPerBed": 266,
+    "files": {
+      "svg": "/studies/plans/peaks-p4b/peaks-p4b-v1.svg",
+      "png": "/studies/plans/peaks-p4b/peaks-p4b-v1.png",
+      "pdf": "/studies/plans/peaks-p4b/peaks-p4b-v1.pdf",
+      "dxf": "/studies/plans/peaks-p4b/peaks-p4b-v1.dxf",
+      "csv": "/studies/plans/peaks-p4b/peaks-p4b-v1-schedule.csv",
+      "json": "/studies/plans/peaks-p4b/peaks-p4b-v1.json"
+    },
+    "warnings": 0,
+    "areaByCategory": {
+      "unit": 1064
+    },
+    "modules": [],
+    "rooms": [
+      {
+        "id": "s1",
+        "module": null,
+        "name": "Single 1",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 9.5,
+        "depth": 12,
+        "area": 114,
+        "beds": 1
+      },
+      {
+        "id": "s2",
+        "module": null,
+        "name": "Single 2",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 9.5,
+        "depth": 12,
+        "area": 114,
+        "beds": 1
+      },
+      {
+        "id": "s3",
+        "module": null,
+        "name": "Single 3",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 9.5,
+        "depth": 12,
+        "area": 114,
+        "beds": 1
+      },
+      {
+        "id": "s4",
+        "module": null,
+        "name": "Single 4",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 9.5,
+        "depth": 12,
+        "area": 114,
+        "beds": 1
+      },
+      {
+        "id": "lounge",
+        "module": null,
+        "name": "Suite lounge",
+        "type": "suite-lounge",
+        "category": "unit",
+        "width": 38,
+        "depth": 8,
+        "area": 304,
+        "beds": 0
+      },
+      {
+        "id": "bath1",
+        "module": null,
+        "name": "Bath 1",
+        "type": "bath",
+        "category": "unit",
+        "width": 7.5,
+        "depth": 8,
+        "area": 60,
+        "beds": 0
+      },
+      {
+        "id": "stor",
+        "module": null,
+        "name": "Storage",
+        "type": "storage",
+        "category": "unit",
+        "width": 7.5,
+        "depth": 8,
+        "area": 60,
+        "beds": 0
+      },
+      {
+        "id": "entry",
+        "module": null,
+        "name": "Entry",
+        "type": "entry",
+        "category": "unit",
+        "width": 8,
+        "depth": 8,
+        "area": 64,
+        "beds": 0
+      },
+      {
+        "id": "nook",
+        "module": null,
+        "name": "Study nook",
+        "type": "study",
+        "category": "unit",
+        "width": 7.5,
+        "depth": 8,
+        "area": 60,
+        "beds": 0
+      },
+      {
+        "id": "bath2",
+        "module": null,
+        "name": "Bath 2",
+        "type": "bath",
+        "category": "unit",
+        "width": 7.5,
+        "depth": 8,
+        "area": 60,
+        "beds": 0
+      }
+    ]
+  },
+  {
+    "id": "peaks-p6",
+    "version": "1",
+    "svgW": 1000,
+    "svgH": 738,
+    "description": "Six residents in two doubles and two singles around a shared suite lounge, with two full bathrooms and two storage closets. Reaches six residents without any triple room.",
+    "designNotes": {
+      "owner": [
+        "No reliance on forced triples; mix of singles and doubles; suite-style housing with common rooms."
+      ],
+      "ai": [
+        "Three residents per bathroom, between Option A (2) and a typical hall bath ratio.",
+        "The lounge doubles as the suite's circulation, so there is no wasted hallway inside the suite."
+      ],
+      "open": [
+        "Lounge daylight depends on module position; mid-floor it borrows light only from bedrooms."
+      ]
+    },
+    "title": "Trinity Peaks · Six-person suite",
+    "subtitle": "Two doubles + two singles + suite lounge, no triples",
+    "study": "peaks",
+    "option": "A",
+    "beds": 6,
+    "grossArea": 1232,
+    "width": 44,
+    "depth": 28,
+    "grossAreaPerBed": 205.3,
+    "files": {
+      "svg": "/studies/plans/peaks-p6/peaks-p6-v1.svg",
+      "png": "/studies/plans/peaks-p6/peaks-p6-v1.png",
+      "pdf": "/studies/plans/peaks-p6/peaks-p6-v1.pdf",
+      "dxf": "/studies/plans/peaks-p6/peaks-p6-v1.dxf",
+      "csv": "/studies/plans/peaks-p6/peaks-p6-v1-schedule.csv",
+      "json": "/studies/plans/peaks-p6/peaks-p6-v1.json"
+    },
+    "warnings": 0,
+    "areaByCategory": {
+      "unit": 1232
+    },
+    "modules": [],
+    "rooms": [
+      {
+        "id": "brA",
+        "module": null,
+        "name": "Double A",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 12.5,
+        "depth": 15,
+        "area": 187.5,
+        "beds": 2
+      },
+      {
+        "id": "s1",
+        "module": null,
+        "name": "Single 1",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 9.5,
+        "depth": 15,
+        "area": 142.5,
+        "beds": 1
+      },
+      {
+        "id": "s2",
+        "module": null,
+        "name": "Single 2",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 9.5,
+        "depth": 15,
+        "area": 142.5,
+        "beds": 1
+      },
+      {
+        "id": "brB",
+        "module": null,
+        "name": "Double B",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 12.5,
+        "depth": 15,
+        "area": 187.5,
+        "beds": 2
+      },
+      {
+        "id": "bath1",
+        "module": null,
+        "name": "Bath 1",
+        "type": "bath",
+        "category": "unit",
+        "width": 8,
+        "depth": 8,
+        "area": 64,
+        "beds": 0
+      },
+      {
+        "id": "st1",
+        "module": null,
+        "name": "Storage",
+        "type": "storage",
+        "category": "unit",
+        "width": 8,
+        "depth": 5,
+        "area": 40,
+        "beds": 0
+      },
+      {
+        "id": "lounge",
+        "module": null,
+        "name": "Suite lounge",
+        "type": "suite-lounge",
+        "category": "unit",
+        "width": 28,
+        "depth": 13,
+        "area": 364,
+        "beds": 0
+      },
+      {
+        "id": "bath2",
+        "module": null,
+        "name": "Bath 2",
+        "type": "bath",
+        "category": "unit",
+        "width": 8,
+        "depth": 8,
+        "area": 64,
+        "beds": 0
+      },
+      {
+        "id": "st2",
+        "module": null,
+        "name": "Storage",
+        "type": "storage",
+        "category": "unit",
+        "width": 8,
+        "depth": 5,
+        "area": 40,
+        "beds": 0
+      }
+    ]
+  },
+  {
+    "id": "rise-r4a",
+    "version": "1",
+    "svgW": 1000,
+    "svgH": 654,
+    "description": "Four private bedrooms in two wings around a central living room and kitchen on the facade. Two shared bathrooms, in-unit laundry, a study nook, and a flex room.",
+    "designNotes": {
+      "owner": [
+        "Private bedrooms, bathrooms, kitchen and living room, laundry and storage (Trinity Rise program)."
+      ],
+      "ai": [
+        "Bedrooms in two wings of two, so no bedroom opens straight onto the living room.",
+        "Living room takes the centre of the facade; kitchen sits on the corridor side with an island.",
+        "Two residents per bathroom keeps the bath count, and cost, down."
+      ],
+      "open": [
+        "Accessible unit variant not drawn.",
+        "Flex room has no daylight."
+      ]
+    },
+    "title": "Trinity Rise · Four-bedroom apartment, Option A",
+    "subtitle": "Four private bedrooms + two shared bathrooms",
+    "study": "rise",
+    "option": "A",
+    "beds": 4,
+    "grossArea": 1456,
+    "width": 56,
+    "depth": 26,
+    "grossAreaPerBed": 364,
+    "files": {
+      "svg": "/studies/plans/rise-r4a/rise-r4a-v1.svg",
+      "png": "/studies/plans/rise-r4a/rise-r4a-v1.png",
+      "pdf": "/studies/plans/rise-r4a/rise-r4a-v1.pdf",
+      "dxf": "/studies/plans/rise-r4a/rise-r4a-v1.dxf",
+      "csv": "/studies/plans/rise-r4a/rise-r4a-v1-schedule.csv",
+      "json": "/studies/plans/rise-r4a/rise-r4a-v1.json"
+    },
+    "warnings": 0,
+    "areaByCategory": {
+      "unit": 1456
+    },
+    "modules": [],
+    "rooms": [
+      {
+        "id": "br1",
+        "module": null,
+        "name": "Bedroom 1",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 10.5,
+        "depth": 12,
+        "area": 126,
+        "beds": 1
+      },
+      {
+        "id": "br2",
+        "module": null,
+        "name": "Bedroom 2",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 10.5,
+        "depth": 12,
+        "area": 126,
+        "beds": 1
+      },
+      {
+        "id": "living",
+        "module": null,
+        "name": "Living / kitchen",
+        "type": "living",
+        "category": "unit",
+        "width": 14,
+        "depth": 26,
+        "area": 364,
+        "beds": 0
+      },
+      {
+        "id": "br3",
+        "module": null,
+        "name": "Bedroom 3",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 10.5,
+        "depth": 12,
+        "area": 126,
+        "beds": 1
+      },
+      {
+        "id": "br4",
+        "module": null,
+        "name": "Bedroom 4",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 10.5,
+        "depth": 12,
+        "area": 126,
+        "beds": 1
+      },
+      {
+        "id": "hallL",
+        "module": null,
+        "name": "Hall",
+        "type": "hall",
+        "category": "unit",
+        "width": 21,
+        "depth": 5,
+        "area": 105,
+        "beds": 0
+      },
+      {
+        "id": "bath1",
+        "module": null,
+        "name": "Bath 1",
+        "type": "bath",
+        "category": "unit",
+        "width": 8,
+        "depth": 9,
+        "area": 72,
+        "beds": 0
+      },
+      {
+        "id": "laundry",
+        "module": null,
+        "name": "Laundry",
+        "type": "laundry",
+        "category": "unit",
+        "width": 5,
+        "depth": 9,
+        "area": 45,
+        "beds": 0
+      },
+      {
+        "id": "study",
+        "module": null,
+        "name": "Study nook",
+        "type": "study",
+        "category": "unit",
+        "width": 8,
+        "depth": 9,
+        "area": 72,
+        "beds": 0
+      },
+      {
+        "id": "hallR",
+        "module": null,
+        "name": "Hall",
+        "type": "hall",
+        "category": "unit",
+        "width": 21,
+        "depth": 5,
+        "area": 105,
+        "beds": 0
+      },
+      {
+        "id": "flex",
+        "module": null,
+        "name": "Flex / storage",
+        "type": "storage",
+        "category": "unit",
+        "width": 8,
+        "depth": 9,
+        "area": 72,
+        "beds": 0
+      },
+      {
+        "id": "stor",
+        "module": null,
+        "name": "Linen",
+        "type": "storage",
+        "category": "unit",
+        "width": 5,
+        "depth": 9,
+        "area": 45,
+        "beds": 0
+      },
+      {
+        "id": "bath2",
+        "module": null,
+        "name": "Bath 2",
+        "type": "bath",
+        "category": "unit",
+        "width": 8,
+        "depth": 9,
+        "area": 72,
+        "beds": 0
+      }
+    ]
+  },
+  {
+    "id": "rise-r4b",
+    "version": "1",
+    "svgW": 1000,
+    "svgH": 654,
+    "description": "The same 56-ft by 26-ft envelope as Option A, re-planned so every bedroom has its own ensuite bathroom. Tests what the premium 'bed-bath parity' feature costs in space and fixtures.",
+    "designNotes": {
+      "owner": [
+        "Private bedrooms with bathrooms; design-forward upperclass identity explored as a separate premium scenario."
+      ],
+      "ai": [
+        "Fits in the same envelope only by giving up the study nook and flex room and shrinking baths to 49-56 sf.",
+        "Doubles the bathroom count (4 vs 2): more plumbing fixtures, waterproofing, and exhaust per unit."
+      ],
+      "open": [
+        "Whether ensuite baths earn enough rent to pay for themselves (see the development model)."
+      ]
+    },
+    "title": "Trinity Rise · Four-bedroom apartment, Option B",
+    "subtitle": "Four private bedrooms, each with an ensuite bathroom",
+    "study": "rise",
+    "option": "B",
+    "beds": 4,
+    "grossArea": 1456,
+    "width": 56,
+    "depth": 26,
+    "grossAreaPerBed": 364,
+    "files": {
+      "svg": "/studies/plans/rise-r4b/rise-r4b-v1.svg",
+      "png": "/studies/plans/rise-r4b/rise-r4b-v1.png",
+      "pdf": "/studies/plans/rise-r4b/rise-r4b-v1.pdf",
+      "dxf": "/studies/plans/rise-r4b/rise-r4b-v1.dxf",
+      "csv": "/studies/plans/rise-r4b/rise-r4b-v1-schedule.csv",
+      "json": "/studies/plans/rise-r4b/rise-r4b-v1.json"
+    },
+    "warnings": 0,
+    "areaByCategory": {
+      "unit": 1456
+    },
+    "modules": [],
+    "rooms": [
+      {
+        "id": "br1",
+        "module": null,
+        "name": "Bedroom 1",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 10.5,
+        "depth": 12,
+        "area": 126,
+        "beds": 1
+      },
+      {
+        "id": "br2",
+        "module": null,
+        "name": "Bedroom 2",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 10.5,
+        "depth": 12,
+        "area": 126,
+        "beds": 1
+      },
+      {
+        "id": "living",
+        "module": null,
+        "name": "Living / kitchen",
+        "type": "living",
+        "category": "unit",
+        "width": 14,
+        "depth": 26,
+        "area": 364,
+        "beds": 0
+      },
+      {
+        "id": "br3",
+        "module": null,
+        "name": "Bedroom 3",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 10.5,
+        "depth": 12,
+        "area": 126,
+        "beds": 1
+      },
+      {
+        "id": "br4",
+        "module": null,
+        "name": "Bedroom 4",
+        "type": "bedroom",
+        "category": "unit",
+        "width": 10.5,
+        "depth": 12,
+        "area": 126,
+        "beds": 1
+      },
+      {
+        "id": "bath1",
+        "module": null,
+        "name": "Bath 1",
+        "type": "bath",
+        "category": "unit",
+        "width": 7,
+        "depth": 8,
+        "area": 56,
+        "beds": 0
+      },
+      {
+        "id": "hallL",
+        "module": null,
+        "name": "Hall",
+        "type": "hall",
+        "category": "unit",
+        "width": 7,
+        "depth": 14,
+        "area": 98,
+        "beds": 0
+      },
+      {
+        "id": "bath2",
+        "module": null,
+        "name": "Bath 2",
+        "type": "bath",
+        "category": "unit",
+        "width": 7,
+        "depth": 7,
+        "area": 49,
+        "beds": 0
+      },
+      {
+        "id": "passL",
+        "module": null,
+        "name": "Hall",
+        "type": "hall",
+        "category": "unit",
+        "width": 7,
+        "depth": 7,
+        "area": 49,
+        "beds": 0
+      },
+      {
+        "id": "laundry",
+        "module": null,
+        "name": "Laundry",
+        "type": "laundry",
+        "category": "unit",
+        "width": 7,
+        "depth": 6,
+        "area": 42,
+        "beds": 0
+      },
+      {
+        "id": "bath4",
+        "module": null,
+        "name": "Bath 4",
+        "type": "bath",
+        "category": "unit",
+        "width": 7,
+        "depth": 8,
+        "area": 56,
+        "beds": 0
+      },
+      {
+        "id": "hallR",
+        "module": null,
+        "name": "Hall",
+        "type": "hall",
+        "category": "unit",
+        "width": 7,
+        "depth": 14,
+        "area": 98,
+        "beds": 0
+      },
+      {
+        "id": "bath3",
+        "module": null,
+        "name": "Bath 3",
+        "type": "bath",
+        "category": "unit",
+        "width": 7,
+        "depth": 7,
+        "area": 49,
+        "beds": 0
+      },
+      {
+        "id": "passR",
+        "module": null,
+        "name": "Hall",
+        "type": "hall",
+        "category": "unit",
+        "width": 7,
+        "depth": 7,
+        "area": 49,
+        "beds": 0
+      },
+      {
+        "id": "stor",
+        "module": null,
+        "name": "Storage",
+        "type": "storage",
+        "category": "unit",
+        "width": 7,
+        "depth": 6,
+        "area": 42,
+        "beds": 0
+      }
+    ]
+  }
+]

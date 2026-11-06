@@ -1,0 +1,142 @@
+---
+import Base from "../../layouts/Base.astro";
+import StudyNav from "../../components/studies/StudyNav.astro";
+import StudyBanner from "../../components/studies/StudyBanner.astro";
+import Chip from "../../components/studies/Chip.astro";
+import { testfit as T, num, pct } from "../../data/studies";
+import { trinityFigures as F } from "../../data/trinity";
+const b = T.basis;
+---
+
+<Base
+  title="Whole-building test fits — Ivan Minier"
+  theme="studies"
+  description="Schematic capacity arithmetic for Trinity Peaks and Trinity Rise: floors, floor plates, height scenarios, footprint, and lot coverage, built from original floor plans."
+>
+  <header class="st-hero wrap-wide">
+    <div>
+      <p class="eyebrow">Studies A + B · Capacity</p>
+      <h1>Whole-building test fits</h1>
+      <p class="lede">Do {F.peaksBeds} Peaks beds and {F.riseBeds} Rise beds plausibly fit — and at what height?</p>
+    </div>
+    <StudyBanner>This is arithmetic built on my drawings, not a site test fit. It does not show that the full {F.newBeds}-bed proposal fits the Trinity site.</StudyBanner>
+  </header>
+  <StudyNav />
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Inputs</span>
+    <h2>What is measured, what is assumed.</h2>
+    <div class="st-table-wrap" tabindex="0" role="region" aria-label="Test fit inputs">
+      <table class="st-table">
+        <thead><tr><th scope="col">Input</th><th scope="col">Value</th><th scope="col">Status</th></tr></thead>
+        <tbody>
+          <tr><td>Peaks typical floor (plan {b.peaksFloor.plan} v{b.peaksFloor.version})</td><td>{b.peaksFloor.bedsPerFloor} beds · {b.peaksFloor.width}' × {b.peaksFloor.depth}' = {num(b.peaksFloor.floorGsf)} sf</td><td><Chip k="study" /></td></tr>
+          <tr><td>Rise apartment (plan {b.riseUnit.plan} v{b.riseUnit.version})</td><td>{b.riseUnit.beds} beds · {num(b.riseUnit.unitSf)} sf</td><td><Chip k="study" /></td></tr>
+          <tr><td>Floor-to-floor heights</td><td>ground {b.height.groundFtf} ft; residential 10–11 ft; roof/mechanical {b.height.roofAllowance} ft</td><td><Chip k="exploratory" /></td></tr>
+          <tr><td>Ground floor</td><td>No student beds (lobby, residential life, dining, amenities)</td><td><Chip k="exploratory" /></td></tr>
+          <tr><td>Site area</td><td>≈{b.site.acres} acres (reported, 2022)</td><td><Chip k="external" /></td></tr>
+          <tr><td>Lot coverage limit</td><td>{pct(b.site.coverage, 0)} (overlay, as reported)</td><td><Chip k="external" /></td></tr>
+          <tr><td>Height limit</td><td>55-ft absolute ceiling (as reported; measurement method not analysed)</td><td><Chip k="external" /></td></tr>
+          <tr><td>Parcel boundaries, buffers, retained buildings, topography, soils, utilities</td><td>Not available</td><td><Chip k="unresolved" /></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Trinity Peaks</span>
+    <h2>Height is the trade: fewer floors, more ground.</h2>
+    <div class="st-table-wrap" tabindex="0" role="region" aria-label="Peaks scenarios">
+      <table class="st-table">
+        <thead><tr><th scope="col">Scenario</th><th scope="col" class="num">Residential floors</th><th scope="col" class="num">Beds per floor plate</th><th scope="col" class="num">Floor-plate equivalents</th><th scope="col" class="num">Footprint (sf)</th><th scope="col" class="num">Gross area (sf)</th><th scope="col" class="num">Approx. height</th></tr></thead>
+        <tbody>
+          {T.peaks.map((s) => (
+            <tr class={s.over55 ? "" : "hl"}>
+              <th scope="row">{s.label}</th>
+              <td class="num">{s.residentialFloors} + ground</td>
+              <td class="num">{s.bedsPerBar}</td>
+              <td class="num">{s.low.barsEquivalent}–{s.high.barsEquivalent}</td>
+              <td class="num">{num(s.low.footprintSf)}–{num(s.high.footprintSf)}</td>
+              <td class="num">{num(s.low.gsf)}–{num(s.high.gsf)}</td>
+              <td class="num">{s.heightFt.at10}–{s.heightFt.at11} ft</td>
+            </tr>
+          ))}
+        </tbody>
+        <caption>Range covers {F.peaksBeds} beds. A "floor-plate equivalent" is one 252-ft × 62-ft bar of the typical floor; real wings would be shaped to the site. Highlighted row is under 55 ft by this arithmetic. The hidden duplex level is not modelled.</caption>
+      </table>
+    </div>
+    <div class="st-cols">
+      <p class="st-prose">
+        At the proposal's 5–6 residential floors, Peaks would stand roughly 70–90 ft by simple
+        floor-height arithmetic — consistent with the proposal's own caution that six visible floors
+        "may exceed the adopted 55-foot ceiling." Holding to 55 ft allows about
+        {T.peaksUnder55["10.5"]} residential floors over the ground floor, which nearly doubles the
+        building footprint.
+      </p>
+      <p class="st-prose">
+        Gross area per bed lands around {T.peaks[2].low.gsfPerBed}–{T.peaks[0].low.gsfPerBed} sf
+        including a full ground floor, before Northside Dining's extra area. Circulation and support
+        are inside the typical floor; shafts and structure are not.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Trinity Rise</span>
+    <h2>8–12 stories reaches 300–400 beds only with a wide floor plate.</h2>
+    <div class="st-table-wrap" tabindex="0" role="region" aria-label="Rise scenarios">
+      <table class="st-table">
+        <thead><tr><th scope="col" class="num">Units / floor</th><th scope="col">Floor plate</th><th scope="col" class="num">Stories</th><th scope="col" class="num">Beds</th><th scope="col" class="num">Gross sf / bed</th><th scope="col" class="num">Approx. height</th><th scope="col">In 300–400?</th></tr></thead>
+        <tbody>
+          {T.rise.map((r) => (
+            <tr class={r.inBaseline ? "hl" : ""}>
+              <td class="num">{r.unitsPerFloor}</td>
+              <td>{r.plateLength}' × {r.plateDepth}' ({num(r.plateGsf)} sf)</td>
+              <td class="num">{r.stories}</td>
+              <td class="num">{r.beds}</td>
+              <td class="num">{r.gsfPerBed}</td>
+              <td class="num">≈{Math.round(r.heightFt)} ft</td>
+              <td>{r.inBaseline ? "Yes" : r.beds < 300 ? "Below" : "Above"}</td>
+            </tr>
+          ))}
+        </tbody>
+        <caption>All four-bedroom apartments (Option A), double-loaded with a 6-ft corridor and a 30-ft core zone. Heights use 10.5-ft floors and are far above both 55 ft and the tabled 80-ft recommendation, as the proposal already notes.</caption>
+      </table>
+    </div>
+    <p class="st-prose">
+      A slender tower of six apartments per floor reaches only about
+      {T.rise.find((r) => r.unitsPerFloor === 6 && r.stories === 12)!.beds} beds at 12 stories. To
+      land inside the proposal's 300–400 bed baseline, the floor plate needs roughly eight to ten
+      four-bedroom apartments — a slab about 250–310 ft long — or a different unit mix. That is a
+      design consequence of the bed target that Phase 0 would need to weigh against views,
+      shadows, and the setting of the Cottages.
+    </p>
+  </section>
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Coverage</span>
+    <div class="st-cols">
+      <div class="st-prose">
+        <h2>Coverage looks workable; the site plan is the unknown.</h2>
+        <p>
+          At about {b.site.acres} acres and {pct(b.site.coverage, 0)} coverage, roughly
+          {num(T.coverage.allowedFootprintSf)} sf of building footprint is allowed. A five-floor
+          Peaks (high case, {num(T.coverage.peaksFootprintAt5Floors)} sf) plus an eight-unit Rise
+          ({num(T.coverage.riseFootprint8Units)} sf) would use about {pct(T.coverage.share, 0)} of it.
+        </p>
+        <p>{T.coverage.excludes}</p>
+      </div>
+      <div class="st-card">
+        <h3>Needed before any test fit is real</h3>
+        <ul>
+          <li>Boundary and topographic survey; parcel lines and easements.</li>
+          <li>Inventory of buildings that stay, with footprints.</li>
+          <li>Planner's reading of the overlay: buffer, height measurement, coverage exception.</li>
+          <li>Structural grid and floor-to-floor heights from an architect.</li>
+          <li>Fire-code egress and accessibility review of the typical floors.</li>
+          <li>Geotechnical and utility capacity information.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>

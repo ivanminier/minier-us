@@ -1,0 +1,219 @@
+{
+  "id": "rise-r4b",
+  "title": "Trinity Rise · Four-bedroom apartment, Option B",
+  "version": "1",
+  "date": "2026-11-06",
+  "status": "schematic exploration — exploratory dimensions, not measured or code-reviewed",
+  "envelope": {
+    "width": 56,
+    "depth": 26,
+    "grossArea": 1456
+  },
+  "beds": 4,
+  "sumRoomArea": 1456,
+  "areaByCategory": {
+    "unit": 1456
+  },
+  "grossAreaPerBed": 364,
+  "modules": [],
+  "rooms": [
+    {
+      "id": "br1",
+      "module": null,
+      "name": "Bedroom 1",
+      "type": "bedroom",
+      "category": "unit",
+      "width": 10.5,
+      "depth": 12,
+      "area": 126,
+      "beds": 1
+    },
+    {
+      "id": "br2",
+      "module": null,
+      "name": "Bedroom 2",
+      "type": "bedroom",
+      "category": "unit",
+      "width": 10.5,
+      "depth": 12,
+      "area": 126,
+      "beds": 1
+    },
+    {
+      "id": "living",
+      "module": null,
+      "name": "Living / kitchen",
+      "type": "living",
+      "category": "unit",
+      "width": 14,
+      "depth": 26,
+      "area": 364,
+      "beds": 0
+    },
+    {
+      "id": "br3",
+      "module": null,
+      "name": "Bedroom 3",
+      "type": "bedroom",
+      "category": "unit",
+      "width": 10.5,
+      "depth": 12,
+      "area": 126,
+      "beds": 1
+    },
+    {
+      "id": "br4",
+      "module": null,
+      "name": "Bedroom 4",
+      "type": "bedroom",
+      "category": "unit",
+      "width": 10.5,
+      "depth": 12,
+      "area": 126,
+      "beds": 1
+    },
+    {
+      "id": "bath1",
+      "module": null,
+      "name": "Bath 1",
+      "type": "bath",
+      "category": "unit",
+      "width": 7,
+      "depth": 8,
+      "area": 56,
+      "beds": 0
+    },
+    {
+      "id": "hallL",
+      "module": null,
+      "name": "Hall",
+      "type": "hall",
+      "category": "unit",
+      "width": 7,
+      "depth": 14,
+      "area": 98,
+      "beds": 0
+    },
+    {
+      "id": "bath2",
+      "module": null,
+      "name": "Bath 2",
+      "type": "bath",
+      "category": "unit",
+      "width": 7,
+      "depth": 7,
+      "area": 49,
+      "beds": 0
+    },
+    {
+      "id": "passL",
+      "module": null,
+      "name": "Hall",
+      "type": "hall",
+      "category": "unit",
+      "width": 7,
+      "depth": 7,
+      "area": 49,
+      "beds": 0
+    },
+    {
+      "id": "laundry",
+      "module": null,
+      "name": "Laundry",
+      "type": "laundry",
+      "category": "unit",
+      "width": 7,
+      "depth": 6,
+      "area": 42,
+      "beds": 0
+    },
+    {
+      "id": "bath4",
+      "module": null,
+      "name": "Bath 4",
+      "type": "bath",
+      "category": "unit",
+      "width": 7,
+      "depth": 8,
+      "area": 56,
+      "beds": 0
+    },
+    {
+      "id": "hallR",
+      "module": null,
+      "name": "Hall",
+      "type": "hall",
+      "category": "unit",
+      "width": 7,
+      "depth": 14,
+      "area": 98,
+      "beds": 0
+    },
+    {
+      "id": "bath3",
+      "module": null,
+      "name": "Bath 3",
+      "type": "bath",
+      "category": "unit",
+      "width": 7,
+      "depth": 7,
+      "area": 49,
+      "beds": 0
+    },
+    {
+      "id": "passR",
+      "module": null,
+      "name": "Hall",
+      "type": "hall",
+      "category": "unit",
+      "width": 7,
+      "depth": 7,
+      "area": 49,
+      "beds": 0
+    },
+    {
+      "id": "stor",
+      "module": null,
+      "name": "Storage",
+      "type": "storage",
+      "category": "unit",
+      "width": 7,
+      "depth": 6,
+      "area": 42,
+      "beds": 0
+    }
+  ],
+  "assumptions": [
+    "S-MATTRESS",
+    "E-BED",
+    "E-DESK",
+    "E-WARDROBE",
+    "E-RISE-BR",
+    "E-BATH",
+    "E-APT-DEPTH",
+    "E-WALLS",
+    "E-DOOR"
+  ],
+  "checks": {
+    "errors": [],
+    "warnings": [],
+    "checked": [
+      "rooms do not overlap",
+      "every door sits on a wall shared by the rooms it joins and fits it",
+      "every room is reachable from the entry/corridor",
+      "windows only on declared exterior walls and fit them",
+      "furniture and fixtures sit inside their room and do not overlap",
+      "door swings are clear of furniture and fixtures",
+      "declared beds equal beds drawn and beds counted",
+      "bedroom area per bed against a study threshold",
+      "room areas reconcile to the envelope"
+    ],
+    "notChecked": [
+      "building, fire, or accessibility code compliance",
+      "turning circles and accessible clearances",
+      "structure, shafts, and mechanical space",
+      "egress travel distance",
+      "furniture fit beyond rectangle overlap"
+    ]
+  }
+}

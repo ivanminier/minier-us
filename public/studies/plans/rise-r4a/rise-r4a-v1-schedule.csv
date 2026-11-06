@@ -1,0 +1,14 @@
+id,module,name,type,category,width_ft,depth_ft,area_sf,beds
+br1,,"Bedroom 1",bedroom,unit,10.5,12,126,1
+br2,,"Bedroom 2",bedroom,unit,10.5,12,126,1
+living,,"Living / kitchen",living,unit,14,26,364,0
+br3,,"Bedroom 3",bedroom,unit,10.5,12,126,1
+br4,,"Bedroom 4",bedroom,unit,10.5,12,126,1
+hallL,,"Hall",hall,unit,21,5,105,0
+bath1,,"Bath 1",bath,unit,8,9,72,0
+laundry,,"Laundry",laundry,unit,5,9,45,0
+study,,"Study nook",study,unit,8,9,72,0
+hallR,,"Hall",hall,unit,21,5,105,0
+flex,,"Flex / storage",storage,unit,8,9,72,0
+stor,,"Linen",storage,unit,5,9,45,0
+bath2,,"Bath 2",bath,unit,8,9,72,0

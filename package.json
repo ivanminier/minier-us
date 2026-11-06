@@ -7,9 +7,13 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/sync-trinity-facts.mjs --check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "sync:trinity": "node scripts/sync-trinity-facts.mjs",
+    "check": "node scripts/sync-trinity-facts.mjs --check && node studies/tools/plans.mjs --check",
+    "plans": "node studies/tools/plans.mjs",
+    "plans:render": "node studies/tools/render-previews.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

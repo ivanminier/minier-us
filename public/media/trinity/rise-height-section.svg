@@ -1,0 +1,48 @@
+<svg style="font-variant-ligatures:none;font-feature-settings:'calt' 0,'case' 0,'liga' 0,'ss01' 0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640" role="img" aria-labelledby="t d" font-family="Inter, Arial, sans-serif">
+  <title id="t">Trinity Rise schematic height section</title>
+  <desc id="d">Vertical scale in feet. Lines mark 35 feet, 45 feet (2022 recommended front zone), the adopted 55-foot Trinity overlay ceiling, and 80 feet (2022 recommendation beyond the buffer, not adopted). Trinity Rise's 8-12 story target is drawn as a band from about 85 to 150 feet, which depends on untested floor heights, roof, and ground-floor uses; every part of the band exceeds the adopted 55-foot ceiling and the tabled 80-foot recommendation. Schematic only; no site dimensions.</desc>
+  <defs>
+    <pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="10" height="10" fill="#e3f1ea"/>
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#087957" stroke-width="3" opacity=".45"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="640" fill="#f8fbf5"/>
+  <text x="40" y="44" font-size="24" font-weight="800" fill="#061b12">Trinity Rise: 8-12 story target vs. height limits (schematic)</text>
+  <text x="40" y="72" font-size="15" fill="#4f675d">Vertical scale in feet only. Not a design, test fit, or site section.</text>
+
+  <!-- axis -->
+  <g font-size="13" fill="#4f675d">
+    <line x1="110" y1="580" x2="110" y2="100" stroke="#9fb5aa" stroke-width="1.5"/>
+    <g stroke="#c9d8d0" stroke-width="1"><line x1="104" y1="520" x2="1160" y2="520"/><line x1="104" y1="460" x2="1160" y2="460"/><line x1="104" y1="400" x2="1160" y2="400"/><line x1="104" y1="340" x2="1160" y2="340"/><line x1="104" y1="280" x2="1160" y2="280"/><line x1="104" y1="220" x2="1160" y2="220"/><line x1="104" y1="160" x2="1160" y2="160"/><line x1="104" y1="100" x2="1160" y2="100"/></g>
+    <text x="96" y="584" text-anchor="end">0 ft</text><text x="96" y="524" text-anchor="end">20</text><text x="96" y="464" text-anchor="end">40</text><text x="96" y="404" text-anchor="end">60</text><text x="96" y="344" text-anchor="end">80</text><text x="96" y="284" text-anchor="end">100</text><text x="96" y="224" text-anchor="end">120</text><text x="96" y="164" text-anchor="end">140</text><text x="96" y="104" text-anchor="end">160</text>
+  </g>
+  <line x1="110" y1="580" x2="1160" y2="580" stroke="#061b12" stroke-width="2.5"/>
+  <text x="1160" y="598" font-size="12" text-anchor="end" fill="#4f675d">Grade (height measurement method to be confirmed under the ordinance)</text>
+
+  <!-- limit lines -->
+  <g font-size="14" font-weight="700">
+    <line x1="110" y1="475" x2="1160" y2="475" stroke="#7a8f85" stroke-width="2" stroke-dasharray="6 6"/>
+    <text x="520" y="469" fill="#4f675d">35 ft: overlay base height (or existing, if taller)</text>
+    <line x1="110" y1="445" x2="1160" y2="445" stroke="#b58a12" stroke-width="2" stroke-dasharray="3 5"/>
+    <text x="520" y="439" fill="#7a5d06">45 ft: 2022 recommendation, front (not adopted)</text>
+    <line x1="110" y1="415" x2="1160" y2="415" stroke="#b42318" stroke-width="3"/>
+    <text x="520" y="409" fill="#b42318">55 ft: adopted ceiling, Sec. 4.5.2(e)</text>
+    <line x1="110" y1="340" x2="1160" y2="340" stroke="#b58a12" stroke-width="2" stroke-dasharray="3 5"/>
+    <text x="520" y="334" fill="#7a5d06">80 ft: 2022 recommendation, rear (not adopted)</text>
+  </g>
+
+  <!-- Rise target block -->
+  <rect x="180" y="325" width="220" height="255" fill="#046a48" opacity=".92"/>
+  <rect x="180" y="130" width="220" height="195" fill="url(#hatch)" stroke="#046a48" stroke-width="2"/>
+  <text x="290" y="470" font-size="18" font-weight="800" fill="#ffffff" text-anchor="middle">Trinity Rise</text>
+  <text x="290" y="494" font-size="15" fill="#ffffff" text-anchor="middle">target</text>
+  <text x="290" y="518" font-size="15" fill="#ffffff" text-anchor="middle">8-12 stories</text>
+  <text x="406" y="135" font-size="13" fill="#061b12">~150 ft</text>
+  <text x="406" y="330" font-size="13" fill="#061b12">~85 ft</text>
+  <text x="520" y="160" font-size="14" fill="#061b12">Hatched: uncertainty band (floor heights,</text>
+  <text x="520" y="178" font-size="14" fill="#061b12">roof, ground floor untested). Needs rezoning.</text>
+
+  <text x="40" y="616" font-size="12" fill="#4f675d">Band arithmetic (illustrative only): 8 floors x 10 ft + 5 ft roof/mechanical = 85 ft; 12 x 12 + 6 = 150 ft.</text>
+  <text x="40" y="632" font-size="12" fill="#4f675d">Sources: City of Burlington CDO Article 4, Sec. 4.5.2(e) (Feb. 10, 2026 text, as reported); Seven Days (2022 recommendation).</text>
+</svg>

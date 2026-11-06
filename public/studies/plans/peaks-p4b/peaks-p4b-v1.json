@@ -1,0 +1,166 @@
+{
+  "id": "peaks-p4b",
+  "title": "Trinity Peaks · Four-person suite, Option B",
+  "version": "1",
+  "date": "2026-11-06",
+  "status": "schematic exploration — exploratory dimensions, not measured or code-reviewed",
+  "envelope": {
+    "width": 38,
+    "depth": 28,
+    "grossArea": 1064
+  },
+  "beds": 4,
+  "sumRoomArea": 1064,
+  "areaByCategory": {
+    "unit": 1064
+  },
+  "grossAreaPerBed": 266,
+  "modules": [],
+  "rooms": [
+    {
+      "id": "s1",
+      "module": null,
+      "name": "Single 1",
+      "type": "bedroom",
+      "category": "unit",
+      "width": 9.5,
+      "depth": 12,
+      "area": 114,
+      "beds": 1
+    },
+    {
+      "id": "s2",
+      "module": null,
+      "name": "Single 2",
+      "type": "bedroom",
+      "category": "unit",
+      "width": 9.5,
+      "depth": 12,
+      "area": 114,
+      "beds": 1
+    },
+    {
+      "id": "s3",
+      "module": null,
+      "name": "Single 3",
+      "type": "bedroom",
+      "category": "unit",
+      "width": 9.5,
+      "depth": 12,
+      "area": 114,
+      "beds": 1
+    },
+    {
+      "id": "s4",
+      "module": null,
+      "name": "Single 4",
+      "type": "bedroom",
+      "category": "unit",
+      "width": 9.5,
+      "depth": 12,
+      "area": 114,
+      "beds": 1
+    },
+    {
+      "id": "lounge",
+      "module": null,
+      "name": "Suite lounge",
+      "type": "suite-lounge",
+      "category": "unit",
+      "width": 38,
+      "depth": 8,
+      "area": 304,
+      "beds": 0
+    },
+    {
+      "id": "bath1",
+      "module": null,
+      "name": "Bath 1",
+      "type": "bath",
+      "category": "unit",
+      "width": 7.5,
+      "depth": 8,
+      "area": 60,
+      "beds": 0
+    },
+    {
+      "id": "stor",
+      "module": null,
+      "name": "Storage",
+      "type": "storage",
+      "category": "unit",
+      "width": 7.5,
+      "depth": 8,
+      "area": 60,
+      "beds": 0
+    },
+    {
+      "id": "entry",
+      "module": null,
+      "name": "Entry",
+      "type": "entry",
+      "category": "unit",
+      "width": 8,
+      "depth": 8,
+      "area": 64,
+      "beds": 0
+    },
+    {
+      "id": "nook",
+      "module": null,
+      "name": "Study nook",
+      "type": "study",
+      "category": "unit",
+      "width": 7.5,
+      "depth": 8,
+      "area": 60,
+      "beds": 0
+    },
+    {
+      "id": "bath2",
+      "module": null,
+      "name": "Bath 2",
+      "type": "bath",
+      "category": "unit",
+      "width": 7.5,
+      "depth": 8,
+      "area": 60,
+      "beds": 0
+    }
+  ],
+  "assumptions": [
+    "S-MATTRESS",
+    "S-FURNITURE-LIST",
+    "S-UH-TYPOLOGY",
+    "E-BED",
+    "E-DESK",
+    "E-WARDROBE",
+    "E-SINGLE",
+    "E-BATH",
+    "E-SUITE-DEPTH",
+    "E-WALLS",
+    "E-DOOR"
+  ],
+  "checks": {
+    "errors": [],
+    "warnings": [],
+    "checked": [
+      "rooms do not overlap",
+      "every door sits on a wall shared by the rooms it joins and fits it",
+      "every room is reachable from the entry/corridor",
+      "windows only on declared exterior walls and fit them",
+      "furniture and fixtures sit inside their room and do not overlap",
+      "door swings are clear of furniture and fixtures",
+      "declared beds equal beds drawn and beds counted",
+      "bedroom area per bed against a study threshold",
+      "room areas reconcile to the envelope"
+    ],
+    "notChecked": [
+      "building, fire, or accessibility code compliance",
+      "turning circles and accessible clearances",
+      "structure, shafts, and mechanical space",
+      "egress travel distance",
+      "furniture fit beyond rectangle overlap"
+    ]
+  }
+}

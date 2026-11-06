@@ -1,4 +1,5 @@
 import lineupMedia from "./lineup-media.json";
+import { trinityFigures } from "./trinity";
 export type ProjectStatus = "in-development" | "available" | "independent";
 export type Studio = "tideframe" | "independent";
 
@@ -428,7 +429,7 @@ export const projects: Project[] = [
     slug: "trinity-redistricting",
     name: "Trinity Redistricting",
     shortName: "Trinity",
-    category: "Campus planning",
+    category: "Housing & development",
     year: "2026",
     status: "independent",
     statusLabel: "Independent student vision",
@@ -436,14 +437,14 @@ export const projects: Project[] = [
     studioLabel: "Independent project",
     platforms: ["Web"],
     creator: "Ivan Minier",
-    role: "Author — research, planning, writing, and the public site",
+    role: "Originator & author — research, planning, writing, visual direction, and the public site",
     officialHome: {
       label: "trinityredistricting.com",
       href: "https://trinityredistricting.com",
       external: true,
     },
     oneLiner:
-      "A student-led feasibility vision for housing on UVM’s Trinity Campus.",
+      "An independent, concept-stage housing feasibility proposal for UVM’s Trinity Campus.",
     summary:
       "Trinity Redistricting is an independent concept and feasibility study for turning UVM’s Trinity District into a more complete residential campus. It is not an official University of Vermont or City of Burlington plan.",
     href: "/work/trinity-redistricting",
@@ -636,9 +637,13 @@ export const featuredProjects = featuredOrder
   .map((slug) => getProject(slug))
   .filter((project): project is Project => Boolean(project));
 
-/** Concept ranges retained from the published Trinity case study, not outcomes. */
+/**
+ * Trinity figures now come from the synced Version 1.3 snapshot (src/data/trinity.ts).
+ * Before November 2026 this file hard-coded the superseded Version 1.1 ranges
+ * (1,850–2,100 beds; 1,400–1,650 net-new).
+ */
 export const trinityConcept = {
-  preferredBeds: "1,850–2,100",
-  estimatedNetNewBeds: "1,400–1,650",
+  preferredBeds: trinityFigures.newBeds,
+  estimatedNetNewBeds: trinityFigures.netNewBeds.replace(/^about /, ""),
   source: "https://trinityredistricting.com/documents.html",
 } as const;

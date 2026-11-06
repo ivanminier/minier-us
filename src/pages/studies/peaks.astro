@@ -1,0 +1,164 @@
+---
+import Base from "../../layouts/Base.astro";
+import StudyNav from "../../components/studies/StudyNav.astro";
+import StudyBanner from "../../components/studies/StudyBanner.astro";
+import PlanFigure from "../../components/studies/PlanFigure.astro";
+import Chip from "../../components/studies/Chip.astro";
+import { plan, num } from "../../data/studies";
+import { trinityFigures as F } from "../../data/trinity";
+
+const opts = ["peaks-p4a", "peaks-p4b", "peaks-p6"].map((id) => {
+  const p = plan(id);
+  const rooms = p.rooms as { type: string; area: number; beds: number }[];
+  const baths = rooms.filter((r) => r.type === "bath").length;
+  const bedrooms = rooms.filter((r) => r.beds);
+  const bedArea = bedrooms.reduce((s, r) => s + r.area, 0);
+  const shared = rooms.filter((r) => ["suite-lounge", "entry", "study"].includes(r.type)).reduce((s, r) => s + r.area, 0);
+  return { ...p, baths, perBath: p.beds / baths, bedSfPerBed: bedArea / p.beds, sharedPerBed: shared / p.beds, singles: bedrooms.filter((r) => r.beds === 1).length, doubles: bedrooms.filter((r) => r.beds === 2).length };
+});
+const floor = plan("peaks-floor-a");
+const mods = floor.modules as { title: string; count: number; bedsEach: number; beds: number }[];
+---
+
+<Base
+  title="Study A · Trinity Peaks suites — Ivan Minier"
+  theme="studies"
+  image="/studies/plans/peaks-p6/peaks-p6-v1.png"
+  description="Original schematic suite plans and a typical floor test fit for Trinity Peaks first- and second-year housing, compared with University Heights benchmarks."
+>
+  <header class="st-hero wrap-wide">
+    <div>
+      <p class="eyebrow">Study A · First- and second-year residence halls</p>
+      <h1>Trinity Peaks suites</h1>
+      <p class="lede">Three suite options and one typical floor, drawn to the Peaks goals: singles and doubles, suite-style living, RA support, real common space, and no forced triples.</p>
+    </div>
+    <StudyBanner>Design intent for Peaks comes from the proposal; layouts and options are AI-assisted drafts for my review.</StudyBanner>
+  </header>
+  <StudyNav />
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Reference</span>
+    <div class="st-split">
+      <div class="st-prose">
+        <h2>Starting from University Heights.</h2>
+        <p>
+          UVM's University Heights North and South are the closest on-campus model for
+          suite-style first- and second-year housing: suite and private singles, doubles, and
+          triples, a private restroom per suite, mixed-gender suites, and kitchens in a shared
+          commons (<a href="https://www.uvm.edu/housingdining/university-heights-north-and-south">UVM</a>).
+        </p>
+        <p>
+          I also studied UVM floor plans privately for typology — how suites, paired rooms, and
+          shared bathrooms are organised. Those drawings are not reproduced, traced, or quoted here,
+          and no figures from them are published. <Chip k="reference" label="Typology reference only" />
+        </p>
+      </div>
+      <div class="st-card">
+        <h3>Typologies that informed the options</h3>
+        <ul>
+          <li>Four-person suites: two bedrooms, a small common room, and a shared bathroom.</li>
+          <li>Paired private rooms sharing a bathroom between them (Jack-and-Jill).</li>
+          <li>Double-loaded corridors with rooms on both sides.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Options</span>
+    <h2>Three ways to house four to six students without a triple.</h2>
+    <div class="st-figs">
+      <PlanFigure id="peaks-p4a" eager />
+      <PlanFigure id="peaks-p4b" />
+    </div>
+    <div style="margin-top:1.5rem"><PlanFigure id="peaks-p6" /></div>
+
+    <div class="st-table-wrap" tabindex="0" role="region" aria-label="Suite option comparison">
+      <table class="st-table">
+        <thead>
+          <tr><th scope="col">Option</th><th scope="col" class="num">Residents</th><th scope="col">Rooms</th><th scope="col" class="num">Suite area / resident</th><th scope="col" class="num">Bedroom area / resident</th><th scope="col" class="num">Shared space / resident</th><th scope="col" class="num">Residents per bath</th></tr>
+        </thead>
+        <tbody>
+          {opts.map((o) => (
+            <tr>
+              <th scope="row">{o.title.replace("Trinity Peaks · ", "")}</th>
+              <td class="num">{o.beds}</td>
+              <td>{[o.doubles && `${o.doubles} double${o.doubles > 1 ? "s" : ""}`, o.singles && `${o.singles} single${o.singles > 1 ? "s" : ""}`].filter(Boolean).join(" + ")}</td>
+              <td class="num">{num(o.grossAreaPerBed!)} sf</td>
+              <td class="num">{num(o.bedSfPerBed)} sf</td>
+              <td class="num">{num(o.sharedPerBed)} sf</td>
+              <td class="num">{o.perBath}</td>
+            </tr>
+          ))}
+        </tbody>
+        <caption>Suite area is the module envelope (to the corridor wall), so it includes walls and storage. All dimensions are exploratory.</caption>
+      </table>
+    </div>
+
+    <div class="st-cols-3">
+      <div class="st-card">
+        <h3>Option A · two doubles</h3>
+        <p>The most efficient of these options. Its 188-sf doubles hold two unlofted beds with desks at the window; two bathrooms halve the morning queue. It is still generous compared with typical suite-style halls, which points to a more compact next iteration.</p>
+      </div>
+      <div class="st-card">
+        <h3>Option B · four singles</h3>
+        <p>Every resident gets a private room with a window, which helps the "no forced triples" goal survive future crowding. It uses about 52% more area per resident than Option A, and the lounge strip has no daylight in a mid-floor position.</p>
+      </div>
+      <div class="st-card">
+        <h3>Six-person suite</h3>
+        <p>Mixing two doubles and two singles reaches six residents with no triple and lets the suite lounge double as internal circulation. Three residents per bathroom is the trade-off.</p>
+      </div>
+    </div>
+    <div class="st-card" style="margin-top:1.5rem">
+      <h3>What the University Heights reference changes</h3>
+      <ul>
+        <li><strong>Option A is generous, not lean.</strong> Compact suites with smaller doubles and a split bathroom (a shower room plus a separate toilet room) are the next iteration to test.</li>
+        <li><strong>Suites are not one type.</strong> Paired private rooms sharing a bathroom (Jack-and-Jill) are a second family worth drawing.</li>
+        <li><strong>Suite depth</strong> of 28 ft is deep; a shallower module would shorten the floor.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Typical floor</span>
+    <h2>One floor, assembled from the suites above.</h2>
+    <PlanFigure id="peaks-floor-a" caption="Typical floor test fit A: eight four-person suites to the north, four six-person suites to the south" />
+    <div class="st-cols">
+      <div class="st-prose">
+        <p>
+          The floor is generated from the same suite specs, so a change to a suite updates the
+          floor. It carries {floor.beds} beds — {mods.map((m) => `${m.count} × ${m.bedsEach}-person suites`).join(" and ")}, plus two RA
+          rooms — with a floor lounge, laundry, two study rooms, trash, janitor space, two stairs,
+          and two elevators on a 6-ft corridor.
+        </p>
+        <p>
+          At {floor.grossAreaPerBed} sf per bed for the residential floor alone, the plan sits in a
+          plausible range for suite-style halls, but ground-floor uses (lobby, residential life,
+          Northside Dining, bike and ski storage) come on top. See the <a href="/studies/test-fit">test fits</a>.
+        </p>
+      </div>
+      <div class="st-card">
+        <h3>Not yet in the floor <Chip k="untested" /></h3>
+        <ul>
+          <li>Accessible suites (larger bathrooms, 5-ft turning space) — needed in the mix.</li>
+          <li>Staff apartments (3–5 in the proposal) and the top-floor duplex rooms.</li>
+          <li>Shafts, mechanical rooms, structure, and egress travel distances.</li>
+          <li>Wing shape: a 252-ft bar is a counting device, not a building form.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap-wide st-section">
+    <span class="st-num">Design framework · Peaks</span>
+    <h2>Calm, durable, and social at the right scale.</h2>
+    <div class="st-cols-3">
+      <div><h3>Character</h3><p>Residential wings that read as smaller neighbourhoods; no part taller than six floors to the eye, per the proposal. Brick or fibre-cement bases with lighter upper floors would relate to the Cottages without imitating them (an exploration, not a decision).</p></div>
+      <div><h3>Rooms</h3><p>Desks at the window, beds unlofted by default, wardrobes by the door so the window wall stays open. Durable sheet flooring, wall protection at bed and desk height, and operable windows with limiters.</p></div>
+      <div><h3>Shared space</h3><p>Suite lounges for daily life; a floor lounge and group-study rooms for noise; music and project rooms on the ground floor near Northside Dining, where activity helps rather than disturbs.</p></div>
+      <div><h3>Seasons</h3><p>Bike and ski storage at grade, boot-drying and mud space at entries, and vestibules sized for winter. Daylight matters most from November to March.</p></div>
+      <div><h3>Operations</h3><p>Two bathrooms per suite add fixtures to clean; split shower and toilet rooms (seen in some University Heights suites) may be a cheaper way to reduce queues worth testing next.</p></div>
+      <div><h3>Resident support</h3><p>A ground-floor hub with the front desk, residential life offices, staff apartments, and meeting rooms, per the proposal's {F.peaksBeds}-bed program.</p></div>
+    </div>
+  </section>
+</Base>

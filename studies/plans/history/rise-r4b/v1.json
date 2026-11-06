@@ -1,0 +1,743 @@
+{
+ "id": "rise-r4b",
+ "version": "1",
+ "study": "rise",
+ "option": "B",
+ "title": "Trinity Rise \u00b7 Four-bedroom apartment, Option B",
+ "subtitle": "Four private bedrooms, each with an ensuite bathroom",
+ "description": "The same 56-ft by 26-ft envelope as Option A, re-planned so every bedroom has its own ensuite bathroom. Tests what the premium 'bed-bath parity' feature costs in space and fixtures.",
+ "declaredBeds": 4,
+ "exterior": [
+  "N"
+ ],
+ "drawScale": 14,
+ "minSfPerBed": 110,
+ "date": "2026-11-06",
+ "status": "schematic exploration \u2014 exploratory dimensions, not measured or code-reviewed",
+ "rooms": [
+  {
+   "id": "br1",
+   "name": "Bedroom 1",
+   "type": "bedroom",
+   "rect": [
+    0,
+    0,
+    10.5,
+    12
+   ],
+   "beds": 1,
+   "labelAt": [
+    7.2,
+    6.5
+   ]
+  },
+  {
+   "id": "br2",
+   "name": "Bedroom 2",
+   "type": "bedroom",
+   "rect": [
+    10.5,
+    0,
+    10.5,
+    12
+   ],
+   "beds": 1,
+   "labelAt": [
+    3.3,
+    6.5
+   ]
+  },
+  {
+   "id": "living",
+   "name": "Living / kitchen",
+   "type": "living",
+   "rect": [
+    21,
+    0,
+    14,
+    26
+   ],
+   "labelAt": [
+    7,
+    9
+   ]
+  },
+  {
+   "id": "br3",
+   "name": "Bedroom 3",
+   "type": "bedroom",
+   "rect": [
+    35,
+    0,
+    10.5,
+    12
+   ],
+   "beds": 1,
+   "labelAt": [
+    7.2,
+    6.5
+   ]
+  },
+  {
+   "id": "br4",
+   "name": "Bedroom 4",
+   "type": "bedroom",
+   "rect": [
+    45.5,
+    0,
+    10.5,
+    12
+   ],
+   "beds": 1,
+   "labelAt": [
+    3.3,
+    6.5
+   ]
+  },
+  {
+   "id": "bath1",
+   "name": "Bath 1",
+   "type": "bath",
+   "rect": [
+    0,
+    12,
+    7,
+    8
+   ]
+  },
+  {
+   "id": "hallL",
+   "name": "Hall",
+   "type": "hall",
+   "rect": [
+    7,
+    12,
+    7,
+    14
+   ],
+   "labelAt": [
+    3.5,
+    10.5
+   ]
+  },
+  {
+   "id": "bath2",
+   "name": "Bath 2",
+   "type": "bath",
+   "rect": [
+    14,
+    12,
+    7,
+    7
+   ]
+  },
+  {
+   "id": "passL",
+   "name": "Hall",
+   "type": "hall",
+   "rect": [
+    14,
+    19,
+    7,
+    7
+   ]
+  },
+  {
+   "id": "laundry",
+   "name": "Laundry",
+   "type": "laundry",
+   "rect": [
+    0,
+    20,
+    7,
+    6
+   ]
+  },
+  {
+   "id": "bath4",
+   "name": "Bath 4",
+   "type": "bath",
+   "rect": [
+    49,
+    12,
+    7,
+    8
+   ]
+  },
+  {
+   "id": "hallR",
+   "name": "Hall",
+   "type": "hall",
+   "rect": [
+    42,
+    12,
+    7,
+    14
+   ],
+   "labelAt": [
+    3.5,
+    10.5
+   ]
+  },
+  {
+   "id": "bath3",
+   "name": "Bath 3",
+   "type": "bath",
+   "rect": [
+    35,
+    12,
+    7,
+    7
+   ]
+  },
+  {
+   "id": "passR",
+   "name": "Hall",
+   "type": "hall",
+   "rect": [
+    35,
+    19,
+    7,
+    7
+   ]
+  },
+  {
+   "id": "stor",
+   "name": "Storage",
+   "type": "storage",
+   "rect": [
+    49,
+    20,
+    7,
+    6
+   ]
+  }
+ ],
+ "doors": [
+  {
+   "between": [
+    "living",
+    "OUT"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 9,
+   "swing": "living",
+   "side": "S",
+   "id": "entry"
+  },
+  {
+   "between": [
+    "br1",
+    "hallL"
+   ],
+   "width": 3,
+   "hinge": "end",
+   "at": 0.25,
+   "swing": "br1"
+  },
+  {
+   "between": [
+    "br2",
+    "hallL"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 0.25,
+   "swing": "br2"
+  },
+  {
+   "between": [
+    "br1",
+    "bath1"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 1,
+   "swing": "bath1"
+  },
+  {
+   "between": [
+    "br2",
+    "bath2"
+   ],
+   "width": 2.5,
+   "hinge": "end",
+   "at": 3.5,
+   "swing": "bath2"
+  },
+  {
+   "between": [
+    "hallL",
+    "passL"
+   ],
+   "width": 5,
+   "hinge": "start",
+   "at": 0.5,
+   "kind": "opening"
+  },
+  {
+   "between": [
+    "passL",
+    "living"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 0.5,
+   "kind": "opening"
+  },
+  {
+   "between": [
+    "laundry",
+    "hallL"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 1.5,
+   "swing": "laundry"
+  },
+  {
+   "between": [
+    "br4",
+    "hallR"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 0.25,
+   "swing": "br4"
+  },
+  {
+   "between": [
+    "br3",
+    "hallR"
+   ],
+   "width": 3,
+   "hinge": "end",
+   "at": 0.25,
+   "swing": "br3"
+  },
+  {
+   "between": [
+    "br4",
+    "bath4"
+   ],
+   "width": 2.5,
+   "hinge": "end",
+   "at": 3.5,
+   "swing": "bath4"
+  },
+  {
+   "between": [
+    "br3",
+    "bath3"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 1,
+   "swing": "bath3"
+  },
+  {
+   "between": [
+    "hallR",
+    "passR"
+   ],
+   "width": 5,
+   "hinge": "start",
+   "at": 0.5,
+   "kind": "opening"
+  },
+  {
+   "between": [
+    "passR",
+    "living"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 0.5,
+   "kind": "opening"
+  },
+  {
+   "between": [
+    "stor",
+    "hallR"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 1.5,
+   "swing": "stor"
+  }
+ ],
+ "windows": [
+  {
+   "room": "br1",
+   "side": "N",
+   "at": 3.25,
+   "width": 4
+  },
+  {
+   "room": "br2",
+   "side": "N",
+   "at": 3.25,
+   "width": 4
+  },
+  {
+   "room": "br3",
+   "side": "N",
+   "at": 3.25,
+   "width": 4
+  },
+  {
+   "room": "br4",
+   "side": "N",
+   "at": 3.25,
+   "width": 4
+  },
+  {
+   "room": "living",
+   "side": "N",
+   "at": 4,
+   "width": 6
+  }
+ ],
+ "items": [
+  {
+   "room": "br1",
+   "kind": "bed",
+   "rect": [
+    0.5,
+    0.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "br1",
+   "kind": "desk",
+   "rect": [
+    6,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "br1",
+   "kind": "wardrobe",
+   "rect": [
+    0.5,
+    9.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "bath1",
+   "kind": "lav",
+   "rect": [
+    4.25,
+    12.25,
+    2,
+    1.5
+   ]
+  },
+  {
+   "room": "bath1",
+   "kind": "shower",
+   "rect": [
+    0.25,
+    17,
+    5,
+    2.75
+   ]
+  },
+  {
+   "room": "bath1",
+   "kind": "wc",
+   "rect": [
+    5.25,
+    17.25,
+    1.67,
+    2.5
+   ]
+  },
+  {
+   "room": "br2",
+   "kind": "desk",
+   "rect": [
+    11,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "br2",
+   "kind": "bed",
+   "rect": [
+    17.25,
+    0.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "br2",
+   "kind": "wardrobe",
+   "rect": [
+    17.5,
+    9.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "bath2",
+   "kind": "lav",
+   "rect": [
+    14.25,
+    12.25,
+    2,
+    1.5
+   ]
+  },
+  {
+   "room": "bath2",
+   "kind": "shower",
+   "rect": [
+    15.95,
+    16,
+    5,
+    2.75
+   ]
+  },
+  {
+   "room": "bath2",
+   "kind": "wc",
+   "rect": [
+    14.25,
+    16.25,
+    1.67,
+    2.5
+   ]
+  },
+  {
+   "room": "laundry",
+   "kind": "washer",
+   "rect": [
+    0.5,
+    23,
+    2.5,
+    2.5
+   ]
+  },
+  {
+   "room": "br4",
+   "kind": "bed",
+   "rect": [
+    52.25,
+    0.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "br4",
+   "kind": "desk",
+   "rect": [
+    46,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "br4",
+   "kind": "wardrobe",
+   "rect": [
+    52.5,
+    9.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "bath4",
+   "kind": "lav",
+   "rect": [
+    49.75,
+    12.25,
+    2,
+    1.5
+   ]
+  },
+  {
+   "room": "bath4",
+   "kind": "shower",
+   "rect": [
+    50.75,
+    17,
+    5,
+    2.75
+   ]
+  },
+  {
+   "room": "bath4",
+   "kind": "wc",
+   "rect": [
+    49.08,
+    17.25,
+    1.67,
+    2.5
+   ]
+  },
+  {
+   "room": "br3",
+   "kind": "desk",
+   "rect": [
+    41,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "br3",
+   "kind": "bed",
+   "rect": [
+    35.5,
+    0.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "br3",
+   "kind": "wardrobe",
+   "rect": [
+    35.5,
+    9.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "bath3",
+   "kind": "lav",
+   "rect": [
+    39.75,
+    12.25,
+    2,
+    1.5
+   ]
+  },
+  {
+   "room": "bath3",
+   "kind": "shower",
+   "rect": [
+    35.05,
+    16,
+    5,
+    2.75
+   ]
+  },
+  {
+   "room": "bath3",
+   "kind": "wc",
+   "rect": [
+    40.08,
+    16.25,
+    1.67,
+    2.5
+   ]
+  },
+  {
+   "room": "living",
+   "kind": "fridge",
+   "rect": [
+    21.25,
+    16,
+    2.5,
+    2.5
+   ]
+  },
+  {
+   "room": "living",
+   "kind": "counter",
+   "rect": [
+    21.25,
+    23.75,
+    5,
+    2
+   ],
+   "label": "sink"
+  },
+  {
+   "room": "living",
+   "kind": "range",
+   "rect": [
+    26.5,
+    23.5,
+    2.5,
+    2.25
+   ]
+  },
+  {
+   "room": "living",
+   "kind": "counter",
+   "rect": [
+    24,
+    18,
+    5,
+    2.5
+   ],
+   "label": "island"
+  },
+  {
+   "room": "living",
+   "kind": "table-round",
+   "rect": [
+    30,
+    11,
+    4,
+    4
+   ]
+  },
+  {
+   "room": "living",
+   "kind": "sofa",
+   "rect": [
+    22.5,
+    3,
+    8,
+    3
+   ]
+  }
+ ],
+ "assumptions": [
+  "S-MATTRESS",
+  "E-BED",
+  "E-DESK",
+  "E-WARDROBE",
+  "E-RISE-BR",
+  "E-BATH",
+  "E-APT-DEPTH",
+  "E-WALLS",
+  "E-DOOR"
+ ],
+ "designNotes": {
+  "owner": [
+   "Private bedrooms with bathrooms; design-forward upperclass identity explored as a separate premium scenario."
+  ],
+  "ai": [
+   "Fits in the same envelope only by giving up the study nook and flex room and shrinking baths to 49-56 sf.",
+   "Doubles the bathroom count (4 vs 2): more plumbing fixtures, waterproofing, and exhaust per unit."
+  ],
+  "open": [
+   "Whether ensuite baths earn enough rent to pay for themselves (see the development model)."
+  ]
+ }
+}

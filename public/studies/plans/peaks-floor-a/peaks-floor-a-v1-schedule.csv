@@ -1,0 +1,108 @@
+id,module,name,type,category,width_ft,depth_ft,area_sf,beds
+stair1,,"Stair 1",stair,core,12,28,336,0
+ra1,,"RA room",ra,residential,14,14,196,1
+study1,,"Study room",study-room,support,14,14,196,0
+lobby,,"RA / study vestibule",corridor,circulation,28,6,168,0
+elev1,,"Elevator",elevator,core,8,8,64,0
+elev2,,"Elevator",elevator,core,8,8,64,0
+pass,,"Passage",corridor,circulation,6,8,48,0
+trash,,"Trash / recycling",trash,core,6,8,48,0
+stair2,,"Stair 2",stair,core,12,28,336,0
+corridor,,"Corridor",corridor,circulation,252,6,1512,0
+ra2,,"RA room",ra,residential,12,28,336,1
+lounge,,"Floor lounge",lounge,support,26,28,728,0
+laundry,,"Laundry",floor-laundry,support,16,28,448,0
+jan,,"Janitor / storage",mech,core,10,28,280,0
+study2,,"Group study",study-room,support,12,28,336,0
+N1.brA,N1,"Double A",bedroom,unit,12.5,15,187.5,2
+N1.brB,N1,"Double B",bedroom,unit,12.5,15,187.5,2
+N1.bathA,N1,"Bath A",bath,unit,8,8,64,0
+N1.vest,N1,"Suite vestibule",entry,unit,9,13,117,0
+N1.bathB,N1,"Bath B",bath,unit,8,8,64,0
+N1.stA,N1,"Storage",storage,unit,8,5,40,0
+N1.stB,N1,"Storage",storage,unit,8,5,40,0
+N2.brA,N2,"Double A",bedroom,unit,12.5,15,187.5,2
+N2.brB,N2,"Double B",bedroom,unit,12.5,15,187.5,2
+N2.bathA,N2,"Bath A",bath,unit,8,8,64,0
+N2.vest,N2,"Suite vestibule",entry,unit,9,13,117,0
+N2.bathB,N2,"Bath B",bath,unit,8,8,64,0
+N2.stA,N2,"Storage",storage,unit,8,5,40,0
+N2.stB,N2,"Storage",storage,unit,8,5,40,0
+N3.brA,N3,"Double A",bedroom,unit,12.5,15,187.5,2
+N3.brB,N3,"Double B",bedroom,unit,12.5,15,187.5,2
+N3.bathA,N3,"Bath A",bath,unit,8,8,64,0
+N3.vest,N3,"Suite vestibule",entry,unit,9,13,117,0
+N3.bathB,N3,"Bath B",bath,unit,8,8,64,0
+N3.stA,N3,"Storage",storage,unit,8,5,40,0
+N3.stB,N3,"Storage",storage,unit,8,5,40,0
+N4.brA,N4,"Double A",bedroom,unit,12.5,15,187.5,2
+N4.brB,N4,"Double B",bedroom,unit,12.5,15,187.5,2
+N4.bathA,N4,"Bath A",bath,unit,8,8,64,0
+N4.vest,N4,"Suite vestibule",entry,unit,9,13,117,0
+N4.bathB,N4,"Bath B",bath,unit,8,8,64,0
+N4.stA,N4,"Storage",storage,unit,8,5,40,0
+N4.stB,N4,"Storage",storage,unit,8,5,40,0
+N5.brA,N5,"Double A",bedroom,unit,12.5,15,187.5,2
+N5.brB,N5,"Double B",bedroom,unit,12.5,15,187.5,2
+N5.bathA,N5,"Bath A",bath,unit,8,8,64,0
+N5.vest,N5,"Suite vestibule",entry,unit,9,13,117,0
+N5.bathB,N5,"Bath B",bath,unit,8,8,64,0
+N5.stA,N5,"Storage",storage,unit,8,5,40,0
+N5.stB,N5,"Storage",storage,unit,8,5,40,0
+N6.brA,N6,"Double A",bedroom,unit,12.5,15,187.5,2
+N6.brB,N6,"Double B",bedroom,unit,12.5,15,187.5,2
+N6.bathA,N6,"Bath A",bath,unit,8,8,64,0
+N6.vest,N6,"Suite vestibule",entry,unit,9,13,117,0
+N6.bathB,N6,"Bath B",bath,unit,8,8,64,0
+N6.stA,N6,"Storage",storage,unit,8,5,40,0
+N6.stB,N6,"Storage",storage,unit,8,5,40,0
+N7.brA,N7,"Double A",bedroom,unit,12.5,15,187.5,2
+N7.brB,N7,"Double B",bedroom,unit,12.5,15,187.5,2
+N7.bathA,N7,"Bath A",bath,unit,8,8,64,0
+N7.vest,N7,"Suite vestibule",entry,unit,9,13,117,0
+N7.bathB,N7,"Bath B",bath,unit,8,8,64,0
+N7.stA,N7,"Storage",storage,unit,8,5,40,0
+N7.stB,N7,"Storage",storage,unit,8,5,40,0
+N8.brA,N8,"Double A",bedroom,unit,12.5,15,187.5,2
+N8.brB,N8,"Double B",bedroom,unit,12.5,15,187.5,2
+N8.bathA,N8,"Bath A",bath,unit,8,8,64,0
+N8.vest,N8,"Suite vestibule",entry,unit,9,13,117,0
+N8.bathB,N8,"Bath B",bath,unit,8,8,64,0
+N8.stA,N8,"Storage",storage,unit,8,5,40,0
+N8.stB,N8,"Storage",storage,unit,8,5,40,0
+S1.brA,S1,"Double A",bedroom,unit,12.5,15,187.5,2
+S1.s1,S1,"Single 1",bedroom,unit,9.5,15,142.5,1
+S1.s2,S1,"Single 2",bedroom,unit,9.5,15,142.5,1
+S1.brB,S1,"Double B",bedroom,unit,12.5,15,187.5,2
+S1.bath1,S1,"Bath 1",bath,unit,8,8,64,0
+S1.st1,S1,"Storage",storage,unit,8,5,40,0
+S1.lounge,S1,"Suite lounge",suite-lounge,unit,28,13,364,0
+S1.bath2,S1,"Bath 2",bath,unit,8,8,64,0
+S1.st2,S1,"Storage",storage,unit,8,5,40,0
+S2.brA,S2,"Double A",bedroom,unit,12.5,15,187.5,2
+S2.s1,S2,"Single 1",bedroom,unit,9.5,15,142.5,1
+S2.s2,S2,"Single 2",bedroom,unit,9.5,15,142.5,1
+S2.brB,S2,"Double B",bedroom,unit,12.5,15,187.5,2
+S2.bath1,S2,"Bath 1",bath,unit,8,8,64,0
+S2.st1,S2,"Storage",storage,unit,8,5,40,0
+S2.lounge,S2,"Suite lounge",suite-lounge,unit,28,13,364,0
+S2.bath2,S2,"Bath 2",bath,unit,8,8,64,0
+S2.st2,S2,"Storage",storage,unit,8,5,40,0
+S3.brA,S3,"Double A",bedroom,unit,12.5,15,187.5,2
+S3.s1,S3,"Single 1",bedroom,unit,9.5,15,142.5,1
+S3.s2,S3,"Single 2",bedroom,unit,9.5,15,142.5,1
+S3.brB,S3,"Double B",bedroom,unit,12.5,15,187.5,2
+S3.bath1,S3,"Bath 1",bath,unit,8,8,64,0
+S3.st1,S3,"Storage",storage,unit,8,5,40,0
+S3.lounge,S3,"Suite lounge",suite-lounge,unit,28,13,364,0
+S3.bath2,S3,"Bath 2",bath,unit,8,8,64,0
+S3.st2,S3,"Storage",storage,unit,8,5,40,0
+S4.brA,S4,"Double A",bedroom,unit,12.5,15,187.5,2
+S4.s1,S4,"Single 1",bedroom,unit,9.5,15,142.5,1
+S4.s2,S4,"Single 2",bedroom,unit,9.5,15,142.5,1
+S4.brB,S4,"Double B",bedroom,unit,12.5,15,187.5,2
+S4.bath1,S4,"Bath 1",bath,unit,8,8,64,0
+S4.st1,S4,"Storage",storage,unit,8,5,40,0
+S4.lounge,S4,"Suite lounge",suite-lounge,unit,28,13,364,0
+S4.bath2,S4,"Bath 2",bath,unit,8,8,64,0
+S4.st2,S4,"Storage",storage,unit,8,5,40,0

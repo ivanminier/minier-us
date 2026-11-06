@@ -1,0 +1,543 @@
+{
+ "id": "peaks-p6",
+ "version": "1",
+ "study": "peaks",
+ "option": "A",
+ "title": "Trinity Peaks \u00b7 Six-person suite",
+ "subtitle": "Two doubles + two singles + suite lounge, no triples",
+ "description": "Six residents in two doubles and two singles around a shared suite lounge, with two full bathrooms and two storage closets. Reaches six residents without any triple room.",
+ "declaredBeds": 6,
+ "exterior": [
+  "N"
+ ],
+ "drawScale": 16,
+ "date": "2026-11-06",
+ "status": "schematic exploration \u2014 exploratory dimensions, not measured or code-reviewed",
+ "rooms": [
+  {
+   "id": "brA",
+   "name": "Double A",
+   "type": "bedroom",
+   "rect": [
+    0,
+    0,
+    12.5,
+    15
+   ],
+   "beds": 2
+  },
+  {
+   "id": "s1",
+   "name": "Single 1",
+   "type": "bedroom",
+   "rect": [
+    12.5,
+    0,
+    9.5,
+    15
+   ],
+   "beds": 1,
+   "labelAt": [
+    3,
+    7.5
+   ]
+  },
+  {
+   "id": "s2",
+   "name": "Single 2",
+   "type": "bedroom",
+   "rect": [
+    22,
+    0,
+    9.5,
+    15
+   ],
+   "beds": 1,
+   "labelAt": [
+    6.5,
+    7.5
+   ]
+  },
+  {
+   "id": "brB",
+   "name": "Double B",
+   "type": "bedroom",
+   "rect": [
+    31.5,
+    0,
+    12.5,
+    15
+   ],
+   "beds": 2
+  },
+  {
+   "id": "bath1",
+   "name": "Bath 1",
+   "type": "bath",
+   "rect": [
+    0,
+    15,
+    8,
+    8
+   ]
+  },
+  {
+   "id": "st1",
+   "name": "Storage",
+   "type": "storage",
+   "rect": [
+    0,
+    23,
+    8,
+    5
+   ]
+  },
+  {
+   "id": "lounge",
+   "name": "Suite lounge",
+   "type": "suite-lounge",
+   "rect": [
+    8,
+    15,
+    28,
+    13
+   ]
+  },
+  {
+   "id": "bath2",
+   "name": "Bath 2",
+   "type": "bath",
+   "rect": [
+    36,
+    15,
+    8,
+    8
+   ]
+  },
+  {
+   "id": "st2",
+   "name": "Storage",
+   "type": "storage",
+   "rect": [
+    36,
+    23,
+    8,
+    5
+   ]
+  }
+ ],
+ "doors": [
+  {
+   "between": [
+    "lounge",
+    "OUT"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 12.5,
+   "swing": "lounge",
+   "side": "S",
+   "id": "entry"
+  },
+  {
+   "between": [
+    "lounge",
+    "brA"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 0.75,
+   "swing": "brA"
+  },
+  {
+   "between": [
+    "lounge",
+    "s1"
+   ],
+   "width": 3,
+   "hinge": "end",
+   "at": 5.75,
+   "swing": "s1"
+  },
+  {
+   "between": [
+    "lounge",
+    "s2"
+   ],
+   "width": 3,
+   "hinge": "start",
+   "at": 0.75,
+   "swing": "s2"
+  },
+  {
+   "between": [
+    "lounge",
+    "brB"
+   ],
+   "width": 3,
+   "hinge": "end",
+   "at": 0.75,
+   "swing": "brB"
+  },
+  {
+   "between": [
+    "lounge",
+    "bath1"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 4,
+   "swing": "bath1"
+  },
+  {
+   "between": [
+    "lounge",
+    "st1"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 1,
+   "swing": "lounge"
+  },
+  {
+   "between": [
+    "lounge",
+    "bath2"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 4,
+   "swing": "bath2"
+  },
+  {
+   "between": [
+    "lounge",
+    "st2"
+   ],
+   "width": 2.5,
+   "hinge": "start",
+   "at": 1,
+   "swing": "lounge"
+  }
+ ],
+ "windows": [
+  {
+   "room": "brA",
+   "side": "N",
+   "at": 3.75,
+   "width": 5
+  },
+  {
+   "room": "s1",
+   "side": "N",
+   "at": 2.75,
+   "width": 4
+  },
+  {
+   "room": "s2",
+   "side": "N",
+   "at": 2.75,
+   "width": 4
+  },
+  {
+   "room": "brB",
+   "side": "N",
+   "at": 3.75,
+   "width": 5
+  }
+ ],
+ "items": [
+  {
+   "room": "brA",
+   "kind": "desk",
+   "rect": [
+    0.5,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "brA",
+   "kind": "desk",
+   "rect": [
+    8,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "brA",
+   "kind": "bed",
+   "rect": [
+    0.5,
+    3.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "brA",
+   "kind": "bed",
+   "rect": [
+    8.75,
+    3.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "brA",
+   "kind": "wardrobe",
+   "rect": [
+    0.5,
+    12.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "brA",
+   "kind": "wardrobe",
+   "rect": [
+    4,
+    12.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "bath1",
+   "kind": "shower",
+   "rect": [
+    0.25,
+    15.25,
+    5,
+    3
+   ]
+  },
+  {
+   "room": "bath1",
+   "kind": "wc",
+   "rect": [
+    0.5,
+    20.25,
+    1.67,
+    2.5
+   ]
+  },
+  {
+   "room": "bath1",
+   "kind": "lav",
+   "rect": [
+    3,
+    21.25,
+    2,
+    1.5
+   ]
+  },
+  {
+   "room": "brB",
+   "kind": "desk",
+   "rect": [
+    39.5,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "brB",
+   "kind": "desk",
+   "rect": [
+    32,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "brB",
+   "kind": "bed",
+   "rect": [
+    40.25,
+    3.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "brB",
+   "kind": "bed",
+   "rect": [
+    32.0,
+    3.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "brB",
+   "kind": "wardrobe",
+   "rect": [
+    40.5,
+    12.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "brB",
+   "kind": "wardrobe",
+   "rect": [
+    37,
+    12.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "bath2",
+   "kind": "shower",
+   "rect": [
+    38.75,
+    15.25,
+    5,
+    3
+   ]
+  },
+  {
+   "room": "bath2",
+   "kind": "wc",
+   "rect": [
+    41.83,
+    20.25,
+    1.67,
+    2.5
+   ]
+  },
+  {
+   "room": "bath2",
+   "kind": "lav",
+   "rect": [
+    39,
+    21.25,
+    2,
+    1.5
+   ]
+  },
+  {
+   "room": "s1",
+   "kind": "desk",
+   "rect": [
+    13,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "s1",
+   "kind": "bed",
+   "rect": [
+    18.25,
+    0.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "s1",
+   "kind": "wardrobe",
+   "rect": [
+    13,
+    12.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "s2",
+   "kind": "desk",
+   "rect": [
+    27,
+    0.5,
+    4,
+    2
+   ]
+  },
+  {
+   "room": "s2",
+   "kind": "bed",
+   "rect": [
+    22.25,
+    0.5,
+    3.25,
+    6.83
+   ],
+   "head": "N"
+  },
+  {
+   "room": "s2",
+   "kind": "wardrobe",
+   "rect": [
+    28,
+    12.5,
+    3,
+    2
+   ]
+  },
+  {
+   "room": "lounge",
+   "kind": "sofa",
+   "rect": [
+    14,
+    16.5,
+    8,
+    3
+   ]
+  },
+  {
+   "room": "lounge",
+   "kind": "table-round",
+   "rect": [
+    26,
+    17,
+    4,
+    4
+   ]
+  }
+ ],
+ "assumptions": [
+  "S-MATTRESS",
+  "S-FURNITURE-LIST",
+  "S-UH-TYPOLOGY",
+  "E-BED",
+  "E-DESK",
+  "E-WARDROBE",
+  "E-DOUBLE",
+  "E-SINGLE",
+  "E-BATH",
+  "E-SUITE-DEPTH",
+  "E-WALLS",
+  "E-DOOR"
+ ],
+ "designNotes": {
+  "owner": [
+   "No reliance on forced triples; mix of singles and doubles; suite-style housing with common rooms."
+  ],
+  "ai": [
+   "Three residents per bathroom, between Option A (2) and a typical hall bath ratio.",
+   "The lounge doubles as the suite's circulation, so there is no wasted hallway inside the suite."
+  ],
+  "open": [
+   "Lounge daylight depends on module position; mid-floor it borrows light only from bedrooms."
+  ]
+ }
+}
