@@ -24,8 +24,9 @@ const server = createServer(async (req, res) => {
     p = p + ".html";
   }
   try {
+    const body = await readFile(p); // read first, so a missing file can still get a 404
     res.writeHead(200, { "content-type": TYPES[extname(p)] || "application/octet-stream" });
-    res.end(await readFile(p));
+    res.end(body);
   } catch {
     res.writeHead(404).end();
   }
@@ -36,10 +37,13 @@ const browser = await chromium.launch();
 const page = await browser.newPage();
 await page.emulateMedia({ colorScheme: "light" });
 
-await page.goto(`${base}/portfolio/trinity/`, { waitUntil: "networkidle" });
-await page.evaluate(() => document.fonts.ready);
-await page.pdf({ path: join(ROOT, "public", "ivan-minier-trinity-portfolio.pdf"), width: "11in", height: "8.5in", margin: { top: 0, right: 0, bottom: 0, left: 0 }, printBackground: true });
-console.log("wrote public/ivan-minier-trinity-portfolio.pdf");
+// The admissions presentation is held back (src/pages/_portfolio); only print it when it is published.
+const pf = await page.goto(`${base}/portfolio/trinity/`, { waitUntil: "networkidle" });
+if (pf && pf.status() === 200) {
+  await page.evaluate(() => document.fonts.ready);
+  await page.pdf({ path: join(ROOT, "public", "ivan-minier-trinity-portfolio.pdf"), width: "11in", height: "8.5in", margin: { top: 0, right: 0, bottom: 0, left: 0 }, printBackground: true });
+  console.log("wrote public/ivan-minier-trinity-portfolio.pdf");
+} else console.log("skipped portfolio PDF (page not published)");
 
 await page.goto(`${base}/resume/`, { waitUntil: "networkidle" });
 await page.evaluate(() => document.fonts.ready);

@@ -29,7 +29,6 @@ export const emails = {
 
 export const nav = [
   { label: "Work", href: "/work" },
-  { label: "Studies", href: "/studies" },
   { label: "About", href: "/about" },
   { label: "Résumé", href: "/resume" },
   { label: "Contact", href: "/contact" },

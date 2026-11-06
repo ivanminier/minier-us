@@ -26,7 +26,9 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const PLANS = join(ROOT, "studies", "plans");
-const OUT = join(ROOT, "public", "studies", "plans");
+// Held out of the public site until the studies are approved for publication (see
+// docs/RELEASE-CANDIDATE.md). To publish, move studies/staging/public-studies back to public/studies.
+const OUT = join(ROOT, "studies", "staging", "public-studies", "plans");
 const EPS = 1e-6;
 
 // ---------------------------------------------------------------- loading

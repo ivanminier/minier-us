@@ -19,14 +19,15 @@ const index = JSON.parse(readFileSync(join(ROOT, "src", "data", "plans-index.jso
 
 const browser = await chromium.launch();
 for (const p of index) {
-  const svgPath = join(ROOT, "public", p.files.svg);
+  const STAGE = join(ROOT, "studies", "staging", "public-studies"); // see plans.mjs OUT
+  const svgPath = join(STAGE, p.files.svg.replace(/^\/studies/, ""));
   const svg = readFileSync(svgPath, "utf8");
   const [, w, h] = svg.match(/viewBox="0 0 (\d+) (\d+)"/).map(Number);
   const page = await browser.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 2 });
   await page.goto(pathToFileURL(svgPath).href);
-  await page.screenshot({ path: join(ROOT, "public", p.files.png), omitBackground: false });
+  await page.screenshot({ path: join(STAGE, p.files.png.replace(/^\/studies/, "")), omitBackground: false });
   // PDF: one page sized to the drawing.
-  await page.pdf({ path: join(ROOT, "public", p.files.pdf), width: `${w}px`, height: `${h}px`, printBackground: true, pageRanges: "1" });
+  await page.pdf({ path: join(STAGE, p.files.pdf.replace(/^\/studies/, "")), width: `${w}px`, height: `${h}px`, printBackground: true, pageRanges: "1" });
   await page.close();
   console.log(`rendered ${p.id}`);
 }
