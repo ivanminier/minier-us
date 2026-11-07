@@ -4,7 +4,7 @@ import ProjectMedia from "../../components/ProjectMedia.astro";
 import NextProject from "../../components/NextProject.astro";
 import Chip from "../../components/studies/Chip.astro";
 import { getProject } from "../../data/projects";
-import { tf, trinityRelease, trinityFigures as F, statusLabel } from "../../data/trinity";
+import { tf, trinityRelease, trinityFigures as F, statusLabel, trinityPinned, trinityCeilingFt, trinityRiseStoryRange } from "../../data/trinity";
 const p = getProject("trinity-redistricting")!;
 
 const ledger = [
@@ -75,8 +75,10 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
       <div><dt>Capital study range</dt><dd>{F.capitalRange}<small>illustrative · inclusions unresolved</small></dd></div>
     </dl>
     <p class="caption">
-      Figures are read at build time from the proposal's own data file (Version {trinityRelease.version},
-      {trinityRelease.dateLabel}) so this page cannot drift from trinityredistricting.com. They are
+      Figures are read at build time from a copy of the proposal's own data file (Version {trinityRelease.version},
+      {trinityRelease.dateLabel}{trinityRelease.revisedLabel ? `, revised ${trinityRelease.revisedLabel}` : ""}; trinity-site
+      commit <code>{trinityPinned.short}</code>), and the build checks that copy against that pinned revision. If the
+      proposal changes later, this page shows the pinned figures until it is re-synced. They are
       estimates and targets — not measured outcomes, budgets, or commitments.
     </p>
   </section>
@@ -96,7 +98,9 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
           no longer a UVM housing option.
         </p>
         <p>
-          Meanwhile Chittenden County's rental vacancy was reported at about 3.3% in June 2026.
+          Meanwhile Chittenden County's rental vacancy was reported at
+          <a href="https://www.vermontpublic.org/local-news/2026-06-09/chittenden-county-vermont-burlington-rental-market-vacancy-rate">{tf("vacancy").text.replace(/^About/, "about")}</a>
+          (Vermont Public, June 9, 2026; a county-wide landlord survey, not a student-only measure).
           The future of Trinity tends to be argued as either a rendering or a political
           position. I wanted to see whether it could be argued as a plan.
         </p>
@@ -154,9 +158,11 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
       <div class="st-card">
         <h3>Zoning <Chip k="external" /></h3>
         <p>
-          The adopted Trinity Campus overlay, as reported: 40% lot coverage, a 115-ft Colchester
-          Avenue buffer, and new construction up to the greater of 35 ft or existing structures,
-          with an <strong>absolute 55-ft ceiling</strong>. The 2022 recommendation of 80 ft was
+          The adopted Trinity Campus overlay, as reported
+          (<a href="https://www.burlingtonvt.gov/DocumentCenter/View/6267">City ordinance, Article 4, Sec. 4.5.2(e)</a>):
+          40% lot coverage (subject to its stated exception), a 115-ft Colchester Avenue buffer, and new
+          construction up to the greater of 35 ft or existing structures on the same parcel, with an
+          <strong>absolute {trinityCeilingFt}-ft ceiling</strong>. The 2022 recommendation of 80 ft was
           tabled, not adopted. A planner must confirm intervening amendments.
         </p>
       </div>
@@ -196,7 +202,7 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
         <ProjectMedia media={p.gallery[2]} />
         <figcaption>
           <strong>Trinity Rise</strong> — {F.riseBeds} apartment-style beds for juniors, seniors,
-          and transfer students, set deep in the site, with a {F.riseHeight} target that would
+          and transfer students, set deep in the site, with an {trinityRiseStoryRange}-story height target that would
           need a zoning amendment; to be built only if demand is shown. AI-assisted concept
           visualization; massing is not a tested height.
         </figcaption>
@@ -317,7 +323,7 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
     <div class="st-cols">
       <ul class="st-prose">
         <li><strong>Demand.</strong> About 885–1,035 net-new first- and second-year beds is a large expansion with no enrollment growth (UVM reported undergraduate enrollment down about 7% in 2026). The case rests on removing triples, replacing aging halls, and freeing other halls — none yet quantified.</li>
-        <li><strong>Height.</strong> Six visible Peaks floors may exceed 55 ft; an 8–12 story Rise certainly would. Both point to a zoning amendment the City has not granted.</li>
+        <li><strong>Height.</strong> Six visible Peaks floors may exceed {trinityCeilingFt} ft; an {trinityRiseStoryRange} story Rise certainly would. Both point to a zoning amendment the City has not granted.</li>
         <li><strong>Fit.</strong> No massing test fit, gross floor area, or room inventory exists for the proposal yet. A first schematic test fit is in progress.</li>
       </ul>
       <ul class="st-prose">

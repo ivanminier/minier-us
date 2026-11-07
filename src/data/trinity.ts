@@ -47,6 +47,25 @@ export const trinityFigures = {
   replacedBeds: tf("replacement_beds").text,
   netNewBeds: tf("net_new_beds").text,
   capitalRange: tf("capital_range").text,
-  riseHeight: "8–12 stories",
-  zoningCeiling: "55 feet",
+  riseHeight: riseStories(),
+  zoningCeiling: `${ceilingFeet()} feet`,
 };
+
+/** Story range from the synced Rise height fact, e.g. "8-12 stories (the author's ideal)" → "8–12 stories". */
+function riseStories() {
+  const m = tf("rise_height").value.match(/^(\d+-\d+) stories/);
+  if (!m) throw new Error("rise_height no longer starts with a story range; update src/data/trinity.ts");
+  return `${dash(m[1])} stories`;
+}
+
+/** Absolute height ceiling in feet from the synced zoning fact ("... an absolute 55-foot ceiling"). */
+function ceilingFeet() {
+  const m = tf("zoning_current").value.match(/absolute (\d+)-foot ceiling/);
+  if (!m) throw new Error("zoning_current no longer states an absolute ceiling; update src/data/trinity.ts");
+  return Number(m[1]);
+}
+
+/** The trinity-site commit the snapshot was copied from, for display. */
+export const trinityPinned = { ...snapshot.pinned, short: snapshot.pinned.commit.slice(0, 7) };
+export const trinityCeilingFt = ceilingFeet();
+export const trinityRiseStoryRange = riseStories().replace(" stories", "");
