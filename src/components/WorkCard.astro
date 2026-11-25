@@ -1,17 +1,10 @@
 ---
 import { getProject } from "../data/projects";
-import media from "../data/lineup-media.json";
+import sameMinute from "../data/same-minute-media.json";
 import ProjectMedia from "./ProjectMedia.astro";
 const { slug, number = "01", featured = false } = Astro.props;
 const p = getProject(slug)!;
-const image =
-  slug === "lineup"
-    ? media.tv
-    : slug === "rental-record"
-      ? p.gallery.at(-1)!
-      : slug === "trinity-redistricting"
-        ? p.gallery[0]
-        : p.hero;
+
 ---
 
 <article class:list={["work-card", slug, { featured }]}>
@@ -28,14 +21,19 @@ const image =
         />
         <ProjectMedia
           class="rental-device"
-          media={p.gallery[0]}
+          media={p.hero}
           zoom={false}
           sizes="180px"
         />
       </>
+    ) : slug === "same-minute" ? (
+      <>
+        <ProjectMedia class="timer-phone" media={p.hero} zoom={false} sizes="150px" />
+        <ProjectMedia class="timer-watch" media={sameMinute.watch} zoom={false} sizes="100px" />
+      </>
     ) : (
       <ProjectMedia
-        media={image}
+        media={p.hero}
         zoom={false}
         sizes={
           featured

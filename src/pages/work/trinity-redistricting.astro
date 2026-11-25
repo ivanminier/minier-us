@@ -3,6 +3,7 @@ import Base from "../../layouts/Base.astro";
 import ProjectMedia from "../../components/ProjectMedia.astro";
 import NextProject from "../../components/NextProject.astro";
 import Chip from "../../components/studies/Chip.astro";
+import media from "../../data/trinity-media.json";
 import { getProject } from "../../data/projects";
 import { tf, trinityRelease, trinityFigures as F, statusLabel, trinityPinned, trinityCeilingFt, trinityRiseStoryRange } from "../../data/trinity";
 const p = getProject("trinity-redistricting")!;
@@ -13,7 +14,7 @@ const ledger = [
   ["new_beds", "Combined new capacity"],
   ["replacement_beds", "Existing beds replaced (McAuley, Mercy, Back Five)"],
   ["net_new_beds", "Estimated net-new beds"],
-  ["capital_range", "Illustrative district capital study range"],
+  ["capital_range", "District planning cost estimate"],
   ["rise_height", "Trinity Rise height target"],
   ["zoning_current", "Adopted Trinity Campus overlay (as reported)"],
   ["pc_2022", "2022 Planning Commission recommendation"],
@@ -24,7 +25,7 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
 <Base
   title="Trinity Redistricting — Ivan Minier"
   theme="editorial"
-  image="/media/og/trinity.png"
+  image="/media/og/trinity-v14.png"
   description="Case study: an independent, concept-stage housing feasibility proposal for UVM's Trinity Campus — the problem, my role, research, assumptions, alternatives, and what remains untested."
 >
   <section class="civic-opening wrap-wide">
@@ -52,16 +53,8 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
       </p>
     </div>
     <figure class="map-stage">
-      <ProjectMedia media={p.gallery[0]} eager />
-      <div class="map-key">
-        <span>Housing footprints</span>
-        <span>Paths & circulation</span>
-        <span>Site context</span>
-      </div>
-      <figcaption>
-        Concept district map from the public proposal. Footprints are concept-stage and
-        not surveyed; they describe intent, not approved construction.
-      </figcaption>
+      <ProjectMedia media={p.hero} eager />
+      <figcaption>AI-assisted concept aerial from the published exterior studies.</figcaption>
     </figure>
   </section>
 
@@ -72,7 +65,7 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
       <div><dt>Combined new</dt><dd>{F.newBeds}<small>beds · calculated</small></dd></div>
       <div><dt>Replaced</dt><dd>{F.replacedBeds.replace("about ", "≈ ")}<small>beds · needs UVM verification</small></dd></div>
       <div><dt>Net-new</dt><dd>{F.netNewBeds.replace("about ", "≈ ")}<small>beds · calculated</small></dd></div>
-      <div><dt>Capital study range</dt><dd>{F.capitalRange}<small>illustrative · inclusions unresolved</small></dd></div>
+      <div><dt>District cost range</dt><dd>{F.capitalRange}<small>order-of-magnitude estimate</small></dd></div>
     </dl>
     <p class="caption">
       Figures are read at build time from a copy of the proposal's own data file (Version {trinityRelease.version},
@@ -106,10 +99,9 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
         </p>
       </div>
       <figure>
-        <ProjectMedia media={p.gallery[3]} />
+        <ProjectMedia media={media.massing} />
         <figcaption>
-          The Cottages — retained for preservation and adaptive reuse in the concept.
-          AI-assisted concept visualization, not a conditions survey.
+          The Blender massing study explores how the proposed buildings sit on the sloped site.
         </figcaption>
       </figure>
     </div>
@@ -144,8 +136,9 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
         <p>UVM, the City of Burlington, current students and Trinity residents, neighbours, and planning professionals.</p>
         <h3>The ask</h3>
         <p>
-          An introductory meeting and help scoping a "Phase 0" feasibility study — not adoption of
-          a design, a budget, or a capital commitment. Phase 0 is requested, not commissioned.
+          An introductory meeting, a UVM staff contact, help scoping a Phase 0 feasibility
+          study, and student and resident input. The proposal requests Phase 0. UVM would
+          decide whether to commission it.
         </p>
       </div>
     </div>
@@ -190,21 +183,19 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
     <h2>A district, not a building.</h2>
     <div class="st-cols">
       <figure>
-        <ProjectMedia media={p.gallery[1]} />
+        <ProjectMedia media={media.peaks} />
         <figcaption>
-          <strong>Trinity Peaks</strong> — {F.peaksBeds} first- and second-year beds in residential
-          wings of 5–6 floors over a partly sunken ground floor, with singles, doubles, suites,
-          accessible rooms, top-floor duplex rooms, RA rooms, and staff apartments; designed
-          without forced triples. AI-assisted concept visualization.
+          <strong>Trinity Peaks</strong> would provide {F.peaksBeds} beds for first- and
+          second-year students in four towers, with a hillside ground level, six
+          residential levels, and upper loft rooms. AI-assisted concept visualization.
         </figcaption>
       </figure>
       <figure>
-        <ProjectMedia media={p.gallery[2]} />
+        <ProjectMedia media={media.rise} />
         <figcaption>
-          <strong>Trinity Rise</strong> — {F.riseBeds} apartment-style beds for juniors, seniors,
-          and transfer students, set deep in the site, with an {trinityRiseStoryRange}-story height target that would
-          need a zoning amendment; to be built only if demand is shown. AI-assisted concept
-          visualization; massing is not a tested height.
+          <strong>Trinity Rise</strong> would provide {F.riseBeds} apartment-style beds for juniors
+          and seniors on the Back Five site if demand supports it. The {trinityRiseStoryRange}-story
+          target would need a zoning amendment. AI-assisted concept visualization.
         </figcaption>
       </figure>
       <figure>
@@ -215,19 +206,15 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
           seating are not set. AI-assisted concept visualization.
         </figcaption>
       </figure>
-      <div class="st-card">
-        <h3>Trinity Way + parking garage</h3>
-        <p>
-          One spine for walking, biking, transit, and service, and a three-level, solar-roofed
-          garage off Trinity Way between Peaks and Rise, so surface lots can become open space.
-          Bike and ski storage in both residential buildings supports car-light living. Garage
-          capacity and solar output are not calculated.
-        </p>
-        <p>
-          The <strong>Cottages</strong> are preserved for adaptive reuse; Northline Cafe is a
-          concept-stage cafe and study node at Rise.
-        </p>
-      </div>
+      <figure>
+        <ProjectMedia media={media.way} />
+        <figcaption>
+          <strong>Trinity Way</strong> would connect the site on foot and by bike while
+          providing service access. A solar-roofed garage is sized at {tf("garage_size").text}
+          for feasibility review. The Cottages would stay student suites.
+          AI-assisted concept visualization.
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -239,9 +226,9 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
         <thead><tr><th scope="col">Work</th><th scope="col">Who</th><th scope="col">Nature</th></tr></thead>
         <tbody>
           <tr><td>Concept origination, program, district organization, naming</td><td>Ivan Minier</td><td>Original</td></tr>
-          <tr><td>Research: UVM and City records, zoning text, news, benchmarks (48 cited sources)</td><td>Ivan Minier, with AI-assisted search and drafting</td><td>Original research, sourced</td></tr>
+          <tr><td>Research: UVM and City records, zoning text, news, benchmarks</td><td>Ivan Minier, with AI-assisted search and drafting</td><td>Original research, sourced</td></tr>
           <tr><td>Bed accounting, capital study allowances, scenarios, evidence ledger</td><td>Ivan Minier</td><td>Authored assumptions and calculations</td></tr>
-          <tr><td>Proposal, memo, 16-slide deck, document packet with accessible companions</td><td>Ivan Minier, AI-assisted writing and layout</td><td>Original</td></tr>
+          <tr><td>Proposal, memo, presentation deck, document packet with accessible companions</td><td>Ivan Minier, AI-assisted writing and layout</td><td>Original</td></tr>
           <tr><td>Renderings and aerials</td><td>Directed by Ivan Minier, generated with AI image tools</td><td><Chip k="ai" /> concept visualizations, not designs</td></tr>
           <tr><td>Diagrams (height section, phasing), district map</td><td>Ivan Minier, AI-assisted</td><td>Schematic</td></tr>
           <tr><td>Public website and Trinity AI (retrieval-augmented assistant, live source layer, logging)</td><td>Ivan Minier, AI-assisted development</td><td>Original technical work</td></tr>
@@ -264,13 +251,13 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
         <p>
           The visual direction aims for rooms that feel functional and calm rather than luxurious:
           daylight, real common space close to bedrooms, and residential wings that act as smaller
-          neighbourhoods. Peaks was revised to read as no more than six floors, tucking duplex
-          rooms into a hidden seventh level. Rise was moved deep into the site, behind Peaks.
+          neighbourhoods. The November revision puts Peaks in two mirrored halves
+          with dining between them. Rise sits on the Back Five land.
         </p>
         <p>
-          Every rendering is AI-assisted and labelled that way. None shows a tested height, a floor
-          plan, or a measured site. That gap is what my residential design studies, now in
-          progress and not yet published, are beginning to address.
+          The exterior images explore the appearance of the buildings. The Blender study
+          explores scale and placement. My residential design studies continue with room
+          layouts, floor plates, and site fit.
         </p>
       </div>
       <div class="st-figs">
@@ -322,13 +309,13 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
     <h2>The questions the concept cannot answer on its own.</h2>
     <div class="st-cols">
       <ul class="st-prose">
-        <li><strong>Demand.</strong> About 885–1,035 net-new first- and second-year beds is a large expansion with no enrollment growth (UVM reported undergraduate enrollment down about 7% in 2026). The case rests on removing triples, replacing aging halls, and freeing other halls — none yet quantified.</li>
-        <li><strong>Height.</strong> Six visible Peaks floors may exceed {trinityCeilingFt} ft; an {trinityRiseStoryRange} story Rise certainly would. Both point to a zoning amendment the City has not granted.</li>
-        <li><strong>Fit.</strong> No massing test fit, gross floor area, or room inventory exists for the proposal yet. A first schematic test fit is in progress.</li>
+        <li><strong>Demand.</strong> Peaks would add {tf("peaks_net_new").text} first- and second-year beds after replacing McAuley and Mercy. Phase 0 would test demand by class year and price using UVM data.</li>
+        <li><strong>Height.</strong> Peaks and Rise both need a measured analysis against the {trinityCeilingFt}-foot overlay ceiling.</li>
+        <li><strong>Fit.</strong> The room schedule and Blender study inform the concept. Phase 0 would test floor plates, heights, utilities, and site fit.</li>
       </ul>
       <ul class="st-prose">
-        <li><strong>Cost.</strong> The {F.capitalRange} range is an illustrative study range; soft costs, off-site utilities, escalation, financing, swing housing, and parking are not confirmed as included, and the Rise allowance was carried over from a larger concept.</li>
-        <li><strong>Dining and phasing.</strong> How residents eat while McAuley comes down is unplanned.</li>
+        <li><strong>Cost.</strong> The {F.capitalRange} planning range uses floor area and unit costs. It includes district work, parking, and bridge housing. Financing, operating costs, and land are excluded.</li>
+        <li><strong>Dining and phasing.</strong> The plan opens part of Peaks before replacing McAuley and Mercy. Phase 0 would test continuity for housing and dining.</li>
         <li><strong>Affordability.</strong> No rent is promised; Phase 0 would define total cost of occupancy against Redstone Lofts, University Commons, Spinner Place, and off-campus leases.</li>
       </ul>
     </div>
@@ -336,16 +323,15 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
 
   <section class="wrap-wide st-section">
     <span class="st-num">09 · Alternatives considered</span>
-    <h2>Three releases, each narrower and more honest.</h2>
+    <h2>How the proposal changed.</h2>
     <div class="st-table-wrap" tabindex="0" role="region" aria-label="Alternatives and versions">
       <table class="st-table">
         <thead><tr><th scope="col">Version / scenario</th><th scope="col">What changed</th><th scope="col">Why</th></tr></thead>
         <tbody>
           <tr><td>v1.1 · May 2026</td><td>1,850–2,100 beds; 1,400–1,650 net-new; Rise 400–500 beds at 8–10 stories</td><td>First public release, with video (now archived as superseded)</td></tr>
           <tr><td>v1.2 · Oct 28, 2026</td><td>Rise lowered to 6–7 stories and 300–400 beds; an unsupported 15% rental-pressure claim withdrawn</td><td>Scale back claims the evidence did not support</td></tr>
-          <tr class="hl"><td>v1.3 · Oct 29–30, 2026</td><td>Replaced beds raised to ≈565 (McAuley, Mercy, Back Five demolished); net-new fell to ≈1,185–1,435; Peaks capped at six visible floors; Rise target set at 8–12 stories with beds not re-tested; Northside moved into Peaks; garage added</td><td>Correction pass after an audit, plus design decisions</td></tr>
-          <tr><td>Minimum scenario</td><td>Peaks + Northside only: 1,450–1,600 beds, ≈885–1,035 net-new</td><td>Rise proceeds only if demand is shown</td></tr>
-          <tr><td>Higher-bed scenario</td><td>Rise up to ≈500 beds (≈2,100 total); no cost allowance</td><td>Unapproved alternative, kept separate from the baseline</td></tr>
+          <tr><td>v1.3 · Oct 29–30, 2026</td><td>Replaced beds raised to ≈565 (McAuley, Mercy, Back Five demolished); net-new fell to ≈1,185–1,435; Peaks capped at six visible floors; Rise target set at 8–12 stories with beds not re-tested; Northside moved into Peaks; garage added</td><td>Correction pass after an audit, plus design decisions</td></tr>
+          <tr class="hl"><td>v{trinityRelease.version} · {trinityRelease.dateLabel}</td><td>Peaks at {F.peaksBeds} beds, Rise at {F.riseBeds} beds, and a district planning estimate of {F.capitalRange}</td><td>Revised room schedule, phasing, and floor-area cost model</td></tr>
         </tbody>
       </table>
     </div>
@@ -358,7 +344,7 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
         <li><time datetime="2026-05-01">1 May 2026</time>Version 1.1 and project video published.</li>
         <li><time datetime="2026-10-28">28 Oct 2026</time>Version 1.2: smaller Rise, withdrawn claim, memo, deck, and context timeline.</li>
         <li><time datetime="2026-10-29">29–30 Oct 2026</time>Version 1.3 correction pass and design updates; Trinity AI 3.3.</li>
-        <li><time datetime="2026-11-06">Nov 2026</time>Independent residential design studies begin (in progress, not yet published).</li>
+        <li><time datetime={trinityRelease.date}>{trinityRelease.dateLabel}</time>Revised public proposal and exterior studies published.</li>
       </ol>
       <div class="st-card">
         <h3>Status today</h3>
@@ -369,6 +355,10 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
         </p>
       </div>
     </div>
+    <figure>
+      <ProjectMedia media={media.phasing} />
+      <figcaption><a href="https://trinityredistricting.com/implementation">See the published phasing and decision gates.</a></figcaption>
+    </figure>
   </section>
 
   <section class="wrap-wide st-section">
@@ -389,7 +379,7 @@ const kind = (s: string) => (s === "assumption" ? "assumption" : s === "calculat
           <li>UVM headcounts by class year, triple counts, and designed-bed counts by building.</li>
           <li>A surveyed site plan, parcel boundaries, and a planner's read of the overlay and height method.</li>
           <li>Room-level test fits for Peaks and Rise (in progress).</li>
-          <li>A rebased Rise cost and a demand study at real prices.</li>
+          <li>An independent estimate for Rise and a demand study at real prices.</li>
         </ul>
       </div>
     </div>

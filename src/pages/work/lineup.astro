@@ -2,7 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import ProjectMedia from "../../components/ProjectMedia.astro";
 import NextProject from "../../components/NextProject.astro";
-import m from "../../data/lineup-media.json";
+import m from "../../data/lineup-current-media.json";
 import { getProject } from "../../data/projects";
 const project = getProject("lineup")!;
 ---
@@ -10,8 +10,8 @@ const project = getProject("lineup")!;
 <Base
   title="Lineup — Ivan Minier"
   theme="cinematic"
-  image="/media/og/lineup-r3.png"
-  description="Building an Apple-native player and organizer for your own television sources. Coming soon from Tideframe Labs."
+  image="/media/og/lineup-update.png"
+  description={project.summary}
 >
   <section class="lineup-opening wrap-wide">
     <div class="lineup-title">
@@ -37,8 +37,7 @@ const project = getProject("lineup")!;
       <ProjectMedia media={m.tv} eager sizes="(max-width:700px) 90vw, 1100px" />
     </div>
     <p class="caption">
-      Actual Apple TV simulator capture. Original fictional demo; Lineup
-      includes no channels or subscriptions. Bring your own authorized sources.
+      Apple TV store preview with a fictional catalog. Bring your own authorized sources.
     </p>
   </section>
   <section class="section wrap-wide lineup-guide">
@@ -51,8 +50,8 @@ const project = getProject("lineup")!;
       </h2>
       <p>
         A source can arrive with duplicate names, leftover categories, and guide
-        data that doesn't quite fit. I’m building Lineup to turn that list into
-        a home for Live TV, movies, and series.
+        data that doesn't quite fit. I built Lineup to turn that list into
+        a home for live TV, movies, and series.
       </p>
       <p>
         The guide puts channels and time in one view. The original provider
@@ -73,21 +72,17 @@ const project = getProject("lineup")!;
     <figure>
       <ProjectMedia media={m.review} />
       <figcaption>
-        Smart Lineup · Pro. A genuine Review Changes screen from the fictional
-        fixture.
+        Smart Lineup (Pro) shows proposed changes before they’re applied.
       </figcaption>
     </figure>
     <div class="story-copy">
       <p class="eyebrow">02 / Review before applying</p>
       <h2>Organization you can inspect.</h2>
       <p>
-        Rather than silently rewriting a source, Smart Lineup presents grouped
-        channels and proposed changes for review. The original entries remain
-        available.
+        Smart Lineup presents duplicate streams and proposed catalog changes for review. The original entries remain available.
       </p>
       <p>
-        The review makes each proposed change visible before it becomes part of
-        the viewing experience.
+        Separate profiles give viewers their own Home layout, favorites, watchlist, and collections.
       </p>
     </div>
   </section>
@@ -108,25 +103,40 @@ const project = getProject("lineup")!;
       <figure class="detail-wide">
         <ProjectMedia media={m.multiview} />
         <figcaption>
-          Multiview · Pro. Four distinct original camera-motion studies in the
-          approved simulator demo.
+          Multiview (Pro) on Apple TV, with four fictional feeds.
         </figcaption>
       </figure>
     </div>
     <p class="caption">
-      Fictional titles and AI-generated original artwork; demo video studies are
-      180 seconds, not full films or broadcasts.{" "}
+      The demo uses fictional titles, AI-generated artwork, and short original video studies.{" "}
       <a href="/media/lineup/r3/CREDITS.md">Full media credits</a>.
     </p>
   </section>
+  <section class="section wrap-wide">
+    <div class="section-heading">
+      <div>
+        <h2>Tools for the way you watch.</h2>
+        <p>Signal Check shows playback diagnostics, and the Home layout adapts to a wider display.</p>
+      </div>
+    </div>
+    <div class="lineup-details">
+      <figure class="detail-phone">
+        <ProjectMedia media={m.signal} sizes="280px" />
+        <figcaption>Signal Check on iPhone surfaces connection and stream information.</figcaption>
+      </figure>
+      <figure class="detail-wide">
+        <ProjectMedia media={m.duo} />
+        <figcaption>Home on the inner display of an iPhone Duo simulator.</figcaption>
+      </figure>
+    </div>
+  </section>
   <section class="section wrap-wide case-ending">
     <div>
-      <h2>Still being built.</h2>
+      <h2>Lineup 1.0.</h2>
       <p>
-        These screens document the current simulator build. Lineup is coming
-        soon for iPhone, iPad, and Apple TV, with Mac planned.
+        I submitted Lineup 1.0 for App Review on iPhone, iPad, and Apple TV.
       </p>
-      <a class="btn" href="https://tideframelabs.com/lineup">
+      <a class="btn" href={project.officialHome!.href}>
         Lineup at Tideframe Labs ↗
       </a>
     </div>

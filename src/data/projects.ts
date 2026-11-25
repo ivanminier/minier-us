@@ -1,5 +1,7 @@
-import lineupMedia from "./lineup-media.json";
-import { trinityFigures } from "./trinity";
+import lineupMedia from "./lineup-current-media.json";
+import rentalMedia from "./rental-record-media.json";
+import sameMinuteMedia from "./same-minute-media.json";
+import trinityMedia from "./trinity-media.json";
 export type ProjectStatus = "in-development" | "available" | "independent";
 export type Studio = "tideframe" | "independent";
 
@@ -82,7 +84,7 @@ export const projects: Project[] = [
     category: "Television software",
     year: "2026",
     status: "in-development",
-    statusLabel: "Coming soon",
+    statusLabel: "Submitted for App Review",
     studio: "tideframe",
     studioLabel: "Tideframe Labs",
     platforms: ["iPhone", "iPad", "Apple TV"],
@@ -96,17 +98,19 @@ export const projects: Project[] = [
     oneLiner:
       "Your provider gives you channels. Lineup turns them into television.",
     summary:
-      "Lineup is an Apple-native player and organizer for lawful, user-supplied IPTV sources. It takes Xtream and M3U catalogs and turns them into Live TV, movies, series, and a usable guide for iPhone, iPad, and Apple TV.",
+      "Lineup organizes user-supplied Xtream and M3U sources into live TV, movies, series, and a program guide. It brings profiles, saved collections, and playback diagnostics to iPhone, iPad, and Apple TV.",
     href: "/work/lineup",
     accent: "#1f8a6e",
     theme: "cinematic",
     icon: "/media/lineup/icon-256.webp",
-    hero: { ...lineupMedia.home, presentation: "device" },
-    devices: { tablet: { ...lineupMedia.guide, presentation: "tablet" } },
+    hero: { ...lineupMedia.tv, presentation: "tv" },
+    devices: { tablet: { ...lineupMedia.guide, presentation: "screen" } },
     gallery: [
       { ...lineupMedia.multiview, presentation: "tv" },
       { ...lineupMedia.review, presentation: "screen" },
       { ...lineupMedia.series, presentation: "device" },
+      { ...lineupMedia.signal, presentation: "device" },
+      { ...lineupMedia.duo, presentation: "screen" },
     ],
     links: [
       {
@@ -147,7 +151,7 @@ export const projects: Project[] = [
   },
   {
     slug: "rental-record",
-    name: "Tideframe Rental Record",
+    name: "Rental Record by Tideframe",
     shortName: "Rental Record",
     category: "Rental documentation",
     year: "2026",
@@ -166,107 +170,20 @@ export const projects: Project[] = [
     oneLiner:
       "A structured rental record instead of a camera roll full of disconnected photos.",
     summary:
-      "Tideframe Rental Record is a private, guided app for move-in, move-out, and follow-up condition records. Photos, notes, rooms, and reports stay together on the device.",
+      "Rental Record by Tideframe keeps room inspections, photos, observations, and handoff details together. Compare conditions over a tenancy and turn the record into a readable PDF.",
     href: "/work/rental-record",
     accent: "#2b6d93",
     theme: "paper",
-    icon: "/media/rental-record/icon.webp",
-    hero: {
-      src: "/media/rental-record/iphone-cases-md.webp",
-      srcset:
-        "/media/rental-record/iphone-cases-sm.webp 440w, /media/rental-record/iphone-cases-md.webp 880w, /media/rental-record/iphone-cases.webp 1320w",
-      width: 880,
-      height: 1912,
-      alt: "Rental Record Cases screen on iPhone using fictional rental data.",
-      presentation: "device",
-    },
+    icon: "/media/rental-record/refresh/icon.webp",
+    hero: { ...rentalMedia.cases, presentation: "device" },
     gallery: [
-      {
-        src: "/media/rental-record/iphone-room-md.webp",
-        srcset:
-          "/media/rental-record/iphone-room-sm.webp 440w, /media/rental-record/iphone-room-md.webp 880w, /media/rental-record/iphone-room.webp 1320w",
-        width: 880,
-        height: 1912,
-        alt: "Rental Record living-room checklist on iPhone using fictional rental data.",
-        caption:
-          "Room checklist — wide overview first, then close-ups, on iPhone.",
-        presentation: "device",
-      },
-      {
-        src: "/media/rental-record/iphone-evidence-md.webp",
-        srcset:
-          "/media/rental-record/iphone-evidence-sm.webp 440w, /media/rental-record/iphone-evidence-md.webp 880w, /media/rental-record/iphone-evidence.webp 1320w",
-        width: 880,
-        height: 1912,
-        alt: "Rental Record evidence and observations on iPhone using fictional rental data.",
-        caption:
-          "Evidence — a photo, an observation, a condition, and the room it belongs to.",
-        presentation: "device",
-      },
-      {
-        src: "/media/rental-record/iphone-report-md.webp",
-        srcset:
-          "/media/rental-record/iphone-report-sm.webp 440w, /media/rental-record/iphone-report-md.webp 880w, /media/rental-record/iphone-report.webp 1320w",
-        width: 880,
-        height: 1912,
-        alt: "Rental Record PDF report preview on iPhone using fictional rental data.",
-        caption:
-          "Report — a move-in PDF, ready to finalize or package as evidence.",
-        presentation: "device",
-      },
-      {
-        src: "/media/rental-record/ipad-room-md.webp",
-        srcset:
-          "/media/rental-record/ipad-room-sm.webp 516w, /media/rental-record/ipad-room-md.webp 1032w, /media/rental-record/ipad-room.webp 1548w",
-        width: 1032,
-        height: 1376,
-        alt: "Rental Record room inspection on iPad, with the checklist and evidence side by side.",
-        caption: "iPad — the checklist and the evidence list share one screen.",
-        presentation: "tablet",
-      },
-      {
-        src: "/media/rental-record/mac-inspection-md.webp",
-        srcset:
-          "/media/rental-record/mac-inspection-sm.webp 960w, /media/rental-record/mac-inspection-md.webp 1440w, /media/rental-record/mac-inspection.webp 2560w",
-        width: 1440,
-        height: 899,
-        alt: "Rental Record move-in inspection overview on Mac using fictional rental data.",
-        caption:
-          "Mac — the move-in inspection, with readiness and outstanding items in one view.",
-        presentation: "screen",
-      },
-      {
-        src: "/media/rental-record/mac-report-md.webp",
-        srcset:
-          "/media/rental-record/mac-report-sm.webp 960w, /media/rental-record/mac-report-md.webp 1440w, /media/rental-record/mac-report.webp 2560w",
-        width: 1440,
-        height: 899,
-        alt: "Rental Record report preview on Mac using fictional rental data.",
-        caption:
-          "Mac — the same record as a shareable PDF report and evidence package.",
-        presentation: "screen",
-      },
+      { ...rentalMedia.room, presentation: "device" },
+      { ...rentalMedia.evidence, presentation: "device" },
+      { ...rentalMedia.space, presentation: "device" },
+      { ...rentalMedia.handoff, presentation: "tablet" },
+      { ...rentalMedia.contacts, presentation: "screen" },
+      { ...rentalMedia.report, presentation: "screen" },
     ],
-    devices: {
-      tablet: {
-        src: "/media/rental-record/ipad-overview-md.webp",
-        srcset:
-          "/media/rental-record/ipad-overview-sm.webp 516w, /media/rental-record/ipad-overview-md.webp 1032w, /media/rental-record/ipad-overview.webp 1548w",
-        width: 1032,
-        height: 1376,
-        alt: "Rental Record Cases overview on iPad using fictional rental data.",
-        presentation: "tablet",
-      },
-      desktop: {
-        src: "/media/rental-record/mac-cases-md.webp",
-        srcset:
-          "/media/rental-record/mac-cases-sm.webp 960w, /media/rental-record/mac-cases-md.webp 1440w, /media/rental-record/mac-cases.webp 2560w",
-        width: 1440,
-        height: 899,
-        alt: "Rental Record Cases window on Mac using fictional rental data.",
-        presentation: "screen",
-      },
-    },
     links: [
       {
         label: "App Store",
@@ -286,7 +203,7 @@ export const projects: Project[] = [
     capabilities: [
       {
         title: "Guided inspections",
-        body: "Move-in, move-out, and follow-up records with room checklists, wide and close-up photos, and written observations.",
+        body: "Move-in, move-out, and follow-up records with room checklists, photos, and written observations. Reuse inspection templates and compare conditions over time.",
       },
       {
         title: "Evidence that stays together",
@@ -303,6 +220,67 @@ export const projects: Project[] = [
     ],
     reasoning:
       "A rental record is useful only if it is complete, reviewable, and still understandable later. The product is an organizational tool, not a legal service.",
+    nextSlug: "same-minute",
+  },
+  {
+    slug: "same-minute",
+    name: "Same Minute by Tideframe",
+    shortName: "Same Minute",
+    category: "Focus timer",
+    year: "2026",
+    status: "available",
+    statusLabel: "On the App Store",
+    studio: "tideframe",
+    studioLabel: "Tideframe Labs",
+    platforms: ["iPhone", "iPad", "Apple Watch"],
+    creator: "Ivan Minier",
+    role: "Creator — product, interface, and engineering",
+    officialHome: {
+      label: "App Store",
+      href: "https://apps.apple.com/us/app/same-minute-by-tideframe/id6838133122",
+      external: true,
+    },
+    oneLiner: "Keep one focus countdown with someone in another room or another city.",
+    summary:
+      "Same Minute by Tideframe is a focus timer for two. Run a solo timer or invite someone to a private room and share one countdown.",
+    href: "/work/same-minute",
+    accent: "#247b67",
+    theme: "paper",
+    icon: "/media/same-minute/refresh/icon.webp",
+    hero: { ...sameMinuteMedia.together, presentation: "device" },
+    devices: { tablet: { ...sameMinuteMedia.ipad, presentation: "tablet" } },
+    gallery: [
+      { ...sameMinuteMedia.solo, presentation: "device" },
+      { ...sameMinuteMedia.break, presentation: "device" },
+      { ...sameMinuteMedia.watch, presentation: "device" },
+    ],
+    links: [
+      {
+        label: "Tideframe product page",
+        href: "https://tideframelabs.com/same-minute",
+        external: true,
+      },
+    ],
+    problem:
+      "My mom and I wanted to do Pomodoros together from different cities. Starting two timers at once was easy. Staying in the same session after a pause or a late join was harder.",
+    approach:
+      "Together mode gives both people the same end time. A late join starts with the time that’s left, and either person can start, pause, or end the shared timer.",
+    capabilities: [
+      {
+        title: "Start solo",
+        body: "Start a focus interval without an account or connection. Set your own focus, short break, and long break lengths.",
+      },
+      {
+        title: "Share one countdown",
+        body: "Invite one person to a private room using iCloud. Return to the same room the next time you want to work together.",
+      },
+      {
+        title: "Take the break when you’re ready",
+        body: "Same Minute offers the next interval when the timer ends. You choose when to start it.",
+      },
+    ],
+    reasoning:
+      "I wanted the experience of working alongside someone to take about as much effort as setting a kitchen timer.",
     nextSlug: "modeboard",
   },
   {
@@ -446,63 +424,18 @@ export const projects: Project[] = [
     oneLiner:
       "An independent, concept-stage housing feasibility proposal for UVM’s Trinity Campus.",
     summary:
-      "Trinity Redistricting is an independent concept and feasibility study for turning UVM’s Trinity District into a more complete residential campus. It is not an official University of Vermont or City of Burlington plan.",
+      "An independent student proposal to replace aging housing at UVM’s Trinity Campus, renew Northside Dining, and study whether apartment-style housing would meet upperclass demand.",
     href: "/work/trinity-redistricting",
     accent: "#046a48",
     theme: "editorial",
     icon: "/media/trinity/logo.webp",
-    hero: {
-      src: "/media/trinity/home-hero-md.webp",
-      srcset:
-        "/media/trinity/home-hero-sm.webp 800w, /media/trinity/home-hero-md.webp 1400w, /media/trinity/home-hero.webp 2400w",
-      width: 1400,
-      height: 554,
-      alt: "Concept visualization of the Trinity district residential vision.",
-      presentation: "editorial",
-    },
+    hero: { ...trinityMedia.district, presentation: "editorial" },
     gallery: [
-      {
-        src: "/media/trinity/map-md.webp",
-        srcset:
-          "/media/trinity/map-sm.webp 760w, /media/trinity/map-md.webp 1400w, /media/trinity/map.webp 2400w",
-        width: 1400,
-        height: 886,
-        alt: "District plan concept map for Trinity Redistricting, showing building footprints and circulation across the Trinity site.",
-        caption:
-          "District plan — the concept treats Trinity as one site, not a single building.",
-        presentation: "editorial",
-      },
-      {
-        src: "/media/trinity/peaks-md.webp",
-        srcset:
-          "/media/trinity/peaks-sm.webp 760w, /media/trinity/peaks-md.webp 1400w, /media/trinity/peaks.webp 2400w",
-        width: 1400,
-        height: 800,
-        alt: "Trinity Peaks residence hall concept visualization.",
-        caption: "Trinity Peaks — first-year residence hall concept.",
-        presentation: "editorial",
-      },
-      {
-        src: "/media/trinity/rise-md.webp",
-        srcset:
-          "/media/trinity/rise-sm.webp 760w, /media/trinity/rise-md.webp 1100w, /media/trinity/rise.webp 1536w",
-        width: 1100,
-        height: 733,
-        alt: "Trinity Rise upperclass apartment-style concept visualization.",
-        caption: "Trinity Rise — upperclass apartment-style housing concept.",
-        presentation: "editorial",
-      },
-      {
-        src: "/media/trinity/cottages-md.webp",
-        srcset:
-          "/media/trinity/cottages-sm.webp 760w, /media/trinity/cottages-md.webp 1400w, /media/trinity/cottages.webp 2400w",
-        width: 1400,
-        height: 824,
-        alt: "Cottages preservation and adaptive reuse concept.",
-        caption:
-          "The Cottages — preservation and adaptive reuse rather than removal.",
-        presentation: "editorial",
-      },
+      { ...trinityMedia.massing, presentation: "editorial" },
+      { ...trinityMedia.peaks, presentation: "editorial" },
+      { ...trinityMedia.rise, presentation: "editorial" },
+      { ...trinityMedia.way, presentation: "editorial" },
+      { ...trinityMedia.phasing, presentation: "editorial" },
     ],
     links: [
       {
@@ -512,12 +445,12 @@ export const projects: Project[] = [
       },
       {
         label: "Documents",
-        href: "https://trinityredistricting.com/documents.html",
+        href: "https://trinityredistricting.com/documents",
         external: true,
       },
       {
         label: "Trinity AI",
-        href: "https://trinityredistricting.com/trinity-ai.html",
+        href: "https://trinityredistricting.com/trinity-ai",
         external: true,
       },
     ],
@@ -628,6 +561,7 @@ export function getNextProject(slug: string): Project {
 export const featuredOrder = [
   "lineup",
   "rental-record",
+  "same-minute",
   "modeboard",
   "trinity-redistricting",
   "uvm-laundrylink",
@@ -636,14 +570,3 @@ export const featuredOrder = [
 export const featuredProjects = featuredOrder
   .map((slug) => getProject(slug))
   .filter((project): project is Project => Boolean(project));
-
-/**
- * Trinity figures now come from the synced Version 1.3 snapshot (src/data/trinity.ts).
- * Before November 2026 this file hard-coded the superseded Version 1.1 ranges
- * (1,850–2,100 beds; 1,400–1,650 net-new).
- */
-export const trinityConcept = {
-  preferredBeds: trinityFigures.newBeds,
-  estimatedNetNewBeds: trinityFigures.netNewBeds.replace(/^about /, ""),
-  source: "https://trinityredistricting.com/documents.html",
-} as const;

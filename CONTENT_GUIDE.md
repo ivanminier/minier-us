@@ -35,10 +35,18 @@ If Lineup ships, change its `status` to `'available'` and add the real App Store
 
 1. Put the file in `public/media/<project>/`.
 2. Prefer `.webp`. Keep originals out of the repo if they are huge.
-3. Point the matching `src` in `src/data/projects.ts` at the new file.
+3. Update the image entry in the matching `src/data/*-media.json` file. Projects with inline image data use `src/data/projects.ts`.
 4. Write honest `alt` text.
 
 Lineup screenshots should be demo-catalog only. Do not publish real provider names, logos you do not own, or login details.
+
+The November 2026 refresh uses these sources.
+
+- Lineup uses the November 25 iPhone simulator captures, the App Store submission set for iPad and Apple TV, and the iPhone Duo simulator image from that set. The demo artwork and video credits are under `public/media/lineup/r3/`.
+- Rental Record uses the fictional Maple Street screenshots and icon from LeaseLock’s `AppStoreScreenshots/Release-1.2.1-20` folder.
+- Same Minute uses the screenshots and icon in the Tideframe site’s `public/products/same-minute` folder.
+- Trinity uses the November proposal’s `assets/images/exterior-studies` and `phasing-diagram.svg`. Keep the AI-assisted appearance studies labeled and identify the Blender massing study in its caption.
+
 
 ## Add an idea
 
@@ -59,7 +67,7 @@ It will appear on `/ideas` automatically.
 ## Add another project
 
 1. Add an object to `projects` in `src/data/projects.ts`.
-2. Add the slug to `featuredOrder` if it should appear on the homepage.
+2. Add a `WorkCard` in `src/pages/work/index.astro` and, for a homepage feature, in `src/pages/index.astro`. The studio page lists all projects with `studio: "tideframe"`.
 3. Create `src/pages/work/your-slug.astro`. You can copy an existing work page.
 4. Add images under `public/media/your-slug/`.
 
@@ -75,6 +83,6 @@ Locally:
 
 ```sh
 npm install
-npm run dev
+npm run dev -- --background
 npm run build
 ```

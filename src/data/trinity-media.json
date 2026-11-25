@@ -1,0 +1,44 @@
+{
+  "district": {
+    "src": "/media/trinity/refresh/district-1600.webp",
+    "width": 1600,
+    "height": 900,
+    "srcset": "/media/trinity/refresh/district-760.webp 760w, /media/trinity/refresh/district-1600.webp 1600w",
+    "alt": "Illustrative aerial view of the proposed Trinity residential district."
+  },
+  "massing": {
+    "src": "/media/trinity/refresh/massing-1600.webp",
+    "width": 1600,
+    "height": 900,
+    "srcset": "/media/trinity/refresh/massing-760.webp 760w, /media/trinity/refresh/massing-1600.webp 1600w",
+    "alt": "Blender massing study showing the proposed buildings on the sloped Trinity site."
+  },
+  "peaks": {
+    "src": "/media/trinity/refresh/peaks-1600.webp",
+    "width": 1600,
+    "height": 900,
+    "srcset": "/media/trinity/refresh/peaks-760.webp 760w, /media/trinity/refresh/peaks-1600.webp 1600w",
+    "alt": "Illustrative view of the proposed Trinity Peaks towers and courtyard."
+  },
+  "rise": {
+    "src": "/media/trinity/refresh/rise-1600.webp",
+    "width": 1600,
+    "height": 900,
+    "srcset": "/media/trinity/refresh/rise-760.webp 760w, /media/trinity/refresh/rise-1600.webp 1600w",
+    "alt": "Illustrative view of the proposed Trinity Rise apartment building."
+  },
+  "way": {
+    "src": "/media/trinity/refresh/way-1600.webp",
+    "width": 1600,
+    "height": 901,
+    "srcset": "/media/trinity/refresh/way-760.webp 760w, /media/trinity/refresh/way-1600.webp 1600w",
+    "alt": "Illustrative view of Trinity Way, the proposed route between buildings."
+  },
+  "phasing": {
+    "src": "/media/trinity/refresh/phasing-1200.webp",
+    "width": 1200,
+    "height": 640,
+    "srcset": "/media/trinity/refresh/phasing-760.webp 760w, /media/trinity/refresh/phasing-1200.webp 1200w",
+    "alt": "The proposed sequence from Phase 0 feasibility through Trinity Peaks and an optional Trinity Rise phase."
+  }
+}

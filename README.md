@@ -2,7 +2,7 @@
 
 Personal website for Ivan Minier.
 
-This is the public home for the person, not a second Tideframe store. Tideframe Labs remains the company. Lineup, Tideframe Rental Record, and Modeboard are Tideframe products. Trinity Redistricting and UVM LaundryLink are independent projects.
+This is the public home for the person, not a second Tideframe store. Tideframe Labs remains the company. Same Minute, Lineup, Rental Record, and Modeboard are Tideframe products. Trinity Redistricting and UVM LaundryLink are independent projects.
 
 ## Stack
 

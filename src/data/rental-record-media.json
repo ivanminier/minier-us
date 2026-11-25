@@ -1,0 +1,51 @@
+{
+  "cases": {
+    "src": "/media/rental-record/refresh/cases-880.webp",
+    "width": 880,
+    "height": 1912,
+    "srcset": "/media/rental-record/refresh/cases-440.webp 440w, /media/rental-record/refresh/cases-880.webp 880w",
+    "alt": "Rental Record’s Cases screen with a fictional Maple Street rental."
+  },
+  "room": {
+    "src": "/media/rental-record/refresh/room-880.webp",
+    "width": 880,
+    "height": 1912,
+    "srcset": "/media/rental-record/refresh/room-440.webp 440w, /media/rental-record/refresh/room-880.webp 880w",
+    "alt": "Room inspection checklist for a fictional rental on iPhone."
+  },
+  "evidence": {
+    "src": "/media/rental-record/refresh/evidence-880.webp",
+    "width": 880,
+    "height": 1912,
+    "srcset": "/media/rental-record/refresh/evidence-440.webp 440w, /media/rental-record/refresh/evidence-880.webp 880w",
+    "alt": "Inspection evidence with photos and notes on iPhone."
+  },
+  "space": {
+    "src": "/media/rental-record/refresh/space-880.webp",
+    "width": 880,
+    "height": 1912,
+    "srcset": "/media/rental-record/refresh/space-440.webp 440w, /media/rental-record/refresh/space-880.webp 880w",
+    "alt": "Rental Record’s Edit Space form on iPhone."
+  },
+  "handoff": {
+    "src": "/media/rental-record/refresh/handoff-1260.webp",
+    "width": 1260,
+    "height": 1680,
+    "srcset": "/media/rental-record/refresh/handoff-760.webp 760w, /media/rental-record/refresh/handoff-1260.webp 1260w",
+    "alt": "Rental Record’s handoff checklist on iPad."
+  },
+  "report": {
+    "src": "/media/rental-record/refresh/report-1600.webp",
+    "width": 1600,
+    "height": 999,
+    "srcset": "/media/rental-record/refresh/report-760.webp 760w, /media/rental-record/refresh/report-1600.webp 1600w",
+    "alt": "A fictional move-in report in Rental Record’s Mac report preview."
+  },
+  "contacts": {
+    "src": "/media/rental-record/refresh/contacts-1600.webp",
+    "width": 1600,
+    "height": 999,
+    "srcset": "/media/rental-record/refresh/contacts-760.webp 760w, /media/rental-record/refresh/contacts-1600.webp 1600w",
+    "alt": "Rental details form with lease dates, deposit, and property contact fields on Mac."
+  }
+}

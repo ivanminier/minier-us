@@ -2,10 +2,11 @@
 import Base from "../layouts/Base.astro";
 import WorkCard from "../components/WorkCard.astro";
 import ProjectMedia from "../components/ProjectMedia.astro";
-import lineup from "../data/lineup-media.json";
 import { getProject } from "../data/projects";
 import { trinityFigures as F } from "../data/trinity";
 const mode = getProject("modeboard")!;
+const lineup = getProject("lineup")!;
+const trinity = getProject("trinity-redistricting")!;
 ---
 
 <Base>
@@ -33,7 +34,7 @@ const mode = getProject("modeboard")!;
       </div>
       <a href="/work/lineup" class="composition-tv">
         <ProjectMedia
-          media={lineup.tv}
+          media={lineup.hero}
           zoom={false}
           eager
           sizes="(max-width:700px) 90vw, 47vw"
@@ -49,7 +50,7 @@ const mode = getProject("modeboard")!;
       </a>
       <div class="composition-note">
         <span class="tiny-dot"></span> Software for everyday life.
-        <small>Lineup (coming soon) + Modeboard</small>
+        <small>Lineup + Modeboard</small>
       </div>
     </div>
   </section>
@@ -77,7 +78,7 @@ const mode = getProject("modeboard")!;
       </p>
     </div>
     <figure>
-      <a href="/work/trinity-redistricting"><img src="/media/trinity/home-hero-md.webp" width="1400" height="554" alt="AI-assisted aerial concept visualization of the Trinity district." loading="lazy" style="width:100%;height:auto;border:1px solid var(--line)" /></a>
+      <a href="/work/trinity-redistricting"><ProjectMedia media={trinity.hero} zoom={false} sizes="(max-width:700px) 90vw, 42vw" /></a>
       <figcaption>Trinity Redistricting concept aerial. AI-assisted concept visualization; massing is not a tested height.</figcaption>
     </figure>
   </section>
@@ -92,9 +93,10 @@ const mode = getProject("modeboard")!;
       </a>
     </div>
     <div class="selected-grid">
-      <WorkCard slug="rental-record" number="01" featured />
-      <WorkCard slug="lineup" number="02" />
-      <WorkCard slug="trinity-redistricting" number="03" />
+      <WorkCard slug="same-minute" number="01" />
+      <WorkCard slug="rental-record" number="02" />
+      <WorkCard slug="lineup" number="03" />
+      <WorkCard slug="trinity-redistricting" number="04" />
     </div>
     <p class="caption">
       Lineup screens show an original fictional demo. No channels or

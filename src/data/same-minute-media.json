@@ -1,0 +1,36 @@
+{
+  "solo": {
+    "src": "/media/same-minute/refresh/solo-880.webp",
+    "width": 880,
+    "height": 1912,
+    "srcset": "/media/same-minute/refresh/solo-440.webp 440w, /media/same-minute/refresh/solo-880.webp 880w",
+    "alt": "A running solo focus countdown in Same Minute on iPhone."
+  },
+  "together": {
+    "src": "/media/same-minute/refresh/together-880.webp",
+    "width": 880,
+    "height": 1912,
+    "srcset": "/media/same-minute/refresh/together-440.webp 440w, /media/same-minute/refresh/together-880.webp 880w",
+    "alt": "A shared countdown in Same Minute’s Together mode on iPhone."
+  },
+  "break": {
+    "src": "/media/same-minute/refresh/break-880.webp",
+    "width": 880,
+    "height": 1912,
+    "srcset": "/media/same-minute/refresh/break-440.webp 440w, /media/same-minute/refresh/break-880.webp 880w",
+    "alt": "Same Minute offering a short break after a focus interval."
+  },
+  "ipad": {
+    "src": "/media/same-minute/refresh/ipad-1260.webp",
+    "width": 1260,
+    "height": 1680,
+    "srcset": "/media/same-minute/refresh/ipad-760.webp 760w, /media/same-minute/refresh/ipad-1260.webp 1260w",
+    "alt": "Same Minute’s Together timer on iPad."
+  },
+  "watch": {
+    "src": "/media/same-minute/refresh/watch-416.webp",
+    "width": 416,
+    "height": 496,
+    "alt": "The focus countdown in Same Minute on Apple Watch."
+  }
+}

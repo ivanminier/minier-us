@@ -1,0 +1,58 @@
+{
+  "tv": {
+    "src": "/media/lineup/refresh/tv-1600.webp",
+    "width": 1600,
+    "height": 900,
+    "srcset": "/media/lineup/refresh/tv-760.webp 760w, /media/lineup/refresh/tv-1600.webp 1600w",
+    "alt": "Lineup Home on Apple TV with rows of fictional titles."
+  },
+  "home": {
+    "src": "/media/lineup/refresh/home-880.webp",
+    "width": 880,
+    "height": 1913,
+    "srcset": "/media/lineup/refresh/home-440.webp 440w, /media/lineup/refresh/home-880.webp 880w",
+    "alt": "Lineup Home on iPhone with featured artwork and viewing history."
+  },
+  "guide": {
+    "src": "/media/lineup/refresh/guide-1600.webp",
+    "width": 1600,
+    "height": 1200,
+    "srcset": "/media/lineup/refresh/guide-760.webp 760w, /media/lineup/refresh/guide-1600.webp 1600w",
+    "alt": "Lineup’s program guide on iPad, with channels and show times in a grid."
+  },
+  "review": {
+    "src": "/media/lineup/refresh/review-1600.webp",
+    "width": 1600,
+    "height": 1200,
+    "srcset": "/media/lineup/refresh/review-760.webp 760w, /media/lineup/refresh/review-1600.webp 1600w",
+    "alt": "The Smart Lineup review screen on iPad with proposed catalog changes."
+  },
+  "multiview": {
+    "src": "/media/lineup/refresh/multiview-1600.webp",
+    "width": 1600,
+    "height": 900,
+    "srcset": "/media/lineup/refresh/multiview-760.webp 760w, /media/lineup/refresh/multiview-1600.webp 1600w",
+    "alt": "Four demo streams in Lineup Multiview on Apple TV."
+  },
+  "series": {
+    "src": "/media/lineup/refresh/series-880.webp",
+    "width": 880,
+    "height": 1913,
+    "srcset": "/media/lineup/refresh/series-440.webp 440w, /media/lineup/refresh/series-880.webp 880w",
+    "alt": "Lineup’s series detail screen on iPhone with a fictional show and its episodes."
+  },
+  "signal": {
+    "src": "/media/lineup/refresh/signal-880.webp",
+    "width": 880,
+    "height": 1913,
+    "srcset": "/media/lineup/refresh/signal-440.webp 440w, /media/lineup/refresh/signal-880.webp 880w",
+    "alt": "Lineup’s Signal Check screen on iPhone with playback diagnostics."
+  },
+  "duo": {
+    "src": "/media/lineup/refresh/duo-1600.webp",
+    "width": 1600,
+    "height": 1126,
+    "srcset": "/media/lineup/refresh/duo-760.webp 760w, /media/lineup/refresh/duo-1600.webp 1600w",
+    "alt": "Lineup Home using the wider inner display of an iPhone Duo simulator."
+  }
+}
