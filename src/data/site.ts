@@ -14,7 +14,7 @@ export const site = {
   lede: "I’m Ivan Minier, founder of Tideframe Labs and a Public Communication student at the University of Vermont. I work across research, writing, design, and software to make complex systems easier to understand and use.",
   currently:
     "Building at Tideframe Labs · Studying Public Communication at UVM",
-  ogImage: "/media/og/home-update.png",
+  ogImage: "/media/og/home-direct.png",
   copyrightName: "Ivan Minier",
 } as const;
 
@@ -29,6 +29,7 @@ export const emails = {
 
 export const nav = [
   { label: "Work", href: "/work" },
+  { label: "Notes", href: "/ideas" },
   { label: "About", href: "/about" },
   { label: "Résumé", href: "/resume" },
   { label: "Contact", href: "/contact" },

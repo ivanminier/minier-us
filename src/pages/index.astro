@@ -2,11 +2,12 @@
 import Base from "../layouts/Base.astro";
 import WorkCard from "../components/WorkCard.astro";
 import ProjectMedia from "../components/ProjectMedia.astro";
+import { formatNoteDate, getPublishedNotes } from "../data/notes";
 import { getProject } from "../data/projects";
 import { trinityFigures as F } from "../data/trinity";
-const mode = getProject("modeboard")!;
 const lineup = getProject("lineup")!;
 const trinity = getProject("trinity-redistricting")!;
+const latestNotes = (await getPublishedNotes()).slice(0, 3);
 ---
 
 <Base>
@@ -27,31 +28,16 @@ const trinity = getProject("trinity-redistricting")!;
         Explore my work <span>↗</span>
       </a>
     </div>
-    <div class="home-composition">
-      <div class="composition-label">
-        <span>Independent work / 2025–26</span>
-        <span>Made with purpose</span>
-      </div>
-      <a href="/work/lineup" class="composition-tv">
-        <ProjectMedia
-          media={lineup.hero}
-          zoom={false}
-          eager
-          sizes="(max-width:700px) 90vw, 47vw"
-        />
-      </a>
-      <a class="composition-mac" href="/work/modeboard">
-        <ProjectMedia
-          media={mode.hero}
-          zoom={false}
-          eager
-          sizes="(max-width:700px) 68vw, 34vw"
-        />
-      </a>
-      <div class="composition-note">
-        <span class="tiny-dot"></span> Software for everyday life.
-        <small>Lineup + Modeboard</small>
-      </div>
+    <div class="home-showcase">
+      <figure>
+        <a href={lineup.href} aria-label="Explore Lineup">
+          <ProjectMedia media={lineup.hero} zoom={false} eager sizes="(max-width:900px) 90vw, 44vw" />
+        </a>
+        <figcaption>
+          <a href={lineup.href}>Lineup</a>
+          <span>Apple TV · Fictional demo catalog</span>
+        </figcaption>
+      </figure>
     </div>
   </section>
   <section class="section wrap-wide home-built" aria-labelledby="built-heading">
@@ -93,15 +79,11 @@ const trinity = getProject("trinity-redistricting")!;
       </a>
     </div>
     <div class="selected-grid">
-      <WorkCard slug="same-minute" number="01" />
-      <WorkCard slug="rental-record" number="02" />
-      <WorkCard slug="lineup" number="03" />
-      <WorkCard slug="trinity-redistricting" number="04" />
+      <WorkCard slug="same-minute" />
+      <WorkCard slug="rental-record" />
+      <WorkCard slug="modeboard" />
+      <WorkCard slug="trinity-redistricting" />
     </div>
-    <p class="caption">
-      Lineup screens show an original fictional demo. No channels or
-      subscriptions are included.
-    </p>
   </section>
   <section class="section experience-band">
     <div class="wrap-wide experience-summary">
@@ -140,14 +122,16 @@ const trinity = getProject("trinity-redistricting")!;
     </div>
   </section>
   <section class="section wrap-wide home-notes">
-    <p class="eyebrow">A little more context</p>
-    <h2>Notes from the work.</h2>
-    <a href="/ideas/messy-catalogs">
-      The catalog is the product <span>14 August 2026 ↗</span>
-    </a>
-    <a href="/ideas/housing-as-a-system">
-      Housing is more than a rendering <span>1 May 2026 ↗</span>
-    </a>
+    <div class="section-heading">
+      <h2>Notes from the work</h2>
+      <a class="text-link" href="/ideas">All notes</a>
+    </div>
+    {latestNotes.map((note) => (
+      <a href={`/ideas/${note.id}`}>
+        {note.data.title}
+        <time datetime={note.data.date}>{formatNoteDate(note.data.date)}</time>
+      </a>
+    ))}
   </section>
   <section class="section wrap-wide home-contact">
     <p class="eyebrow">Get in touch</p>

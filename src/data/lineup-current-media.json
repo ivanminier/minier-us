@@ -1,9 +1,9 @@
 {
   "tv": {
-    "src": "/media/lineup/refresh/tv-1600.webp",
+    "src": "/media/lineup/refresh/direct-tv-1600.webp",
     "width": 1600,
     "height": 900,
-    "srcset": "/media/lineup/refresh/tv-760.webp 760w, /media/lineup/refresh/tv-1600.webp 1600w",
+    "srcset": "/media/lineup/refresh/direct-tv-760.webp 760w, /media/lineup/refresh/direct-tv-1600.webp 1600w",
     "alt": "Lineup Home on Apple TV with rows of fictional titles."
   },
   "home": {
@@ -14,24 +14,24 @@
     "alt": "Lineup Home on iPhone with featured artwork and viewing history."
   },
   "guide": {
-    "src": "/media/lineup/refresh/guide-1600.webp",
+    "src": "/media/lineup/refresh/direct-guide-1600.webp",
     "width": 1600,
     "height": 1200,
-    "srcset": "/media/lineup/refresh/guide-760.webp 760w, /media/lineup/refresh/guide-1600.webp 1600w",
+    "srcset": "/media/lineup/refresh/direct-guide-760.webp 760w, /media/lineup/refresh/direct-guide-1600.webp 1600w",
     "alt": "Lineup’s program guide on iPad, with channels and show times in a grid."
   },
   "review": {
-    "src": "/media/lineup/refresh/review-1600.webp",
+    "src": "/media/lineup/refresh/direct-review-1600.webp",
     "width": 1600,
     "height": 1200,
-    "srcset": "/media/lineup/refresh/review-760.webp 760w, /media/lineup/refresh/review-1600.webp 1600w",
+    "srcset": "/media/lineup/refresh/direct-review-760.webp 760w, /media/lineup/refresh/direct-review-1600.webp 1600w",
     "alt": "The Smart Lineup review screen on iPad with proposed catalog changes."
   },
   "multiview": {
-    "src": "/media/lineup/refresh/multiview-1600.webp",
+    "src": "/media/lineup/refresh/direct-multiview-1600.webp",
     "width": 1600,
     "height": 900,
-    "srcset": "/media/lineup/refresh/multiview-760.webp 760w, /media/lineup/refresh/multiview-1600.webp 1600w",
+    "srcset": "/media/lineup/refresh/direct-multiview-760.webp 760w, /media/lineup/refresh/direct-multiview-1600.webp 1600w",
     "alt": "Four demo streams in Lineup Multiview on Apple TV."
   },
   "series": {

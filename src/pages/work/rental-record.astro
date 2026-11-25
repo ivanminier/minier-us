@@ -4,161 +4,161 @@ import ProjectMedia from "../../components/ProjectMedia.astro";
 import NextProject from "../../components/NextProject.astro";
 import media from "../../data/rental-record-media.json";
 import { getProject } from "../../data/projects";
-const p = getProject("rental-record")!;
-const report = {
-  src: "/media/rental-record/report-excerpt-r3.webp",
-  width: 860,
-  height: 736,
-  alt: "Cropped excerpt from the actual fictional move-in report, showing property details and the room-by-room section summary.",
-};
+
+const project = getProject("rental-record")!;
 ---
 
-<Base
-  title="Rental Record — Ivan Minier"
-  theme="paper"
-  image="/media/og/rental-record-update.png"
-  description={p.summary}
->
-  <section class="rental-opening wrap-wide">
-    <div class="rental-title">
+<Base title="Rental Record — Ivan Minier" theme="paper" image="/media/og/rental-record-update.png" description={project.summary}>
+  <section class="wrap-wide rental-intro">
+    <div>
       <p class="eyebrow">Tideframe Labs / Rental documentation</p>
       <h1>Rental Record</h1>
-      <p class="lede">
-        A clearer record of
-        <br />
-        the place you call home.
-      </p>
+      <p class="lede">Make a record you can come back to.</p>
       <p>
-        {p.summary}
+        It’s easy to take photos during a move and forget where they belong.
+        I built Rental Record so the room, condition, observation, and photo
+        stay together all the way to the report.
       </p>
       <p class="role-line">
-        Creator · Product, interface & engineering
-        <br />
-        <span class="status">
-          {p.statusLabel} · {p.platforms.join(", ")}
-        </span>
+        Creator · Product, interface & engineering<br />
+        <span class="status">{project.statusLabel} · {project.platforms.join(", ")}</span>
       </p>
-      <a class="text-link" href={p.officialHome!.href}>
-        View on the App Store
-      </a>
-    </div>
-    <figure class="report-stage">
-      <div class="document-label">
-        <span>RECORD / 001</span>
-        <span>Fictional sample</span>
+      <div class="actions">
+        <a class="btn" href={project.officialHome!.href}>View on the App Store</a>
+        <a class="text-link" href="/ideas/a-record-you-can-read">Read the design note</a>
       </div>
-      <ProjectMedia media={report} eager sizes="(max-width:700px) 90vw, 60vw" />
-      <figcaption>
-        Cropped excerpt from the actual report. Fictional property and rental
-        data. <a href="https://tideframelabs.com/products/rental-record/reports/rental-record-fictional-sample.pdf">Read the sample PDF</a>
-      </figcaption>
+    </div>
+    <figure class="rental-capture rental-cases">
+      <ProjectMedia media={media.cases} eager sizes="220px" />
+      <figcaption>The Cases view, using a fictional Maple Street rental.</figcaption>
     </figure>
   </section>
-  <section class="section wrap-wide rental-method">
+
+  <section class="section wrap-wide rental-workflow">
     <div>
-      <p class="eyebrow">The design decision</p>
-      <h2>
-        A room is the
-        <br />
-        unit of the record.
-      </h2>
+      <h2>Start with the room.</h2>
       <p>
-        A camera roll can show what happened without explaining where it
-        belongs. Rental Record connects each observation to a room, condition,
-        and supporting photo.
+        A room gives each observation an address inside the rental. You can come
+        back to the living room months later and still know which photos show
+        the space as a whole and which show a specific issue.
       </p>
       <p>
-        I designed the flow around a guided inspection: broad context first,
-        then specific details, then a report someone else can read.
+        I structured the checklist around the order of a walkthrough. Set the
+        scene with a wide photo, add a close-up where it tells you something, and
+        write the detail the image can’t show. A follow-up or move-out
+        inspection gives those earlier observations a place to be compared.
+      </p>
+      <p>
+        A handoff has its own information too. Meters, keys, and access devices
+        belong in the rental record so you can find them alongside the
+        inspection.
       </p>
     </div>
-    <ol class="record-steps">
-      <li>
-        <span>01</span>
-        <div>
-          <h3>Walk the room</h3>
-          <p>Use a checklist to keep the inspection organized.</p>
-        </div>
-      </li>
-      <li>
-        <span>02</span>
-        <div>
-          <h3>Keep the evidence together</h3>
-          <p>Pair photographs with notes and condition observations.</p>
-        </div>
-      </li>
-      <li>
-        <span>03</span>
-        <div>
-          <h3>Make a readable report</h3>
-          <p>Bring the room-by-room record into a shareable PDF.</p>
-        </div>
-      </li>
-    </ol>
-  </section>
-  <section class="section wrap-wide evidence-pair">
-    <figure class="paper-phone">
-      <ProjectMedia media={media.room} sizes="300px" />
-      <figcaption>
-        The checklist gives the walkthrough a consistent structure.
-      </figcaption>
-    </figure>
-    <div class="evidence-story">
-      <p class="eyebrow">In the details</p>
-      <h2>
-        Context that stays
-        <br />
-        with the photograph.
-      </h2>
-      <figure class="paper-phone">
-        <ProjectMedia media={media.evidence} sizes="300px" />
-        <figcaption>
-          A photo, observation, and condition remain linked to the room.
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-  <section class="section wrap-wide">
-    <h2>From inspection to handoff.</h2>
-    <p>
-      In the 1.2.1 preview, renters can edit a space as the inspection evolves
-      and update lease dates, deposit details, and property contacts from the
-      rental record. The handoff checklist keeps meters, keys, and access
-      devices together.
-    </p>
-    <p class="caption">
-      The 1.2.1 preview uses a fictional Maple Street rental. Apple currently
-      lists version 1.2 as Tideframe Rental Record.
-    </p>
-    <div class="project-screenshot-grid">
-      <figure>
-        <ProjectMedia media={media.space} sizes="280px" />
-        <figcaption>Edit a space on iPhone.</figcaption>
-      </figure>
-      <figure>
-        <ProjectMedia media={media.handoff} sizes="360px" />
-        <figcaption>Document utilities, keys, and handoff details on iPad.</figcaption>
-      </figure>
-      <figure>
-        <ProjectMedia media={media.contacts} sizes="420px" />
-        <figcaption>Edit lease and property contact details on Mac.</figcaption>
-      </figure>
-    </div>
-    <figure class="rental-report-preview">
-      <ProjectMedia media={media.report} />
-      <figcaption>Review the move-in report on Mac before exporting.</figcaption>
+    <figure class="rental-capture rental-evidence">
+      <ProjectMedia media={media.evidence} sizes="190px" />
+      <figcaption>A photo and its condition notes stay attached to the inspection.</figcaption>
     </figure>
   </section>
+
+  <section class="section wrap-wide rental-output">
+    <div>
+      <h2>End with a report someone else can read.</h2>
+      <p>
+        I wanted an export to make sense without the app open. The PDF follows
+        the rooms from the walkthrough, and you can review it before sharing.
+        Rental Record can also export an evidence package when you need the
+        supporting files together.
+      </p>
+      <p>
+        The record stays on your device, with optional iCloud backup. You
+        decide when to export and who gets a copy.
+      </p>
+      <a class="text-link" href="https://tideframelabs.com/products/rental-record/reports/rental-record-fictional-sample.pdf">Read the fictional sample PDF</a>
+    </div>
+    <figure class="rental-capture rental-mac">
+      <ProjectMedia media={media.report} sizes="(max-width:700px) 80vw, 460px" />
+      <figcaption>The report preview on Mac. Open the image to inspect the full app window.</figcaption>
+    </figure>
+  </section>
+
+  <section class="section wrap-wide rental-update">
+    <div>
+      <h2>Editing as the record changes.</h2>
+      <p>
+        In the 1.2.1 preview, a space can be edited as the inspection evolves.
+        Lease dates, deposit details, and property contacts can be updated from
+        the rental record. Apple currently lists version 1.2 as Tideframe Rental Record.
+      </p>
+    </div>
+    <a class="text-link" href={project.links[1].href}>More at Tideframe Labs</a>
+  </section>
+
   <section class="section wrap-wide case-ending">
     <div>
-      <h2>Documentation, with care.</h2>
-      <p>
-        Records stay on the device, with optional iCloud backup. You choose when to export a PDF or evidence package.
-      </p>
-      <a class="btn" href="https://tideframelabs.com/rental-record">
-        Product details at Tideframe Labs
-      </a>
+      <h2>Try Rental Record.</h2>
+      <a class="text-link" href={project.officialHome!.href}>Download on the App Store</a>
     </div>
-    <NextProject slug={p.slug} />
+    <NextProject slug={project.slug} />
   </section>
 </Base>
+
+<style>
+  .rental-intro,
+  .rental-workflow,
+  .rental-output,
+  .rental-update {
+    display: grid;
+    grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(1.5rem, 6vw, 5rem);
+  }
+  .rental-intro {
+    padding-block: clamp(2.5rem, 5vw, 5rem);
+  }
+  .rental-intro h1 {
+    font-size: clamp(2.75rem, 6vw, 5.4rem);
+  }
+  .rental-intro .actions {
+    margin-top: 1.4rem;
+  }
+  .rental-intro p,
+  .rental-workflow p,
+  .rental-output p,
+  .rental-update p {
+    max-width: 56ch;
+  }
+  .rental-workflow,
+  .rental-output,
+  .rental-update {
+    border-top: 1px solid var(--line);
+  }
+  .rental-capture {
+    display: grid;
+    place-items: center;
+    gap: 0.6rem;
+    padding: clamp(1rem, 2.5vw, 1.75rem);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    text-align: center;
+  }
+  .rental-cases :global(.image-link) {
+    width: min(100%, 198px);
+  }
+  .rental-evidence :global(.image-link) {
+    width: min(100%, 150px);
+  }
+  .rental-mac :global(.image-link) {
+    width: min(100%, 460px);
+  }
+  @media (max-width: 700px) {
+    .rental-intro,
+    .rental-workflow,
+    .rental-output,
+    .rental-update {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .rental-cases :global(.image-link) {
+      width: min(100%, 165px);
+    }
+  }
+</style>

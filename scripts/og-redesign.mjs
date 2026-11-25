@@ -24,7 +24,7 @@ for (const [key, title, subtitle, bg, fg, img] of [
     m.tv.src,
   ],
   [
-    "home-update",
+    "home-direct",
     "Ivan Minier",
     "Communication, design & things that work.",
     "#f5f1e9",
@@ -32,7 +32,7 @@ for (const [key, title, subtitle, bg, fg, img] of [
     lineup.tv.src,
   ],
   [
-    "lineup-update",
+    "lineup-direct",
     "Lineup",
     "A player and organizer for your own television sources.",
     "#0b1420",

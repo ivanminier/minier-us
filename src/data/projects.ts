@@ -67,13 +67,13 @@ export interface Project {
 }
 
 /**
- * The single source of truth for LaundryLink's outage, so Home, Work, the
+ * The shared LaundryLink data status, so Work, the
  * case study, and the résumé cannot disagree about it.
  */
 export const laundryStatus = {
-  label: "Temporarily offline",
+  label: "Live data unavailable",
   notice:
-    "LaundryLink is temporarily unavailable while its server is offline. The domain remains active. This case study documents the project; live room and machine data are unavailable.",
+    "The project site loads, but it cannot currently show rooms or machine availability.",
 } as const;
 
 export const projects: Project[] = [
@@ -490,7 +490,7 @@ export const projects: Project[] = [
     creator: "Ivan Minier",
     role: "Creator — product and engineering",
     officialHome: {
-      label: "uvmlaundry.com (temporarily offline)",
+      label: "uvmlaundry.com",
       href: "https://uvmlaundry.com",
       external: true,
     },
@@ -520,7 +520,7 @@ export const projects: Project[] = [
     dataNote: laundryStatus.notice,
     links: [
       {
-        label: "uvmlaundry.com (temporarily offline)",
+        label: "uvmlaundry.com",
         href: "https://uvmlaundry.com",
         external: true,
       },

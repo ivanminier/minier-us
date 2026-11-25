@@ -42,7 +42,7 @@ Lineup screenshots should be demo-catalog only. Do not publish real provider nam
 
 The November 2026 refresh uses these sources.
 
-- Lineup uses the November 25 iPhone simulator captures, the App Store submission set for iPad and Apple TV, and the iPhone Duo simulator image from that set. The demo artwork and video credits are under `public/media/lineup/r3/`.
+- Lineup uses the November 25 iPhone simulator captures, the direct October 27 simulator captures for iPad and Apple TV, and a direct iPhone Duo capture from the submission set. The demo artwork and video credits are under `public/media/lineup/r3/`.
 - Rental Record uses the fictional Maple Street screenshots and icon from LeaseLock’s `AppStoreScreenshots/Release-1.2.1-20` folder.
 - Same Minute uses the screenshots and icon in the Tideframe site’s `public/products/same-minute` folder.
 - Trinity uses the November proposal’s `assets/images/exterior-studies` and `phasing-diagram.svg`. Keep the AI-assisted appearance studies labeled and identify the Blender massing study in its caption.
@@ -57,6 +57,7 @@ Create a Markdown file in `src/content/ideas/`:
 title: The title
 date: "2026-09-01"
 summary: One sentence.
+project: same-minute
 ---
 
 The note itself.

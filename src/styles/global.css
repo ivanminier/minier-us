@@ -482,65 +482,9 @@ html[data-theme="dark"] .theme-moon {
   max-width: 42ch;
   margin-block: 1.7rem;
 }
-.home-composition {
-  height: 500px;
-  background: var(--panel);
-  position: relative;
-  border: 1px solid var(--line);
-  padding: 24px;
-  align-self: stretch;
-  min-height: 440px;
-  max-height: 560px;
-}
-.composition-label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.55rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-.composition-tv {
-  position: absolute;
-  top: 14%;
-  width: 90%;
-  left: 5%;
-  border: 7px solid #172019;
-  border-radius: 8px;
-  box-shadow: 0 16px 28px #0002;
-}
-.composition-mac {
-  position: absolute;
-  width: 78%;
-  bottom: 14%;
-  left: 4%;
-  box-shadow: 0 20px 30px #0003;
-  transform: rotate(-3deg);
-  border: 1px solid #7b817c;
-  border-radius: 6px;
-  overflow: hidden;
-}
-.composition-note {
-  position: absolute;
-  bottom: 20px;
-  left: 24px;
-  font-size: 0.7rem;
-}
-.composition-note small {
-  display: block;
-  font-size: 0.6rem;
-  margin-top: 0.2rem;
-}
-.tiny-dot {
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 0.4rem;
-}
 .selected-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2.5rem;
 }
 .selected-grid .featured {
@@ -548,44 +492,45 @@ html[data-theme="dark"] .theme-moon {
   align-self: center;
 }
 .work-art {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   position: relative;
-  overflow: hidden;
   background: var(--panel);
-  padding: 7%;
-  aspect-ratio: 1.7;
+  aspect-ratio: 16 / 10;
+  border: 1px solid transparent;
   text-decoration: none;
 }
-.work-art img {
-  width: 100%;
-  object-fit: contain;
-  box-shadow: 0 14px 24px #0002;
-  transition: transform 0.25s;
+.work-art:is(:hover, :focus-visible) {
+  border-color: var(--accent);
 }
-.work-art:hover img {
-  transform: translateY(-4px);
-}
-.art-arrow {
+.work-shots {
   position: absolute;
-  right: 16px;
-  bottom: 12px;
-  background: var(--bg);
-  color: var(--ink);
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  text-align: center;
-  line-height: 32px;
+  inset: 9%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+}
+.work-shots.paired {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr);
+  gap: 8%;
+}
+.work-shot {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+}
+.work-shot img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 10px #0002);
 }
 .work-card.lineup .work-art {
   background: #11253a;
 }
 .work-card.rental-record .work-art {
   background: #e4ddc9;
-  aspect-ratio: 1.15;
-  padding: 8%;
 }
 .work-card.modeboard .work-art {
   background: #dbe5f0;
@@ -610,14 +555,8 @@ html[data-theme="dark"] .theme-moon {
   text-decoration: none;
 }
 .work-caption p {
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   margin: 0;
-}
-.card-role {
-  margin-left: auto;
-  font-size: 0.65rem;
-  text-align: right;
-  max-width: 12ch;
 }
 .experience-band {
   background: var(--panel);
@@ -659,9 +598,9 @@ html[data-theme="dark"] .theme-moon {
   font-family: var(--display);
   font-size: 1.2rem;
 }
-.home-notes > a span {
+.home-notes > a time {
   font-family: var(--body);
-  font-size: 0.68rem;
+  font-size: 0.85rem;
   flex-shrink: 0;
 }
 .home-contact {
@@ -830,90 +769,6 @@ html[data-theme="dark"] .theme-moon {
   font-size: 0.7rem;
   flex-shrink: 0;
 }
-.rental-opening {
-  display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 6%;
-  align-items: center;
-  padding-block: 68px;
-}
-.rental-title h1 {
-  font-size: clamp(2.8rem, 4.8vw, 4.5rem);
-}
-.rental-title .lede {
-  font-size: 1.7rem;
-  line-height: 1.35;
-}
-.rental-title > p:not(.eyebrow):not(.role-line) {
-  max-width: 33ch;
-}
-.report-stage {
-  background: var(--panel);
-  padding: 26px 24px 30px;
-  border: 1px solid var(--line);
-  transform: rotate(1deg);
-}
-.document-label {
-  display: flex;
-  justify-content: space-between;
-  font: 500 0.65rem/1.5 var(--body);
-  letter-spacing: 0.08em;
-  margin-bottom: 25px;
-}
-.report-stage img {
-  box-shadow: 0 10px 20px #0002;
-}
-.rental-method {
-  border-top: 1px solid var(--line);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12%;
-}
-.rental-method > div > p {
-  max-width: 45ch;
-}
-.record-steps {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.record-steps li {
-  display: flex;
-  gap: 1.5rem;
-  border-top: 1px solid var(--line);
-  padding-block: 1.5rem;
-}
-.record-steps li > span {
-  font-size: 0.75rem;
-  color: var(--accent);
-}
-.record-steps h3 {
-  font-size: 1.3rem;
-}
-.record-steps p {
-  font-size: 0.9rem;
-}
-.evidence-pair {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12%;
-  background: var(--panel);
-  padding: 55px 7%;
-  margin-bottom: 80px;
-}
-.paper-phone {
-  max-width: 280px;
-  margin: auto;
-}
-.paper-phone img {
-  border-radius: 22px;
-}
-.evidence-story .paper-phone {
-  max-width: 240px;
-}
-.evidence-story h2 {
-  font-size: 2rem;
-}
 .page-hero {
   padding-block: 70px;
 }
@@ -931,7 +786,7 @@ html[data-theme="dark"] .theme-moon {
 }
 .work-index {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 3rem;
 }
 .work-index .featured {
@@ -941,18 +796,11 @@ html[data-theme="dark"] .theme-moon {
   align-items: center;
   gap: 3rem;
 }
-.work-index .featured .work-art {
-  aspect-ratio: 1.7;
-}
 .work-index .featured .work-caption {
   flex-wrap: wrap;
 }
 .work-index .featured .work-caption h3 {
   font-size: 2.8rem;
-}
-.work-index .featured .card-role {
-  max-width: none;
-  margin-left: 1.8rem;
 }
 .work-index .featured .work-caption p {
   font-size: 0.85rem;
@@ -1082,8 +930,8 @@ html[data-theme="dark"] .theme-moon {
   gap: 2rem;
 }
 .concept-strip img {
-  aspect-ratio: 1.7;
-  object-fit: cover;
+  width: 100%;
+  height: auto;
 }
 .source-excerpt {
   border-left: 2px solid var(--accent);
@@ -1379,9 +1227,6 @@ html[data-theme="dark"] .theme-moon {
   .home-opening {
     padding-block: 90px;
   }
-  .home-composition {
-    height: 540px;
-  }
   .lineup-opening .tv-frame {
     width: 85%;
   }
@@ -1401,23 +1246,11 @@ html[data-theme="dark"] .theme-moon {
     gap: 4%;
     padding-block: 50px;
   }
-  .home-composition {
-    height: 450px;
-  }
-  .composition-label span:last-child {
-    display: none;
-  }
   .home-intro h1 {
     font-size: 3rem;
   }
-  .card-role {
-    display: none;
-  }
   .nav-links {
     gap: 1.4rem;
-  }
-  .report-stage {
-    padding: 18px;
   }
   .lineup-title .lede {
     font-size: 1.3rem;
@@ -1442,24 +1275,8 @@ html[data-theme="dark"] .theme-moon {
   .home-opening {
     grid-template-columns: 1fr 1fr;
   }
-  .home-composition {
-    min-height: 380px;
-    height: 100%;
-  }
-  .composition-mac {
-    bottom: 20%;
-  }
   .lineup-title {
     gap: 2rem;
-  }
-  .rental-opening {
-    gap: 4%;
-  }
-  .rental-title h1 {
-    font-size: 2.8rem;
-  }
-  .rental-title .lede {
-    font-size: 1.35rem;
   }
   .resume-columns {
     gap: 4%;
@@ -1502,29 +1319,13 @@ html[data-theme="dark"] .theme-moon {
   .desktop-break {
     display: none;
   }
-  .home-composition {
-    height: 390px;
-    min-height: 0;
-  }
-  .composition-tv {
-    top: 14%;
-  }
-  .composition-mac {
-    bottom: 16%;
-    width: 72%;
-  }
-  .composition-note {
-    bottom: 18px;
-  }
   .selected-grid,
   .experience-summary,
   .lineup-guide,
   .review-spread,
   .lineup-details,
   .case-ending,
-  .rental-opening,
-  .rental-method,
-  .evidence-pair,
+
   .work-index,
   .instrument-head,
   .mac-restore,
@@ -1621,47 +1422,12 @@ html[data-theme="dark"] .theme-moon {
   .detail-wide {
     margin-top: 1rem;
   }
-  .rental-opening {
-    padding-block: 40px;
-  }
-  .rental-title h1 {
-    font-size: 3rem;
-  }
-  .rental-title .lede {
-    font-size: 1.45rem;
-  }
-  .rental-title .lede br {
-    display: none;
-  }
-  .report-stage {
-    transform: none;
-    margin-top: 0.5rem;
-  }
-  .rental-method h2 br {
-    display: none;
-  }
-  .record-steps li {
-    padding-block: 1rem;
-  }
-  .evidence-pair {
-    padding: 35px 20px;
-    margin-bottom: 40px;
-  }
-  .evidence-story .eyebrow {
-    margin-top: 1rem;
-  }
-  .paper-phone {
-    max-width: 250px;
-  }
   .work-index .featured {
     display: block;
     grid-column: auto;
   }
   .work-index .featured .work-caption h3 {
     font-size: 1.5rem;
-  }
-  .work-index .featured .card-role {
-    display: none;
   }
   .laundry-small {
     flex-wrap: wrap;
@@ -1792,20 +1558,6 @@ html[data-theme="dark"] .theme-moon {
   }
 }
 @media (max-width: 360px) {
-  .home-composition {
-    height: 320px;
-    padding: 16px;
-  }
-  .composition-note {
-    left: 16px;
-    font-size: 0.65rem;
-  }
-  .composition-label {
-    font-size: 0.5rem;
-  }
-  .composition-mac {
-    bottom: 19%;
-  }
   .home-intro h1 {
     font-size: 2.5rem;
   }
@@ -1922,17 +1674,6 @@ html[data-theme="dark"] .theme-moon {
   }
 }
 @media (min-width: 701px) {
-  .composition-tv {
-    top: 11%;
-    width: 94%;
-    left: 3%;
-  }
-  .composition-mac {
-    width: 63%;
-    left: auto;
-    right: 4%;
-    bottom: 14%;
-  }
   .lineup-opening .tv-frame {
     width: min(88%, 1000px);
   }
@@ -1948,24 +1689,11 @@ html[data-theme="dark"] .theme-moon {
 .footer {
   font-family: system-ui, sans-serif;
 }
-.report-stage {
-  max-width: 620px;
-}
-.report-stage > .image-link {
-  max-width: 520px;
-  margin: auto;
-}
-.report-stage figcaption a {
-  white-space: nowrap;
-}
 .work-caption p.card-description {
   font-size: 0.85rem;
   max-width: 35ch;
   margin-top: 1rem;
   line-height: 1.7;
-}
-.selected-grid .card-description {
-  display: none;
 }
 /* The approved studio mark has square geometry; keep that geometry on every viewport. */
 .studio-mark {
@@ -1990,20 +1718,6 @@ html[data-theme="dark"] .theme-moon {
       color: #59636c;
     }
   }
-}
-/* A report and room checklist give Rental Record its own document-led panel. */
-.work-card.rental-record .work-art {
-  gap: 7%;
-}
-.work-card.rental-record .work-art .rental-document {
-  width: 65%;
-}
-.work-card.rental-record .work-art .rental-device {
-  width: 26%;
-  border-radius: 12px;
-}
-.work-index .rental-record .work-art {
-  aspect-ratio: 1.7;
 }
 .concept-estimates {
   margin: 1.5rem 0;
@@ -2417,24 +2131,43 @@ html[data-theme="dark"] .st-chip[data-k="scenario"] {
   .st-table-wrap,
   .st-kpis {
     break-inside: avoid;
+  }
+}
 
 .work-card.same-minute .work-art {
-  gap: 8%;
   background: #d8e9df;
 }
 
-.work-card.same-minute .timer-phone {
-  width: clamp(76px, 22%, 155px);
-  border-radius: 16px;
+.work-card.same-minute .work-shots {
+  inset-inline: 19%;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr);
+  gap: 16%;
 }
 
-.work-card.same-minute .timer-watch {
-  width: clamp(56px, 18%, 110px);
-  border-radius: 20%;
+.home-showcase {
+  margin: 0;
+  padding: clamp(0.8rem, 3vw, 1.6rem);
+  border: 1px solid var(--line);
+  background: var(--panel);
 }
-
-.selected-grid .rental-record .work-art {
-  aspect-ratio: 1.7;
+.home-showcase figure {
+  margin: 0;
+}
+.home-showcase img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+.home-showcase figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+}
+.home-showcase figcaption a {
+  font-weight: 700;
 }
 
 .same-minute-opening,
@@ -2462,7 +2195,7 @@ html[data-theme="dark"] .st-chip[data-k="scenario"] {
 }
 
 .same-minute-stage .image-link {
-  width: min(100%, 280px);
+  width: min(100%, 205px);
   margin-inline: auto;
 }
 
@@ -2488,15 +2221,10 @@ html[data-theme="dark"] .st-chip[data-k="scenario"] {
 .project-screenshot-grid img {
   width: auto;
   max-width: 100%;
-  max-height: 540px;
+  max-height: 360px;
   height: auto;
 }
 
-.rental-report-preview {
-  max-width: 850px;
-  margin-inline: auto;
-  margin-top: 3rem;
-}
 
 @media (min-width: 1080px) {
   .studio-products {
@@ -2515,4 +2243,6 @@ html[data-theme="dark"] .st-chip[data-k="scenario"] {
   }
 
   .project-screenshot-grid img {
-    max-height: 380px;
+    max-height: 280px;
+  }
+}

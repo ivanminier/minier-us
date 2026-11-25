@@ -1,35 +1,28 @@
 ---
-import { getCollection } from "astro:content";
+import { formatNoteDate, getPublishedNotes } from "../../data/notes";
 import Base from "../../layouts/Base.astro";
-const notes = (await getCollection("ideas")).sort((a, b) =>
-  b.data.date.localeCompare(a.data.date),
-);
+const notes = await getPublishedNotes();
 ---
 
 <Base
   title="Notes — Ivan Minier"
   theme="notes"
-  description="Two brief project notes on television catalogs and a student housing concept."
+  description="Project notes by Ivan Minier on software, interface design, and housing feasibility."
 >
   <section class="page-hero wrap-wide notes-index">
     <p class="eyebrow">From the work</p>
     <h1>Notes</h1>
-    <p class="lede">Brief thoughts on the decisions behind the projects.</p>
+    <p class="lede">The decisions I made while building apps and developing a housing proposal. Dates mark the work each note covers.</p>
   </section>
   <section class="wrap-wide notes-index section" style="padding-top:0">
     {notes.map((note) => (
       <article class="note-entry">
         <time datetime={note.data.date}>
-          {new Date(note.data.date + "T12:00:00Z").toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            timeZone: "UTC",
-          })}
+          {formatNoteDate(note.data.date)}
         </time>
         <div>
           <h2>
-            <a href={`/ideas/${note.id}`}>{note.data.title} ↗</a>
+            <a href={`/ideas/${note.id}`}>{note.data.title}</a>
           </h2>
           <p>{note.data.summary}</p>
         </div>
