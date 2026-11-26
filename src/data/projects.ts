@@ -71,9 +71,9 @@ export interface Project {
  * case study, and the résumé cannot disagree about it.
  */
 export const laundryStatus = {
-  label: "Live data unavailable",
+  label: "Live room tracker",
   notice:
-    "The project site loads, but it cannot currently show rooms or machine availability.",
+    "LaundryLink covers 44 rooms across 30 residence halls and complexes. The tracker labels saved snapshots when the provider feed is unavailable.",
 } as const;
 
 export const projects: Project[] = [
@@ -497,16 +497,11 @@ export const projects: Project[] = [
     oneLiner:
       "See which washers and dryers are actually open before you walk across campus.",
     summary:
-      "UVM LaundryLink is a mobile-first campus tool for finding laundry rooms, checking machine status, saving favorites, and setting availability alerts.",
+      "UVM LaundryLink is a mobile-first campus tool for finding laundry rooms, checking provider-reported washer and dryer status, saving favorites, and setting cycle and availability alerts across 44 UVM laundry rooms.",
     href: "/work/uvm-laundrylink",
     accent: "#154734",
     theme: "campus",
     icon: "/media/laundrylink/logo.webp",
-    // LaundryLink is shown by its identity mark rather than a screenshot. The
-    // campus data feed it depends on (api.uvmlaundry.com) is offline, so every
-    // capture of the live site right now is an empty state. Presenting a
-    // "No Laundry Rooms Found" screen as the product shot misrepresents the
-    // project, and staging a populated screen would be a fabrication.
     hero: {
       src: "/media/laundrylink/logo.webp",
       srcset:
@@ -528,7 +523,7 @@ export const projects: Project[] = [
     problem:
       "Campus laundry is a small system that wastes a surprising amount of time. Students walk to a room, find every machine running, and walk back.",
     approach:
-      "LaundryLink puts room discovery, machine status, search, favorites, and SMS alerts on a phone-sized page so the trip is only worth making when a machine is actually available.",
+      "LaundryLink puts live machine status, Peak Times, favorites, and cycle alerts on a phone-sized page.",
     capabilities: [
       {
         title: "Room discovery",
@@ -540,7 +535,7 @@ export const projects: Project[] = [
       },
       {
         title: "Favorites, search, and alerts",
-        body: "Save rooms, filter machines, and set an SMS alert when a running machine should become available.",
+        body: "Save rooms, filter machines, and set browser push alerts for cycles or for the next free washer in a full room. The provider supplies the embedded text and email options.",
       },
     ],
     reasoning:

@@ -9,7 +9,8 @@ import { laundryDates } from "../../data/experience";
   title="UVM LaundryLink — Ivan Minier"
   theme="campus"
   image="/media/og/laundrylink.png"
-  description="An independent student project for checking campus laundry rooms. Live data is currently unavailable."
+  description="An independent UVM student project for checking washer and dryer status, Peak Times, and alerts across 44 campus laundry rooms."
+  jsonLd={{ "@context": "https://schema.org", "@type": "WebApplication", name: "UVM LaundryLink", url: "https://uvmlaundry.com/", creator: { "@type": "Person", name: "Ivan Minier", url: "https://minier.us/" }, isAccessibleForFree: true }}
 >
   <section class="campus-opening wrap-wide">
     <img
@@ -42,8 +43,8 @@ import { laundryDates } from "../../data/experience";
         is still a wasted trip.
       </h2>
       <p>
-        The prototype brought room discovery and machine status into a
-        phone-friendly page, so a student could decide where to go before
+        LaundryLink brings room discovery and machine status into a
+        phone-friendly page, so residents can decide where to go before
         leaving their room.
       </p>
       <p>
@@ -53,13 +54,12 @@ import { laundryDates } from "../../data/experience";
       </p>
     </div>
     <div>
-      <p class="eyebrow">Implemented prototype features</p>
+      <p class="eyebrow">What students can do</p>
       <ul class="feature-list">
         <li>
           <h3>Find a room</h3>
           <p>
-            Campus room discovery, search, and machine availability when the
-            data source was available.
+            Browse 44 rooms with campus filters and see the provider’s latest washer and dryer status.
           </p>
         </li>
         <li>
@@ -69,24 +69,38 @@ import { laundryDates } from "../../data/experience";
         <li>
           <h3>Set an alert</h3>
           <p>
-            SMS notifications as part of the historical prototype. Live
-            availability and alerts cannot be demonstrated during the outage.
+            Set a browser push alert for a cycle or the next free washer in a full room. Automatic Laundry supplies text and email setup inside the app.
           </p>
         </li>
       </ul>
     </div>
   </section>
+  <section class="section wrap-wide" aria-labelledby="laundrylink-screens">
+    <h2 id="laundrylink-screens">From a hall page to the room tracker</h2>
+    <div class="laundry-screens">
+      <figure><img src="/media/laundrylink/campus-directory.webp" width="1360" height="930" alt="LaundryLink’s campus directory, with residence halls grouped by campus." loading="lazy" /><figcaption>The residence hall directory.</figcaption></figure>
+      <figure><img src="/media/laundrylink/wright-hall-mobile.webp" width="780" height="1688" alt="Wright Hall’s mobile laundry page with links to live machines and the official room view." loading="lazy" /><figcaption>Wright Hall’s laundry page on a phone.</figcaption></figure>
+    </div>
+  </section>
   <section class="section wrap-wide case-ending">
     <div>
-      <h2>A prototype with a real dependency.</h2>
+      <h2>Live status with a clear fallback.</h2>
       <p>
-        The independent project site is still online. Room and machine availability
-        depend on the external data source.
+        The free tracker is independent from UVM and Automatic Laundry. It shows when status was checked and labels saved data if a refresh fails.
       </p>
       <a class="text-link" href="https://uvmlaundry.com">
-        Project domain ↗
+        Open the UVM laundry tracker ↗
       </a>
+      <p><a class="text-link" href="https://uvmlaundry.com/residence-halls/">Browse the UVM residence hall laundry directory ↗</a> · <a class="text-link" href="https://uvmlaundry.com/status/">Service status ↗</a></p>
     </div>
     <NextProject slug="uvm-laundrylink" />
   </section>
 </Base>
+
+<style>
+  .laundry-screens { display: grid; grid-template-columns: minmax(0, 2fr) minmax(10rem, 1fr); gap: 1rem; align-items: start; }
+  .laundry-screens figure { margin: 0; }
+  .laundry-screens img { width: 100%; height: auto; border-radius: 12px; display: block; }
+  .laundry-screens figcaption { margin-top: .5rem; font-size: .9rem; }
+  @media (max-width: 650px) { .laundry-screens { grid-template-columns: minmax(0, 1fr); } .laundry-screens figure:last-child { max-width: 24rem; } }
+</style>
