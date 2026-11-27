@@ -64,7 +64,7 @@ const { coverage, release } = product;
     <div>
       <h2 id="room-heading">Get to the room you use.</h2>
       <p>{project.problem}</p>
-      <p>{project.approach} The directory follows familiar campus names and gets more specific where it needs to, down to an individual tower, floor, or room. Search understands common shorthand such as CCRH, and campus shortcuts and the room picker save a trip through the directory.</p>
+      <p>{project.approach} The directory follows familiar campus names and gets more specific where it needs to, down to an individual tower, floor, or room. Search understands common shorthand such as CCRH, and campus shortcuts and the room picker save a trip through the directory. Hall guides list indoor locations and equipment counts on record, with links to the live tracker and the provider’s room view.</p>
       <p>Favorites bring frequently used rooms and their availability summaries together. The web app also offers a last-room startup preference, light and dark appearances, and Home Screen installation.</p>
     </div>
     <div class="laundry-pair">
@@ -82,8 +82,8 @@ const { coverage, release } = product;
   <section class="section wrap-wide laundry-reading" aria-labelledby="availability-heading">
     <div class="laundry-story-copy">
       <h2 id="availability-heading">What’s free now? When is it usually quiet?</h2>
-      <p>The tracker distinguishes available, running, finished, and out-of-order machines. Running cycles show time remaining when the provider reports it. Room Layout gives those machines a place in the room, and Peak Times shows historical usage in a separate view.</p>
-      <p>When waiting makes more sense than making a trip, students can set browser push alerts for cycle completion or the next available washer or dryer and manage them in My Laundry. Automatic Laundry handles text and email setup through its own embedded panel.</p>
+      <p>The tracker distinguishes available, running, finished, out-of-order, and offline machines. Running cycles show time remaining when the provider reports it. Room Layout shows machine numbers and current statuses, and Peak Times shows historical usage and a quieter daytime window where the history supports one.</p>
+      <p>When waiting makes more sense than making a trip, students can set browser push alerts for cycle completion or the next available washer or dryer and manage them in My Laundry. A running cycle with a finish estimate can also offer a calendar reminder. Automatic Laundry handles text and email alerts through its embedded panel, with a link to open the provider directly.</p>
     </div>
     <figure class="laundry-wide">
       <ProjectMedia media={media.peak} sizes="(max-width: 700px) 92vw, 1050px" />
@@ -94,7 +94,7 @@ const { coverage, release } = product;
   <section class="section wrap-wide laundry-story" aria-labelledby="reliability-heading">
     <div>
       <h2 id="reliability-heading">Make the age of the data visible.</h2>
-      <p>{project.reasoning} The app can reopen offline after an earlier visit. If a room has no usable status, the tracker explains what happened and links to the provider’s official room view and LaundryLink’s service checks.</p>
+      <p>{project.reasoning} The app can reopen offline after an earlier visit. If every machine reports offline, the tracker marks availability as unavailable and shows when it checked. The same view links to LaundryConnect and LaundryLink’s service checks.</p>
       <p>I led the product, interface, and release work with AI-assisted development. The React app reads provider machine metadata and status from {coverage.feeds} distinct feeds. Cloudflare Pages serves the public site, and a separate Cloudflare Worker handles browser push. Scheduled jobs refresh historical usage and service snapshots, with automated regression, deployment, and public health checks.</p>
       <p>The interactive app shares its room mapping with plain HTML campus and hall pages, so a student can land on the right page directly from search. Keyboard access, focus behavior, and clear status labels are part of that experience. Aggregate analytics count product activity and referrals with privacy controls.</p>
     </div>
@@ -107,7 +107,7 @@ const { coverage, release } = product;
   <section class="section wrap-wide laundry-release" aria-labelledby="release-heading">
     <h2 id="release-heading">A maintained campus utility.</h2>
     <p>LaundryLink is deployed and feature-complete. I maintain it as an independent student project. Its coverage figures describe the room directory and public site.</p>
-    <p>The <a href={release.workflow}>{release.date} release checks</a> passed {release.tests} automated tests. The production checker covered {coverage.publicPages} public routes and {coverage.rooms} room deep links, including canonicals and legacy redirects. Desktop and mobile were reviewed in both themes. The service page reports the latest automated checks, and browser push delivery depends on device settings.</p>
+    <p>The <a href={release.workflow}>{release.date} release checks</a> passed {release.appTests} app tests and {release.workerTests} Worker tests. The production review covered {coverage.publicPages} canonical public pages and all {coverage.rooms} room deep links. The service page reports the latest automated feed and push configuration checks. Browser push delivery depends on the browser, device settings, and room feed.</p>
   </section>
 
   <section class="section wrap-wide laundry-notes" aria-labelledby="notes-heading">
