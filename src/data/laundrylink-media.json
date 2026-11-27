@@ -1,0 +1,41 @@
+{
+  "hero": {
+    "src": "/media/laundrylink/showcase.webp",
+    "srcset": "/media/laundrylink/showcase-480.webp 480w, /media/laundrylink/showcase-760.webp 760w, /media/laundrylink/showcase-1120.webp 1120w, /media/laundrylink/showcase.webp 1600w",
+    "width": 1600,
+    "height": 1000,
+    "alt": "LaundryLink’s light-mode residence hall directory beside a mobile Wright Hall tracker showing the washer and dryer summary."
+  },
+  "picker": {
+    "src": "/media/laundrylink/room-picker.webp",
+    "srcset": "/media/laundrylink/room-picker-384.webp 384w, /media/laundrylink/room-picker.webp 766w",
+    "width": 766,
+    "height": 1688,
+    "alt": "The CCRH room picker showing multiple floors and nearby Central Campus rooms.",
+    "caption": "The room picker groups rooms by campus, complex, and floor."
+  },
+  "favorites": {
+    "src": "/media/laundrylink/favorites.webp",
+    "srcset": "/media/laundrylink/favorites-384.webp 384w, /media/laundrylink/favorites.webp 766w",
+    "width": 766,
+    "height": 1688,
+    "alt": "The favorites view with saved Wright Hall and reported free washer and dryer counts.",
+    "caption": "Favorites brings saved rooms and the latest reported counts into one view."
+  },
+  "peak": {
+    "src": "/media/laundrylink/peak-times.webp",
+    "srcset": "/media/laundrylink/peak-times-640.webp 640w, /media/laundrylink/peak-times-1040.webp 1040w, /media/laundrylink/peak-times.webp 1426w",
+    "width": 1426,
+    "height": 900,
+    "alt": "Dark-mode CCRH tracker with separate current availability and a historical weekly laundry usage chart.",
+    "caption": "Peak Times uses a shared history for CCRH Floors 6 and 7. Each floor has its own current machine list."
+  },
+  "alerts": {
+    "src": "/media/laundrylink/my-laundry.webp",
+    "srcset": "/media/laundrylink/my-laundry-384.webp 384w, /media/laundrylink/my-laundry.webp 766w",
+    "width": 766,
+    "height": 825,
+    "alt": "The My Laundry screen showing alert management with no active browser push alerts.",
+    "caption": "My Laundry shows alerts set on the current device."
+  }
+}

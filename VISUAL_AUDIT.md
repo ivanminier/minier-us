@@ -1,5 +1,7 @@
 # Visual audit — minier.us
 
+> Historical audit. LaundryLink observations here describe the site and feed at the time of the audit. See [Project Inventory](PROJECT_INVENTORY.md#uvm-laundrylink) for the November 27, 2026 release.
+
 Every defect found during the full visual/interaction QA pass on
 `audit/full-visual-qa`, with its root cause and repair. Each entry was confirmed
 in a real browser before the fix and re-confirmed after it.

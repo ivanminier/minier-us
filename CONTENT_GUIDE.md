@@ -45,6 +45,7 @@ The November 2026 refresh uses these sources.
 - Lineup uses the November 25 iPhone simulator captures, the direct October 27 simulator captures for iPad and Apple TV, and a direct iPhone Duo capture from the submission set. The demo artwork and video credits are under `public/media/lineup/r3/`.
 - Rental Record uses the fictional Maple Street screenshots and icon from LeaseLock’s `AppStoreScreenshots/Release-1.2.1-20` folder.
 - Same Minute uses the screenshots and icon in the Tideframe site’s `public/products/same-minute` folder.
+- LaundryLink uses direct production captures from November 27, 2026. Update `src/data/laundrylink-media.json` with the new dimensions and responsive filenames when replacing them. Use a new URL for a changed social image because assets under `/media/` are cached as immutable.
 - Trinity uses the November proposal’s `assets/images/exterior-studies` and `phasing-diagram.svg`. Keep the AI-assisted appearance studies labeled and identify the Blender massing study in its caption.
 
 

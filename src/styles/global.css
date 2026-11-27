@@ -487,10 +487,6 @@ html[data-theme="dark"] .theme-moon {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2.5rem;
 }
-.selected-grid .featured {
-  grid-row: span 2;
-  align-self: center;
-}
 .work-art {
   display: block;
   position: relative;
@@ -525,6 +521,15 @@ html[data-theme="dark"] .theme-moon {
   height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 8px 10px #0002);
+}
+.work-card.uvm-laundrylink .work-art {
+  background: #154734;
+}
+.work-card.uvm-laundrylink .work-shots {
+  inset: 0;
+}
+.work-card.uvm-laundrylink .work-shot img {
+  filter: none;
 }
 .work-card.lineup .work-art {
   background: #11253a;
@@ -789,46 +794,21 @@ html[data-theme="dark"] .theme-moon {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 3rem;
 }
-.work-index .featured {
+.work-card.featured {
   grid-column: 1/-1;
   display: grid;
   grid-template-columns: 1.6fr 1fr;
   align-items: center;
   gap: 3rem;
 }
-.work-index .featured .work-caption {
+.work-card.featured .work-caption {
   flex-wrap: wrap;
 }
-.work-index .featured .work-caption h3 {
+.work-card.featured .work-caption h3 {
   font-size: 2.8rem;
 }
-.work-index .featured .work-caption p {
+.work-card.featured .work-caption p {
   font-size: 0.85rem;
-}
-.laundry-small {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-  padding: 2rem 0;
-  border-top: 1px solid var(--line);
-  margin-top: 3rem;
-}
-.laundry-small img {
-  width: 64px;
-  height: 64px;
-}
-.laundry-small > div {
-  flex: 1;
-}
-.laundry-small h3 {
-  font-size: 1.4rem;
-}
-.laundry-small p {
-  font-size: 0.85rem;
-}
-.laundry-small a {
-  font-size: 0.8rem;
 }
 .mac-opening {
   padding-block: 54px;
@@ -939,47 +919,6 @@ html[data-theme="dark"] .theme-moon {
   font-family: var(--display);
   font-size: 1.25rem;
   margin: 2rem 0;
-}
-.campus-opening {
-  max-width: 1050px;
-  padding-block: 70px;
-}
-.campus-logo {
-  width: 72px;
-  height: 72px;
-  margin-bottom: 1.5rem;
-}
-.campus-opening h1 {
-  font-weight: 600;
-}
-.notice {
-  background: #fff0cb;
-  color: #533c0d;
-  border-left: 3px solid #9b6911;
-  padding: 1rem 1.25rem;
-  font-size: 0.88rem;
-  margin-top: 2rem;
-}
-.campus-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8%;
-  padding-top: 50px;
-  border-top: 1px solid var(--line);
-}
-.feature-list {
-  list-style: none;
-  padding: 0;
-}
-.feature-list li {
-  border-top: 1px solid var(--line);
-  padding-block: 1rem;
-}
-.feature-list h3 {
-  font-size: 1.2rem;
-}
-.feature-list p {
-  font-size: 0.9rem;
 }
 .about-opening {
   display: grid;
@@ -1287,10 +1226,10 @@ html[data-theme="dark"] .theme-moon {
   .footer-bottom nav {
     max-width: 60%;
   }
-  .work-index .featured {
+  .work-card.featured {
     gap: 2rem;
   }
-  .work-index .featured .work-caption h3 {
+  .work-card.featured .work-caption h3 {
     font-size: 2rem;
   }
 }
@@ -1325,22 +1264,17 @@ html[data-theme="dark"] .theme-moon {
   .review-spread,
   .lineup-details,
   .case-ending,
-
   .work-index,
   .instrument-head,
   .mac-restore,
   .civic-opening,
   .civic-spread,
-  .campus-grid,
   .about-opening,
   .resume-columns,
   .studio-opening,
   .studio-products {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-  .selected-grid .featured {
-    grid-row: auto;
   }
   .selected-grid .work-art,
   .work-card.rental-record .work-art {
@@ -1422,22 +1356,12 @@ html[data-theme="dark"] .theme-moon {
   .detail-wide {
     margin-top: 1rem;
   }
-  .work-index .featured {
+  .work-card.featured {
     display: block;
     grid-column: auto;
   }
-  .work-index .featured .work-caption h3 {
+  .work-card.featured .work-caption h3 {
     font-size: 1.5rem;
-  }
-  .laundry-small {
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .laundry-small > a {
-    margin-left: 80px;
-  }
-  .laundry-small > div {
-    min-width: calc(100% - 100px);
   }
   .page-hero {
     padding-block: 40px;
@@ -1476,15 +1400,6 @@ html[data-theme="dark"] .theme-moon {
   }
   .concept-strip {
     grid-template-columns: 1fr;
-  }
-  .campus-opening {
-    padding-block: 40px;
-  }
-  .campus-opening h1 {
-    font-size: 2.8rem;
-  }
-  .campus-grid {
-    padding-top: 30px;
   }
   .about-opening {
     padding-block: 40px;
@@ -2197,6 +2112,11 @@ html[data-theme="dark"] .st-chip[data-k="scenario"] {
 .same-minute-stage .image-link {
   width: min(100%, 205px);
   margin-inline: auto;
+}
+
+.same-minute-stage figcaption,
+.same-minute-story figure figcaption {
+  color: #344d43;
 }
 
 .same-minute-stage figcaption,

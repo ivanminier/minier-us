@@ -1,5 +1,7 @@
 # V2 audit — minier.us
 
+> Historical audit. LaundryLink observations here describe the site and feed at the time of the audit. See [Project Inventory](PROJECT_INVENTORY.md#uvm-laundrylink) for the November 27, 2026 release.
+
 Internal notes from browsing the live Pages production build (`https://minier-us.pages.dev`) on 2026-08-14. Local DNS in this environment could not resolve `minier.us` (no A record from 1.1.1.1); NS already point at Cloudflare. Content is the same Pages project.
 
 Viewports captured: 375×812, 390×844, 430×932, 768×1024, 1024×768, 1280×800, 1440×900, 1728×1117. Light and dark sampled.

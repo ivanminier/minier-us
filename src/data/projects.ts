@@ -1,3 +1,5 @@
+import { laundryLink } from "./laundrylink";
+import laundryMedia from "./laundrylink-media.json";
 import lineupMedia from "./lineup-current-media.json";
 import rentalMedia from "./rental-record-media.json";
 import sameMinuteMedia from "./same-minute-media.json";
@@ -48,8 +50,6 @@ export interface Project {
   officialHome?: ProjectLink;
   /** Extra device shots for the multi-device row, kept out of the gallery so nothing repeats. */
   devices?: { tablet?: ProjectMedia; desktop?: ProjectMedia };
-  /** Explains why product imagery is unavailable, when that is the case. */
-  dataNote?: string;
   oneLiner: string;
   summary: string;
   href: string;
@@ -65,16 +65,6 @@ export interface Project {
   reasoning: string;
   nextSlug: string;
 }
-
-/**
- * The shared LaundryLink data status, so Work, the
- * case study, and the résumé cannot disagree about it.
- */
-export const laundryStatus = {
-  label: "Live room tracker",
-  notice:
-    "LaundryLink covers 44 rooms across 30 residence halls and complexes. The tracker labels saved snapshots when the provider feed is unavailable.",
-} as const;
 
 export const projects: Project[] = [
   {
@@ -147,7 +137,7 @@ export const projects: Project[] = [
     ],
     reasoning:
       "The hard problem is not another play button. It is turning a raw catalog into something a person can actually watch, and trust while it is being reorganized. Lineup Intelligence exists so the product can do that work once, show its work, and then stay out of the way.",
-    nextSlug: "rental-record",
+    nextSlug: "trinity-redistricting",
   },
   {
     slug: "rental-record",
@@ -220,7 +210,7 @@ export const projects: Project[] = [
     ],
     reasoning:
       "A rental record is useful only if it is complete, reviewable, and still understandable later. The product is an organizational tool, not a legal service.",
-    nextSlug: "same-minute",
+    nextSlug: "modeboard",
   },
   {
     slug: "same-minute",
@@ -281,7 +271,7 @@ export const projects: Project[] = [
     ],
     reasoning:
       "I wanted the experience of working alongside someone to take about as much effort as setting a kitchen timer.",
-    nextSlug: "modeboard",
+    nextSlug: "rental-record",
   },
   {
     slug: "modeboard",
@@ -401,7 +391,7 @@ export const projects: Project[] = [
     ],
     reasoning:
       "The product should feel like a native Mac utility: quiet, specific, and reversible. It changes what you ask it to change, then gets out of the way.",
-    nextSlug: "trinity-redistricting",
+    nextSlug: "lineup",
   },
   {
     slug: "trinity-redistricting",
@@ -478,69 +468,45 @@ export const projects: Project[] = [
   },
   {
     slug: "uvm-laundrylink",
-    name: "UVM LaundryLink",
-    shortName: "LaundryLink",
-    category: "Campus utility",
-    year: "2025",
-    status: "independent",
-    statusLabel: laundryStatus.label,
+    name: laundryLink.name,
+    shortName: laundryLink.name,
+    category: "Independent campus utility",
+    year: laundryLink.dates,
+    status: "available",
+    statusLabel: laundryLink.status,
     studio: "independent",
-    studioLabel: "Independent project",
-    platforms: ["Web"],
+    studioLabel: laundryLink.context,
+    platforms: ["Mobile-first web app", "Installable PWA"],
     creator: "Ivan Minier",
-    role: "Creator — product and engineering",
-    officialHome: {
-      label: "uvmlaundry.com",
-      href: "https://uvmlaundry.com",
-      external: true,
-    },
-    oneLiner:
-      "See which washers and dryers are actually open before you walk across campus.",
-    summary:
-      "UVM LaundryLink is a mobile-first campus tool for finding laundry rooms, checking provider-reported washer and dryer status, saving favorites, and setting cycle and availability alerts across 44 UVM laundry rooms.",
+    role: laundryLink.role,
+    officialHome: { label: "UVMLaundry.com", href: laundryLink.url, external: true },
+    oneLiner: laundryLink.oneLiner,
+    summary: laundryLink.description,
     href: "/work/uvm-laundrylink",
     accent: "#154734",
     theme: "campus",
-    icon: "/media/laundrylink/logo.webp",
-    hero: {
-      src: "/media/laundrylink/logo.webp",
-      srcset:
-        "/media/laundrylink/logo-sm.webp 256w, /media/laundrylink/logo.webp 512w",
-      width: 512,
-      height: 512,
-      alt: "UVM LaundryLink identity mark.",
-      presentation: "device",
-    },
-    gallery: [],
-    dataNote: laundryStatus.notice,
+    icon: "/media/laundrylink/app-icon.webp",
+    hero: { ...laundryMedia.hero, presentation: "editorial" },
+    gallery: [laundryMedia.picker, laundryMedia.favorites, laundryMedia.peak, laundryMedia.alerts],
     links: [
-      {
-        label: "uvmlaundry.com",
-        href: "https://uvmlaundry.com",
-        external: true,
-      },
+      { label: "Visit UVMLaundry.com", href: laundryLink.url, external: true },
+      { label: "Residence hall directory", href: laundryLink.url + "residence-halls/", external: true },
+      { label: "Information & FAQ", href: laundryLink.url + "information/", external: true },
+      { label: "Service status", href: laundryLink.url + "status/", external: true },
+      { label: "Source on GitHub", href: laundryLink.source, external: true },
     ],
     problem:
-      "Campus laundry is a small system that wastes a surprising amount of time. Students walk to a room, find every machine running, and walk back.",
+      "A full laundry room can mean carrying a load down several floors or across campus for nothing. The first question is simple: is there a washer or dryer free in the room I use?",
     approach:
-      "LaundryLink puts live machine status, Peak Times, favorites, and cycle alerts on a phone-sized page.",
+      "The directory puts that room one search or a few taps away. Open the tracker to check the provider’s latest report, or favorite the room so it’s easier to check the next time.",
     capabilities: [
-      {
-        title: "Room discovery",
-        body: "Browse UVM residence-hall laundry rooms and open a specific room without guessing which building to try.",
-      },
-      {
-        title: "Machine status",
-        body: "See washers and dryers as available, in use, finishing soon, cycle finished, or out of order, with remaining time when the source provides it.",
-      },
-      {
-        title: "Favorites, search, and alerts",
-        body: "Save rooms, filter machines, and set browser push alerts for cycles or for the next free washer in a full room. The provider supplies the embedded text and email options.",
-      },
+      { title: "Room discovery", body: "Search hall and complex names, campus areas, and common abbreviations, or jump directly to a campus in the directory." },
+      { title: "Machine status", body: "Check reported washer and dryer availability and remaining cycle time when the provider supplies it." },
+      { title: "Alerts", body: "Manage cycle completion and next-available washer or dryer push alerts in My Laundry." },
     ],
     reasoning:
-      "This was an earlier campus project, and it is the same pattern as the later work: take a frustrating everyday system and make the useful state obvious.",
-    nextSlug: "lineup",
+      "The interface shows when status was checked and labels the last saved snapshot if a refresh fails.",
+    nextSlug: "same-minute",
   },
 ];
 
@@ -554,12 +520,12 @@ export function getNextProject(slug: string): Project {
 }
 
 export const featuredOrder = [
-  "lineup",
-  "rental-record",
-  "same-minute",
-  "modeboard",
   "trinity-redistricting",
   "uvm-laundrylink",
+  "same-minute",
+  "rental-record",
+  "modeboard",
+  "lineup",
 ] as const;
 
 export const featuredProjects = featuredOrder

@@ -117,18 +117,5 @@ await card({
   lines: ["An independent", "housing vision."],
 });
 
-await card({
-  file: "public/media/og/laundrylink.png",
-  bg: "#154734",
-  img: "public/media/laundrylink/logo.webp",
-  imgLeft: 800,
-  imgTop: 175,
-  imgW: 280,
-  imgH: 280,
-  label: "UVM LAUNDRYLINK",
-  lines: ["See what is", "open first."],
-  dark: true,
-});
-
 await sharp("public/media/og/home.png").toFile("public/media/og/share.png");
 await sharp("public/media/og/home.png").toFile("public/og.png");

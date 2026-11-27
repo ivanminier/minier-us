@@ -73,7 +73,6 @@ export const experience = [
     details: ["Provided childcare, pet care, and household support."],
   },
 ];
-export const laundryDates = "June 2025–Present";
 export const capabilities = [
   {
     title: "Communication",

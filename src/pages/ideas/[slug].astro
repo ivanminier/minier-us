@@ -1,6 +1,7 @@
 ---
 import { render } from "astro:content";
 import { formatNoteDate, getPublishedNotes } from "../../data/notes";
+import { laundryLink } from "../../data/laundrylink";
 import { getProject } from "../../data/projects";
 import Base from "../../layouts/Base.astro";
 
@@ -21,6 +22,17 @@ const project = getProject(idea.data.project)!;
   title={`${idea.data.title} — Ivan Minier`}
   description={idea.data.summary}
   type="article"
+  image={project.slug === "uvm-laundrylink" ? laundryLink.socialImage : undefined}
+  imageAlt={project.slug === "uvm-laundrylink" ? laundryLink.socialImageAlt : undefined}
+  jsonLd={{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: idea.data.title,
+    description: idea.data.summary,
+    ...(project.slug === "uvm-laundrylink" && { datePublished: idea.data.date }),
+    author: { "@type": "Person", name: "Ivan Minier", url: "https://minier.us/" },
+    mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
+  }}
   theme="notes"
 >
   <article class="reading-room">

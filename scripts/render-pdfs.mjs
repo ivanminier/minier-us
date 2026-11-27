@@ -8,6 +8,7 @@ import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import { join, dirname, extname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { once } from "node:events";
 import { createRequire } from "node:module";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -30,7 +31,9 @@ const server = createServer(async (req, res) => {
   } catch {
     res.writeHead(404).end();
   }
-}).listen(0);
+});
+server.listen(0, "127.0.0.1");
+await once(server, "listening");
 const base = `http://127.0.0.1:${server.address().port}`;
 
 const browser = await chromium.launch();

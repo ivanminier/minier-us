@@ -11,6 +11,7 @@ interface Props {
   description?: string;
   canonical?: string;
   image?: string;
+  imageAlt?: string;
   type?: "website" | "article" | "profile";
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   theme?: string;
@@ -23,6 +24,7 @@ const {
   description = site.description,
   canonical,
   image = site.ogImage,
+  imageAlt,
   type = "website",
   jsonLd,
   theme,
@@ -129,11 +131,13 @@ const personLd = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={imageUrl} />
+    {imageAlt && <meta property="og:image:alt" content={imageAlt} />}
     <meta property="og:locale" content={site.locale} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
+    {imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

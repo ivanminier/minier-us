@@ -91,14 +91,14 @@ Media used: logo, home hero, district map, Peaks, Rise, Cottages images from the
 
 | Fact | Source |
 | --- | --- |
-| Independent campus laundry tool by Ivan | Public GitHub `ivanminier/uvm-laundry-link` |
-| Live site | `https://uvmlaundry.com` (CNAME in repo; HTTP 200). Also `https://uvm-laundry-link.pages.dev` |
-| Real-time washer/dryer availability | Public HTML meta description + `src/App.js` |
-| Rooms, status, search, favorites, SMS alerts, dark mode, PWA | `src/App.js` |
-| Brand colors `#154734` / `#fdb515` | `src/App.js` |
-| Not claimed as official UVM software | Independent student project; UVM mark used as campus identification on the existing public icon |
+| Independent, free campus laundry utility created by Ivan. Project history starts May 2025. | [Public repository and commit history](https://github.com/ivanminier/uvm-laundry-link) |
+| Deployed, feature-complete and in maintenance | [UVMLaundry.com](https://uvmlaundry.com/) and [November 27 release](https://github.com/ivanminier/uvm-laundry-link/actions/runs/45988068598) |
+| 44 room trackers, 30 residence hall buildings or complexes, four campus areas, 43 distinct provider feeds | [Residence hall directory](https://uvmlaundry.com/residence-halls/), release room mapping and [Service Status](https://uvmlaundry.com/status/) |
+| 53 crawlable public sitemap URLs at the November 27 release | [Public sitemap](https://uvmlaundry.com/sitemap.xml) and production checker at `3dd46aa` |
+| Provider-reported live status, favorites, historical Peak Times, Room Layout, and browser push | [Public Information and FAQ](https://uvmlaundry.com/information/) and app source at `88ff94e` |
+| Mobile-first React PWA on Cloudflare Pages, with a separate push Worker | Release README, workflows and public manifest |
 
-Media used: public LaundryLink icon from the live Pages deployment.
+Portfolio facts are defined in `src/data/laundrylink.ts`. Production screenshots were captured on November 27, 2026 in WebKit at 390×844, 820×920, and 1440×900. The curated media uses the live directory, Wright Hall tracker, CCRH room picker and dark Peak Times, one locally saved favorite, and the empty My Laundry view. The desktop browser frame and phone border are composed around actual captures. Reported machine counts in the screenshots are observations from that session. The source icon and brand mark are under `assets/source/laundrylink/`. No push subscriptions, reports, or notifications were created for the imagery.
 
 ## Not published
 

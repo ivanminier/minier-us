@@ -4,8 +4,8 @@ import {
   education,
   experience,
   capabilities,
-  laundryDates,
 } from "../data/experience";
+import { laundryLink } from "../data/laundrylink";
 import { trinityFigures as F } from "../data/trinity";
 ---
 
@@ -143,11 +143,12 @@ import { trinityFigures as F } from "../data/trinity";
             </ul>
           </div>
           <div class="resume-entry">
-            <h3>UVM LaundryLink — Independent student project</h3>
-            <span class="date">{laundryDates}</span>
+            <h3><a href="https://minier.us/work/uvm-laundrylink/">UVM LaundryLink</a> — Creator</h3>
+            <span class="date">{laundryLink.dates} · {laundryLink.context}</span>
             <p>
-              Created an account-free tracker for 44 campus laundry rooms with room search, favorites, Peak Times, and push alerts.
-              <a href="https://uvmlaundry.com/">Visit LaundryLink</a>.
+              Designed and shipped a mobile-first web app for checking reported washer and dryer
+              availability across {laundryLink.coverage.rooms} UVM laundry rooms. Led product design,
+              AI-assisted development, and release verification.
             </p>
           </div>
         </section>
